@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: How decisions get made
+    url: https://github.com/0xcounting/far/blob/main/GOVERNANCE.md
+    about: Roles, review thresholds, the dispute process, and what this project will not do.
+  - name: What the data actually claims
+    url: https://github.com/0xcounting/far/blob/main/README.md#read-this-before-you-trust-a-link
+    about: Why DTI links are proposals rather than facts, and what the confidence levels mean.

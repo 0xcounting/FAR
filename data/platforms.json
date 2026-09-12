@@ -1,0 +1,2840 @@
+{
+  "$schema": "./../schema/platforms.schema.json",
+  "_readme": "Maps a CoinGecko platform slug to a CAIP-2 chain ID and the CAIP-19 asset namespace used for tokens on it. This file is the ONLY platform truth the build reads; nothing is derived at build time. Confidence: high = exercised in production ingest or ratified by a CASA spec; medium = hand-reviewed against a named source; low = auto name-match or a provisional namespace with no ratified spec. Raising a confidence level or clearing an entry from `unmapped` is the most useful contribution to this repo.",
+  "platforms": {
+    "ethereum": {
+      "caip2": "eip155:1",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Ethereum Mainnet"
+      ],
+      "note": null
+    },
+    "optimistic-ethereum": {
+      "caip2": "eip155:10",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: OP Mainnet"
+      ],
+      "note": null
+    },
+    "cronos": {
+      "caip2": "eip155:25",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Cronos Mainnet"
+      ],
+      "note": null
+    },
+    "binance-smart-chain": {
+      "caip2": "eip155:56",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: BNB Smart Chain Mainnet"
+      ],
+      "note": null
+    },
+    "xdai": {
+      "caip2": "eip155:100",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Gnosis"
+      ],
+      "note": null
+    },
+    "unichain": {
+      "caip2": "eip155:130",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Unichain"
+      ],
+      "note": null
+    },
+    "polygon-pos": {
+      "caip2": "eip155:137",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Polygon Mainnet"
+      ],
+      "note": null
+    },
+    "monad": {
+      "caip2": "eip155:143",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Monad"
+      ],
+      "note": null
+    },
+    "sonic": {
+      "caip2": "eip155:146",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Sonic Mainnet"
+      ],
+      "note": null
+    },
+    "bittorrent": {
+      "caip2": "eip155:199",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: BitTorrent Chain Mainnet"
+      ],
+      "note": null
+    },
+    "opbnb": {
+      "caip2": "eip155:204",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: opBNB Mainnet"
+      ],
+      "note": null
+    },
+    "fantom": {
+      "caip2": "eip155:250",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Fantom Opera"
+      ],
+      "note": null
+    },
+    "fraxtal": {
+      "caip2": "eip155:252",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Fraxtal"
+      ],
+      "note": null
+    },
+    "zksync": {
+      "caip2": "eip155:324",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: zkSync Mainnet"
+      ],
+      "note": null
+    },
+    "world-chain": {
+      "caip2": "eip155:480",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: World Chain"
+      ],
+      "note": null
+    },
+    "hyperevm": {
+      "caip2": "eip155:999",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Wanchain Testnet"
+      ],
+      "note": null
+    },
+    "moonbeam": {
+      "caip2": "eip155:1284",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Moonbeam"
+      ],
+      "note": null
+    },
+    "moonriver": {
+      "caip2": "eip155:1285",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Moonriver"
+      ],
+      "note": null
+    },
+    "sei-v2": {
+      "caip2": "eip155:1329",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Sei Network"
+      ],
+      "note": null
+    },
+    "abstract": {
+      "caip2": "eip155:2741",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Abstract"
+      ],
+      "note": null
+    },
+    "base": {
+      "caip2": "eip155:8453",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Base"
+      ],
+      "note": null
+    },
+    "plasma": {
+      "caip2": "eip155:9745",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Plasma Mainnet"
+      ],
+      "note": null
+    },
+    "mode": {
+      "caip2": "eip155:34443",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Mode"
+      ],
+      "note": null
+    },
+    "arbitrum-one": {
+      "caip2": "eip155:42161",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Arbitrum One"
+      ],
+      "note": null
+    },
+    "celo": {
+      "caip2": "eip155:42220",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Celo Mainnet"
+      ],
+      "note": null
+    },
+    "avalanche": {
+      "caip2": "eip155:43114",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Avalanche C-Chain"
+      ],
+      "note": null
+    },
+    "linea": {
+      "caip2": "eip155:59144",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Linea"
+      ],
+      "note": null
+    },
+    "berachain": {
+      "caip2": "eip155:80094",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Berachain"
+      ],
+      "note": null
+    },
+    "blast": {
+      "caip2": "eip155:81457",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Blast"
+      ],
+      "note": null
+    },
+    "scroll": {
+      "caip2": "eip155:534352",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Scroll"
+      ],
+      "note": null
+    },
+    "katana": {
+      "caip2": "eip155:747474",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: katana"
+      ],
+      "note": null
+    },
+    "zora-network": {
+      "caip2": "eip155:7777777",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "ethereum-lists/chains: Zora"
+      ],
+      "note": null
+    },
+    "core": {
+      "caip2": "eip155:1116",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Core Blockchain Mainnet"
+      ],
+      "note": "CoreDAO. Auto-match proposed eip155:4352 (MemeCore) — wrong; rejected."
+    },
+    "hyperliquid": {
+      "caip2": "eip155:999",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Wanchain Testnet"
+      ],
+      "note": "HyperEVM mainnet. ethereum-lists only carries testnet 998 under this name."
+    },
+    "chiliz": {
+      "caip2": "eip155:88888",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Chiliz Chain Mainnet"
+      ],
+      "note": null
+    },
+    "klay-token": {
+      "caip2": "eip155:8217",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Kaia Mainnet"
+      ],
+      "note": "Kaia (formerly Klaytn). CoinGecko still uses the legacy klay-token slug."
+    },
+    "plume-network": {
+      "caip2": "eip155:98866",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Plume Mainnet"
+      ],
+      "note": "Plume Mainnet. 98865 is the legacy chain; tokens may straddle both."
+    },
+    "flare-network": {
+      "caip2": "eip155:14",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Flare Mainnet"
+      ],
+      "note": null
+    },
+    "tomochain": {
+      "caip2": "eip155:88",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Viction"
+      ],
+      "note": "Viction (formerly TomoChain). Not under that name in ethereum-lists."
+    },
+    "huobi-token": {
+      "caip2": "eip155:128",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Huobi ECO Chain Mainnet"
+      ],
+      "note": "Huobi ECO Chain (HECO)."
+    },
+    "merlin-chain": {
+      "caip2": "eip155:4200",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Merlin Mainnet"
+      ],
+      "note": null
+    },
+    "bob-network": {
+      "caip2": "eip155:60808",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: BOB"
+      ],
+      "note": "BOB. Distinct from Bobabeam/Bobaopera, which name-match first."
+    },
+    "immutable": {
+      "caip2": "eip155:13371",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Immutable zkEVM"
+      ],
+      "note": "Immutable zkEVM."
+    },
+    "velas": {
+      "caip2": "eip155:106",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Velas EVM Mainnet"
+      ],
+      "note": "Velas EVM Mainnet."
+    },
+    "conflux": {
+      "caip2": "eip155:1030",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Conflux eSpace"
+      ],
+      "note": "Conflux eSpace (the EVM-compatible space)."
+    },
+    "shibarium": {
+      "caip2": "eip155:109",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Shibarium"
+      ],
+      "note": "Shibarium mainnet; 719 is Shibarium Beta."
+    },
+    "lightlink": {
+      "caip2": "eip155:1890",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Lightlink Phoenix Mainnet"
+      ],
+      "note": "Lightlink Phoenix Mainnet."
+    },
+    "wemix-network": {
+      "caip2": "eip155:1111",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: WEMIX3.0 Mainnet"
+      ],
+      "note": "WEMIX3.0 Mainnet."
+    },
+    "telos": {
+      "caip2": "eip155:40",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Telos EVM Mainnet"
+      ],
+      "note": "Telos EVM Mainnet."
+    },
+    "elastos": {
+      "caip2": "eip155:20",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Elastos Smart Chain"
+      ],
+      "note": "Elastos Smart Chain."
+    },
+    "kucoin-community-chain": {
+      "caip2": "eip155:321",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: KCC Mainnet"
+      ],
+      "note": "KCC. Not under that name in ethereum-lists."
+    },
+    "okex-chain": {
+      "caip2": "eip155:66",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: OKXChain Mainnet"
+      ],
+      "note": "OKTC/OKExChain mainnet; only testnet 65 name-matches."
+    },
+    "bsquared-network": {
+      "caip2": "eip155:223",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: B2 Mainnet"
+      ],
+      "note": "B² Network."
+    },
+    "xdc-network": {
+      "caip2": "eip155:50",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: XDC Network"
+      ],
+      "note": null
+    },
+    "iotex": {
+      "caip2": "eip155:4689",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: IoTeX Network Mainnet"
+      ],
+      "note": null
+    },
+    "boba": {
+      "caip2": "eip155:288",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Boba Network"
+      ],
+      "note": "Boba Ethereum mainnet; the Bobabeam/Boba Avax entries name-match first."
+    },
+    "oasys": {
+      "caip2": "eip155:248",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Oasys Mainnet"
+      ],
+      "note": null
+    },
+    "beam": {
+      "caip2": "eip155:4337",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Beam"
+      ],
+      "note": "Beam. Distinct from Moonbeam (1284), which is a near name-match."
+    },
+    "neon-evm": {
+      "caip2": "eip155:245022934",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Neon EVM Mainnet"
+      ],
+      "note": null
+    },
+    "canto": {
+      "caip2": "eip155:7700",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Canto"
+      ],
+      "note": null
+    },
+    "zircuit": {
+      "caip2": "eip155:48900",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Zircuit Mainnet"
+      ],
+      "note": "Zircuit Mainnet; 48899/48898 are testnets."
+    },
+    "wanchain": {
+      "caip2": "eip155:888",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Wanchain"
+      ],
+      "note": null
+    },
+    "arbitrum-nova": {
+      "caip2": "eip155:42170",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Arbitrum Nova"
+      ],
+      "note": null
+    },
+    "oasis": {
+      "caip2": "eip155:42262",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Oasis Emerald"
+      ],
+      "note": "Oasis Emerald (the EVM paratime); Sapphire is 23294."
+    },
+    "corn": {
+      "caip2": "eip155:21000000",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Corn"
+      ],
+      "note": null
+    },
+    "gravity-alpha": {
+      "caip2": "eip155:1625",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Gravity Alpha Mainnet"
+      ],
+      "note": null
+    },
+    "somnia": {
+      "caip2": "eip155:5031",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Somnia Mainnet"
+      ],
+      "note": null
+    },
+    "thundercore": {
+      "caip2": "eip155:108",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: ThunderCore Mainnet"
+      ],
+      "note": "ThunderCore Mainnet; 18 is the testnet."
+    },
+    "bifrost-network": {
+      "caip2": "eip155:3068",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Bifrost Mainnet"
+      ],
+      "note": "Bifrost Mainnet (EVM). Distinct from Bifrost Polkadot (996)."
+    },
+    "botanix": {
+      "caip2": "eip155:3637",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Botanix Mainnet"
+      ],
+      "note": "Botanix Mainnet; 3636 is the testnet."
+    },
+    "kardiachain": {
+      "caip2": "eip155:24",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: KardiaChain Mainnet"
+      ],
+      "note": null
+    },
+    "superseed": {
+      "caip2": "eip155:5330",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Superseed"
+      ],
+      "note": null
+    },
+    "ethereum-classic": {
+      "caip2": "eip155:61",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Ethereum Classic"
+      ],
+      "note": null
+    },
+    "bitkub-chain": {
+      "caip2": "eip155:96",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: KUB Mainnet"
+      ],
+      "note": "Bitkub Chain. Not under that name in ethereum-lists."
+    },
+    "0g": {
+      "caip2": "eip155:16661",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: 0G Mainnet"
+      ],
+      "note": "0G Mainnet."
+    },
+    "zklink-nova": {
+      "caip2": "eip155:810180",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: zkLink Nova Mainnet"
+      ],
+      "note": null
+    },
+    "bitlayer": {
+      "caip2": "eip155:200901",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Bitlayer Mainnet"
+      ],
+      "note": "Bitlayer Mainnet; 200810 is the testnet."
+    },
+    "goat": {
+      "caip2": "eip155:2345",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: GOAT Network"
+      ],
+      "note": "GOAT Network."
+    },
+    "doma": {
+      "caip2": "eip155:97477",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Doma"
+      ],
+      "note": "Doma mainnet; 97476 is the testnet."
+    },
+    "redbelly-network": {
+      "caip2": "eip155:151",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Redbelly Network Mainnet"
+      ],
+      "note": "Redbelly Network Mainnet; 154 is TGE, 152 devnet."
+    },
+    "bouncebit": {
+      "caip2": "eip155:6001",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: BounceBit Mainnet"
+      ],
+      "note": "BounceBit Mainnet; 6000 is the testnet."
+    },
+    "step-network": {
+      "caip2": "eip155:1234",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Step Network"
+      ],
+      "note": null
+    },
+    "robinhood": {
+      "caip2": "eip155:4663",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Robinhood Chain"
+      ],
+      "note": "Robinhood Chain. Carries tokenized equities, not crypto-native assets."
+    },
+    "filecoin": {
+      "caip2": "eip155:314",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Filecoin - Mainnet"
+      ],
+      "note": "Filecoin FEVM. Native FIL is not an FEVM ERC-20."
+    },
+    "mantle": {
+      "caip2": "eip155:5000",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Mantle"
+      ],
+      "note": null
+    },
+    "morph-l2": {
+      "caip2": "eip155:2818",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Morph"
+      ],
+      "note": "Morph mainnet. Not under that name in ethereum-lists."
+    },
+    "milkomeda-cardano": {
+      "caip2": "eip155:2001",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "medium",
+      "evidence": [
+        "hand-reviewed against ethereum-lists/chains: Milkomeda C1 Mainnet"
+      ],
+      "note": "Milkomeda C1 (Cardano EVM sidechain)."
+    },
+    "pulsechain": {
+      "caip2": "eip155:369",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: PulseChain"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "energi": {
+      "caip2": "eip155:39797",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Energi Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "ink": {
+      "caip2": "eip155:57073",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Ink"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "x-layer": {
+      "caip2": "eip155:196",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: X Layer Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "ronin": {
+      "caip2": "eip155:2020",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Ronin Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "metis-andromeda": {
+      "caip2": "eip155:1088",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Metis Andromeda Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "aurora": {
+      "caip2": "eip155:1313161554",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Aurora Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "soneium": {
+      "caip2": "eip155:1868",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Soneium"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "manta-pacific": {
+      "caip2": "eip155:169",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Manta Pacific Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "rootstock": {
+      "caip2": "eip155:30",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Rootstock Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "polygon-zkevm": {
+      "caip2": "eip155:1101",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Polygon zkEVM"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "etherlink": {
+      "caip2": "eip155:42793",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Etherlink Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "fuse": {
+      "caip2": "eip155:122",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Fuse Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "megaeth": {
+      "caip2": "eip155:4326",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: MegaETH Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "cronos-zkevm": {
+      "caip2": "eip155:388",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Cronos zkEVM Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "flow-evm": {
+      "caip2": "eip155:747",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Flow EVM Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "astar": {
+      "caip2": "eip155:592",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Astar"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "hemi": {
+      "caip2": "eip155:43111",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Hemi"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "tac": {
+      "caip2": "eip155:239",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: TAC Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "swellchain": {
+      "caip2": "eip155:1923",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Swellchain"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "taiko": {
+      "caip2": "eip155:167000",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Taiko"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "lisk": {
+      "caip2": "eip155:1135",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Lisk"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "stable": {
+      "caip2": "eip155:988",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Stable Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "meter": {
+      "caip2": "eip155:82",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Meter Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "peaq": {
+      "caip2": "eip155:3338",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: peaq"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "apechain": {
+      "caip2": "eip155:33139",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: ApeChain"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "evmos": {
+      "caip2": "eip155:9001",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Evmos"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "zetachain": {
+      "caip2": "eip155:7000",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: ZetaChain Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "memecore": {
+      "caip2": "eip155:4352",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: MemeCore"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "citrea": {
+      "caip2": "eip155:4114",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Citrea Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "iota-evm": {
+      "caip2": "eip155:8822",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: IOTA EVM"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "eni": {
+      "caip2": "eip155:173",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: ENI Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "story": {
+      "caip2": "eip155:1513",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Story Testnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "shido": {
+      "caip2": "eip155:9008",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Shido Network"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "shimmer_evm": {
+      "caip2": "eip155:148",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: ShimmerEVM"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "glue": {
+      "caip2": "eip155:1300",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Glue Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "hydra": {
+      "caip2": "eip155:4488",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Hydra Chain"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "q-mainnet": {
+      "caip2": "eip155:35441",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Q Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "igra": {
+      "caip2": "eip155:38833",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Igra Network"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "mezo": {
+      "caip2": "eip155:31612",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Mezo"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "bitgert": {
+      "caip2": "eip155:32520",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Bitgert Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "theta": {
+      "caip2": "eip155:361",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Theta Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "edu-chain": {
+      "caip2": "eip155:41923",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: EDU Chain"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "vechain": {
+      "caip2": "eip155:100009",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: VeChain"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "tombchain": {
+      "caip2": "eip155:6969",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Tomb Chain Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "sophon": {
+      "caip2": "eip155:50104",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Sophon"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "Bitcichain": {
+      "caip2": "eip155:1907",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Bitcichain Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "zedxion": {
+      "caip2": "eip155:83872",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: ZEDXION"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "Superposition": {
+      "caip2": "eip155:55244",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Superposition"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "cube": {
+      "caip2": "eip155:1818",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Cube Chain Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "lens": {
+      "caip2": "eip155:232",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Lens"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "lukso": {
+      "caip2": "eip155:42",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: LUKSO Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "duckchain": {
+      "caip2": "eip155:5545",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: DuckChain Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "electroneum": {
+      "caip2": "eip155:52014",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Electroneum Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "ql1": {
+      "caip2": "eip155:766",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: QL1"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "shape": {
+      "caip2": "eip155:360",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Shape"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "oasis-sapphire": {
+      "caip2": "eip155:23294",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Oasis Sapphire"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "ancient8": {
+      "caip2": "eip155:888888888",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Ancient8"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "astar-zkevm": {
+      "caip2": "eip155:3776",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Astar zkEVM"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "callisto": {
+      "caip2": "eip155:820",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Callisto Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "pharos": {
+      "caip2": "eip155:1672",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Pharos Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "metal-l2": {
+      "caip2": "eip155:1750",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Metal L2"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "mint": {
+      "caip2": "eip155:185",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Mint Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "funki": {
+      "caip2": "eip155:33979",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Funki"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "gensyn": {
+      "caip2": "eip155:685689",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Gensyn Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "hela": {
+      "caip2": "eip155:8668",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Hela Official Runtime Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "proof-of-memes": {
+      "caip2": "eip155:18159",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Proof Of Memes"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "saakuru": {
+      "caip2": "eip155:7225878",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Saakuru Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "smartbch": {
+      "caip2": "eip155:10000",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Smart Bitcoin Cash"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "zero-network": {
+      "caip2": "eip155:543210",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: ZERO Network"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "codex": {
+      "caip2": "eip155:81224",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Codex"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "rollux": {
+      "caip2": "eip155:570",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Rollux Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "henesys": {
+      "caip2": "eip155:68414",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Henesys"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "kroma": {
+      "caip2": "eip155:255",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Kroma"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "inevm": {
+      "caip2": "eip155:2525",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: inEVM Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "fluent": {
+      "caip2": "eip155:25363",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Fluent"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "haven1": {
+      "caip2": "eip155:8811",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Haven1"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "syscoin": {
+      "caip2": "eip155:57",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Syscoin Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "pundi-aifx-omnilayer": {
+      "caip2": "eip155:530",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Pundi AIFX Omnilayer"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "rss3-vsl": {
+      "caip2": "eip155:12553",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: RSS3 VSL Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "haqq-network": {
+      "caip2": "eip155:11235",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Haqq Network"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "sx-network": {
+      "caip2": "eip155:416",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: SX Network Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "horizen": {
+      "caip2": "eip155:26514",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: Horizen Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "zkfair": {
+      "caip2": "eip155:42766",
+      "assetNamespace": "erc20",
+      "nativeAsset": null,
+      "addressFormat": "evm-lowercase",
+      "confidence": "low",
+      "evidence": [
+        "ethereum-lists/chains unique name match: ZKFair Mainnet"
+      ],
+      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+    },
+    "solana": {
+      "nativeAsset": "slip44:501",
+      "note": null,
+      "caip2": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+      "assetNamespace": "token",
+      "addressFormat": "base58",
+      "confidence": "high",
+      "evidence": [
+        "ChainAgnostic/namespaces solana/caip2.md (mainnet genesis hash)",
+        "solana/caip19.md (token | nft)"
+      ]
+    },
+    "tron": {
+      "nativeAsset": "slip44:195",
+      "note": "CAIP-2 is ratified; there is NO ratified CAIP-19 asset namespace for Tron. \"trc20\" is this registry's provisional choice.",
+      "caip2": "tron:0x2b6653dc",
+      "assetNamespace": "trc20",
+      "addressFormat": "base58check",
+      "confidence": "medium",
+      "evidence": [
+        "ChainAgnostic/namespaces tron/caip2.md (mainnet 728126428 / 0x2b6653dc)"
+      ]
+    },
+    "stellar": {
+      "nativeAsset": "slip44:148",
+      "note": "CoinGecko encodes classic assets as CODE-ISSUER; Soroban SEP-41 contracts need the sep41 namespace instead.",
+      "caip2": "stellar:pubnet",
+      "assetNamespace": "asset",
+      "addressFormat": "stellar-asset",
+      "confidence": "medium",
+      "evidence": [
+        "ChainAgnostic/namespaces stellar/caip19.md (slip44 | asset | cap38 | sep41)"
+      ]
+    },
+    "hedera-hashgraph": {
+      "nativeAsset": "slip44:3030",
+      "note": "CoinGecko stores the EVM-alias 0x form; the CAIP-19 reference is the shard.realm.num tokenID. Conversion is unresolved — see data/unmapped.",
+      "caip2": "hedera:mainnet",
+      "assetNamespace": "token",
+      "addressFormat": "hedera-token-id",
+      "confidence": "medium",
+      "evidence": [
+        "ChainAgnostic/namespaces hedera/caip19.md (token namespace, reference = tokenID)"
+      ]
+    },
+    "xrp": {
+      "nativeAsset": "slip44:144",
+      "note": null,
+      "caip2": "xrpl:0",
+      "assetNamespace": "token",
+      "addressFormat": "xrpl-currency-issuer",
+      "confidence": "medium",
+      "evidence": [
+        "ChainAgnostic/namespaces xrpl/caip19.md (token_ref = currency_code \".\" issuer_address)"
+      ]
+    },
+    "aptos": {
+      "nativeAsset": "slip44:637",
+      "note": "No ratified CAIP-19 for Aptos. \"coin\" is provisional and does not distinguish coin from fungible-asset (FA) standards.",
+      "caip2": "aptos:1",
+      "assetNamespace": "coin",
+      "addressFormat": "aptos-struct",
+      "confidence": "low",
+      "evidence": [
+        "ChainAgnostic/namespaces aptos/caip2.md (Mainnet = 1)"
+      ]
+    },
+    "sui": {
+      "nativeAsset": "slip44:784",
+      "note": "No ratified CAIP-19 for Sui. \"coin\" is provisional.",
+      "caip2": "sui:mainnet",
+      "assetNamespace": "coin",
+      "addressFormat": "sui-struct",
+      "confidence": "low",
+      "evidence": [
+        "ChainAgnostic/namespaces sui/caip2.md (^sui:(mainnet|testnet|devnet)$)"
+      ]
+    },
+    "elrond": {
+      "nativeAsset": "slip44:508",
+      "note": "MultiversX (CoinGecko still uses the legacy \"elrond\" slug). No ratified CAIP-19; \"esdt\" is provisional.",
+      "caip2": "mvx:1",
+      "assetNamespace": "esdt",
+      "addressFormat": "mvx-esdt",
+      "confidence": "low",
+      "evidence": [
+        "ChainAgnostic/namespaces mvx/caip2.md (Mainnet = 1)"
+      ]
+    },
+    "tezos": {
+      "nativeAsset": "slip44:1729",
+      "note": "No ratified CAIP-19. FA1.2 vs FA2 is not distinguishable from the CoinGecko identity alone.",
+      "caip2": "tezos:mainnet",
+      "assetNamespace": "fa2",
+      "addressFormat": "tezos-kt",
+      "confidence": "low",
+      "evidence": [
+        "ChainAgnostic/namespaces tezos/caip2.md"
+      ]
+    },
+    "algorand": {
+      "nativeAsset": "slip44:283",
+      "note": "No ratified CAIP-19. \"asa\" (Algorand Standard Asset) is provisional.",
+      "caip2": "algorand:wGHE2Pwdvd7S12BL5FaOP20EGYesN73k",
+      "assetNamespace": "asa",
+      "addressFormat": "asa-id",
+      "confidence": "low",
+      "evidence": [
+        "ChainAgnostic/namespaces algorand/caip2.md (MainNet genesis hash)"
+      ]
+    },
+    "stacks": {
+      "nativeAsset": "slip44:5757",
+      "note": null,
+      "caip2": "stacks:1",
+      "assetNamespace": "sip010",
+      "addressFormat": "stacks-principal",
+      "confidence": "medium",
+      "evidence": [
+        "ChainAgnostic/namespaces stacks/caip19.md (sip010 | sip009)"
+      ]
+    },
+    "cosmos": {
+      "caip2": "cosmos:cosmoshub-4",
+      "assetNamespace": null,
+      "nativeAsset": "slip44:118",
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
+    },
+    "osmosis": {
+      "caip2": "cosmos:osmosis-1",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
+    },
+    "juno": {
+      "caip2": "cosmos:juno-1",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
+    },
+    "noble": {
+      "caip2": "cosmos:noble-1",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
+    },
+    "neutron": {
+      "caip2": "cosmos:neutron-1",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
+    },
+    "archway": {
+      "caip2": "cosmos:archway-1",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
+    },
+    "terra": {
+      "caip2": "cosmos:columbus-5",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
+    },
+    "terra-2": {
+      "caip2": "cosmos:phoenix-1",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
+    },
+    "saga": {
+      "caip2": "cosmos:ssc-1",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
+    },
+    "starknet": {
+      "nativeAsset": "slip44:9004",
+      "note": "CAIP-2 is ratified; CAIP-19 is not. \"erc20\" mirrors the Cairo token interface and is provisional.",
+      "caip2": "starknet:SN_MAIN",
+      "assetNamespace": "erc20",
+      "addressFormat": "starknet-felt",
+      "confidence": "low",
+      "evidence": [
+        "ChainAgnostic/namespaces starknet/caip2.md"
+      ]
+    },
+    "near-protocol": {
+      "nativeAsset": "slip44:397",
+      "note": "NEAR has NO ratified CAIP-2 namespace at all. Both the chain ID and the asset namespace are provisional and may change.",
+      "caip2": "near:mainnet",
+      "assetNamespace": "nep141",
+      "addressFormat": "near-account",
+      "confidence": "low",
+      "evidence": [
+        "no CASA namespace for NEAR — \"near:mainnet\" is community convention"
+      ]
+    },
+    "cardano": {
+      "nativeAsset": "slip44:1815",
+      "note": "No ratified CAIP-2 for Cardano. Reference is policyId+assetNameHex concatenated, as CoinGecko stores it.",
+      "caip2": "cip34:1-764824073",
+      "assetNamespace": "native",
+      "addressFormat": "cardano-asset",
+      "confidence": "low",
+      "evidence": [
+        "CIP-34 network identifier; no CASA namespace for Cardano"
+      ]
+    }
+  },
+  "unmapped": {
+    "the-open-network": {
+      "tokens": 213,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "bittensor": {
+      "tokens": 124,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "harmony-shard-0": {
+      "tokens": 72,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "sora": {
+      "tokens": 37,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "internet-computer": {
+      "tokens": 32,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "ordinals": {
+      "tokens": 32,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "kava": {
+      "tokens": 22,
+      "evmShaped": false,
+      "candidates": [
+        "eip155:2222 (Kava)"
+      ],
+      "reason": "needs review"
+    },
+    "secret": {
+      "tokens": 22,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "galachain": {
+      "tokens": 20,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "injective": {
+      "tokens": 19,
+      "evmShaped": false,
+      "candidates": [
+        "eip155:1776 (Injective)"
+      ],
+      "reason": "needs review"
+    },
+    "radix": {
+      "tokens": 18,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "hydration": {
+      "tokens": 14,
+      "evmShaped": false,
+      "candidates": [
+        "eip155:222222 (Hydration)"
+      ],
+      "reason": "needs review"
+    },
+    "kasplex": {
+      "tokens": 12,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "movement": {
+      "tokens": 11,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "dogechain": {
+      "tokens": 11,
+      "evmShaped": false,
+      "candidates": [
+        "eip155:2000 (Dogechain Mainnet)"
+      ],
+      "reason": "needs review"
+    },
+    "ergo": {
+      "tokens": 10,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "waves": {
+      "tokens": 9,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "binancecoin": {
+      "tokens": 8,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "skale": {
+      "tokens": 8,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "SKALE is many independent hub chains; one CoinGecko slug cannot address them. Needs per-hub split."
+    },
+    "tempo": {
+      "tokens": 6,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "anubis": {
+      "tokens": 6,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "fogo": {
+      "tokens": 6,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "eclipse": {
+      "tokens": 6,
+      "evmShaped": false,
+      "candidates": [
+        "eip155:17172 (Eclipse Subnet)"
+      ],
+      "reason": "needs review"
+    },
+    "wax": {
+      "tokens": 5,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "alephium": {
+      "tokens": 5,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "besc-hyperchain": {
+      "tokens": 5,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "neo": {
+      "tokens": 5,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "initia": {
+      "tokens": 5,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "zilliqa": {
+      "tokens": 5,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "massa": {
+      "tokens": 5,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "oraichain": {
+      "tokens": 4,
+      "evmShaped": false,
+      "candidates": [
+        "eip155:108160679 (Oraichain Mainnet)"
+      ],
+      "reason": "needs review"
+    },
+    "kujira": {
+      "tokens": 4,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "chia": {
+      "tokens": 4,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "canton-network": {
+      "tokens": 4,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "constellation-network": {
+      "tokens": 4,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "defi-kingdoms-blockchain": {
+      "tokens": 4,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "iota": {
+      "tokens": 4,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "provenance": {
+      "tokens": 4,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "polkadot": {
+      "tokens": 4,
+      "evmShaped": false,
+      "candidates": [
+        "eip155:420420419 (Polkadot)"
+      ],
+      "reason": "needs review"
+    },
+    "mantra-evm": {
+      "tokens": 4,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "shiden network": {
+      "tokens": 4,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "nibiru": {
+      "tokens": 4,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "kasplex-2": {
+      "tokens": 3,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "humanode": {
+      "tokens": 3,
+      "evmShaped": false,
+      "candidates": [
+        "eip155:5234 (Humanode Mainnet)"
+      ],
+      "reason": "needs review"
+    },
+    "dungeon-chain": {
+      "tokens": 3,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "drc-20": {
+      "tokens": 3,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "zigchain": {
+      "tokens": 3,
+      "evmShaped": false,
+      "candidates": [
+        "eip155:944 (ZIGChain)"
+      ],
+      "reason": "needs review"
+    },
+    "krown-network": {
+      "tokens": 3,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "persistence": {
+      "tokens": 3,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "units-network": {
+      "tokens": 3,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "areon-network": {
+      "tokens": 2,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "icon": {
+      "tokens": 2,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "bevm": {
+      "tokens": 2,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "bot-chain": {
+      "tokens": 2,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "ethereumpow": {
+      "tokens": 2,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "fusion-network": {
+      "tokens": 2,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "bittensor-evm": {
+      "tokens": 2,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "hashkey-chain": {
+      "tokens": 2,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "mantra": {
+      "tokens": 2,
+      "evmShaped": false,
+      "candidates": [
+        "eip155:5888 (MANTRA Chain)"
+      ],
+      "reason": "needs review"
+    },
+    "defichain": {
+      "tokens": 2,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "zano": {
+      "tokens": 2,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "graphlinq-chain": {
+      "tokens": 2,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "grx-chain": {
+      "tokens": 2,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "songbird": {
+      "tokens": 2,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "fonchain": {
+      "tokens": 2,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "zilliqa-evm": {
+      "tokens": 2,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "laikachain": {
+      "tokens": 2,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "onus": {
+      "tokens": 2,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "function-x": {
+      "tokens": 2,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "supra": {
+      "tokens": 2,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "rari": {
+      "tokens": 2,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "aelf": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "tdvv-sidechain": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "akash": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "acala": {
+      "tokens": 1,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "planq-network": {
+      "tokens": 1,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "cellframe": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "defichain-evm": {
+      "tokens": 1,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "babylon-genesis": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "cyber": {
+      "tokens": 1,
+      "evmShaped": true,
+      "candidates": [
+        "eip155:7560 (Cyber Mainnet)",
+        "eip155:85449 (CYBERTRUST)"
+      ],
+      "reason": "ambiguous name match — needs a human to pick"
+    },
+    "venom": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "eos": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [
+        "eip155:17777 (EOS EVM Network)"
+      ],
+      "reason": "needs review"
+    },
+    "bitcoin-cash": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "migaloo": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "exosama": {
+      "tokens": 1,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "casper-network": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "fuel-ignition": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "gravity-bridge": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "crescent": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "coreum": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "map-protocol": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [
+        "eip155:22776 (MAP Protocol)"
+      ],
+      "reason": "needs review"
+    },
+    "aura-network": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "ontology": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [
+        "eip155:58 (Ontology Mainnet)"
+      ],
+      "reason": "needs review"
+    },
+    "onchain": {
+      "tokens": 1,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "orenium": {
+      "tokens": 1,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "clover": {
+      "tokens": 1,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "qtum": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "thorchain": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "sonic-svm": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "degen": {
+      "tokens": 1,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "rails-network": {
+      "tokens": 1,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "kadena": {
+      "tokens": 1,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "vanar-chain": {
+      "tokens": 1,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "endurance": {
+      "tokens": 1,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "everscale": {
+      "tokens": 1,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    },
+    "zama-gateway-mainnet": {
+      "tokens": 1,
+      "evmShaped": true,
+      "candidates": [],
+      "reason": "no CAIP-2 identified for this network yet"
+    }
+  }
+}
