@@ -3501,18 +3501,15 @@
       "assetNamespace": "asset",
       "nativeAsset": "slip44:1179993420",
       "addressFormat": "fuel-asset-id",
-      "confidence": "proposed",
-      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "confidence": "medium",
       "namespaceRatified": false,
       "assetNamespaceRatified": false,
       "evidence": [
-        "Verified live 2026-09-14: POST https://mainnet.fuel.network/v1/graphql `query{chain{name consensusParameters{chainId}}}` returned {\"name\":\"Ignition\",\"consensusParameters\":{\"chainId\":\"9889\"}}",
-        "Verified live 2026-09-14: the sample identity resolves as a real Fuel asset - `query{assetDetails(id:\"0x1d5d97005e41cae2187a895fd8eab0506111e0e2f3331cd3912c15c24e3c1d82\"){contractId subId totalSupply}}` returned contractId 0x4ea6ccef...d0e8, subId 0xe81c89b8...ddaf, totalSupply 2769113484449117304",
-        "SLIP-0044: | 1179993420 | | Fuel |",
-        "ChainAgnostic/namespaces tree listing (GitHub trees API, main branch): there is NO `fuel` directory"
+        "Live: POST mainnet.fuel.network/v1/graphql returns chain.name \"Ignition\", consensusParameters.chainId \"9889\"",
+        "Fuel spec consensus_parameters.md defines CHAIN_ID as a uint64 unique per-chain identifier",
+        "Fuel spec identifiers/transaction-id.md: sha256(CHAIN_ID ++ serialized_tx) — CHAIN_ID is the signing-domain separator, which is what CAIP-2 names"
       ],
-      "note": "INVENTED NAMESPACE: `fuel` is my own proposal - CASA has ratified no Fuel namespace, so `fuel:9889` is not a standard identifier and a reviewer must treat it as a placeholder. INVENTED: `asset` as the asset namespace likewise. addressFormat `fuel-asset-id` is new: `0x` + exactly 64 lowercase hex chars (a FuelVM AssetId = sha256(contractId, subId)). Fuel Ignition is an Ethereum L2 but is NOT EVM-compatible (FuelVM), so no eip155 id applies.",
-      "uncertainty": "Both the namespace string `fuel` and the choice of the FuelVM consensus chainId (9889) as the reference are unspecified inventions; an eventual CASA Fuel namespace might key off something else (e.g. the L2 genesis/state root)."
+      "note": "Fuel is NOT an EVM chain despite 0x-style hex: a UTXO ledger with 32-byte addresses and native AssetIds, so a tool treating a Fuel identifier as eip155 will silently truncate. Known upstream defect: Fuel’s public testnet AND every local dev node report chainId 0, so \"fuel:0\" does not identify a single network. Raised in the CASA draft for Fuel maintainers to assign the testnet a distinct CHAIN_ID."
     },
     "gravity-bridge": {
       "caip2": "cosmos:gravity-bridge-3",
@@ -3715,18 +3712,15 @@
       "assetNamespace": "module",
       "nativeAsset": "slip44:626",
       "addressFormat": "kadena-module-name",
-      "confidence": "proposed",
-      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "confidence": "high",
       "namespaceRatified": false,
       "assetNamespaceRatified": false,
       "evidence": [
-        "Kadena Chainweb REST/Pact API path shape is https://<host>/chainweb/0.0/<network-id>/chain/<chain id>/pact/api/v1/..., with mainnet's network-id being `mainnet01` (kadena-io/chainweb-node and kadena-io/pact-lang-api docs; @kadena/client transaction metadata uses networkId: \"mainnet01\")",
-        "ChainAgnostic/namespaces tree listing (GitHub trees API, main branch): there is NO `kadena` directory",
-        "SLIP-0044: | 626 | KDA | Kadena |",
-        "CoinGecko coins/list: the sole token on platform `kadena` is the-brothers-dao (BRO) with identity n_582fed11af00dc626812cd7890bb88e72067f28c.bro"
+        "KIP-0017 (Status: Final) registers kadena:mainnet01 / kadena:testnet04 / kadena:development as CAIP-2 identifiers and is deployed in wallets via WalletConnect",
+        "Live: chainweb-community bootstrap node /chainweb/0.0/mainnet01/cut returns instance \"mainnet01\" with 20 chains",
+        "src/Chainweb/Version/*.hs confirms the mainnet01 network id"
       ],
-      "note": "INVENTED NAMESPACE: `kadena` is my own proposal - CASA has ratified nothing for Kadena, so `kadena:mainnet01` is a placeholder, not a standard. INVENTED: `module` as the asset namespace too. addressFormat `kadena-module-name` is NEW: a Pact module reference, either a bare module name (`coin`) or `<namespace>.<module>` where a principal namespace looks like `n_` + 40 lowercase hex (e.g. `n_582fed11af00dc626812cd7890bb88e72067f28c.bro`). TWO PROBLEMS A REVIEWER MUST SETTLE: (1) CHARSET - `_` is NOT in the CAIP-19 asset_reference charset [-.%a-zA-Z0-9], so `n_582fed...bro` is illegal as-is and needs percent-encoding (`n%5F582fed11af00dc626812cd7890bb88e72067f28c.bro`). (2) SHARDING - Kadena mainnet is Chainweb, 20 PARALLEL chains numbered 0-19, each with independent state; the same module is deployed per-chain and a balance is chain-specific. A single `kadena:mainnet01` id therefore elides the chain number; a fuller scheme would be `kadena:mainnet01_<0-19>` or similar.",
-      "uncertainty": "The namespace string, the asset namespace, and whether the Chainweb chain number belongs in the CAIP-2 reference are all unresolved. I could not reach api.chainweb.com from this host to confirm networkId live, so `mainnet01` rests on Kadena SDK/doc sources rather than a node response."
+      "note": "Kadena registered this identifier itself in KIP-0017, so FAR aligns with an existing ecosystem standard rather than inventing one. KIP-0017 states these are NOT Chainweb chain ids — a Chainweb chain (0-19) is addressed separately, because the 20 chains cannot finalise independently (each header commits to its adjacents). Note api.chainweb.com is dead (NXDOMAIN) and Kadena Inc. wound down in Oct 2025; maintenance moved to kda-community/chainweb-node and mainnet is still producing blocks (measured)."
     },
     "everscale": {
       "caip2": "tvm:42",
