@@ -2,11 +2,11 @@
   "$schema": "./../schema/links-exact.schema.json",
   "_readme": "DTI <-> CoinGecko links derived from the CONTRACT ADDRESS in the DTIF registry record, not from names. basis \"address-exact\" means the DTI-derived CAIP-19 matched a CoinGecko deployment exactly. \"address-only-chain-differs\" means the address matched a unique CoinGecko coin but the two sources disagree about the chain, or we lack a CAIP-2 for that ledger.",
   "stats": {
-    "withCaip19": 3083,
-    "matchedExact": 1349,
+    "withCaip19": 3097,
+    "matchedExact": 1355,
     "matchedAddressOnly": 111,
-    "noMatch": 1623,
-    "groupsResolved": 1058,
+    "noMatch": 1631,
+    "groupsResolved": 1061,
     "groupsSpanningSeveralCoins": 14
   },
   "links": [
@@ -2036,6 +2036,15 @@
       ]
     },
     {
+      "dti": "B6CSM27H8",
+      "coingeckoId": "superstate-short-duration-us-government-securities-fund-ustb",
+      "caip19": "eip155:98866/erc20:0xe4fa682f94610ccd170680cc3b045d77d9e528a8",
+      "basis": "address-exact",
+      "allCoinIds": [
+        "superstate-short-duration-us-government-securities-fund-ustb"
+      ]
+    },
+    {
       "dti": "B6QH7BGQX",
       "coingeckoId": "tether-gold",
       "caip19": "eip155:1/erc20:0x68749665ff8d2d112fa859aa293f07a622782f38",
@@ -2348,6 +2357,15 @@
       "basis": "address-exact",
       "allCoinIds": [
         "definitive"
+      ]
+    },
+    {
+      "dti": "CGVWVS7PW",
+      "coingeckoId": "sats-ordinals",
+      "caip19": "bip122:000000000019d6689c085ae165831e93/ord:9b664bdd6f5ed80d8d88957b63364c41f3ad4efb8eee11366aa16435974d9333i0",
+      "basis": "address-exact",
+      "allCoinIds": [
+        "sats-ordinals"
       ]
     },
     {
@@ -4934,6 +4952,15 @@
       ]
     },
     {
+      "dti": "R3SV04GX9",
+      "coingeckoId": "usd-coin",
+      "caip19": "eip155:57073/erc20:0x2d270e6886d130d724215a266106e6832161eaed",
+      "basis": "address-exact",
+      "allCoinIds": [
+        "usd-coin"
+      ]
+    },
+    {
       "dti": "R4KZ1N9GP",
       "coingeckoId": "opbnb-bridged-wbnb-opbnb",
       "caip19": "eip155:204/erc20:0x4200000000000000000000000000000000000006",
@@ -5777,6 +5804,15 @@
       "basis": "address-exact",
       "allCoinIds": [
         "helium"
+      ]
+    },
+    {
+      "dti": "VXQ4RDHQD",
+      "coingeckoId": "rats",
+      "caip19": "bip122:000000000019d6689c085ae165831e93/ord:77df24c9f1bd1c6a606eb12eeae3e2a2db40774d54b839b5ae11f438353ddf47i0",
+      "basis": "address-exact",
+      "allCoinIds": [
+        "rats"
       ]
     },
     {
@@ -9029,6 +9065,15 @@
       ]
     },
     {
+      "dti": "D8SB8LJ0W",
+      "coingeckoId": "ordinals",
+      "caip19": "bip122:000000000019d6689c085ae165831e93/ord:b61b0172d95e266c18aea0c624db987e971a5d6d4ebc2aaed85da4642d635735i0",
+      "basis": "address-exact",
+      "allCoinIds": [
+        "ordinals"
+      ]
+    },
+    {
       "dti": "D94114L7T",
       "coingeckoId": "havven",
       "caip19": "eip155:1/erc20:0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f",
@@ -10682,6 +10727,15 @@
       "basis": "address-exact",
       "allCoinIds": [
         "stepn"
+      ]
+    },
+    {
+      "dti": "N064ZKXDM",
+      "coingeckoId": "usd-coin",
+      "caip19": "eip155:98866/erc20:0x222365ef19f7947e5484218551b56bb3965aa7af",
+      "basis": "address-exact",
+      "allCoinIds": [
+        "usd-coin"
       ]
     },
     {
@@ -18329,6 +18383,18 @@
       ]
     },
     {
+      "dti": "QJL2K39KZ",
+      "coingeckoId": "ordinals",
+      "caip19": null,
+      "basis": "group-inherited",
+      "allCoinIds": [
+        "ordinals"
+      ],
+      "groupMembers": [
+        "D8SB8LJ0W"
+      ]
+    },
+    {
       "dti": "QK86HZ23F",
       "coingeckoId": "sudoswap",
       "caip19": null,
@@ -20571,6 +20637,18 @@
       ]
     },
     {
+      "dti": "5KGFMFKZZ",
+      "coingeckoId": "sats-ordinals",
+      "caip19": null,
+      "basis": "group-inherited",
+      "allCoinIds": [
+        "sats-ordinals"
+      ],
+      "groupMembers": [
+        "CGVWVS7PW"
+      ]
+    },
+    {
       "dti": "5N77FRK33",
       "coingeckoId": "frgx-finance",
       "caip19": null,
@@ -21213,6 +21291,18 @@
       ],
       "groupMembers": [
         "69TP5Q8RP"
+      ]
+    },
+    {
+      "dti": "99LPKQWWZ",
+      "coingeckoId": "rats",
+      "caip19": null,
+      "basis": "group-inherited",
+      "allCoinIds": [
+        "rats"
+      ],
+      "groupMembers": [
+        "VXQ4RDHQD"
       ]
     },
     {
