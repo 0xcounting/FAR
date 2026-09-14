@@ -2567,7 +2567,7 @@
       "assetNamespace": "subnet",
       "nativeAsset": "slip44:1005",
       "addressFormat": "bittensor-netuid",
-      "confidence": "proposed",
+      "confidence": "low",
       "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
       "namespaceRatified": true,
       "assetNamespaceRatified": false,
@@ -2578,7 +2578,7 @@
         "SLIP-44 line '| 1005 | TAO | Bittensor |' (note: '| 558 | TAO | Tao |' is a DIFFERENT registration) -- https://raw.githubusercontent.com/satoshilabs/slips/master/slip-0044.md",
         "chainid.network/chains.json lists 'Subtensor EVM' as chainId 964 -- that is Bittensor's EVM layer and is NOT where these identities live"
       ],
-      "note": "asset_namespace `subnet` IS MY INVENTION -- nothing specifies asset namespaces for the polkadot namespace. THE IDENTITIES ARE NOT ADDRESSES: '17', '125', '120' are Bittensor subnet netuids (small decimal integers), i.e. dTAO subnet alpha tokens, which live in the subtensor pallet's per-subnet AMM rather than at any contract address. addressFormat `bittensor-netuid` (NEW): ^(0|[1-9][0-9]{0,4})$, a decimal integer with no leading zeros, currently ~0-130. DUAL-LAYER: Bittensor also runs an EVM (eip155:964, 'Subtensor EVM' in chains.json); these token identities belong to the SUBSTRATE layer, not the EVM layer.",
+      "note": "asset_namespace `subnet` IS MY INVENTION -- nothing specifies asset namespaces for the polkadot namespace. THE IDENTITIES ARE NOT ADDRESSES: '17', '125', '120' are Bittensor subnet netuids (small decimal integers), i.e. dTAO subnet alpha tokens, which live in the subtensor pallet's per-subnet AMM rather than at any contract address. addressFormat `bittensor-netuid` (NEW): ^(0|[1-9][0-9]{0,4})$, a decimal integer with no leading zeros, currently ~0-130. DUAL-LAYER: Bittensor also runs an EVM (eip155:964, 'Subtensor EVM' in chains.json); these token identities belong to the SUBSTRATE layer, not the EVM layer. NOT STABLE AS AN ASSET IDENTIFIER: a Bittensor netuid is a reusable SLOT, not a permanent id. SubnetLimit is 128 and the chain currently reports TotalNetworks = 129, so the table is full and every new registration recycles a dissolved subnet’s netuid — and dissolution removes all its storage. A CAIP-19 profile drafted for polkadot deliberately EXCLUDES subnet alpha for this reason, and additionally because alpha is a share in a per-subnet staking pool attached to a hotkey rather than an entry in an asset index. Pinning the registration block alongside the slot (e.g. 17-2840556 from NetworkRegisteredAt) would make it stable; that is proposed upstream, not assumed here.",
       "uncertainty": "I could not verify that CoinGecko's integers are netuids rather than some CoinGecko-internal index -- the CoinGecko contract endpoint was rate-limited (HTTP 429) when I tried. The netuid reading is inferred from the values being small integers on a chain whose only fungible non-TAO assets are subnet alpha tokens. Also, a netuid is not globally unique the way a contract address is: subnets can be deregistered and a netuid reused, so this asset reference is NOT permanently stable."
     },
     "sora": {

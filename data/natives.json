@@ -418,18 +418,6 @@
         ]
       }
     ],
-    "starknet": [
-      {
-        "caip2": "starknet:SN_MAIN",
-        "caip19": "starknet:SN_MAIN/slip44:9004",
-        "chainName": "Starknet",
-        "confidence": "medium",
-        "evidence": [
-          "SLIP-0044 STRK = coin type 9004",
-          "0xcounting.com production ingest (chain table)"
-        ]
-      }
-    ],
     "bitcoin": [
       {
         "caip2": "bip122:000000000019d6689c085ae165831e93",

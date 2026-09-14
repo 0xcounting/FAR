@@ -93,7 +93,14 @@ const FORMATS = {
   'alephium-contract-address':{ re: /^[1-9A-HJ-NP-Za-km-z]{40,50}$/ },
   'asa-id':                   { re: /^[0-9]{1,20}$/ },
   'bittensor-netuid':         { re: /^[0-9]{1,6}$/ },
-  'starknet-felt':            { re: /^0x[0-9a-fA-F]{1,64}$/, lower: true },
+  // A Starknet address is a field element and is NOT fixed width — the node
+  // itself emits class hashes at 62 and 63 digits, and four spellings of the
+  // ETH contract (padded, stripped, uppercase, no 0x) all resolve to the same
+  // class hash. Every one of those spellings uses only characters the
+  // asset_reference charset permits, so this is a live CAIP-19 hazard rather
+  // than a theoretical one. Pad rather than strip: fixed width makes byte
+  // equality the same thing as asset equality.
+  'starknet-felt':            { re: /^0x[0-9a-fA-F]{1,64}$/, lower: true, padFelt: true },
   'sora-asset-id':            { re: /^0x[0-9a-fA-F]{64}$/, lower: true },
   'fuel-asset-id':            { re: /^0x[0-9a-fA-F]{64}$/, lower: true },
   'move-object-address':      { re: /^0x[0-9a-fA-F]{1,64}$/, lower: true },
@@ -178,6 +185,9 @@ export function normalizeAddress(identity, addressFormat) {
   // Move addresses have a short and a long spelling that both resolve, so one
   // asset would otherwise have two identifiers. Move's own TypeTag serialization
   // uses the full 32-byte form, so pad to 64 hex.
+  if (spec.padFelt) {
+    cased = cased.replace(/^0x([0-9a-fA-F]{1,64})$/, (_, h) => `0x${h.padStart(64, '0')}`);
+  }
   if (spec.padMove) {
     cased = cased.replace(/^0x([0-9a-fA-F]{1,64})/, (_, h) => `0x${h.toLowerCase().padStart(64, '0')}`);
   }
