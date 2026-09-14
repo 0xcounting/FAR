@@ -34,7 +34,17 @@ for (const [name, p] of Object.entries(platformTable.platforms)) {
   // A model-generated entry must carry its own uncertainty statement, so the
   // thing a reviewer should check first travels with the claim.
   if (p.confidence === 'proposed' && p.assertedBy == null) fail('platform.proposed-needs-assertedBy', name);
-  if (p.confidence === 'high' && !p.evidence.some((e) => /production|CASA|ChainAgnostic/i.test(e))) {
+  // "high" needs evidence that does not rest on our own inference. Three kinds
+  // qualify: a CASA specification, a mapping exercised in a production ingest,
+  // or THE ECOSYSTEM'S OWN ratified standard registering the identifier.
+  //
+  // That third kind was added after Kadena: KIP-0017 is Status Final, it
+  // registers `kadena:mainnet01` as a CAIP-2 identifier itself, and it is
+  // deployed in wallets via WalletConnect. Refusing to call that "high" because
+  // the document happens to live in the ecosystem's own KIP repo rather than
+  // CASA's would rank a second-hand reading above the primary source.
+  const STRONG = /production|CASA|ChainAgnostic|\b(KIP|CIP|EIP|SIP|NEP|SEP|TIP|BIP|SLIP)-?\s?\d+\b/i;
+  if (p.confidence === 'high' && !p.evidence.some((e) => STRONG.test(e))) {
     fail('platform.high-confidence-needs-strong-evidence', name);
   }
   if (p.assetNamespace !== null && !/^[-a-z0-9]{3,8}$/.test(p.assetNamespace)) {
