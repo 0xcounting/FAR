@@ -16,6 +16,9 @@ address, without asking anyone's permission or waiting for a registry to catch u
 Software that touches all three ends up maintaining this mapping privately. FAR
 maintains it in the open instead.
 
+**Browse and test queries at <https://0xcounting.github.io/FAR>** — the site is a docs
+page with a live resolver that queries these same static files.
+
 ```
 GET /name/tether.json
 GET /symbol/usdt.json

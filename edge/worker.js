@@ -13,7 +13,7 @@ export default {
     }
     const url = new URL(request.url);
     let key = decodeURIComponent(url.pathname).replace(/^\/+/, '');
-    if (key === '') key = 'index.json';
+    if (key === '') key = 'index.html';
 
     // Every route in this registry is a literal object key. Rejecting traversal
     // outright is cheaper than normalising it, and there is no legitimate "..".
@@ -33,7 +33,9 @@ export default {
     }
 
     const headers = new Headers({
-      'content-type': key.endsWith('.gz') ? 'application/json' : 'application/json; charset=utf-8',
+      'content-type': key.endsWith('.html') ? 'text/html; charset=utf-8'
+        : key.endsWith('.gz') ? 'application/json'
+        : 'application/json; charset=utf-8',
       'access-control-allow-origin': '*',
       // Content changes only when a build is published, and a build publishes a
       // new manifest. Five minutes at the edge with a long stale window keeps
