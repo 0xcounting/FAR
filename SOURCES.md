@@ -119,16 +119,20 @@ What remains is the name-matched tier, which is what the project had before.
 - **Licence:** MIT.
 - **Used for:** the `slip44:` reference in every native asset's CAIP-19.
 
-## 0xcounting.com
+## 0xcounting.com production ingest
 
-- **What:** the `chains.json` platform↔chain table from the 0xCounting ingest
-  pipeline, used as `high`-confidence evidence because those mappings are
-  exercised against live chain data daily. Read at generation time by
-  `scripts/gen-natives.js`; **not** vendored, and not required to build.
-- **Caveat recorded in code:** that file assigns *synthetic* chain IDs ≥ 2×10⁹ to
-  non-EVM chains for its own internal keying. Those are not EIP-155 IDs and the
-  generator explicitly skips them. An earlier revision did not, and produced
-  `eip155:2100000002` for Osmosis.
+- **What:** a slimmed platform↔chain table (`chainId`, `name`, `nativeSymbol`,
+  and the two CoinGecko slugs) contributed from the production ingest pipeline
+  at [0xcounting.com](https://0xcounting.com). Used as `high`-confidence
+  evidence because those mappings are exercised against live chain data daily
+  rather than matched on a name. Vendored as
+  `data/sources/core-chains.json.gz`, so this repository builds standalone.
+- **Caveat recorded in code:** the upstream table assigns *synthetic* chain IDs
+  ≥ 2×10⁹ to non-EVM chains for its own internal keying. Those are not EIP-155
+  IDs, and `scripts/gen-platforms.js` explicitly skips them. An earlier revision
+  did not, and produced `eip155:2100000002` for Osmosis — which is why the
+  address validator rejects rather than passes through a shape it does not
+  recognise.
 
 ## This repository
 
