@@ -2963,19 +2963,15 @@
       "assetNamespace": "mrc20",
       "nativeAsset": "slip44:632",
       "addressFormat": "massa-address",
-      "confidence": "proposed",
-      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "confidence": "medium",
       "namespaceRatified": false,
       "assetNamespaceRatified": false,
       "evidence": [
-        "Live RPC https://mainnet.massa.net/api/v2 method get_status => result.chain_id = 77658377, version 'MAIN.5.0'",
-        "Massa node configuration docs list chain_id 77658377 for MainNet (also BuildNet 77658366, SecureNet 77658383, LabNet 77658376, Sandbox 77) -- https://docs.massa.net/docs/node/all-configs",
-        "SLIP-0044 line 665: | 632 | MAS | Massa |",
-        "ChainAgnostic/namespaces has NO massa directory (verified against the full GitHub tree listing of the main branch)",
-        "CoinGecko platform 'massa' tokens are all AS1.../AS12... addresses (massa-bridged-usdc-massa, massa-bridged-usdt-massa, wrapped-massa, ...); the native 'massa' coin has an empty address"
+        "Live: mainnet.massa.net/api/v2 get_status returns chain_id 77658377 (version MAIN.5.0)",
+        "CHAINID constant in massa-models/src/config/constants.rs",
+        "docs.massa.net/docs/node/constants published table"
       ],
-      "note": "THE NAMESPACE 'massa' IS MY INVENTION -- there is no massa directory in ChainAgnostic/namespaces, so no ratified CAIP-2 exists for this chain. The reference 77658377 is Massa's own mainnet chain_id and is live-verified, so only the namespace string is speculative. assetNamespace 'mrc20' IS ALSO MY INVENTION (Massa's fungible-token standard is named MRC-20 in massa-standards). addressFormat 'massa-address' is MY INVENTION: base58check with a 2-character type prefix -- 'AS' for smart-contract addresses (all token identities here) and 'AU' for user addresses; ~52-53 characters total; case-sensitive, do NOT lowercase.",
-      "uncertainty": "The namespace string 'massa' is unratified and could be rejected or renamed by CASA. I did not independently verify that the standard is spelled 'MRC-20' rather than 'MRC20' or 'FT'. I did not query a Massa node to confirm the three sample AS1... addresses are deployed contracts."
+      "note": "Massa chain ids are the ASCII code points of a four-letter network code: MASM = 77·65·83·77 = 77658377, buildnet MASB = 77658366. Addresses are A + {U|S} + base58(version+hash); the \"1\" in AU1…/AS1… is address VERSION 0 rendered by base58, not a fixed prefix, so hard-coding AU1/AS1 breaks at version 1."
     },
     "oraichain": {
       "caip2": "cosmos:Oraichain",
@@ -3171,20 +3167,14 @@
       "assetNamespace": "irc2",
       "nativeAsset": "slip44:74",
       "addressFormat": "icon-score-address",
-      "confidence": "proposed",
-      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "confidence": "medium",
       "namespaceRatified": false,
       "assetNamespaceRatified": false,
       "evidence": [
-        "Live RPC https://ctz.solidwallet.io/api/v3 method icx_getNetworkInfo => {\"platform\":\"icon\",\"nid\":\"0x1\",\"channel\":\"icon_dex\",...} -- ICON mainnet network id is 0x1",
-        "Live RPC icx_call on sample cx88fd7df7ddff82f7cc735c871dc519838cb235bb with method 'symbol' => \"bnUSD\", matching CoinGecko coin id 'balanced-dollars' -- the contract is real and on mainnet",
-        "ICON documentation states mainnet Network ID is 0x1 (testnets are 0x2 and 0x7) -- https://docs.icon.community/develop-on-icon-chain/networks",
-        "ChainAgnostic/namespaces has NO icon directory (verified against the full GitHub tree listing of the main branch)",
-        "SLIP-0044 line 107: | 74 | ICX | ICON |",
-        "CoinGecko asset_platforms: id=icon, chain_identifier=null, native_coin_id=icon"
+        "Live: icx_getNetworkInfo on two independent endpoints (ctz.solidwallet.io and api.icon.community) both return nid 0x1, platform icon, channel icon_dex",
+        "docs.icon.community networks table"
       ],
-      "note": "THE NAMESPACE 'icon' IS MY INVENTION -- there is no icon directory in ChainAgnostic/namespaces, so no ratified CAIP-2 exists for this chain. The reference '1' is ICON's own mainnet NID (0x1), live-verified, so only the namespace string is speculative. I wrote it in decimal ('1') rather than hex ('0x1') to match how other namespaces write numeric references; a reviewer may reasonably prefer 'icon:0x1'. assetNamespace 'irc2' IS ALSO MY INVENTION (ICON's fungible-token standard is IRC-2). addressFormat 'icon-score-address' is MY INVENTION: /^cx[0-9a-f]{40}$/ -- literal 'cx' prefix (contract/SCORE) then 40 lowercase hex. Note ICON EOAs use the 'hx' prefix instead; token identities should always be 'cx'.",
-      "uncertainty": "Both the namespace string and the decimal-vs-hex rendering of the reference are unratified choices. Also: NAME-COLLISION RISK -- 'icon' is a very generic string and a future CASA namespace called 'icon' might mean something else; and be careful that chain-name searches for 'icon' in EVM registries hit 'Silicon zkEVM' (chainIds 2355, 1414, 1722641160), which is unrelated."
+      "note": "Reference is the NID as canonical DECIMAL. ICON JSON-RPC returns it as \"0x1\"; hex would admit 0x1/0x01/0X1/0x001 for one network, so the CASA draft derives decimal explicitly and rejects icon:0x1. Addresses: hx = EOA, cx = contract, which identifies a contract without a getCode call."
     },
     "ethereumpow": {
       "caip2": "eip155:10001",
@@ -3301,19 +3291,14 @@
       "assetNamespace": null,
       "nativeAsset": "slip44:1616",
       "addressFormat": "aelf-address",
-      "confidence": "proposed",
-      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "confidence": "medium",
       "namespaceRatified": false,
       "assetNamespaceRatified": false,
       "evidence": [
-        "aelf docs state the MainChain ChainId is 'AELF' and that dAppChains use codes tDVV / tDVW: https://docs.aelf.com/quick-start/node-operators/set-up-a-side-chain/",
-        "aelf docs / integration guide write the ELF token on MainChain as exactly 'ELF_JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE_AELF': https://docs.aelf.com/resources/integration-guide/",
-        "JRmBduh4nXWi1aXgdUsj5gJrzeZb2LxmrAbf7W99faZSvoAaE is the address of the MultiToken system contract (AElf.Contracts.MultiToken): https://docs.aelf.io/en/dev/reference/smart-contract-api/multi-token.html",
-        "There is NO 'aelf' directory in https://github.com/ChainAgnostic/namespaces (full listing fetched 2026-09-14)",
-        "SLIP-0044 line '| 1616 | ELF | AELF |'"
+        "Live: /api/blockChain/chainStatus on aelf-public-node.aelf.io returns ChainId \"AELF\"; tdvv-public-node returns \"tDVV\"",
+        "ChainHelper.cs — chain id is the low three bytes of the int32 little-endian form, big-endian, plain base58 (round-tripped: AELF<->9992731, tDVV<->1866392)"
       ],
-      "note": "THE NAMESPACE STRING 'aelf' IS MY INVENTION - no ChainAgnostic namespace exists. The reference 'AELF' is aelf's own documented MainChain ChainId and fits CAIP-2's charset/length. SERIOUS IDENTITY CAVEAT: the identity CoinGecko gives is NOT per-token. JRmBduh4...AaE is the single MultiToken system contract; on aelf, individual tokens are distinguished by SYMBOL inside that one contract, not by address. So every aelf token would carry the identical 'ELF_JRmBduh4..._AELF' string with only the leading symbol differing by convention. A registry keying on this identity will collide across aelf tokens - the asset_reference should really be the token symbol (e.g. 'ELF'), optionally scoped to the MultiToken contract. addressFormat 'aelf-address' IS MY INVENTION: shape is 'ELF_' + base58check address (~50 chars) + '_' + chain id in {AELF, tDVV, tDVW}, regex ^ELF_[1-9A-HJ-NP-Za-km-z]{40,60}_(AELF|tDV[VW])$. Note this string contains '_', which is legal in a CAIP-2 reference but NOT in a CAIP-19 asset_reference (whose charset is [-.%a-zA-Z0-9]) - so the identity must be percent-encoded or restructured before it can be a legal CAIP-19 asset_reference.",
-      "uncertainty": "Namespace prefix is unratified/invented. The bigger open question is what the asset_reference should be at all, given the identity is a shared system-contract address rather than a per-token address; and the '_' character makes the raw string CAIP-19-illegal."
+      "note": "KNOWN AMBIGUITY: aelf documents its TestNet main chain as ALSO using chain id AELF, so aelf:AELF may not distinguish MainNet from TestNet. The testnet endpoints returned HTTP 522 so this could not be confirmed live; it is flagged in the CASA draft as the item most likely to need community correction. Separately: aelf tokens live in a SHARED MultiToken system contract, so token identity is (chain id, symbol) and never a contract address — every aelf token in CoinGecko collides on one address because of this."
     },
     "tdvv-sidechain": {
       "caip2": "aelf:tDVV",
