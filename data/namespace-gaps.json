@@ -1,0 +1,250 @@
+{
+  "_readme": "Identifiers this registry publishes that no CASA specification defines. Each is a namespace FAR had to choose in order to name assets that exist, and each is therefore a concrete proposal the ChainAgnostic Standards Alliance would need to ratify for these identifiers to be interoperable rather than ours alone. Published so the gap is visible and actionable rather than hidden behind a confidence label.",
+  "ratifiedSource": "https://github.com/ChainAgnostic/namespaces",
+  "chainNamespaces": {
+    "cip34": {
+      "tokens": 84,
+      "usedBy": [
+        "cardano (cip34:1-764824073)",
+        "ledger Cardano"
+      ]
+    },
+    "near": {
+      "tokens": 72,
+      "usedBy": [
+        "near-protocol (near:mainnet)"
+      ]
+    },
+    "radix": {
+      "tokens": 18,
+      "usedBy": [
+        "radix (radix:mainnet)"
+      ]
+    },
+    "kaspa": {
+      "tokens": 12,
+      "usedBy": [
+        "kasplex (kaspa:mainnet)"
+      ]
+    },
+    "movement": {
+      "tokens": 11,
+      "usedBy": [
+        "movement (movement:126)",
+        "ledger Movement"
+      ]
+    },
+    "massa": {
+      "tokens": 5,
+      "usedBy": [
+        "massa (massa:77658377)"
+      ]
+    },
+    "icon": {
+      "tokens": 2,
+      "usedBy": [
+        "icon (icon:1)",
+        "ledger ICON"
+      ]
+    },
+    "supra": {
+      "tokens": 2,
+      "usedBy": [
+        "supra (supra:8)"
+      ]
+    },
+    "aelf": {
+      "tokens": 2,
+      "usedBy": [
+        "aelf (aelf:AELF)",
+        "tdvv-sidechain (aelf:tDVV)"
+      ]
+    },
+    "fuel": {
+      "tokens": 1,
+      "usedBy": [
+        "fuel-ignition (fuel:9889)"
+      ]
+    },
+    "kadena": {
+      "tokens": 1,
+      "usedBy": [
+        "kadena (kadena:mainnet01)",
+        "ledger Kadena"
+      ]
+    }
+  },
+  "assetNamespaces": {
+    "coin": {
+      "tokens": 217,
+      "usedBy": [
+        "aptos",
+        "sui",
+        "supra"
+      ]
+    },
+    "jetton": {
+      "tokens": 213,
+      "usedBy": [
+        "the-open-network"
+      ]
+    },
+    "subnet": {
+      "tokens": 124,
+      "usedBy": [
+        "bittensor"
+      ]
+    },
+    "trc20": {
+      "tokens": 92,
+      "usedBy": [
+        "tron"
+      ]
+    },
+    "native": {
+      "tokens": 87,
+      "usedBy": [
+        "cardano",
+        "gravity-bridge",
+        "coreum",
+        "thorchain"
+      ]
+    },
+    "nep141": {
+      "tokens": 72,
+      "usedBy": [
+        "near-protocol"
+      ]
+    },
+    "asa": {
+      "tokens": 38,
+      "usedBy": [
+        "algorand"
+      ]
+    },
+    "esdt": {
+      "tokens": 35,
+      "usedBy": [
+        "elrond"
+      ]
+    },
+    "snip20": {
+      "tokens": 22,
+      "usedBy": [
+        "secret"
+      ]
+    },
+    "resource": {
+      "tokens": 18,
+      "usedBy": [
+        "radix"
+      ]
+    },
+    "fa2": {
+      "tokens": 13,
+      "usedBy": [
+        "tezos"
+      ]
+    },
+    "krc20": {
+      "tokens": 12,
+      "usedBy": [
+        "kasplex"
+      ]
+    },
+    "fungible": {
+      "tokens": 11,
+      "usedBy": [
+        "movement"
+      ]
+    },
+    "denom": {
+      "tokens": 9,
+      "usedBy": [
+        "dungeon-chain",
+        "zigchain",
+        "persistence"
+      ]
+    },
+    "bep2": {
+      "tokens": 8,
+      "usedBy": [
+        "binancecoin"
+      ]
+    },
+    "zrc2": {
+      "tokens": 5,
+      "usedBy": [
+        "zilliqa"
+      ]
+    },
+    "mrc20": {
+      "tokens": 5,
+      "usedBy": [
+        "massa"
+      ]
+    },
+    "cat": {
+      "tokens": 4,
+      "usedBy": [
+        "chia"
+      ]
+    },
+    "drc20": {
+      "tokens": 3,
+      "usedBy": [
+        "drc-20"
+      ]
+    },
+    "irc2": {
+      "tokens": 2,
+      "usedBy": [
+        "icon"
+      ]
+    },
+    "cw20": {
+      "tokens": 2,
+      "usedBy": [
+        "babylon-genesis",
+        "aura-network"
+      ]
+    },
+    "ibc": {
+      "tokens": 2,
+      "usedBy": [
+        "migaloo",
+        "crescent"
+      ]
+    },
+    "tip3": {
+      "tokens": 1,
+      "usedBy": [
+        "venom"
+      ]
+    },
+    "slp": {
+      "tokens": 1,
+      "usedBy": [
+        "bitcoin-cash"
+      ]
+    },
+    "cep18": {
+      "tokens": 1,
+      "usedBy": [
+        "casper-network"
+      ]
+    },
+    "qrc20": {
+      "tokens": 1,
+      "usedBy": [
+        "qtum"
+      ]
+    },
+    "module": {
+      "tokens": 1,
+      "usedBy": [
+        "kadena"
+      ]
+    }
+  }
+}

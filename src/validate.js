@@ -122,8 +122,17 @@ for (const [dli, l] of Object.entries(ledgers)) {
   if (l.caip2 != null && !isValidCaip2(l.caip2)) fail('ledger.caip2-invalid', `${dli}: ${l.caip2}`);
   if (!['public', 'permissioned', 'unknown'].includes(l.kind)) fail('ledger.kind-invalid', `${dli}: ${l.kind}`);
   if (!Array.isArray(l.evidence) || l.evidence.length === 0) fail('ledger.no-evidence', dli);
-  // A permissioned ledger having no CAIP-2 is the CORRECT outcome, not a gap.
-  if (l.kind === 'permissioned' && l.caip2) fail('ledger.permissioned-should-have-no-caip2', dli);
+  // A permissioned ledger USUALLY has no CAIP-2, because nobody has published a
+  // namespace or a canonical reference for it. That is not the same as saying it
+  // CANNOT have one: nothing in CAIP-2 requires a chain to be public, and CASA
+  // has already ratified namespaces of exactly this shape (swift, tenzro,
+  // haneul, partisia, xync). An earlier version of this rule REJECTED a CAIP-2
+  // on a permissioned ledger outright, which would have blocked a correct
+  // contribution the day SDX or SWIAT registered one. It now only asks that the
+  // claim be sourced, like every other claim here.
+  if (l.kind === 'permissioned' && l.caip2 && !(l.evidence ?? []).some((e) => /namespace|registered|spec|caip/i.test(e))) {
+    fail('ledger.permissioned-caip2-needs-namespace-evidence', `${dli}: a CAIP-2 on a permissioned ledger needs evidence that a namespace and reference are actually published`);
+  }
 }
 
 // --- routing invariants ----------------------------------------------------
