@@ -48,11 +48,15 @@ for (const [name, p] of Object.entries(platformTable.platforms)) {
 // a contradiction.
 const byCaip2 = new Map();
 for (const [name, p] of Object.entries(platformTable.platforms)) {
+  // One chain legitimately hosts several asset standards — Zilliqa carries both
+  // Scilla ZRC-2 and EVM ERC-20 contracts on chain 32769, in separate address
+  // spaces. That is only a contradiction if the two entries ALSO claim the same
+  // address format, which would mean one identifier space with two names.
   const seen = byCaip2.get(p.caip2);
-  if (seen && seen.assetNamespace !== p.assetNamespace) {
-    fail('platform.conflicting-namespace-for-chain', `${p.caip2}: ${seen.name}=${seen.assetNamespace} vs ${name}=${p.assetNamespace}`);
+  if (seen && seen.assetNamespace !== p.assetNamespace && seen.addressFormat === p.addressFormat) {
+    fail('platform.conflicting-namespace-for-chain', `${p.caip2}: ${seen.name}=${seen.assetNamespace} vs ${name}=${p.assetNamespace} (same addressFormat ${p.addressFormat})`);
   }
-  if (!seen) byCaip2.set(p.caip2, { name, assetNamespace: p.assetNamespace });
+  if (!seen) byCaip2.set(p.caip2, { name, assetNamespace: p.assetNamespace, addressFormat: p.addressFormat });
 }
 
 // --- natives ---------------------------------------------------------------

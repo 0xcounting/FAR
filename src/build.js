@@ -10,6 +10,7 @@ import { slug, caipPath, isDegenerateSlug } from './lib/slug.js';
 import { buildCaip19 } from './lib/caip.js';
 import { normalizeDtiRecords, matchableName } from './lib/dti.js';
 import { proposeLinks } from './lib/link.js';
+import { inferChainAndAddress } from './lib/dtiChain.js';
 import { sha256, merkleRoot } from './lib/manifest.js';
 
 const OUT = process.env.FAR_OUT ?? 'dist';
@@ -39,6 +40,11 @@ const src = loadSources();
 const platformTable = JSON.parse(readFileSync('data/platforms.json', 'utf8'));
 const curatedLinks = JSON.parse(readFileSync('data/links.json', 'utf8'));
 const nativeTable = JSON.parse(readFileSync('data/natives.json', 'utf8')).natives;
+const readOptional = (p, fallback) => { try { return JSON.parse(readFileSync(p, 'utf8')); } catch { return fallback; } };
+// Model-asserted links and the DTI ledger vocabulary. Both are optional so a
+// clone without an agent run still builds.
+const inferredLinks = readOptional('data/links-inferred.json', { links: [] }).links;
+const ledgerTable = readOptional('data/ledgers.json', { ledgers: {} }).ledgers;
 const chainNames = new Map(src.evmChains.map((c) => [`eip155:${c.chainId}`, c.name]));
 
 // ---------------------------------------------------------------- assemble --
@@ -102,6 +108,20 @@ for (const coin of coinsById.values()) {
 const { tokens: dtiTokens, ledgers: dtiLedgers } = normalizeDtiRecords(src.dtiRegistry);
 const dtiById = new Map(dtiTokens.map((t) => [t.dti, t]));
 const { links, unlinked } = proposeLinks(dtiTokens, src.coingeckoCoins, curatedLinks);
+// Model-asserted links fill in where the deterministic rules found nothing.
+// They never override a deterministic or curated link for the same DTI: a
+// weaker method must not quietly replace a stronger one.
+const decided = new Set(links.map((l) => l.dti));
+let inferredUsed = 0;
+for (const l of inferredLinks) {
+  if (decided.has(l.dti)) continue;
+  if (!coinsById.has(l.coingeckoId) || !dtiById.has(l.dti)) continue;
+  links.push({ dti: l.dti, coingeckoId: l.coingeckoId, basis: 'llm-adjudicated', status: 'inferred',
+               modelConfidence: l.modelConfidence, reasoning: l.reasoning, assertedBy: l.assertedBy });
+  decided.add(l.dti);
+  inferredUsed++;
+}
+
 for (const l of links) {
   const coin = coinsById.get(l.coingeckoId);
   const rec = dtiById.get(l.dti);
@@ -115,6 +135,9 @@ for (const l of links) {
     equivalentGroup: rec.equivalentGroup,
     basis: l.basis,
     status: l.status,
+    modelConfidence: l.modelConfidence ?? null,
+    reasoning: l.reasoning ?? null,
+    assertedBy: l.assertedBy ?? null,
   });
 }
 
@@ -193,12 +216,20 @@ for (const t of dtiTokens) {
   if (!groupMembers.has(t.equivalentGroup)) groupMembers.set(t.equivalentGroup, []);
   groupMembers.get(t.equivalentGroup).push(t.dti);
 }
+const chainBasisCounts = {};
 for (const rec of dtiTokens) {
   const linked = (linksByDti.get(rec.dti) ?? []).map((l) => coinsById.get(l.coingeckoId)).filter(Boolean);
   emit(`dti/${rec.dti}.json`, {
     ...meta(), query: { by: 'dti', key: rec.dti },
     dti: rec,
     groupMembers: (groupMembers.get(rec.dti) ?? []).filter((d) => d !== rec.dti).sort(),
+    // Best-effort recovery of the two fields the free snapshot redacts. Never
+    // a read — always an inference, and `basis` says which one.
+    inferredChain: (() => {
+      const inf = inferChainAndAddress(rec, linked[0], platformTable);
+      chainBasisCounts[inf.basis] = (chainBasisCounts[inf.basis] ?? 0) + 1;
+      return inf;
+    })(),
     // A DTI with no linked asset is the normal case, not an error: the free
     // snapshot has no address to join on and most records never get a proposal.
     assets: linked.map(compact),
@@ -224,6 +255,10 @@ files.push({ path: 'far.json', sha256: sha256(bigJson), bytes: bigJson.length })
 files.push({ path: 'far.json.gz', sha256: sha256(bigGz), bytes: bigGz.length });
 
 emit('_platforms.json', { ...meta(), ...platformTable });
+emit('_ledgers.json', { ...meta(), count: Object.keys(ledgerTable).length, ledgers: ledgerTable });
+for (const [dli, l] of Object.entries(ledgerTable)) {
+  emit(`ledger/${dli}.json`, { ...meta(), query: { by: 'dli', key: dli }, ledger: l });
+}
 emit('_unlinked.json', { ...meta(), count: unlinked.length, unlinked });
 
 // ---------------------------------------------------------------- manifest --
@@ -236,6 +271,9 @@ const counts = {
   dtiLinked: new Set(links.map((l) => l.dti)).size,
   dtiAccepted: links.filter((l) => l.status === 'accepted').length,
   dtiProposed: links.filter((l) => l.status === 'proposed').length,
+  dtiInferred: links.filter((l) => l.status === 'inferred').length,
+  dtiChainRecovered: (chainBasisCounts['name-hint'] ?? 0) + (chainBasisCounts['sole-deployment'] ?? 0),
+  dtiLedgersWithCaip2: Object.values(ledgerTable).filter((l) => l.caip2).length,
   dtiUnlinked: unlinked.length,
   coinsResolvable: [...coinsById.values()].filter((c) => c.deployments.length).length,
   platformsMapped: Object.keys(platformTable.platforms).length,
@@ -252,6 +290,8 @@ const indexDoc = {
     caip19: '/caip/{namespace}/{reference}/{assetNamespace}/{assetReference}.json  (e.g. /caip/eip155/1/erc20/0xdac17f958d2ee523a2206206994597c13d831ec7.json; a "%" in the reference becomes "~")', dti: '/dti/{DTI}.json',
     bulk: '/far.json.gz', manifest: '/manifest.json', platforms: '/_platforms.json',
     unlinked: '/_unlinked.json',
+    ledger: '/ledger/{DLI}.json',
+    ledgers: '/_ledgers.json',
   },
 };
 emit('index.json', indexDoc);
@@ -269,6 +309,7 @@ console.log(`far build ${REGISTRY_VERSION}  (${((Date.now() - t0) / 1000).toFixe
 for (const [k, v] of Object.entries(counts)) console.log(`  ${k.padEnd(20)} ${v}`);
 console.log(`  ${'totalBytes'.padEnd(20)} ${(totalBytes / 1e6).toFixed(1)} MB`);
 console.log(`  ${'merkleRoot'.padEnd(20)} ${root}`);
+console.log('  DTI chain inference:', JSON.stringify(chainBasisCounts));
 if (stats.platformMissing.size) {
   const top = [...stats.platformMissing].sort((a, b) => b[1] - a[1]).slice(0, 5);
   console.log(`  unmapped platform rows: ${sum(stats.platformMissing)} (top: ${top.map(([k, v]) => `${k}=${v}`).join(', ')})`);

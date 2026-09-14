@@ -30,6 +30,20 @@ const jaccard = (a, b) => {
 // "Wrapped Ether" -> "we"; catches DTI long names against CoinGecko tickers.
 const acronym = (s) => s.split(/[^A-Za-z0-9]+/).filter(Boolean).map((w) => w[0]).join('').toLowerCase();
 
+// Canonicality prior. When dozens of coins share a ticker, the one a DTI record
+// most likely means is the original, not a bridged deployment of it. Without
+// this, ties broke alphabetically and `usd-coin` was pushed out of the top 8 by
+// `anubis-bridged-usdc-anubis` — the adjudicating model then correctly refused
+// to link, because the right answer was never shown to it.
+const DERIVATIVE = /(bridged|wrapped|peg|pegged|-on-|portal|wormhole|synthetic|staked|receipt|\bold\b|\bv[0-9]\b)/i;
+const canonicality = (c) => {
+  let s = 0;
+  if (!DERIVATIVE.test(c.id) && !DERIVATIVE.test(c.name)) s += 2;
+  if (!/-\d+$/.test(c.id)) s += 1;           // `meow-5` is a collision survivor
+  s += Math.max(0, 2 - c.id.split('-').length * 0.25); // shorter ids are usually the original
+  return s;
+};
+
 const coinIndex = coins.map((c) => ({
   id: c.id, name: c.name, symbol: (c.symbol ?? '').toUpperCase(),
   nameKey: slug(c.name), symKey: slug(c.symbol), tri: trigrams(slug(c.name)),
@@ -70,9 +84,14 @@ for (const t of tokens) {
   }
 
   const candidates = [...scored.values()]
-    .sort((a, b) => b.score - a.score || (a.coin.id < b.coin.id ? -1 : 1))
-    .slice(0, 8)
-    .map((e) => ({ coingeckoId: e.coin.id, name: e.coin.name, symbol: e.coin.symbol, score: Number(e.score.toFixed(2)), why: e.why }));
+    .sort((a, b) =>
+      b.score - a.score ||
+      canonicality(b.coin) - canonicality(a.coin) ||
+      (a.coin.id < b.coin.id ? -1 : 1))
+    .slice(0, 12)
+    .map((e) => ({ coingeckoId: e.coin.id, name: e.coin.name, symbol: e.coin.symbol,
+                   score: Number(e.score.toFixed(2)),
+                   canonicality: Number(canonicality(e.coin).toFixed(2)), why: e.why }));
 
   if (candidates.length === 0) { noCandidate++; continue; }
   out.push({

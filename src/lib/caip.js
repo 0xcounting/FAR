@@ -60,67 +60,101 @@ function cosmosNamespace(raw) {
   return { ns: 'native', ref: raw }; // uatom, aarch, uinit …
 }
 
+
+// Shape rules for every address family the registry knows about.
+//
+// `re` is the accepted shape; anything that does not match is REJECTED rather
+// than passed through, because a malformed reference looks authoritative and
+// will not round-trip. `enc: true` means the native form contains characters
+// CAIP-19 forbids in an asset_reference (`_`, `:`, `/`, `$`) and must be
+// percent-encoded — the spec allows `%`, which is the escape hatch for exactly
+// this. `lower: true` canonicalises hex casing so one asset cannot appear twice.
+//
+// Most of these came from model research and are paired with platform entries at
+// confidence "proposed". A wrong shape rule here is SAFE in the sense that it
+// rejects rather than fabricates — it shows up as a count in the build log.
+const FORMATS = {
+  'evm-lowercase':            { re: /^0x[0-9a-fA-F]{40}$/, lower: true },
+  'evm-hex-no-prefix':        { re: /^[0-9a-fA-F]{40}$/, lower: true },
+  // XDC writes EVM addresses with an "xdc" prefix instead of "0x". Same 20
+  // bytes; normalised to the 0x form so one asset has one identifier.
+  'xdc-address':              { re: /^(xdc|0x)[0-9a-fA-F]{40}$/, lower: true, xdc: true },
+  'base58':                   { re: /^[1-9A-HJ-NP-Za-km-z]{32,44}$/ },
+  'base58check':              { re: /^T[1-9A-HJ-NP-Za-km-z]{33}$/ },
+  'alephium-contract-address':{ re: /^[1-9A-HJ-NP-Za-km-z]{40,50}$/ },
+  'asa-id':                   { re: /^[0-9]{1,20}$/ },
+  'bittensor-netuid':         { re: /^[0-9]{1,6}$/ },
+  'starknet-felt':            { re: /^0x[0-9a-fA-F]{1,64}$/, lower: true },
+  'sora-asset-id':            { re: /^0x[0-9a-fA-F]{64}$/, lower: true },
+  'fuel-asset-id':            { re: /^0x[0-9a-fA-F]{64}$/, lower: true },
+  'move-object-address':      { re: /^0x[0-9a-fA-F]{1,64}$/, lower: true },
+  'ergo-token-id':            { re: /^[0-9a-fA-F]{64}$/, lower: true },
+  'chia-asset-id':            { re: /^[0-9a-fA-F]{64}$/, lower: true },
+  'slp-token-id':             { re: /^[0-9a-fA-F]{64}$/, lower: true },
+  'casper-contract-hash':     { re: /^[0-9a-fA-F]{64}$/, lower: true },
+  // Bitcoin carries two unrelated asset systems under CoinGecko's one
+  // "ordinals" slug: inscription ids (64 hex, optionally "iN") and Rune ids
+  // ("845764:84" = block:tx). They are different asset classes and get
+  // different namespaces, dispatched in buildCaip19.
+  'btc-inscription-id':       { re: /^([0-9a-fA-F]{64}(i[0-9]{1,3})?|[0-9]{1,9}:[0-9]{1,6})$/, lower: true, enc: true },
+  'inscription-id':           { re: /^[0-9a-fA-F]{64}(i[0-9]{1,3})?$/, lower: true },
+  'icon-score-address':       { re: /^cx[0-9a-fA-F]{40}$/, lower: true },
+  'defichain-token-id':       { re: /^0x[0-9a-fA-F]{40}$/, lower: true },
+  'zilliqa-bech32':           { re: /^zil1[02-9ac-hj-np-z]{38}$/ },
+  'cosmos-bech32-contract':   { re: /^[a-z]{2,12}1[02-9ac-hj-np-z]{38,58}$/ },
+  'cosmwasm-bech32':          { re: /^[a-z]{2,12}1[02-9ac-hj-np-z]{38,58}$/ },
+  'massa-address':            { re: /^AS[1-9A-HJ-NP-Za-km-z]{40,60}$/ },
+  'antelope-account':         { re: /^[a-z1-5.]{1,12}$/ },
+  'native-coin-id':           { re: /^[a-z0-9]{1,32}$/ },
+  'krc20-tick':               { re: /^[A-Za-z0-9$]{2,16}$/, enc: true },
+  'bep2-symbol':              { re: /^[A-Z0-9]{1,12}-[A-Z0-9]{1,6}$/ },
+  // "WAXUSDT-wax-eth.token" — symbol, then the contract account, which itself
+  // may contain hyphens and dots.
+  'antelope-symbol-contract': { re: /^[A-Za-z0-9]{1,12}-[a-z0-9.-]{1,40}$/ },
+  // Families whose native form contains characters CAIP-19 forbids.
+  'ton-friendly-address':     { re: /^[EU]Q[A-Za-z0-9_-]{46}$/, enc: true },
+  'radix-resource-address':   { re: /^resource_rdx1[0-9a-z]{40,70}$/, enc: true },
+  'tvm-address':              { re: /^(0:[0-9a-fA-F]{64}|0x[0-9a-fA-F]{40})$/, enc: true },
+  'aelf-address':             { re: /^ELF_[1-9A-HJ-NP-Za-km-z]{40,60}_[A-Za-z0-9]{2,10}$/, enc: true },
+  'kadena-module-name':       { re: /^[A-Za-z0-9_.-]{2,64}$/, enc: true },
+  'substrate-asset-id':       { re: /^[A-Za-z0-9_%/-]{1,64}$/, enc: true, predecode: true },
+  'sui-struct':               { re: /^0x[0-9a-fA-F]{1,64}(::[A-Za-z0-9_]+){0,4}$/, enc: true },
+  'aptos-struct':             { re: /^0x[0-9a-fA-F]{1,64}(::[A-Za-z0-9_]+){0,4}$/, enc: true },
+  'initia-asset':             { re: /^[A-Za-z0-9/_:-]{1,80}$/, enc: true },
+  'near-account':             { re: /^[a-z0-9._-]{2,64}$/, enc: true },
+  'cardano-asset':            { re: /^[0-9a-fA-F]{56,120}$/, lower: true },
+  'mvx-esdt':                 { re: /^[A-Za-z0-9-]{3,40}$/ },
+  'tezos-kt':                 { re: /^KT1[1-9A-HJ-NP-Za-km-z]{33}$/ },
+  'stacks-principal':         { re: /^S[A-Z0-9]{20,60}\.[A-Za-z0-9-]{1,64}$/ },
+  'hedera-token-id':          { re: /^([0-9]+\.[0-9]+\.[0-9]+|0x0{24}[0-9a-fA-F]{16})$/ },
+  'stellar-asset':            { re: /^([A-Za-z0-9]{1,12}-G[A-Z2-7]{55}|C[A-Z2-7]{55})$/ },
+  'xrpl-currency-issuer':     { re: /^([0-9A-Fa-f]{40}|[A-Za-z0-9]{1,20})\.(r[1-9A-HJ-NP-Za-km-z]{24,34})$/ },
+};
+
 export function normalizeAddress(identity, addressFormat) {
   const raw = (identity ?? '').trim();
   if (!raw) return null;
-  switch (addressFormat) {
-    case 'evm-lowercase':
-      // EIP-55 checksum casing carries no extra information and doubles every
-      // key, so the registry canonicalises to lowercase.
-      return /^0x[0-9a-fA-F]{40}$/.test(raw) ? raw.toLowerCase() : null;
-    case 'base58':
-      return /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(raw) ? raw : null;
-    case 'base58check':
-      return /^T[1-9A-HJ-NP-Za-km-z]{33}$/.test(raw) ? raw : null;
-    case 'hedera-token-id':
-      // CoinGecko stores the EVM alias (0x…); the CAIP-19 reference is the
-      // shard.realm.num token ID. We can decode the low 64 bits, but shard and
-      // realm are not recoverable from the alias, so we only emit when the
-      // alias is in the default 0.0.* space, which is what every HTS token
-      // issued to date uses.
-      // CoinGecko stores BOTH the native shard.realm.num token ID and the EVM
-      // alias, depending on the row. The native form IS the CAIP-19 reference,
-      // so take it directly; only the alias needs decoding.
-      if (/^\d+\.\d+\.\d+$/.test(raw)) return raw;
-      if (!/^0x0{24}[0-9a-fA-F]{16}$/.test(raw)) return null;
-      return `0.0.${BigInt(raw).toString(10)}`;
-    case 'xrpl-currency-issuer': {
-      // Three live shapes: 3-char ISO-style code, 40-hex code, or a longer
-      // human-readable name (e.g. "Equilibrium"). A bare issuer address with no
-      // currency code is NOT resolvable — it names an account, not an asset —
-      // and is correctly rejected.
-      const m = raw.match(/^([0-9A-Fa-f]{40}|[A-Za-z0-9]{1,20})\.(r[1-9A-HJ-NP-Za-km-z]{24,34})$/);
-      return m ? `${m[1]}.${m[2]}` : null;
-    }
-    case 'stellar-asset':
-      // Classic asset (CODE-GISSUER) or a Soroban SEP-41 contract (C…strkey).
-      // They take DIFFERENT asset namespaces, resolved in buildCaip19.
-      if (/^[A-Za-z0-9]{1,12}-G[A-Z2-7]{55}$/.test(raw)) return raw;
-      return /^C[A-Z2-7]{55}$/.test(raw) ? raw : null;
-    case 'asa-id':
-      return /^[0-9]{1,20}$/.test(raw) ? raw : null;
-    // Families whose reference grammar is still provisional pass through with a
-    // conservative character check only. They are all confidence "low" in
-    // data/platforms.json, which is what a consumer should be keying off.
-    case 'aptos-struct':
-    case 'sui-struct':
-      // 0x<hex>::module::NAME — the "::" must be encoded to be a legal reference.
-      return /^0x[0-9a-fA-F]{1,64}(::[A-Za-z0-9_]+){0,4}$/.test(raw) ? percentEncodeRef(raw) : null;
-    case 'starknet-felt':
-      return /^0x[0-9a-fA-F]{1,64}$/.test(raw) ? raw.toLowerCase() : null;
-    case 'near-account':
-      return /^[a-z0-9._-]{2,64}$/.test(raw) ? percentEncodeRef(raw) : null;
-    case 'cardano-asset':
-      return /^[0-9a-fA-F]{56,120}$/.test(raw) ? raw.toLowerCase() : null;
-    case 'mvx-esdt':
-    case 'tezos-kt':
-    case 'stacks-principal':
-      return ASSET_REF_RE.test(raw) ? raw : percentEncodeRef(raw);
-    case 'cosmos-denom':
-      return raw; // namespace + reference are decided together in buildCaip19
-    default:
-      return null;
-  }
+
+  // Cosmos-family denoms carry their namespace in the identifier itself, so the
+  // namespace and the reference are decided together in buildCaip19.
+  if (addressFormat === 'cosmos-denom' || addressFormat === 'cosmos-addr-or-denom') return raw;
+
+  const spec = FORMATS[addressFormat];
+  if (!spec) return null;
+
+  // Hydration stores an already-percent-encoded identity ("asset_registry%2F…").
+  // Encoding it again would produce "%2525" and a reference that never
+  // round-trips, so decode to the native form first.
+  const native = spec.predecode ? safeDecode(raw) : raw;
+  if (!spec.re.test(native)) return null;
+
+  let cased = spec.lower ? native.toLowerCase() : native;
+  if (spec.xdc) cased = cased.replace(/^xdc/, '0x');
+  return spec.enc ? percentEncodeRef(cased) : cased;
+}
+
+function safeDecode(s) {
+  try { return decodeURIComponent(s); } catch { return s; }
 }
 
 export function buildCaip19(platformEntry, identity) {
@@ -128,11 +162,14 @@ export function buildCaip19(platformEntry, identity) {
   if (address === null) return null;
   let namespace = platformEntry.assetNamespace;
   let reference = address;
+  if (platformEntry.addressFormat === 'btc-inscription-id') {
+    namespace = /^[0-9]+%3A[0-9]+$/.test(reference) ? 'rune' : 'ord';
+  }
   if (platformEntry.addressFormat === 'stellar-asset') {
     namespace = /^C[A-Z2-7]{55}$/.test(address) ? 'sep41' : 'asset';
     reference = percentEncodeRef(address);
   }
-  if (platformEntry.addressFormat === 'cosmos-denom') {
+  if (platformEntry.addressFormat === 'cosmos-denom' || platformEntry.addressFormat === 'cosmos-addr-or-denom') {
     const picked = cosmosNamespace(address.trim());
     namespace = picked.ns;
     reference = percentEncodeRef(picked.ref);

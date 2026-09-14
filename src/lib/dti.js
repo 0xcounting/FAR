@@ -12,6 +12,8 @@ const DTI_TYPE = {
   3: 'functionally-fungible-group-member', // 2,336 — carries EquivalentDigitalTokenGroupDTI
 };
 
+const PLACEHOLDER = /^\s*(reserved for db|placeholder|test record)\s*$/i;
+
 export function normalizeDtiRecords(records) {
   const tokens = [];
   const ledgers = [];
@@ -41,7 +43,15 @@ export function normalizeDtiRecords(records) {
       });
     }
   }
-  return { tokens: dedupeBy(tokens, (t) => t.dti), ledgers: dedupeBy(ledgers, (l) => l.dli) };
+  // DTIF ships a handful of placeholder rows whose long name is literally
+  // "Reserved for DB". They name no asset, so publishing them as unlinked
+  // records would pad the backlog with work nobody can ever do.
+  const real = tokens.filter((t) => !PLACEHOLDER.test(t.longName ?? ''));
+  return {
+    tokens: dedupeBy(real, (t) => t.dti),
+    ledgers: dedupeBy(ledgers, (l) => l.dli),
+    placeholders: tokens.length - real.length,
+  };
 }
 
 function dedupeBy(rows, key) {
@@ -51,7 +61,10 @@ function dedupeBy(rows, key) {
 }
 
 function extractIsin(longName) {
-  const m = (longName ?? '').match(/\bISIN:\s*([A-Z]{2}[A-Z0-9]{9}\d)\b/);
+  // Both "… // ISIN: DE000A418DA8" and "ATTMACK 02 ISIN DE000A351YW1" occur;
+  // the colon is optional, and adjudicating agents reported the no-colon form
+  // slipping past the tokenized-security guard entirely.
+  const m = (longName ?? '').match(/\bISIN:?\s*([A-Z]{2}[A-Z0-9]{9}\d)\b/);
   return m ? m[1] : null;
 }
 
