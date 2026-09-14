@@ -2,15 +2,6 @@
   "_readme": "Identifiers this registry publishes that no CASA specification defines. Each is a namespace FAR had to choose in order to name assets that exist, and each is therefore a concrete proposal the ChainAgnostic Standards Alliance would need to ratify for these identifiers to be interoperable rather than ours alone. Published so the gap is visible and actionable rather than hidden behind a confidence label.",
   "ratifiedSource": "https://github.com/ChainAgnostic/namespaces",
   "chainNamespaces": {
-    "cip34": {
-      "tokens": 84,
-      "usedBy": [
-        "cardano (cip34:1-764824073)",
-        "ledger Cardano"
-      ],
-      "upstream": null,
-      "status": "no CASA proposal exists"
-    },
     "near": {
       "tokens": 72,
       "usedBy": [
@@ -122,6 +113,14 @@
       ],
       "upstream": null,
       "status": "no CASA proposal exists"
+    },
+    "cardano": {
+      "tokens": 84,
+      "usedBy": [
+        "cardano (cardano:1-764824073)"
+      ],
+      "upstream": null,
+      "status": "drafted by FAR for submission to CASA; renamed from the provisional cip34"
     }
   },
   "assetNamespaces": {

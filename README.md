@@ -40,11 +40,11 @@ one file (`/far.json.gz`) if you would rather hold it locally.
 | Native units of account | 42 chain identities |
 | DTI token records | 5,775 |
 | — linked to a CoinGecko coin | 3,942 (68.3%) |
-|   address-derived (exact) | 2,527 |
-|   rule-proposed / model-inferred / human-accepted | 718 / 697 / 0 |
+|   address-derived (exact) | 2,528 |
+|   rule-proposed / model-inferred / human-accepted | 717 / 697 / 0 |
 |   wrong name-links removed by the address | 171 |
 | — chain identified | 1,288 (22.3%) |
-| DTI ledger records | 275, 231 with a CAIP-2 |
+| DTI ledger records | 275, 242 with a CAIP-2 |
 | CoinGecko platforms mapped to CAIP-2 | 290 |
 | — still unmapped | 10 |
 | Published files | 80,398 |
