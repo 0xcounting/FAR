@@ -47,7 +47,7 @@ one file (`/far.json.gz`) if you would rather hold it locally.
 | DTI ledger records | 275, 231 with a CAIP-2 |
 | CoinGecko platforms mapped to CAIP-2 | 290 |
 | — still unmapped | 10 |
-| Published files | 80,397 |
+| Published files | 80,398 |
 <!-- BUILD-STATS:END -->
 
 ## Read this before you trust a link
@@ -145,6 +145,38 @@ chain it exists on) and `related`:
   field cannot be used to enumerate "all the chains USDT is on" — which is what
   it looks like it should do. It is kept because the pairing is real
   information, not because it delivers the cross-chain grouping.
+
+## What this registry needs from the standards it uses
+
+38 of the identifiers published here are **not defined by any CASA
+specification** — FAR had to choose them in order to name assets that exist.
+They are listed at `/_namespace-gaps.json`, and each one is a concrete proposal
+somebody could take to [ChainAgnostic/namespaces](https://github.com/ChainAgnostic/namespaces).
+
+**11 chain namespaces** (210 assets): `cip34` (Cardano), `near`, `radix`,
+`kaspa`, `movement`, `massa`, `icon`, `supra`, `aelf`, `fuel`, `kadena`.
+
+**27 asset namespaces** (999 assets) — the larger gap, because CASA has ratified
+a CAIP-19 for only **six** ecosystems (eip155, solana, hedera, stellar, xrpl,
+stacks). So `jetton` for TON's 213 tokens, `trc20` for Tron's 92, `nep141` for
+NEAR's 72 and two dozen more are this registry's opinion, not a standard.
+
+Tron makes the asymmetry concrete: its **CAIP-2 is ratified but its CAIP-19 is
+not**, so we can name the chain correctly and cannot name a token on it
+correctly. That is the gap CAIP-19 adoption actually faces, expressed as a count
+rather than an opinion.
+
+### Permissioned ledgers
+
+DTIF registers bank and CSD platforms — SDX R3 Corda, HSBC Orion, SWIAT,
+Euroclear D-FMI, Clearstream D7 — and this registry carries them with
+`caip2: null`. That records **an absence, not an impossibility**: nothing in
+CAIP-2 requires a chain to be public, CASA has ratified namespaces of exactly
+that shape (`swift`, `tenzro`, `haneul`, `partisia`), and a Corda network
+identity or Canton synchronizer id would serve perfectly well as a reference.
+Nobody has published one. If that changes, a CAIP-2 on a permissioned ledger is
+a welcome contribution — CI asks only that the namespace be shown to exist, the
+same as for any other claim.
 
 ## Contributing
 

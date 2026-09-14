@@ -287,6 +287,11 @@ files.push({ path: 'far.json.gz', sha256: sha256(bigGz), bytes: bigGz.length });
 
 emit('_platforms.json', { ...meta(), ...platformTable });
 emit('_ledgers.json', { ...meta(), count: Object.keys(ledgerTable).length, ledgers: ledgerTable });
+// Identifiers this registry had to invent because no CASA spec defines one.
+// Publishing the gap makes it actionable — each entry is a concrete proposal
+// somebody could take upstream — rather than leaving it implied by a
+// confidence label nobody reads.
+emit('_namespace-gaps.json', { ...meta(), ...readOptional('data/namespace-gaps.json', {}) });
 for (const [dli, l] of Object.entries(ledgerTable)) {
   emit(`ledger/${dli}.json`, { ...meta(), query: { by: 'dli', key: dli }, ledger: l });
 }
@@ -325,6 +330,7 @@ const indexDoc = {
     unlinked: '/_unlinked.json',
     ledger: '/ledger/{DLI}.json',
     ledgers: '/_ledgers.json',
+    namespaceGaps: '/_namespace-gaps.json',
   },
 };
 emit('index.json', indexDoc);
