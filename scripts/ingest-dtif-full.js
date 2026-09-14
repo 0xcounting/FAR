@@ -98,6 +98,19 @@ const MECHANISM_NS = {
   'sep-1': 'asset', 'sep-41': 'sep41', 'grc-20': 'grc20', 'fa-2': 'fa2',
   'arc-3': 'asa', 'arc-200': 'arc200', 'oep-8': 'oep8', 'nep-17': 'nep17',
   'trc-10': 'trc10', 'xrc-20': 'xrc20', 'prc-20': 'prc20', 'rune': 'rune',
+  // Chain-specific spellings of the same ERC-20 shape. DTIF writes the
+  // ecosystem's own name for it; the CAIP-19 namespace follows the ecosystem.
+  'hrc-20': 'hrc20', 'hrc20': 'hrc20', 'xrc20': 'xrc20', 'kip-20': 'kip20',
+  'kip-7': 'kip7', 'sep20': 'sep20', 'vrc21': 'vrc21', 'vrc20': 'vrc20',
+  'wrc-20': 'wrc20', 'frc-20': 'frc20', 'nep-5': 'nep5', 'cis-2': 'cis2',
+  'sip-10': 'sip010', 'brc 2.0': 'brc20', 'dog-20': 'dog20',
+  'bep-2': 'bep2', 'bep2': 'bep2', 'eosio.token': 'token', 'omni': 'omni',
+  'slp token': 'slp', 'fungible cashtoken': 'cashtkn', 'sora token': 'sora',
+  'sui coin': 'coin', 'fungible asset': 'fa', 'ft': 'ft', 'plt': 'plt',
+  'ats': 'ats', 'wsc': 'wsc', 'liquidasset': 'liqasset',
+  'cardano smart contract': 'native', 'native coin': 'native',
+  'statemintasset': 'asset', 'statemineasset': 'asset', 'polkadot asset': 'asset',
+  'worldline': 'wln', 'escrow': 'escrow', 'bip-32': 'slip44',
 };
 
 const ns = (mech) => MECHANISM_NS[(mech ?? '').trim().toLowerCase()] ?? null;

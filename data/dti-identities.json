@@ -7,9 +7,9 @@
     "noLedger": 0,
     "unknownLedgerCaip2": 139,
     "noReference": 0,
-    "unknownMechanism": 170,
-    "malformed": 14,
-    "resolved": 2921,
+    "unknownMechanism": 0,
+    "malformed": 22,
+    "resolved": 3083,
     "native": 224
   },
   "identities": [
@@ -76,8 +76,8 @@
       "mechanism": "BIP-32",
       "technicalReference": "0x13f2649f5214eac3f663c4b574e9b3515897237f341ccf76a2b96d635010aea6::bluwhale_ai::BLUWHALE_AI",
       "caip2": "sui:mainnet",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BIP-32"
+      "caip19": "sui:mainnet/slip44:0x13f2649f5214eac3f663c4b574e9b3515897237f341ccf76a2b96d635010aea6%3A%3Abluwhale%5Fai%3A%3ABLUWHALE%5FAI",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "12NR8GSF9",
@@ -450,8 +450,8 @@
       "mechanism": "BRC 2.0",
       "technicalReference": "0x4aa8e9ca6D90e2E47b44336AA4725894332C1b16",
       "caip2": "bip122:000000000019d6689c085ae165831e93",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BRC 2.0"
+      "caip19": "bip122:000000000019d6689c085ae165831e93/brc20:0x4aa8e9ca6D90e2E47b44336AA4725894332C1b16",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "1M8SHKDFG",
@@ -3168,8 +3168,8 @@
       "mechanism": "HRC20",
       "technicalReference": "0xf2ec007a5af19603df418806ce502b80dd115fbb",
       "caip2": "eip155:1666600000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC20"
+      "caip19": "eip155:1666600000/hrc20:0xf2ec007a5af19603df418806ce502b80dd115fbb",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "49VFCT49W",
@@ -3178,8 +3178,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "COTI-CBB",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:COTI-CBB",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "4B21NMVM2",
@@ -3570,8 +3570,8 @@
       "mechanism": "HRC20",
       "technicalReference": "0xd4b28ecb7b765c89f1e67de3359d09a3520f794e",
       "caip2": "eip155:1666600000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC20"
+      "caip19": "eip155:1666600000/hrc20:0xd4b28ecb7b765c89f1e67de3359d09a3520f794e",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "4LJML0M8N",
@@ -4147,8 +4147,8 @@
       "mechanism": "Native Coin",
       "technicalReference": "0",
       "caip2": "bip122:00000000000000001ebf88508a03865c",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Native Coin"
+      "caip19": "bip122:00000000000000001ebf88508a03865c/native:0",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "52H4L48QZ",
@@ -4599,8 +4599,8 @@
       "mechanism": "ATS",
       "technicalReference": "0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa::asset::WETH",
       "caip2": "aptos:1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:ATS"
+      "caip19": "aptos:1/ats:0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa%3A%3Aasset%3A%3AWETH",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "5FWBQM4QC",
@@ -4858,8 +4858,8 @@
       "mechanism": "VRC21",
       "technicalReference": "0xcca4e6302510d555b654b3eab9c0fcb223bcfdf0",
       "caip2": "eip155:88",
-      "caip19": null,
-      "basis": "unmapped-mechanism:VRC21"
+      "caip19": "eip155:88/vrc21:0xcca4e6302510d555b654b3eab9c0fcb223bcfdf0",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "5P5Z6CWBT",
@@ -4951,8 +4951,8 @@
       "mechanism": "Cardano Smart Contract",
       "technicalReference": "8a1cfae21368b8bebbbed9800fec304e95cce39a2a57dc35e2e3ebaa4d494c4b",
       "caip2": "cip34:1-764824073",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Cardano Smart Contract"
+      "caip19": "cip34:1-764824073/native:8a1cfae21368b8bebbbed9800fec304e95cce39a2a57dc35e2e3ebaa4d494c4b",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "5R2HX92S4",
@@ -5271,8 +5271,8 @@
       "mechanism": "Cardano Smart Contract",
       "technicalReference": "1ddcb9c9de95361565392c5bdff64767492d61a96166cb16094e54be4f5054",
       "caip2": "cip34:1-764824073",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Cardano Smart Contract"
+      "caip19": "cip34:1-764824073/native:1ddcb9c9de95361565392c5bdff64767492d61a96166cb16094e54be4f5054",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "605NMSTKP",
@@ -5281,8 +5281,8 @@
       "mechanism": "KIP-20",
       "technicalReference": "0xdf54b6c6195ea4d948d03bfd818d365cf175cfc2",
       "caip2": "eip155:66",
-      "caip19": null,
-      "basis": "unmapped-mechanism:KIP-20"
+      "caip19": "eip155:66/kip20:0xdf54b6c6195ea4d948d03bfd818d365cf175cfc2",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "60G83XVLH",
@@ -5585,8 +5585,8 @@
       "mechanism": "KIP-7",
       "technicalReference": "0x1b26a7e4d27ace6ba3bc82d5d1b26fb2d8616de0",
       "caip2": "eip155:8217",
-      "caip19": null,
-      "basis": "unmapped-mechanism:KIP-7"
+      "caip19": "eip155:8217/kip7:0x1b26a7e4d27ace6ba3bc82d5d1b26fb2d8616de0",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "695D5R5W3",
@@ -5700,8 +5700,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "BTCB-1DE",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:BTCB-1DE",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "6CQC7VDD7",
@@ -5975,8 +5975,8 @@
       "mechanism": "SIP-10",
       "technicalReference": "SP1AY6K3PQV5MRT6R4S671NWW2FRVPKM0BR162CT6.leo-token",
       "caip2": "stacks:1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:SIP-10"
+      "caip19": "stacks:1/sip010:SP1AY6K3PQV5MRT6R4S671NWW2FRVPKM0BR162CT6.leo-token",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "6PG1M1ZCJ",
@@ -6015,8 +6015,8 @@
       "mechanism": "VRC21",
       "technicalReference": "0x2eaa73bd0db20c64f53febea7b5f5e5bccc7fb8b",
       "caip2": "eip155:88",
-      "caip19": null,
-      "basis": "unmapped-mechanism:VRC21"
+      "caip19": "eip155:88/vrc21:0x2eaa73bd0db20c64f53febea7b5f5e5bccc7fb8b",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "6QZ1LNC12",
@@ -7123,8 +7123,8 @@
       "mechanism": "SEP20",
       "technicalReference": "0xbcbd9990dcec6a64741ea27bec0ca8ff6b91bc26",
       "caip2": "eip155:10000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:SEP20"
+      "caip19": "eip155:10000/sep20:0xbcbd9990dcec6a64741ea27bec0ca8ff6b91bc26",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "7NXQXNNPH",
@@ -7506,8 +7506,8 @@
       "mechanism": "DOG-20",
       "technicalReference": "0x7b4328c127b85369d9f82ca0503b000d09cf9180",
       "caip2": "eip155:2000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:DOG-20"
+      "caip19": "eip155:2000/dog20:0x7b4328c127b85369d9f82ca0503b000d09cf9180",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "82G1H6P20",
@@ -7617,8 +7617,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "RUNE-B1A",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:RUNE-B1A",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "84TJFL3RP",
@@ -8125,8 +8125,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0xae3a94a6dc7fce46b40d63bbf355a3ab2aa2a588",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0xae3a94a6dc7fce46b40d63bbf355a3ab2aa2a588",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "8NLQRDRS6",
@@ -8580,8 +8580,8 @@
       "mechanism": "SUI Coin",
       "technicalReference": "0x76a49ebaf991fa2d4cb6a352af14425d453fe2ba6802b5ed2361b227150b6689::take::TAKE",
       "caip2": "sui:mainnet",
-      "caip19": null,
-      "basis": "unmapped-mechanism:SUI Coin"
+      "caip19": "sui:mainnet/coin:0x76a49ebaf991fa2d4cb6a352af14425d453fe2ba6802b5ed2361b227150b6689%3A%3Atake%3A%3ATAKE",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "9214N70GM",
@@ -9199,8 +9199,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "ANKR-E97",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:ANKR-E97",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "9KRM76LJH",
@@ -10266,8 +10266,8 @@
       "mechanism": "WSC",
       "technicalReference": "8LQW8f7P5d5PZM7GtZEBgaqRPGSzS3DfPuiXrURJ4AJS",
       "caip2": "waves:087",
-      "caip19": null,
-      "basis": "unmapped-mechanism:WSC"
+      "caip19": "waves:087/wsc:8LQW8f7P5d5PZM7GtZEBgaqRPGSzS3DfPuiXrURJ4AJS",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "BDWQSDC1H",
@@ -10408,8 +10408,8 @@
       "mechanism": "KIP-20",
       "technicalReference": "0xc946daf81b08146b1c7a8da2a851ddf2b3eaaf85",
       "caip2": "eip155:66",
-      "caip19": null,
-      "basis": "unmapped-mechanism:KIP-20"
+      "caip19": "eip155:66/kip20:0xc946daf81b08146b1c7a8da2a851ddf2b3eaaf85",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "BKGNSQQQ7",
@@ -10712,8 +10712,8 @@
       "mechanism": "PLT",
       "technicalReference": "EURR",
       "caip2": "ccd:9dd9ca4d19e9393877d2c44b70f89acb",
-      "caip19": null,
-      "basis": "unmapped-mechanism:PLT"
+      "caip19": "ccd:9dd9ca4d19e9393877d2c44b70f89acb/plt:EURR",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "BRPF7TK6G",
@@ -11315,8 +11315,8 @@
       "mechanism": "Escrow",
       "technicalReference": "524C555344000000000000000000000000000000.rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De",
       "caip2": "xrpl:0",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Escrow"
+      "caip19": "xrpl:0/escrow:524C555344000000000000000000000000000000.rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "C7FSN3M0C",
@@ -11437,8 +11437,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0x1a5364f782dbed4f69043b02b5c3870a10c23ed5",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0x1a5364f782dbed4f69043b02b5c3870a10c23ed5",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "CCBL9HXG9",
@@ -12020,8 +12020,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "KAVA-10C",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:KAVA-10C",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "CV3Z2JK92",
@@ -12273,8 +12273,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0xae3a768f9ab104c69a7cd6041fe16ffa235d1810",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0xae3a768f9ab104c69a7cd6041fe16ffa235d1810",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "D3RBVMB48",
@@ -12633,8 +12633,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "BUSD-BD1",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:BUSD-BD1",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "DF7T6Z000",
@@ -13673,8 +13673,8 @@
       "mechanism": "Fungible CashToken",
       "technicalReference": "b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe",
       "caip2": "bip122:000000000019d6689c085ae165831e93",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Fungible CashToken"
+      "caip19": "bip122:000000000019d6689c085ae165831e93/ord:b69f76548653033603cdcb81299e3c1d1f3d61ad66e7ba0e6569b493605b4cbe",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "FD58BBW01",
@@ -14249,8 +14249,8 @@
       "mechanism": "BIP-32",
       "technicalReference": "0xdba34672e30cb065b1f93e3ab55318768fd6fef66c15942c9f7cb846e2f900e7::usdc::USDC",
       "caip2": "sui:mainnet",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BIP-32"
+      "caip19": "sui:mainnet/slip44:0xdba34672e30cb065b1f93e3ab55318768fd6fef66c15942c9f7cb846e2f900e7%3A%3Ausdc%3A%3AUSDC",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "FZ9ZQ1JLT",
@@ -15342,8 +15342,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0x04baf95fd4c52fd09a56d840baee0ab8d7357bf0",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0x04baf95fd4c52fd09a56d840baee0ab8d7357bf0",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "GZRMRLCD4",
@@ -15405,8 +15405,8 @@
       "mechanism": "ATS",
       "technicalReference": "0x67b9ca6566a1665568ec65057faec6d4fcb9e8e48e11ee62205f25c7d5f3d1f4::CNNC::Cnnc",
       "caip2": "aptos:1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:ATS"
+      "caip19": "aptos:1/ats:0x67b9ca6566a1665568ec65057faec6d4fcb9e8e48e11ee62205f25c7d5f3d1f4%3A%3ACNNC%3A%3ACnnc",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "H1N949959",
@@ -16322,8 +16322,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "LIT-099",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:LIT-099",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "HRQZTB2K5",
@@ -17386,8 +17386,8 @@
       "mechanism": "BIP-32",
       "technicalReference": "0xc060006111016b8a020ad5b33834984a437aaa7d3c74c18e09a95d48aceab08c::coin::COIN",
       "caip2": "sui:mainnet",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BIP-32"
+      "caip19": "sui:mainnet/slip44:0xc060006111016b8a020ad5b33834984a437aaa7d3c74c18e09a95d48aceab08c%3A%3Acoin%3A%3ACOIN",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "JMCJ137PJ",
@@ -17432,8 +17432,8 @@
       "mechanism": "HRC20",
       "technicalReference": "0x3095c7557bcb296ccc6e363de01b760ba031f2d9",
       "caip2": "eip155:1666600000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC20"
+      "caip19": "eip155:1666600000/hrc20:0x3095c7557bcb296ccc6e363de01b760ba031f2d9",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "JMSF5CVPT",
@@ -17504,8 +17504,8 @@
       "mechanism": "Fungible CashToken",
       "technicalReference": "8a93e3c629b2d406f4f1623a8a83dd117239afcb62118b710edc0d216abb48e4",
       "caip2": "bip122:000000000019d6689c085ae165831e93",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Fungible CashToken"
+      "caip19": "bip122:000000000019d6689c085ae165831e93/ord:8a93e3c629b2d406f4f1623a8a83dd117239afcb62118b710edc0d216abb48e4",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "JP07GJX2P",
@@ -17613,8 +17613,8 @@
       "mechanism": "ATS",
       "technicalReference": "0xd0b4efb4be7c3508d9a26a9b5405cf9f860d0b9e5fe2f498b90e68b8d2cedd3e::aptos_launch_token::AptosLaunchToken",
       "caip2": "aptos:1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:ATS"
+      "caip19": "aptos:1/ats:0xd0b4efb4be7c3508d9a26a9b5405cf9f860d0b9e5fe2f498b90e68b8d2cedd3e%3A%3Aaptos%5Flaunch%5Ftoken%3A%3AAptosLaunchToken",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "JR0HWNPSC",
@@ -17768,8 +17768,8 @@
       "mechanism": "Native Coin",
       "technicalReference": "uatom",
       "caip2": "cosmos:cosmoshub-4",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Native Coin"
+      "caip19": "cosmos:cosmoshub-4/native:uatom",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "JVTL5KHPT",
@@ -17791,8 +17791,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "TUSDB-888",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:TUSDB-888",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "JW7SD9THP",
@@ -18452,8 +18452,8 @@
       "mechanism": "FRC-20",
       "technicalReference": "0x9636d3294e45823ec924c8d89dd1f1dffcf044e6",
       "caip2": "eip155:32659",
-      "caip19": null,
-      "basis": "unmapped-mechanism:FRC-20"
+      "caip19": "eip155:32659/frc20:0x9636d3294e45823ec924c8d89dd1f1dffcf044e6",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "KG8ZLLDM5",
@@ -18903,8 +18903,8 @@
       "mechanism": "HRC20",
       "technicalReference": "0xbd3e698b51d340cc53b0cc549b598c13e0172b7c",
       "caip2": "eip155:1666600000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC20"
+      "caip19": "eip155:1666600000/hrc20:0xbd3e698b51d340cc53b0cc549b598c13e0172b7c",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "KTSQVDVDS",
@@ -19496,8 +19496,8 @@
       "mechanism": "ATS",
       "technicalReference": "0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa::asset::USDC",
       "caip2": "aptos:1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:ATS"
+      "caip19": "aptos:1/ats:0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa%3A%3Aasset%3A%3AUSDC",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "LCW3GSSVZ",
@@ -19987,8 +19987,8 @@
       "mechanism": "Escrow",
       "technicalReference": "4555524356000000000000000000000000000000.rUNaS5sqRuxZz6V7rBGhoSaZiVYA3ut4UL",
       "caip2": "xrpl:0",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Escrow"
+      "caip19": "xrpl:0/escrow:4555524356000000000000000000000000000000.rUNaS5sqRuxZz6V7rBGhoSaZiVYA3ut4UL",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "LTPJ8W85H",
@@ -20271,8 +20271,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "FTM-A64",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:FTM-A64",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "M28PVPG34",
@@ -20407,8 +20407,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0x485cdbff08a4f91a16689e73893a11ae8b76af6d",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0x485cdbff08a4f91a16689e73893a11ae8b76af6d",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "M54P10X8Q",
@@ -20827,8 +20827,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0xef3cebd77e0c52cb6f60875d9306397b5caca375",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0xef3cebd77e0c52cb6f60875d9306397b5caca375",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "MM976LHZ6",
@@ -20870,8 +20870,8 @@
       "mechanism": "Cardano Smart Contract",
       "technicalReference": "29d222ce763455e3d7a09a665ce554f00ac89d2e99a1a83d267170c64d494e",
       "caip2": "cip34:1-764824073",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Cardano Smart Contract"
+      "caip19": "cip34:1-764824073/native:29d222ce763455e3d7a09a665ce554f00ac89d2e99a1a83d267170c64d494e",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "MN818MFC7",
@@ -21050,8 +21050,8 @@
       "mechanism": "ATS",
       "technicalReference": "0x4e80d4e4026db06648b580e4c8e8d2b46cfa92ceb4f72615278661e096fe0245::GCR::Gcr",
       "caip2": "aptos:1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:ATS"
+      "caip19": "aptos:1/ats:0x4e80d4e4026db06648b580e4c8e8d2b46cfa92ceb4f72615278661e096fe0245%3A%3AGCR%3A%3AGcr",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "MSDLX4D4W",
@@ -21386,8 +21386,8 @@
       "mechanism": "Polkadot Asset",
       "technicalReference": "340282366920938463463374607431768211455",
       "caip2": "eip155:592",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Polkadot Asset"
+      "caip19": "eip155:592/asset:340282366920938463463374607431768211455",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "N47CZFR5B",
@@ -21651,8 +21651,8 @@
       "mechanism": "WRC-20",
       "technicalReference": "0x52a9cea01c4cbdd669883e41758b8eb8e8e2b34b",
       "caip2": "eip155:888",
-      "caip19": null,
-      "basis": "unmapped-mechanism:WRC-20"
+      "caip19": "eip155:888/wrc20:0x52a9cea01c4cbdd669883e41758b8eb8e8e2b34b",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "NB40GCG21",
@@ -21737,8 +21737,8 @@
       "mechanism": "KIP-20",
       "technicalReference": "0x7a47ab305b8a2a3f4020d13fa9ef73cddcc0e7d4",
       "caip2": "eip155:66",
-      "caip19": null,
-      "basis": "unmapped-mechanism:KIP-20"
+      "caip19": "eip155:66/kip20:0x7a47ab305b8a2a3f4020d13fa9ef73cddcc0e7d4",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "NF1ZGHR37",
@@ -22018,8 +22018,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "AERGO-46B",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:AERGO-46B",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "NP0D1DN48",
@@ -23072,8 +23072,8 @@
       "mechanism": "KIP-20",
       "technicalReference": "0x8cd6e29d3686d24d3c2018cee54621ea0f89313b",
       "caip2": "eip155:66",
-      "caip19": null,
-      "basis": "unmapped-mechanism:KIP-20"
+      "caip19": "eip155:66/kip20:0x8cd6e29d3686d24d3c2018cee54621ea0f89313b",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "PM4248QB4",
@@ -23612,8 +23612,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0xa1ecfc2bec06e4b43ddd423b94fef84d0dbc8f5c",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0xa1ecfc2bec06e4b43ddd423b94fef84d0dbc8f5c",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "Q3S9RB2ZT",
@@ -23872,8 +23872,8 @@
       "mechanism": "WORLDLINE",
       "technicalReference": "Coin",
       "caip2": "eip155:293",
-      "caip19": null,
-      "basis": "unmapped-mechanism:WORLDLINE"
+      "caip19": "eip155:293/wln:Coin",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "QB6HJWNP1",
@@ -24296,8 +24296,8 @@
       "mechanism": "VRC20",
       "technicalReference": "0x503b2ddc059b81788fd1239561596614b27faade",
       "caip2": "eip155:88",
-      "caip19": null,
-      "basis": "unmapped-mechanism:VRC20"
+      "caip19": "eip155:88/vrc20:0x503b2ddc059b81788fd1239561596614b27faade",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "QNXFTKQBX",
@@ -24461,8 +24461,8 @@
       "mechanism": "XRC20",
       "technicalReference": "0x3b2bf2b523f54c4e454f08aa286d03115aff326c",
       "caip2": "eip155:4689",
-      "caip19": null,
-      "basis": "unmapped-mechanism:XRC20"
+      "caip19": "eip155:4689/xrc20:0x3b2bf2b523f54c4e454f08aa286d03115aff326c",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "QTLVF7VNL",
@@ -24494,8 +24494,8 @@
       "mechanism": "BIP-32",
       "technicalReference": "0x3a304c7feba2d819ea57c3542d68439ca2c386ba02159c740f7b406e592c62ea::haedal::HAEDAL",
       "caip2": "sui:mainnet",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BIP-32"
+      "caip19": "sui:mainnet/slip44:0x3a304c7feba2d819ea57c3542d68439ca2c386ba02159c740f7b406e592c62ea%3A%3Ahaedal%3A%3AHAEDAL",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "QV5NK6TPR",
@@ -24668,8 +24668,8 @@
       "mechanism": "SIP-10",
       "technicalReference": "SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.token-wstx",
       "caip2": "stacks:1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:SIP-10"
+      "caip19": "stacks:1/sip010:SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.token-wstx",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "R1FKRMFK6",
@@ -25356,8 +25356,8 @@
       "mechanism": "Escrow",
       "technicalReference": "5553444300000000000000000000000000000000.rGm7WCVp9gb4jZHWTEtGUr4dd74z2XuWhE",
       "caip2": "xrpl:0",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Escrow"
+      "caip19": "xrpl:0/escrow:5553444300000000000000000000000000000000.rGm7WCVp9gb4jZHWTEtGUr4dd74z2XuWhE",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "RNMN1L5R3",
@@ -25396,8 +25396,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0xa71edc38d189767582c38a3145b5873052c3e47a",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0xa71edc38d189767582c38a3145b5873052c3e47a",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "RPTZTNCRS",
@@ -25603,8 +25603,8 @@
       "mechanism": "WSC",
       "technicalReference": "DG2xFkPdDwKUoBkzGAhQtLpSGzfXLiCYPEzeKH2Ad24p",
       "caip2": "waves:087",
-      "caip19": null,
-      "basis": "unmapped-mechanism:WSC"
+      "caip19": "waves:087/wsc:DG2xFkPdDwKUoBkzGAhQtLpSGzfXLiCYPEzeKH2Ad24p",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "RVPRJLP64",
@@ -25772,8 +25772,8 @@
       "mechanism": "VRC21",
       "technicalReference": "0x381b31409e4d220919b2cff012ed94d70135a59e",
       "caip2": "eip155:88",
-      "caip19": null,
-      "basis": "unmapped-mechanism:VRC21"
+      "caip19": "eip155:88/vrc21:0x381b31409e4d220919b2cff012ed94d70135a59e",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "S172HF2CL",
@@ -25782,8 +25782,8 @@
       "mechanism": "ATS",
       "technicalReference": "0x8eaeb88e7a0b1fe86119b7fda7424fa6cc4f49adc99b249135b2a507192a7332::ARAW::Araw",
       "caip2": "aptos:1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:ATS"
+      "caip19": "aptos:1/ats:0x8eaeb88e7a0b1fe86119b7fda7424fa6cc4f49adc99b249135b2a507192a7332%3A%3AARAW%3A%3AAraw",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "S1M7DBGM3",
@@ -26360,8 +26360,8 @@
       "mechanism": "XRC20",
       "technicalReference": "0xfA2958CB79b0491CC627c1557F441eF849Ca8eb1",
       "caip2": "eip155:50",
-      "caip19": null,
-      "basis": "unmapped-mechanism:XRC20"
+      "caip19": "eip155:50/xrc20:0xfa2958cb79b0491cc627c1557f441ef849ca8eb1",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "SL73WHFTW",
@@ -26410,8 +26410,8 @@
       "mechanism": "ATS",
       "technicalReference": "0x1::aptos_coin::AptosCoin",
       "caip2": "aptos:1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:ATS"
+      "caip19": "aptos:1/ats:0x1%3A%3Aaptos%5Fcoin%3A%3AAptosCoin",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "SMM8T25HT",
@@ -26750,8 +26750,8 @@
       "mechanism": "HRC20",
       "technicalReference": "0xef977d2f931c1978db5f6747666fa1eacb0d0339",
       "caip2": "eip155:1666600000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC20"
+      "caip19": "eip155:1666600000/hrc20:0xef977d2f931c1978db5f6747666fa1eacb0d0339",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "SVCV42BS8",
@@ -26961,8 +26961,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0x045de15ca76e76426e8fc7cba8392a3138078d0f",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0x045de15ca76e76426e8fc7cba8392a3138078d0f",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "T3LTN4SZ3",
@@ -28325,8 +28325,8 @@
       "mechanism": "EOSIO.TOKEN",
       "technicalReference": "core.vaulta",
       "caip2": "bip122:00000001405147477ab2f5f51cda427b",
-      "caip19": null,
-      "basis": "unmapped-mechanism:EOSIO.TOKEN"
+      "caip19": "bip122:00000001405147477ab2f5f51cda427b/token:core.vaulta",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "V9F9THCBH",
@@ -28751,8 +28751,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0x25d2e80cb6b86881fd7e07dd263fb79f4abe033c",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0x25d2e80cb6b86881fd7e07dd263fb79f4abe033c",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "VRDRXMC9G",
@@ -30359,8 +30359,8 @@
       "mechanism": "DOG-20",
       "technicalReference": "0xe3f5a90f9cb311505cd691a46596599aa1a0ad7d",
       "caip2": "eip155:2000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:DOG-20"
+      "caip19": "eip155:2000/dog20:0xe3f5a90f9cb311505cd691a46596599aa1a0ad7d",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "XDNXPCKL8",
@@ -30967,8 +30967,8 @@
       "mechanism": "HRC20",
       "technicalReference": "0xaad96d04f00b718b9ed43e39db8e73de61cef8b7",
       "caip2": "eip155:1666600000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC20"
+      "caip19": "eip155:1666600000/hrc20:0xaad96d04f00b718b9ed43e39db8e73de61cef8b7",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "XXQ2X6FVT",
@@ -31232,8 +31232,8 @@
       "mechanism": "BIP-32",
       "technicalReference": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI",
       "caip2": "sui:mainnet",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BIP-32"
+      "caip19": "sui:mainnet/slip44:0x0000000000000000000000000000000000000000000000000000000000000002%3A%3Asui%3A%3ASUI",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "Z506F8FCP",
@@ -31638,8 +31638,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "FSN-E14",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:FSN-E14",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "ZHSMZL7F9",
@@ -31984,8 +31984,8 @@
       "mechanism": "HRC20",
       "technicalReference": "0x63cf309500d8be0b9fdb8f1fb66c821236c0438c",
       "caip2": "eip155:1666600000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC20"
+      "caip19": "eip155:1666600000/hrc20:0x63cf309500d8be0b9fdb8f1fb66c821236c0438c",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "ZS6HNPSWD",
@@ -33269,7 +33269,7 @@
       "technicalReference": "A.231cc0dbbcffc4b7.RLY",
       "caip2": "flow:mainnet",
       "caip19": null,
-      "basis": "unmapped-mechanism:FT"
+      "basis": "malformed-caip19"
     },
     {
       "dti": "29Q4954QS",
@@ -33536,8 +33536,8 @@
       "mechanism": "FRC-20",
       "technicalReference": "0x61be5df5459573a7c25673e74281cef4cef81e7d",
       "caip2": "eip155:32659",
-      "caip19": null,
-      "basis": "unmapped-mechanism:FRC-20"
+      "caip19": "eip155:32659/frc20:0x61be5df5459573a7c25673e74281cef4cef81e7d",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "2LVH4NGBV",
@@ -33710,8 +33710,8 @@
       "mechanism": "BIP-32",
       "technicalReference": "0xf16e6b723f242ec745dfd7634ad072c42d5c1d9ac9d62a39c381303eaa57693a::fdusd::FDUSD",
       "caip2": "sui:mainnet",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BIP-32"
+      "caip19": "sui:mainnet/slip44:0xf16e6b723f242ec745dfd7634ad072c42d5c1d9ac9d62a39c381303eaa57693a%3A%3Afdusd%3A%3AFDUSD",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "2R331T8SH",
@@ -34678,8 +34678,8 @@
       "mechanism": "BIP-32",
       "technicalReference": "0x7262fb2f7a3a14c888c438a3cd9b912469a58cf60f367352c46584262e8299aa::ika::IKA",
       "caip2": "sui:mainnet",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BIP-32"
+      "caip19": "sui:mainnet/slip44:0x7262fb2f7a3a14c888c438a3cd9b912469a58cf60f367352c46584262e8299aa%3A%3Aika%3A%3AIKA",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "3MHSLZ3SX",
@@ -35230,8 +35230,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "TWT-8C2",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:TWT-8C2",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "46NJD6NHX",
@@ -36401,8 +36401,8 @@
       "mechanism": "HRC20",
       "technicalReference": "0x224e64ec1bdce3870a6a6c777edd450454068fec",
       "caip2": "eip155:1666600000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC20"
+      "caip19": "eip155:1666600000/hrc20:0x224e64ec1bdce3870a6a6c777edd450454068fec",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "53VW92ZT0",
@@ -36500,8 +36500,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0xa2c49cee16a5e5bdefde931107dc1fae9f7773e3",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0xa2c49cee16a5e5bdefde931107dc1fae9f7773e3",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "56DPJJ58X",
@@ -36695,8 +36695,8 @@
       "mechanism": "LiquidAsset",
       "technicalReference": "ce091c998b83c78bb71a632313ba3760f1763d9cfcffae02258ffa9865a37bd2",
       "caip2": "bip122:1466275836220db2944ca059a3a10ef6",
-      "caip19": null,
-      "basis": "unmapped-mechanism:LiquidAsset"
+      "caip19": "bip122:1466275836220db2944ca059a3a10ef6/liqasset:ce091c998b83c78bb71a632313ba3760f1763d9cfcffae02258ffa9865a37bd2",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "5CV6W8P9H",
@@ -36969,8 +36969,8 @@
       "mechanism": "BIP-32",
       "technicalReference": "0xc2edf324c59ad2481b47e327a710cb5353074af254560b3182d91b3a7feab6c0::PEPEGOAT::PEPEGOAT",
       "caip2": "sui:mainnet",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BIP-32"
+      "caip19": "sui:mainnet/slip44:0xc2edf324c59ad2481b47e327a710cb5353074af254560b3182d91b3a7feab6c0%3A%3APEPEGOAT%3A%3APEPEGOAT",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "5MJBHM6D9",
@@ -37240,8 +37240,8 @@
       "mechanism": "ATS",
       "technicalReference": "0xa4c5c1f5d28f13b6da2de8cb76708a5fbeca5d6c5fe592ee1b062a91f14d94b7::FGC::Fgc",
       "caip2": "aptos:1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:ATS"
+      "caip19": "aptos:1/ats:0xa4c5c1f5d28f13b6da2de8cb76708a5fbeca5d6c5fe592ee1b062a91f14d94b7%3A%3AFGC%3A%3AFgc",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "5V4KLZ2MV",
@@ -37421,8 +37421,8 @@
       "mechanism": "HRC20",
       "technicalReference": "0x6983d1e6def3690c4d616b13597a09e6193ea013",
       "caip2": "eip155:1666600000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC20"
+      "caip19": "eip155:1666600000/hrc20:0x6983d1e6def3690c4d616b13597a09e6193ea013",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "60GW30G9J",
@@ -37780,7 +37780,7 @@
       "technicalReference": "0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b",
       "caip2": "aptos:1",
       "caip19": null,
-      "basis": "unmapped-mechanism:Fungible Asset"
+      "basis": "malformed-caip19"
     },
     {
       "dti": "6BP8GLQ1G",
@@ -38126,8 +38126,8 @@
       "mechanism": "SLP Token",
       "technicalReference": "2ca575523723450565586e71f3da16e7c28a0c9669738e1eaf3e62485ebdd164",
       "caip2": "bip122:000000000019d6689c085ae165831e93",
-      "caip19": null,
-      "basis": "unmapped-mechanism:SLP Token"
+      "caip19": "bip122:000000000019d6689c085ae165831e93/ord:2ca575523723450565586e71f3da16e7c28a0c9669738e1eaf3e62485ebdd164",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "6Q742080T",
@@ -38205,8 +38205,8 @@
       "mechanism": "SUI Coin",
       "technicalReference": "0xf8bfaf1cfefdc539a00e0bc37213c8f339cb411a6b0c4c023ed92f36c68d0fb6::bluwhale_ai::BLUWHALE_AI",
       "caip2": "sui:mainnet",
-      "caip19": null,
-      "basis": "unmapped-mechanism:SUI Coin"
+      "caip19": "sui:mainnet/coin:0xf8bfaf1cfefdc539a00e0bc37213c8f339cb411a6b0c4c023ed92f36c68d0fb6%3A%3Abluwhale%5Fai%3A%3ABLUWHALE%5FAI",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "6SKD2VM16",
@@ -38695,8 +38695,8 @@
       "mechanism": "OMNI",
       "technicalReference": "31",
       "caip2": "bip122:000000000019d6689c085ae165831e93",
-      "caip19": null,
-      "basis": "unmapped-mechanism:OMNI"
+      "caip19": "bip122:000000000019d6689c085ae165831e93/omni:31",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "766NMMLMQ",
@@ -39000,8 +39000,8 @@
       "mechanism": "BIP-32",
       "technicalReference": "0xdeeb7a4662eec9f2f3def03fb937a663dddaa2e215b8078a284d026b7946c270::deep::DEEP",
       "caip2": "sui:mainnet",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BIP-32"
+      "caip19": "sui:mainnet/slip44:0xdeeb7a4662eec9f2f3def03fb937a663dddaa2e215b8078a284d026b7946c270%3A%3Adeep%3A%3ADEEP",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "7GDTQ5VW8",
@@ -39258,8 +39258,8 @@
       "mechanism": "BIP-32",
       "technicalReference": "0x5d4b302506645c37ff133b98c4b50a5ae14841659738d6d733d59d0d217a93bf::coin::COIN",
       "caip2": "sui:mainnet",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BIP-32"
+      "caip19": "sui:mainnet/slip44:0x5d4b302506645c37ff133b98c4b50a5ae14841659738d6d733d59d0d217a93bf%3A%3Acoin%3A%3ACOIN",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "7NZRGQZ87",
@@ -39268,8 +39268,8 @@
       "mechanism": "Native Coin",
       "technicalReference": "uusdc",
       "caip2": "cosmos:noble-1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Native Coin"
+      "caip19": "cosmos:noble-1/native:uusdc",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "7P5C8SF44",
@@ -39499,7 +39499,7 @@
       "technicalReference": "0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b",
       "caip2": "aptos:1",
       "caip19": null,
-      "basis": "unmapped-mechanism:Fungible Asset"
+      "basis": "malformed-caip19"
     },
     {
       "dti": "7X0W2C94Z",
@@ -39719,8 +39719,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0x22c54ce8321a4015740ee1109d9cbc25815c46e6",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0x22c54ce8321a4015740ee1109d9cbc25815c46e6",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "83MH7QSCL",
@@ -39794,7 +39794,7 @@
       "technicalReference": "0x435ad41e7b383cef98899c4e5a22c8dc88ab67b22f95e5663d6c6649298c3a9d",
       "caip2": "aptos:1",
       "caip19": null,
-      "basis": "unmapped-mechanism:Fungible Asset"
+      "basis": "malformed-caip19"
     },
     {
       "dti": "85PSZKCSZ",
@@ -40545,8 +40545,8 @@
       "mechanism": "XRC20",
       "technicalReference": "0x6fbcdc1169b5130c59e72e51ed68a84841c98cd1",
       "caip2": "eip155:4689",
-      "caip19": null,
-      "basis": "unmapped-mechanism:XRC20"
+      "caip19": "eip155:4689/xrc20:0x6fbcdc1169b5130c59e72e51ed68a84841c98cd1",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "8WV98TJHC",
@@ -41081,8 +41081,8 @@
       "mechanism": "ATS",
       "technicalReference": "0x3b6b4346280841a98236054920a5cf09afd5b2bbdfddc0b7de2673dca41072b::MICRO::Micro",
       "caip2": "aptos:1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:ATS"
+      "caip19": "aptos:1/ats:0x3b6b4346280841a98236054920a5cf09afd5b2bbdfddc0b7de2673dca41072b%3A%3AMICRO%3A%3AMicro",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "9C5Z8ZRV8",
@@ -41224,8 +41224,8 @@
       "mechanism": "Fungible CashToken",
       "technicalReference": "acdc292861f4a9d7405f2191ef9a3d071af87ada6159ebde8fde498462f2a0d0",
       "caip2": "bip122:000000000019d6689c085ae165831e93",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Fungible CashToken"
+      "caip19": "bip122:000000000019d6689c085ae165831e93/ord:acdc292861f4a9d7405f2191ef9a3d071af87ada6159ebde8fde498462f2a0d0",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "9HFWRMTZ9",
@@ -42069,8 +42069,8 @@
       "mechanism": "SIP-10",
       "technicalReference": "SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.age000-governance-token",
       "caip2": "stacks:1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:SIP-10"
+      "caip19": "stacks:1/sip010:SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.age000-governance-token",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "B5VRDMNSL",
@@ -42089,8 +42089,8 @@
       "mechanism": "XRC20",
       "technicalReference": "0xd4b5f10d61916bd6e0860144a91ac658de8a1437",
       "caip2": "eip155:50",
-      "caip19": null,
-      "basis": "unmapped-mechanism:XRC20"
+      "caip19": "eip155:50/xrc20:0xd4b5f10d61916bd6e0860144a91ac658de8a1437",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "B6CQ0H4PC",
@@ -42279,8 +42279,8 @@
       "mechanism": "BIP-32",
       "technicalReference": "0x356a26eb9e012a68958082340d4c4116e7f55615cf27affcff209cf0ae544f59::wal::WAL",
       "caip2": "sui:mainnet",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BIP-32"
+      "caip19": "sui:mainnet/slip44:0x356a26eb9e012a68958082340d4c4116e7f55615cf27affcff209cf0ae544f59%3A%3Awal%3A%3AWAL",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "BBD2M564L",
@@ -42319,8 +42319,8 @@
       "mechanism": "NEP-5",
       "technicalReference": "0xab38352559b8b203bde5fddfa0b07d8b2525e132",
       "caip2": "bip122:d42561e3d30e15be6400b6df2f328e02",
-      "caip19": null,
-      "basis": "unmapped-mechanism:NEP-5"
+      "caip19": "bip122:d42561e3d30e15be6400b6df2f328e02/nep5:0xab38352559b8b203bde5fddfa0b07d8b2525e132",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "BCDRL13P0",
@@ -42495,8 +42495,8 @@
       "mechanism": "SLP Token",
       "technicalReference": "9fc89d6b7d5be2eac0b3787c5b8236bca5de641b5bafafc8f450727b63615c11",
       "caip2": "bip122:000000000019d6689c085ae165831e93",
-      "caip19": null,
-      "basis": "unmapped-mechanism:SLP Token"
+      "caip19": "bip122:000000000019d6689c085ae165831e93/ord:9fc89d6b7d5be2eac0b3787c5b8236bca5de641b5bafafc8f450727b63615c11",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "BJ608SD5J",
@@ -42637,8 +42637,8 @@
       "mechanism": "OMNI",
       "technicalReference": "3",
       "caip2": "bip122:000000000019d6689c085ae165831e93",
-      "caip19": null,
-      "basis": "unmapped-mechanism:OMNI"
+      "caip19": "bip122:000000000019d6689c085ae165831e93/omni:3",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "BML6T2M09",
@@ -43434,8 +43434,8 @@
       "mechanism": "Native Coin",
       "technicalReference": "basecro",
       "caip2": "cosmos:crypto-org-chain-mainnet-1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Native Coin"
+      "caip19": "cosmos:crypto-org-chain-mainnet-1/native:basecro",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "C7NSXFFG5",
@@ -43637,8 +43637,8 @@
       "mechanism": "XRC20",
       "technicalReference": "0x8e66c0d6b70c0b23d39f4b21a1eac52bba8ed89a",
       "caip2": "eip155:4689",
-      "caip19": null,
-      "basis": "unmapped-mechanism:XRC20"
+      "caip19": "eip155:4689/xrc20:0x8e66c0d6b70c0b23d39f4b21a1eac52bba8ed89a",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "CGJXM614Z",
@@ -43987,8 +43987,8 @@
       "mechanism": "XRC20",
       "technicalReference": "0x951857744785e80e2de051c32ee7b25f9c458c42",
       "caip2": "eip155:50",
-      "caip19": null,
-      "basis": "unmapped-mechanism:XRC20"
+      "caip19": "eip155:50/xrc20:0x951857744785e80e2de051c32ee7b25f9c458c42",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "CQLQSQKH4",
@@ -43997,8 +43997,8 @@
       "mechanism": "Cardano Smart Contract",
       "technicalReference": "f43a62fdc3965df486de8a0d32fe800963589c41b38946602a0dc53541474958",
       "caip2": "cip34:1-764824073",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Cardano Smart Contract"
+      "caip19": "cip34:1-764824073/native:f43a62fdc3965df486de8a0d32fe800963589c41b38946602a0dc53541474958",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "CR0R1VH3K",
@@ -44059,8 +44059,8 @@
       "mechanism": "DOG-20",
       "technicalReference": "0x765277eebeca2e31912c9946eae1021199b39c61",
       "caip2": "eip155:2000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:DOG-20"
+      "caip19": "eip155:2000/dog20:0x765277eebeca2e31912c9946eae1021199b39c61",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "CSFHC7KK7",
@@ -44255,8 +44255,8 @@
       "mechanism": "Native Coin",
       "technicalReference": "FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z",
       "caip2": "avax:imji8papUf2EhV3le337w1vgFauqkJg-",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Native Coin"
+      "caip19": "avax:imji8papUf2EhV3le337w1vgFauqkJg-/native:FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "D00BX2H21",
@@ -44521,8 +44521,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0xd938e45680da19ad36646ae8d4c671b2b1270f39",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0xd938e45680da19ad36646ae8d4c671b2b1270f39",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "D70R5H908",
@@ -45424,8 +45424,8 @@
       "mechanism": "XRC20",
       "technicalReference": "0xc7b93720f73b037394ce00f954f849ed484a3dea",
       "caip2": "eip155:4689",
-      "caip19": null,
-      "basis": "unmapped-mechanism:XRC20"
+      "caip19": "eip155:4689/xrc20:0xc7b93720f73b037394ce00f954f849ed484a3dea",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "F1LPK8ZKZ",
@@ -46254,8 +46254,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "NEXO-A84",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:NEXO-A84",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "FVHZM5C06",
@@ -46376,8 +46376,8 @@
       "mechanism": "LiquidAsset",
       "technicalReference": "5a83968fb1e24d0bf9b9a850b4d0000d0554169ea029d3d8d78b6d4872d1aa15",
       "caip2": "bip122:1466275836220db2944ca059a3a10ef6",
-      "caip19": null,
-      "basis": "unmapped-mechanism:LiquidAsset"
+      "caip19": "bip122:1466275836220db2944ca059a3a10ef6/liqasset:5a83968fb1e24d0bf9b9a850b4d0000d0554169ea029d3d8d78b6d4872d1aa15",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "FZVZSNBJC",
@@ -46886,8 +46886,8 @@
       "mechanism": "BIP-32",
       "technicalReference": "0x06864a6f921804860930db6ddbe2e16acdf8504495ea7481637a1c8b9a8fe54b::cetus::CETUS",
       "caip2": "sui:mainnet",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BIP-32"
+      "caip19": "sui:mainnet/slip44:0x06864a6f921804860930db6ddbe2e16acdf8504495ea7481637a1c8b9a8fe54b%3A%3Acetus%3A%3ACETUS",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "GFJJ01F5K",
@@ -47473,8 +47473,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0x64ff637fb478863b7468bc97d30a5bf3a428a1fd",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0x64ff637fb478863b7468bc97d30a5bf3a428a1fd",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "H0878D35D",
@@ -47681,8 +47681,8 @@
       "mechanism": "HRC20",
       "technicalReference": "0x3c2b8be99c50593081eaa2a724f0b8285f5aba8f",
       "caip2": "eip155:1666600000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC20"
+      "caip19": "eip155:1666600000/hrc20:0x3c2b8be99c50593081eaa2a724f0b8285f5aba8f",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "H5920M345",
@@ -48599,8 +48599,8 @@
       "mechanism": "WSC",
       "technicalReference": "G5WWWzzVsWRyzGf32xojbnfp7gXbWrgqJT8RcVWEfLmC",
       "caip2": "waves:087",
-      "caip19": null,
-      "basis": "unmapped-mechanism:WSC"
+      "caip19": "waves:087/wsc:G5WWWzzVsWRyzGf32xojbnfp7gXbWrgqJT8RcVWEfLmC",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "HWN9T781J",
@@ -48853,8 +48853,8 @@
       "mechanism": "StatemintAsset",
       "technicalReference": "1337",
       "caip2": "polkadot:68d56f15f85d3136970ec16946040bc1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:StatemintAsset"
+      "caip19": "polkadot:68d56f15f85d3136970ec16946040bc1/asset:1337",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "J34Q9G7BC",
@@ -49328,8 +49328,8 @@
       "mechanism": "StatemineAsset",
       "technicalReference": "1984",
       "caip2": "polkadot:48239ef607d7928874027a43a6768920",
-      "caip19": null,
-      "basis": "unmapped-mechanism:StatemineAsset"
+      "caip19": "polkadot:48239ef607d7928874027a43a6768920/asset:1984",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "JGQSN3D0H",
@@ -49495,7 +49495,7 @@
       "technicalReference": "0x7b5e9cac3433e9202f28527f707c89e1e47b19de2c33e4db9521a63ad219b739",
       "caip2": "aptos:1",
       "caip19": null,
-      "basis": "unmapped-mechanism:Fungible Asset"
+      "basis": "malformed-caip19"
     },
     {
       "dti": "JLTZF0ZGC",
@@ -50060,8 +50060,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0x777850281719d5a96c29812ab72f822e0e09f3da",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0x777850281719d5a96c29812ab72f822e0e09f3da",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "K18HWCDZ0",
@@ -50248,8 +50248,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0x9e004545c59d359f6b7bfb06a26390b087717b42",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0x9e004545c59d359f6b7bfb06a26390b087717b42",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "K508S2JCD",
@@ -51248,8 +51248,8 @@
       "mechanism": "HRC20",
       "technicalReference": "0x985458e523db3d53125813ed68c274899e9dfab4",
       "caip2": "eip155:1666600000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC20"
+      "caip19": "eip155:1666600000/hrc20:0x985458e523db3d53125813ed68c274899e9dfab4",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "L138VL6TG",
@@ -51396,8 +51396,8 @@
       "mechanism": "WSC",
       "technicalReference": "474jTeYx2r2Va35794tCScAXWJG9hU2HcgxzMowaZUnu",
       "caip2": "waves:087",
-      "caip19": null,
-      "basis": "unmapped-mechanism:WSC"
+      "caip19": "waves:087/wsc:474jTeYx2r2Va35794tCScAXWJG9hU2HcgxzMowaZUnu",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "L5C1L4H5B",
@@ -51585,8 +51585,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "CHZ-ECD",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:CHZ-ECD",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "LBMZ0F5MB",
@@ -53147,8 +53147,8 @@
       "mechanism": "SEP20",
       "technicalReference": "0xbc2f884680c95a02cea099da2f524b366d9028ba",
       "caip2": "eip155:10000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:SEP20"
+      "caip19": "eip155:10000/sep20:0xbc2f884680c95a02cea099da2f524b366d9028ba",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "MS0D6Z6XW",
@@ -53565,8 +53565,8 @@
       "mechanism": "Native Coin",
       "technicalReference": "x/ruji",
       "caip2": "cosmos:thorchain-1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Native Coin"
+      "caip19": "cosmos:thorchain-1/native:x%2Fruji",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "N5DG5PWTG",
@@ -53588,8 +53588,8 @@
       "mechanism": "HRC20",
       "technicalReference": "0xe176ebe47d621b984a73036b9da5d834411ef734",
       "caip2": "eip155:1666600000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC20"
+      "caip19": "eip155:1666600000/hrc20:0xe176ebe47d621b984a73036b9da5d834411ef734",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "N5WVKG71N",
@@ -53634,8 +53634,8 @@
       "mechanism": "KIP-20",
       "technicalReference": "0x235e148e71348b95d679512bdda1434dcdf2f99f",
       "caip2": "eip155:66",
-      "caip19": null,
-      "basis": "unmapped-mechanism:KIP-20"
+      "caip19": "eip155:66/kip20:0x235e148e71348b95d679512bdda1434dcdf2f99f",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "N7165NQ94",
@@ -53664,8 +53664,8 @@
       "mechanism": "KIP-20",
       "technicalReference": "0x382bb369d343125bfb2117af9c149795c6c65c50",
       "caip2": "eip155:66",
-      "caip19": null,
-      "basis": "unmapped-mechanism:KIP-20"
+      "caip19": "eip155:66/kip20:0x382bb369d343125bfb2117af9c149795c6c65c50",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "N7B1L2FBK",
@@ -53716,8 +53716,8 @@
       "mechanism": "HRC20",
       "technicalReference": "0x14a7b318fed66ffdcc80c1517c172c13852865de",
       "caip2": "eip155:1666600000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC20"
+      "caip19": "eip155:1666600000/hrc20:0x14a7b318fed66ffdcc80c1517c172c13852865de",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "N8DL4NDHC",
@@ -53878,8 +53878,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "TROY-9B8",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:TROY-9B8",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "NF3CDNDSD",
@@ -53997,8 +53997,8 @@
       "mechanism": "SORA Token",
       "technicalReference": "0x00311527965a04f0f0d8b9954ac1140521475304c1afed025053b9640857b6ea",
       "caip2": "polkadot:7e4e32d0feafd4f9c9414b0be86373f9",
-      "caip19": null,
-      "basis": "unmapped-mechanism:SORA Token"
+      "caip19": "polkadot:7e4e32d0feafd4f9c9414b0be86373f9/sora:0x00311527965a04f0f0d8b9954ac1140521475304c1afed025053b9640857b6ea",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "NJL2WVHT0",
@@ -54341,8 +54341,8 @@
       "mechanism": "StatemintAsset",
       "technicalReference": "1984",
       "caip2": "polkadot:68d56f15f85d3136970ec16946040bc1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:StatemintAsset"
+      "caip19": "polkadot:68d56f15f85d3136970ec16946040bc1/asset:1984",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "NT91TJWNC",
@@ -54387,8 +54387,8 @@
       "mechanism": "HRC20",
       "technicalReference": "0xbec775cb42abfa4288de81f387a9b1a3c4bc552a",
       "caip2": "eip155:1666600000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC20"
+      "caip19": "eip155:1666600000/hrc20:0xbec775cb42abfa4288de81f387a9b1a3c4bc552a",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "NV372F9Z9",
@@ -54881,7 +54881,7 @@
       "technicalReference": "A.b19436aae4d94622.FiatToken",
       "caip2": "flow:mainnet",
       "caip19": null,
-      "basis": "unmapped-mechanism:FT"
+      "basis": "malformed-caip19"
     },
     {
       "dti": "P7L7D5RFT",
@@ -54950,8 +54950,8 @@
       "mechanism": "EOSIO.TOKEN",
       "technicalReference": "geegoopuzzle",
       "caip2": "bip122:00000001405147477ab2f5f51cda427b",
-      "caip19": null,
-      "basis": "unmapped-mechanism:EOSIO.TOKEN"
+      "caip19": "bip122:00000001405147477ab2f5f51cda427b/token:geegoopuzzle",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "P9Z884ZPS",
@@ -55152,8 +55152,8 @@
       "mechanism": "SORA Token",
       "technicalReference": "0x0200070000000000000000000000000000000000000000000000000000000000",
       "caip2": "polkadot:7e4e32d0feafd4f9c9414b0be86373f9",
-      "caip19": null,
-      "basis": "unmapped-mechanism:SORA Token"
+      "caip19": "polkadot:7e4e32d0feafd4f9c9414b0be86373f9/sora:0x0200070000000000000000000000000000000000000000000000000000000000",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "PK8VF9LQ0",
@@ -55565,8 +55565,8 @@
       "mechanism": "ATS",
       "technicalReference": "0x248bf630c14feee9b974eaf8cf2fe63485c2c99bdb6517a1daf796d16cb7b29a::ESCE::Esce",
       "caip2": "aptos:1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:ATS"
+      "caip19": "aptos:1/ats:0x248bf630c14feee9b974eaf8cf2fe63485c2c99bdb6517a1daf796d16cb7b29a%3A%3AESCE%3A%3AEsce",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "PX93XGZWX",
@@ -55885,8 +55885,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0x3befb2308bce92da97264077faf37dcd6c8a75e6",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0x3befb2308bce92da97264077faf37dcd6c8a75e6",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "Q5SVDB4ZS",
@@ -56133,8 +56133,8 @@
       "mechanism": "HRC20",
       "technicalReference": "0xcf664087a5bb0237a0bad6742852ec6c8d69a27a",
       "caip2": "eip155:1666600000",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC20"
+      "caip19": "eip155:1666600000/hrc20:0xcf664087a5bb0237a0bad6742852ec6c8d69a27a",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "QDPTLCSV1",
@@ -56325,8 +56325,8 @@
       "mechanism": "ATS",
       "technicalReference": "0x159df6b7689437016108a019fd5bef736bac692b6d4a1f10c941f6fbb9a74ca6::oft::CakeOFT",
       "caip2": "aptos:1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:ATS"
+      "caip19": "aptos:1/ats:0x159df6b7689437016108a019fd5bef736bac692b6d4a1f10c941f6fbb9a74ca6%3A%3Aoft%3A%3ACakeOFT",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "QKFJRZW4P",
@@ -56385,8 +56385,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "MITH-C76",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:MITH-C76",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "QMVXV43GT",
@@ -56619,8 +56619,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "LTO-BDF",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:LTO-BDF",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "QV566NR5N",
@@ -56669,8 +56669,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "TOMOB-4BC",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:TOMOB-4BC",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "QX2HDR9Q5",
@@ -56944,8 +56944,8 @@
       "mechanism": "WSC",
       "technicalReference": "WAVES",
       "caip2": "waves:087",
-      "caip19": null,
-      "basis": "unmapped-mechanism:WSC"
+      "caip19": "waves:087/wsc:WAVES",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "R56RSDLS8",
@@ -57208,8 +57208,8 @@
       "mechanism": "BEP-2",
       "technicalReference": "FTT-F11",
       "caip2": "cosmos:Binance-Chain-Tigris",
-      "caip19": null,
-      "basis": "unmapped-mechanism:BEP-2"
+      "caip19": "cosmos:Binance-Chain-Tigris/bep2:FTT-F11",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "RFPL5QVVS",
@@ -57321,8 +57321,8 @@
       "mechanism": "Cardano Smart Contract",
       "technicalReference": "e824c0011176f0926ad51f492bcc63ac6a03a589653520839dc7e3d9",
       "caip2": "cip34:1-764824073",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Cardano Smart Contract"
+      "caip19": "cip34:1-764824073/native:e824c0011176f0926ad51f492bcc63ac6a03a589653520839dc7e3d9",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "RJLCSM3K2",
@@ -57729,8 +57729,8 @@
       "mechanism": "SIP-10",
       "technicalReference": "SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.token-wbtc",
       "caip2": "stacks:1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:SIP-10"
+      "caip19": "stacks:1/sip010:SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9.token-wbtc",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "RW71HP6FT",
@@ -57997,8 +57997,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0xecb56cf772b5c9a6907fb7d32387da2fcbfb63b4",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0xecb56cf772b5c9a6907fb7d32387da2fcbfb63b4",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "S4J67GQ0C",
@@ -58093,8 +58093,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0xa83e2a7bbfaeb064c7cfee416cdf5cf89507dd1a",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0xa83e2a7bbfaeb064c7cfee416cdf5cf89507dd1a",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "S70BXPL47",
@@ -58405,8 +58405,8 @@
       "mechanism": "XRC20",
       "technicalReference": "0x0258866edaf84d6081df17660357ab20a07d0c80",
       "caip2": "eip155:4689",
-      "caip19": null,
-      "basis": "unmapped-mechanism:XRC20"
+      "caip19": "eip155:4689/xrc20:0x0258866edaf84d6081df17660357ab20a07d0c80",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "SJ3RNWXFZ",
@@ -59153,8 +59153,8 @@
       "mechanism": "PLT",
       "technicalReference": "USDR",
       "caip2": "ccd:9dd9ca4d19e9393877d2c44b70f89acb",
-      "caip19": null,
-      "basis": "unmapped-mechanism:PLT"
+      "caip19": "ccd:9dd9ca4d19e9393877d2c44b70f89acb/plt:USDR",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "T47MH4NVQ",
@@ -59303,7 +59303,7 @@
       "technicalReference": "0x50038be55be5b964cfa32cf128b5cf05f123959f286b4cc02b86cafd48945f89",
       "caip2": "aptos:1",
       "caip19": null,
-      "basis": "unmapped-mechanism:Fungible Asset"
+      "basis": "malformed-caip19"
     },
     {
       "dti": "T8HCTG9W6",
@@ -59699,8 +59699,8 @@
       "mechanism": "WSC",
       "technicalReference": "6XtHjpXbs9RRJP2Sr9GUyVqzACcby9TkThHXnjVC5CDJ",
       "caip2": "waves:087",
-      "caip19": null,
-      "basis": "unmapped-mechanism:WSC"
+      "caip19": "waves:087/wsc:6XtHjpXbs9RRJP2Sr9GUyVqzACcby9TkThHXnjVC5CDJ",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "TJRRPX0XC",
@@ -59780,8 +59780,8 @@
       "mechanism": "SORA Token",
       "technicalReference": "0x0200060000000000000000000000000000000000000000000000000000000000",
       "caip2": "polkadot:7e4e32d0feafd4f9c9414b0be86373f9",
-      "caip19": null,
-      "basis": "unmapped-mechanism:SORA Token"
+      "caip19": "polkadot:7e4e32d0feafd4f9c9414b0be86373f9/sora:0x0200060000000000000000000000000000000000000000000000000000000000",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "TM1M7GJG0",
@@ -60439,8 +60439,8 @@
       "mechanism": "WORLDLINE",
       "technicalReference": "Ingot",
       "caip2": "eip155:293",
-      "caip19": null,
-      "basis": "unmapped-mechanism:WORLDLINE"
+      "caip19": "eip155:293/wln:Ingot",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "V7J7CRFF1",
@@ -61501,8 +61501,8 @@
       "mechanism": "Cardano Smart Contract",
       "technicalReference": "279c909f348e533da5808898f87f9a14bb2c3dfbbacccd631d927a3f534e454b",
       "caip2": "cip34:1-764824073",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Cardano Smart Contract"
+      "caip19": "cip34:1-764824073/native:279c909f348e533da5808898f87f9a14bb2c3dfbbacccd631d927a3f534e454b",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "WB6NHMWBT",
@@ -61580,8 +61580,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0x202b4936fe1a82a4965220860ae46d7d3939bb25",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0x202b4936fe1a82a4965220860ae46d7d3939bb25",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "WCFP5ZBK5",
@@ -61696,8 +61696,8 @@
       "mechanism": "XRC20",
       "technicalReference": "0x97e6c48867fdc391a8dfe9d169ecd005d1d90283",
       "caip2": "eip155:4689",
-      "caip19": null,
-      "basis": "unmapped-mechanism:XRC20"
+      "caip19": "eip155:4689/xrc20:0x97e6c48867fdc391a8dfe9d169ecd005d1d90283",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "WHL5P994C",
@@ -62032,8 +62032,8 @@
       "mechanism": "ATS",
       "technicalReference": "0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa::asset::USDT",
       "caip2": "aptos:1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:ATS"
+      "caip19": "aptos:1/ats:0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa%3A%3Aasset%3A%3AUSDT",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "WRRCVC7M6",
@@ -62318,7 +62318,7 @@
       "technicalReference": "<9390,0>",
       "caip2": "ccd:9dd9ca4d19e9393877d2c44b70f89acb",
       "caip19": null,
-      "basis": "unmapped-mechanism:CIS-2"
+      "basis": "malformed-caip19"
     },
     {
       "dti": "X3WZ1HNWL",
@@ -62769,8 +62769,8 @@
       "mechanism": "Native Coin",
       "technicalReference": "uosmo",
       "caip2": "cosmos:osmosis-1",
-      "caip19": null,
-      "basis": "unmapped-mechanism:Native Coin"
+      "caip19": "cosmos:osmosis-1/native:uosmo",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "XJMBNL7QD",
@@ -63590,8 +63590,8 @@
       "mechanism": "EOSIO.TOKEN",
       "technicalReference": "tethertether",
       "caip2": "bip122:00000001405147477ab2f5f51cda427b",
-      "caip19": null,
-      "basis": "unmapped-mechanism:EOSIO.TOKEN"
+      "caip19": "bip122:00000001405147477ab2f5f51cda427b/token:tethertether",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "Z89KGMR39",
@@ -63824,8 +63824,8 @@
       "mechanism": "WSC",
       "technicalReference": "34N9YcEETLWn93qYQ64EsP1x89tSruJU44RrEMSXXEPJ",
       "caip2": "waves:087",
-      "caip19": null,
-      "basis": "unmapped-mechanism:WSC"
+      "caip19": "waves:087/wsc:34N9YcEETLWn93qYQ64EsP1x89tSruJU44RrEMSXXEPJ",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "ZG5Z7RJWM",
@@ -64334,8 +64334,8 @@
       "mechanism": "HRC-20",
       "technicalReference": "0xb4f019beac758abbee2f906033aaa2f0f6dacb35",
       "caip2": "eip155:128",
-      "caip19": null,
-      "basis": "unmapped-mechanism:HRC-20"
+      "caip19": "eip155:128/hrc20:0xb4f019beac758abbee2f906033aaa2f0f6dacb35",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "ZX3L4FX6F",
@@ -65120,8 +65120,8 @@
       "mechanism": "EOSIO.TOKEN",
       "technicalReference": "IQ-eos-everipediaiq",
       "caip2": "bip122:00000001405147477ab2f5f51cda427b",
-      "caip19": null,
-      "basis": "unmapped-mechanism:EOSIO.TOKEN"
+      "caip19": "bip122:00000001405147477ab2f5f51cda427b/token:IQ-eos-everipediaiq",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "1WKKL84PQ",

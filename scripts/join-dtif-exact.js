@@ -65,6 +65,31 @@ for (const id of identities) {
   stats.noMatch++;
 }
 
+// ──────────────────────────────────────────────────── group inheritance ──
+// A functionally-fungible-group record has no address of its own by design —
+// it names the SET of deployments that are the same economic asset. So it
+// resolves to whatever its members resolve to, and that is a derivation from
+// DTIF's own declared membership, not a guess.
+//
+// Where the members disagree the group genuinely spans several CoinGecko coins
+// (a canonical asset plus its bridged deployments, which CoinGecko lists
+// separately). That is not a conflict to resolve — it is the honest answer, and
+// all of them are recorded.
+const memberLink = new Map(exact.map((l) => [l.dti, l.coingeckoId]));
+let groupsResolved = 0, groupsSpanning = 0;
+for (const g of identities) {
+  if (g.basis !== 'functionally-fungible-group') continue;
+  const ids = [...new Set((g.groupMembers ?? []).map((m) => memberLink.get(m)).filter(Boolean))];
+  if (!ids.length) continue;
+  groupsResolved++;
+  if (ids.length > 1) groupsSpanning++;
+  exact.push({ dti: g.dti, coingeckoId: ids[0], caip19: null,
+               basis: ids.length > 1 ? 'group-spans-several-coins' : 'group-inherited',
+               allCoinIds: ids, groupMembers: g.groupMembers ?? [] });
+}
+stats.groupsResolved = groupsResolved;
+stats.groupsSpanningSeveralCoins = groupsSpanning;
+
 // ───────────────────────────────────────────────────────────────── scoring ──
 const truth = new Map();
 for (const e of exact) {
@@ -120,7 +145,8 @@ console.log(`DTI records with a derived CAIP-19 : ${stats.withCaip19}`);
 console.log(`  matched a CoinGecko deployment   : ${stats.matchedExact}`);
 console.log(`  address matched, chain differs   : ${stats.matchedAddressOnly}`);
 console.log(`  no CoinGecko coin at that address: ${stats.noMatch}`);
-console.log(`\nEXACT links produced               : ${exact.length}`);
+console.log(`\ngroup records resolved via members : ${stats.groupsResolved}  (${stats.groupsSpanningSeveralCoins} span several coins)`);
+console.log(`EXACT links produced               : ${exact.length}`);
 console.log(`\n── every name-based tier, graded against address truth ──`);
 for (const s of [ruleScore, nameSymbolScore, nameOnlyScore, modelScore]) report(s);
 console.log(`\n  examples of disagreement:`);
