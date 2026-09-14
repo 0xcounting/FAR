@@ -97,6 +97,9 @@ const FORMATS = {
   'sora-asset-id':            { re: /^0x[0-9a-fA-F]{64}$/, lower: true },
   'fuel-asset-id':            { re: /^0x[0-9a-fA-F]{64}$/, lower: true },
   'move-object-address':      { re: /^0x[0-9a-fA-F]{1,64}$/, lower: true },
+  // IOTA Rebased is a Move network and its coin types are Sui-shaped, so it
+  // shares the same normalisation and escape rules.
+  'iota-move':                { re: /^0x[0-9a-fA-F]{1,64}(::[A-Za-z0-9_]+){0,4}$/, enc: true, padMove: true },
   'ergo-token-id':            { re: /^[0-9a-fA-F]{64}$/, lower: true },
   'chia-asset-id':            { re: /^[0-9a-fA-F]{64}$/, lower: true },
   'slp-token-id':             { re: /^[0-9a-fA-F]{64}$/, lower: true },
@@ -117,9 +120,22 @@ const FORMATS = {
   'native-coin-id':           { re: /^[a-z0-9]{1,32}$/ },
   'krc20-tick':               { re: /^[A-Za-z0-9$]{2,16}$/, enc: true },
   'bep2-symbol':              { re: /^[A-Z0-9]{1,12}-[A-Z0-9]{1,6}$/ },
-  // "WAXUSDT-wax-eth.token" — symbol, then the contract account, which itself
-  // may contain hyphens and dots.
-  'antelope-symbol-contract': { re: /^[A-Za-z0-9]{1,12}-[a-z0-9.-]{1,40}$/ },
+  // CoinGecko writes Antelope assets as SYMBOL-chain-contract
+  // ("WAXUSDT-wax-eth.token" = symbol WAXUSDT on chain wax at contract
+  // eth.token). Two things are wrong with using that verbatim: the chain is
+  // already carried by the CAIP-2, and the order is the reverse of the one the
+  // CAIP-19 profile this project proposed upstream defines.
+  //
+  // That profile puts the CONTRACT first for a specific reason: an Antelope
+  // account name is [.12345a-z] and a symbol code is [A-Z], so with a single
+  // "-" separator the two halves have DISJOINT character classes and a
+  // reference self-validates offline. Symbol-first with a dotted account would
+  // need a parse-from-the-right rule instead.
+  //
+  // The safety point is not cosmetic: on EOS mainnet the symbol EOS is issued
+  // by eosio.token, by iouiouiou123 AND by eosiotokenis at ZERO precision — a
+  // consumer matching on symbol alone misreports the last by a factor of 10^4.
+  'antelope-symbol-contract': { re: /^[A-Za-z0-9]{1,12}-[a-z0-9]{1,12}-[a-z0-9.]{1,24}$/, antelope: true },
   // Families whose native form contains characters CAIP-19 forbids.
   'ton-friendly-address':     { re: /^[EU]Q[A-Za-z0-9_-]{46}$/, enc: true },
   'radix-resource-address':   { re: /^resource_rdx1[0-9a-z]{40,70}$/, enc: true },
@@ -127,7 +143,7 @@ const FORMATS = {
   'aelf-address':             { re: /^ELF_[1-9A-HJ-NP-Za-km-z]{40,60}_[A-Za-z0-9]{2,10}$/, enc: true },
   'kadena-module-name':       { re: /^[A-Za-z0-9_.-]{2,64}$/, enc: true },
   'substrate-asset-id':       { re: /^[A-Za-z0-9_%/-]{1,64}$/, enc: true, predecode: true },
-  'sui-struct':               { re: /^0x[0-9a-fA-F]{1,64}(::[A-Za-z0-9_]+){0,4}$/, enc: true },
+  'sui-struct':               { re: /^0x[0-9a-fA-F]{1,64}(::[A-Za-z0-9_]+){0,4}$/, enc: true, padMove: true },
   'aptos-struct':             { re: /^0x[0-9a-fA-F]{1,64}(::[A-Za-z0-9_]+){0,4}$/, enc: true },
   'initia-asset':             { re: /^[A-Za-z0-9/_:-]{1,80}$/, enc: true },
   'near-account':             { re: /^[a-z0-9._-]{2,64}$/, enc: true },
@@ -159,6 +175,16 @@ export function normalizeAddress(identity, addressFormat) {
 
   let cased = spec.lower ? native.toLowerCase() : native;
   if (spec.xdc) cased = cased.replace(/^xdc/, '0x');
+  // Move addresses have a short and a long spelling that both resolve, so one
+  // asset would otherwise have two identifiers. Move's own TypeTag serialization
+  // uses the full 32-byte form, so pad to 64 hex.
+  if (spec.padMove) {
+    cased = cased.replace(/^0x([0-9a-fA-F]{1,64})/, (_, h) => `0x${h.toLowerCase().padStart(64, '0')}`);
+  }
+  if (spec.antelope) {
+    const [symbol, , ...rest] = cased.split('-');
+    cased = `${rest.join('-')}-${symbol.toUpperCase()}`;
+  }
   return spec.enc ? percentEncodeRef(cased) : cased;
 }
 

@@ -3028,9 +3028,9 @@
     },
     "iota": {
       "caip2": "iota:mainnet",
-      "assetNamespace": null,
+      "assetNamespace": "coin",
       "nativeAsset": "slip44:4218",
-      "addressFormat": "sui-struct",
+      "addressFormat": "iota-move",
       "confidence": "proposed",
       "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
       "namespaceRatified": true,
