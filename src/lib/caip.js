@@ -55,9 +55,18 @@ function cosmosNamespace(raw) {
   // CAIP-19 caps asset_namespace at 8 characters, so this cannot be
   // "tokenfactory" — that silently failed the grammar and dropped every
   // factory denom on the floor.
-  if (raw.startsWith('factory/')) return { ns: 'factory', ref: raw };
+  //
+  // The "factory/" prefix is STRIPPED rather than carried: it duplicates what
+  // the namespace already says, and it is not free. Measured across 2,000 live
+  // Osmosis denoms, 7 encode to 130 characters with the prefix retained and so
+  // would exceed CAIP-19's 128-char reference limit; stripping brings every one
+  // of them under it. The same reasoning as ics20, where "ibc/" is dropped.
+  if (raw.startsWith('factory/')) return { ns: 'factory', ref: raw.slice('factory/'.length) };
   if (/^[a-z]+1[02-9ac-hj-np-z]{38,58}$/.test(raw)) return { ns: 'cw20', ref: raw };
-  return { ns: 'native', ref: raw }; // uatom, aarch, uinit …
+  // x/bank is the SDK module that actually holds these denoms, and "bank" is
+  // the namespace used in the CAIP-19 profile this project proposed upstream.
+  // Publishing "native" while proposing "bank" would be incoherent.
+  return { ns: 'bank', ref: raw }; // uatom, aarch, uinit …
 }
 
 
@@ -162,6 +171,16 @@ export function buildCaip19(platformEntry, identity) {
   if (address === null) return null;
   let namespace = platformEntry.assetNamespace;
   let reference = address;
+  // Aptos carries TWO fungible standards side by side and they are NOT the same
+  // thing. A Move TYPE TAG (0x1::aptos_coin::AptosCoin) is a legacy Coin; a bare
+  // object address (0xbae207…) is an AIP-21 Fungible Asset with no type tag at
+  // all. Half our Aptos rows are each kind, and labelling both "coin" asserted
+  // an equivalence the chain does not guarantee — the inverse pairing genuinely
+  // fails for FA-native assets like Circle's USDC, where paired_coin returns
+  // empty.
+  if (platformEntry.addressFormat === 'aptos-struct') {
+    namespace = reference.includes('%3A%3A') ? 'coin' : 'aip21';
+  }
   if (platformEntry.addressFormat === 'btc-inscription-id') {
     namespace = /^[0-9]+%3A[0-9]+$/.test(reference) ? 'rune' : 'ord';
   }
@@ -174,6 +193,12 @@ export function buildCaip19(platformEntry, identity) {
     namespace = picked.ns;
     reference = percentEncodeRef(picked.ref);
   }
+  // A platform whose assetNamespace is null and whose addressFormat carries no
+  // per-identity dispatch would otherwise interpolate the STRING "null" into the
+  // identifier and publish `aelf:AELF/null:ELF%5F…`. Reject instead: a missing
+  // namespace is missing data, and a reject is visible in the build log where a
+  // malformed identifier is not.
+  if (!namespace || namespace === 'null') return null;
   const caip19 = `${platformEntry.caip2}/${namespace}:${reference}`;
   // A reference that still fails the grammar after normalisation is dropped.
   // Publishing a malformed CAIP-19 is worse than publishing none: it looks
