@@ -44,6 +44,11 @@ const readOptional = (p, fallback) => { try { return JSON.parse(readFileSync(p, 
 // Model-asserted links and the DTI ledger vocabulary. Both are optional so a
 // clone without an agent run still builds.
 const inferredLinks = readOptional('data/links-inferred.json', { links: [] }).links;
+// Links derived from the contract address in the DTIF registry record. These
+// are not guesses about which asset a name refers to — they are the identifier
+// the registry itself holds, so they outrank every name-based tier and SUPPRESS
+// a name-based link that disagrees.
+const exactLinks = readOptional('data/links-exact.json', { links: [] }).links;
 const ledgerTable = readOptional('data/ledgers.json', { ledgers: {} }).ledgers;
 const chainNames = new Map(src.evmChains.map((c) => [`eip155:${c.chainId}`, c.name]));
 
@@ -108,6 +113,31 @@ for (const coin of coinsById.values()) {
 const { tokens: dtiTokens, ledgers: dtiLedgers } = normalizeDtiRecords(src.dtiRegistry);
 const dtiById = new Map(dtiTokens.map((t) => [t.dti, t]));
 const { links, unlinked } = proposeLinks(dtiTokens, src.coingeckoCoins, curatedLinks);
+
+// Address-derived links are applied FIRST, so everything downstream sees those
+// DTIs as already decided. Measured against this truth, the name-based tiers
+// run 83-89% correct, and their errors are overwhelmingly one kind: linking a
+// bridged or pegged deployment to the canonical asset it wraps. That is exactly
+// the error this override removes.
+const exactByDti = new Map();
+for (const l of exactLinks) {
+  if (!coinsById.has(l.coingeckoId) || !dtiById.has(l.dti)) continue;
+  if (exactByDti.has(l.dti)) continue;
+  exactByDti.set(l.dti, l);
+}
+let suppressed = 0;
+for (let i = links.length - 1; i >= 0; i--) {
+  const l = links[i];
+  if (l.status === 'accepted') continue;         // a human decision still wins
+  const e = exactByDti.get(l.dti);
+  if (e && e.coingeckoId !== l.coingeckoId) { links.splice(i, 1); suppressed++; }
+  else if (e) links.splice(i, 1);                // same answer; the exact one replaces it
+}
+for (const [dti, e] of exactByDti) {
+  if (links.some((l) => l.dti === dti && l.status === 'accepted')) continue;
+  links.push({ dti, coingeckoId: e.coingeckoId, basis: e.basis, status: 'exact',
+               caip19: e.caip19 ?? null });
+}
 // Model-asserted links fill in where the deterministic rules found nothing.
 // They never override a deterministic or curated link for the same DTI: a
 // weaker method must not quietly replace a stronger one.
@@ -135,6 +165,7 @@ for (const l of links) {
     equivalentGroup: rec.equivalentGroup,
     basis: l.basis,
     status: l.status,
+    caip19: l.caip19 ?? null,
     modelConfidence: l.modelConfidence ?? null,
     reasoning: l.reasoning ?? null,
     assertedBy: l.assertedBy ?? null,
@@ -272,6 +303,8 @@ const counts = {
   dtiAccepted: links.filter((l) => l.status === 'accepted').length,
   dtiProposed: links.filter((l) => l.status === 'proposed').length,
   dtiInferred: links.filter((l) => l.status === 'inferred').length,
+  dtiExact: links.filter((l) => l.status === 'exact').length,
+  dtiNameLinksSuppressedByAddress: suppressed,
   dtiChainRecovered: (chainBasisCounts['name-hint'] ?? 0) + (chainBasisCounts['sole-deployment'] ?? 0),
   dtiLedgersWithCaip2: Object.values(ledgerTable).filter((l) => l.caip2).length,
   dtiUnlinked: unlinked.length,

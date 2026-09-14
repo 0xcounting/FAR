@@ -1,0 +1,298 @@
+{
+  "_readme": "How often the name-based tiers agree with address-derived truth, measured only on the DTI records where truth exists. This is the registry grading itself.",
+  "measuredAt": "2026-09-14",
+  "scores": [
+    {
+      "label": "rule-proposed (all)",
+      "checkable": 679,
+      "right": 588,
+      "wrong": 91,
+      "accuracy": 0.865979381443299,
+      "wrongExamples": [
+        {
+          "dti": "1DP7Q57L6",
+          "said": "binancecoin",
+          "actually": [
+            "bridged-wbnb"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "1GNML4FGK",
+          "said": "fantom",
+          "actually": [
+            "wrapped-fantom"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "1TVLKVR4L",
+          "said": "usde-3",
+          "actually": [
+            "ethena-usde"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "2GZBGMP2B",
+          "said": "usde-3",
+          "actually": [
+            "ethena-usde"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "2HSQ98ND1",
+          "said": "near",
+          "actually": [
+            "binance-peg-near-protocol"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "2QRVCJRG3",
+          "said": "avalanche-2",
+          "actually": [
+            "nexo"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "3360S7M85",
+          "said": "magic-internet-money-2",
+          "actually": [
+            "magic-internet-money"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "3J62P56J8",
+          "said": "honey-3",
+          "actually": [
+            "hivemapper"
+          ],
+          "reasoning": ""
+        }
+      ]
+    },
+    {
+      "label": "rule: name+symbol",
+      "checkable": 650,
+      "right": 575,
+      "wrong": 75,
+      "accuracy": 0.8846153846153846,
+      "wrongExamples": [
+        {
+          "dti": "1DP7Q57L6",
+          "said": "binancecoin",
+          "actually": [
+            "bridged-wbnb"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "1GNML4FGK",
+          "said": "fantom",
+          "actually": [
+            "wrapped-fantom"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "1TVLKVR4L",
+          "said": "usde-3",
+          "actually": [
+            "ethena-usde"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "2GZBGMP2B",
+          "said": "usde-3",
+          "actually": [
+            "ethena-usde"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "2HSQ98ND1",
+          "said": "near",
+          "actually": [
+            "binance-peg-near-protocol"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "2QRVCJRG3",
+          "said": "avalanche-2",
+          "actually": [
+            "nexo"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "3360S7M85",
+          "said": "magic-internet-money-2",
+          "actually": [
+            "magic-internet-money"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "3J62P56J8",
+          "said": "honey-3",
+          "actually": [
+            "hivemapper"
+          ],
+          "reasoning": ""
+        }
+      ]
+    },
+    {
+      "label": "rule: name-only",
+      "checkable": 29,
+      "right": 13,
+      "wrong": 16,
+      "accuracy": 0.4482758620689655,
+      "wrongExamples": [
+        {
+          "dti": "59W7PNKFQ",
+          "said": "newton",
+          "actually": [
+            "newton-protocol"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "68B00GJV0",
+          "said": "radiant",
+          "actually": [
+            "radiant-capital"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "6SKD2VM16",
+          "said": "wrapped-solana",
+          "actually": [
+            "sol-wormhole"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "76X4NZXMD",
+          "said": "dragon-4",
+          "actually": [
+            "dragonchain"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "F3P6ZQX71",
+          "said": "metaverse",
+          "actually": [
+            "gensokishis-metaverse"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "F4NBSMG6L",
+          "said": "venus-xvs",
+          "actually": [
+            "venus"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "GXWQQ3LPH",
+          "said": "magic-internet-money-2",
+          "actually": [
+            "magic-internet-money-runes"
+          ],
+          "reasoning": ""
+        },
+        {
+          "dti": "HL3C0GQQ4",
+          "said": "alkimi-2",
+          "actually": [
+            "alkimi"
+          ],
+          "reasoning": ""
+        }
+      ]
+    },
+    {
+      "label": "model-inferred",
+      "checkable": 603,
+      "right": 501,
+      "wrong": 102,
+      "accuracy": 0.8308457711442786,
+      "wrongExamples": [
+        {
+          "dti": "CFF75TLC3",
+          "said": "edge",
+          "actually": [
+            "definitive"
+          ],
+          "reasoning": "DTI 'Edge'/EDGE matches CoinGecko 'Edge' (EDGE), the Edge Network token on Ethereum, by name (exact casing) an"
+        },
+        {
+          "dti": "WW5P1MFF6",
+          "said": "weth",
+          "actually": [
+            "ethereum-wormhole"
+          ],
+          "reasoning": "DTI 'Wrapped Ether' with ticker WETH is the canonical Ethereum wrapper, matching CoinGecko 'WETH'; the other c"
+        },
+        {
+          "dti": "X1T3WM8CN",
+          "said": "usd-coin",
+          "actually": [
+            "multichain-bridged-usdc-fantom"
+          ],
+          "reasoning": "DTI long name 'USD Coin' is the original name of USDC and short name USDC matches CoinGecko 'USDC' (usd-coin) "
+        },
+        {
+          "dti": "XFQDP0NMW",
+          "said": "usd-coin",
+          "actually": [
+            "zksync-bridged-usdc-zksync"
+          ],
+          "reasoning": "DTI long name 'USD Coin' is the original name of USDC and short name USDC matches CoinGecko 'USDC' (usd-coin) "
+        },
+        {
+          "dti": "XM3T11M7G",
+          "said": "terrausd",
+          "actually": [
+            "terrausd-wormhole"
+          ],
+          "reasoning": "The short names list USTC first, which is the post-rename ticker of Terra Classic's UST, matching CoinGecko 'T"
+        },
+        {
+          "dti": "XQDQSLNMM",
+          "said": "dai",
+          "actually": [
+            "binance-peg-dai"
+          ],
+          "reasoning": "DTI 'Dai Stablecoin'/'Dai Token' with ticker DAI matches CoinGecko 'Dai' (DAI); the other candidates are all e"
+        },
+        {
+          "dti": "Z4LCRP3TH",
+          "said": "polkadot",
+          "actually": [
+            "binance-peg-polkadot"
+          ],
+          "reasoning": "'Polkadot Token' with ticker DOT matches CoinGecko 'Polkadot' (DOT); the alternatives are an explicit Binance "
+        },
+        {
+          "dti": "ZG42CBT72",
+          "said": "matic-network",
+          "actually": [
+            "polygon-ecosystem-token"
+          ],
+          "reasoning": "DTI 'Matic Token' (MATIC) matches CoinGecko id matic-network, listed as 'MATIC (migrated to POL)'; the other c"
+        }
+      ]
+    }
+  ]
+}
