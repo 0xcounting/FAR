@@ -395,18 +395,7 @@
       "evidence": [
         "hand-reviewed against ethereum-lists/chains: Core Blockchain Mainnet"
       ],
-      "note": "CoreDAO. Auto-match proposed eip155:4352 (MemeCore) — wrong; rejected."
-    },
-    "hyperliquid": {
-      "caip2": "eip155:999",
-      "assetNamespace": "erc20",
-      "nativeAsset": null,
-      "addressFormat": "evm-lowercase",
-      "confidence": "medium",
-      "evidence": [
-        "hand-reviewed against ethereum-lists/chains: Wanchain Testnet"
-      ],
-      "note": "HyperEVM mainnet. ethereum-lists only carries testnet 998 under this name."
+      "note": "CoreDAO. Auto-match proposed eip155:4352 (MemeCore) \u2014 wrong; rejected."
     },
     "chiliz": {
       "caip2": "eip155:88888",
@@ -615,7 +604,7 @@
       "evidence": [
         "hand-reviewed against ethereum-lists/chains: B2 Mainnet"
       ],
-      "note": "B² Network."
+      "note": "B\u00b2 Network."
     },
     "xdc-network": {
       "caip2": "eip155:50",
@@ -1000,7 +989,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: PulseChain"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "energi": {
       "caip2": "eip155:39797",
@@ -1011,7 +1000,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Energi Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "ink": {
       "caip2": "eip155:57073",
@@ -1022,7 +1011,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Ink"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "x-layer": {
       "caip2": "eip155:196",
@@ -1033,7 +1022,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: X Layer Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "ronin": {
       "caip2": "eip155:2020",
@@ -1044,7 +1033,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Ronin Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "metis-andromeda": {
       "caip2": "eip155:1088",
@@ -1055,7 +1044,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Metis Andromeda Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "aurora": {
       "caip2": "eip155:1313161554",
@@ -1066,7 +1055,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Aurora Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "soneium": {
       "caip2": "eip155:1868",
@@ -1077,7 +1066,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Soneium"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "manta-pacific": {
       "caip2": "eip155:169",
@@ -1088,7 +1077,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Manta Pacific Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "rootstock": {
       "caip2": "eip155:30",
@@ -1099,7 +1088,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Rootstock Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "polygon-zkevm": {
       "caip2": "eip155:1101",
@@ -1110,7 +1099,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Polygon zkEVM"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "etherlink": {
       "caip2": "eip155:42793",
@@ -1121,7 +1110,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Etherlink Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "fuse": {
       "caip2": "eip155:122",
@@ -1132,7 +1121,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Fuse Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "megaeth": {
       "caip2": "eip155:4326",
@@ -1143,7 +1132,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: MegaETH Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "cronos-zkevm": {
       "caip2": "eip155:388",
@@ -1154,7 +1143,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Cronos zkEVM Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "flow-evm": {
       "caip2": "eip155:747",
@@ -1165,7 +1154,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Flow EVM Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "astar": {
       "caip2": "eip155:592",
@@ -1176,7 +1165,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Astar"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "hemi": {
       "caip2": "eip155:43111",
@@ -1187,7 +1176,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Hemi"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "tac": {
       "caip2": "eip155:239",
@@ -1198,7 +1187,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: TAC Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "swellchain": {
       "caip2": "eip155:1923",
@@ -1209,7 +1198,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Swellchain"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "taiko": {
       "caip2": "eip155:167000",
@@ -1220,7 +1209,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Taiko"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "lisk": {
       "caip2": "eip155:1135",
@@ -1231,7 +1220,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Lisk"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "stable": {
       "caip2": "eip155:988",
@@ -1242,7 +1231,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Stable Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "meter": {
       "caip2": "eip155:82",
@@ -1253,7 +1242,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Meter Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "peaq": {
       "caip2": "eip155:3338",
@@ -1264,7 +1253,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: peaq"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "apechain": {
       "caip2": "eip155:33139",
@@ -1275,7 +1264,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: ApeChain"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "evmos": {
       "caip2": "eip155:9001",
@@ -1286,7 +1275,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Evmos"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "zetachain": {
       "caip2": "eip155:7000",
@@ -1297,7 +1286,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: ZetaChain Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "memecore": {
       "caip2": "eip155:4352",
@@ -1308,7 +1297,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: MemeCore"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "citrea": {
       "caip2": "eip155:4114",
@@ -1319,7 +1308,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Citrea Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "iota-evm": {
       "caip2": "eip155:8822",
@@ -1330,7 +1319,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: IOTA EVM"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "eni": {
       "caip2": "eip155:173",
@@ -1341,7 +1330,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: ENI Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "story": {
       "caip2": "eip155:1513",
@@ -1352,7 +1341,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Story Testnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "shido": {
       "caip2": "eip155:9008",
@@ -1363,7 +1352,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Shido Network"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "shimmer_evm": {
       "caip2": "eip155:148",
@@ -1374,7 +1363,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: ShimmerEVM"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "glue": {
       "caip2": "eip155:1300",
@@ -1385,7 +1374,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Glue Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "hydra": {
       "caip2": "eip155:4488",
@@ -1396,7 +1385,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Hydra Chain"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "q-mainnet": {
       "caip2": "eip155:35441",
@@ -1407,7 +1396,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Q Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "igra": {
       "caip2": "eip155:38833",
@@ -1418,7 +1407,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Igra Network"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "mezo": {
       "caip2": "eip155:31612",
@@ -1429,7 +1418,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Mezo"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "bitgert": {
       "caip2": "eip155:32520",
@@ -1440,7 +1429,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Bitgert Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "theta": {
       "caip2": "eip155:361",
@@ -1451,7 +1440,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Theta Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "edu-chain": {
       "caip2": "eip155:41923",
@@ -1462,7 +1451,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: EDU Chain"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "vechain": {
       "caip2": "eip155:100009",
@@ -1473,7 +1462,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: VeChain"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "tombchain": {
       "caip2": "eip155:6969",
@@ -1484,7 +1473,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Tomb Chain Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "sophon": {
       "caip2": "eip155:50104",
@@ -1495,7 +1484,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Sophon"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "Bitcichain": {
       "caip2": "eip155:1907",
@@ -1506,7 +1495,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Bitcichain Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "zedxion": {
       "caip2": "eip155:83872",
@@ -1517,7 +1506,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: ZEDXION"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "Superposition": {
       "caip2": "eip155:55244",
@@ -1528,7 +1517,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Superposition"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "cube": {
       "caip2": "eip155:1818",
@@ -1539,7 +1528,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Cube Chain Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "lens": {
       "caip2": "eip155:232",
@@ -1550,7 +1539,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Lens"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "lukso": {
       "caip2": "eip155:42",
@@ -1561,7 +1550,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: LUKSO Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "duckchain": {
       "caip2": "eip155:5545",
@@ -1572,7 +1561,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: DuckChain Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "electroneum": {
       "caip2": "eip155:52014",
@@ -1583,7 +1572,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Electroneum Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "ql1": {
       "caip2": "eip155:766",
@@ -1594,7 +1583,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: QL1"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "shape": {
       "caip2": "eip155:360",
@@ -1605,7 +1594,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Shape"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "oasis-sapphire": {
       "caip2": "eip155:23294",
@@ -1616,7 +1605,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Oasis Sapphire"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "ancient8": {
       "caip2": "eip155:888888888",
@@ -1627,7 +1616,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Ancient8"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "astar-zkevm": {
       "caip2": "eip155:3776",
@@ -1638,7 +1627,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Astar zkEVM"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "callisto": {
       "caip2": "eip155:820",
@@ -1649,7 +1638,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Callisto Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "pharos": {
       "caip2": "eip155:1672",
@@ -1660,7 +1649,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Pharos Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "metal-l2": {
       "caip2": "eip155:1750",
@@ -1671,7 +1660,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Metal L2"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "mint": {
       "caip2": "eip155:185",
@@ -1682,7 +1671,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Mint Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "funki": {
       "caip2": "eip155:33979",
@@ -1693,7 +1682,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Funki"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "gensyn": {
       "caip2": "eip155:685689",
@@ -1704,7 +1693,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Gensyn Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "hela": {
       "caip2": "eip155:8668",
@@ -1715,7 +1704,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Hela Official Runtime Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "proof-of-memes": {
       "caip2": "eip155:18159",
@@ -1726,7 +1715,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Proof Of Memes"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "saakuru": {
       "caip2": "eip155:7225878",
@@ -1737,7 +1726,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Saakuru Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "smartbch": {
       "caip2": "eip155:10000",
@@ -1748,7 +1737,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Smart Bitcoin Cash"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "zero-network": {
       "caip2": "eip155:543210",
@@ -1759,7 +1748,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: ZERO Network"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "codex": {
       "caip2": "eip155:81224",
@@ -1770,7 +1759,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Codex"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "rollux": {
       "caip2": "eip155:570",
@@ -1781,7 +1770,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Rollux Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "henesys": {
       "caip2": "eip155:68414",
@@ -1792,7 +1781,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Henesys"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "kroma": {
       "caip2": "eip155:255",
@@ -1803,7 +1792,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Kroma"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "inevm": {
       "caip2": "eip155:2525",
@@ -1814,7 +1803,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: inEVM Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "fluent": {
       "caip2": "eip155:25363",
@@ -1825,7 +1814,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Fluent"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "haven1": {
       "caip2": "eip155:8811",
@@ -1836,7 +1825,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Haven1"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "syscoin": {
       "caip2": "eip155:57",
@@ -1847,7 +1836,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Syscoin Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "pundi-aifx-omnilayer": {
       "caip2": "eip155:530",
@@ -1858,7 +1847,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Pundi AIFX Omnilayer"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "rss3-vsl": {
       "caip2": "eip155:12553",
@@ -1869,7 +1858,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: RSS3 VSL Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "haqq-network": {
       "caip2": "eip155:11235",
@@ -1880,7 +1869,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Haqq Network"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "sx-network": {
       "caip2": "eip155:416",
@@ -1891,7 +1880,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: SX Network Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "horizen": {
       "caip2": "eip155:26514",
@@ -1902,7 +1891,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: Horizen Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "zkfair": {
       "caip2": "eip155:42766",
@@ -1913,7 +1902,7 @@
       "evidence": [
         "ethereum-lists/chains unique name match: ZKFair Mainnet"
       ],
-      "note": "Auto-matched on name alone. Not human-verified — see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
+      "note": "Auto-matched on name alone. Not human-verified \u2014 see CONTRIBUTING.md \"Confirming a low-confidence platform\"."
     },
     "solana": {
       "nativeAsset": "slip44:501",
@@ -1951,7 +1940,7 @@
     },
     "hedera-hashgraph": {
       "nativeAsset": "slip44:3030",
-      "note": "CoinGecko stores the EVM-alias 0x form; the CAIP-19 reference is the shard.realm.num tokenID. Conversion is unresolved — see data/unmapped.",
+      "note": "CoinGecko stores the EVM-alias 0x form; the CAIP-19 reference is the shard.realm.num tokenID. Conversion is unresolved \u2014 see data/unmapped.",
       "caip2": "hedera:mainnet",
       "assetNamespace": "token",
       "addressFormat": "hedera-token-id",
@@ -2046,7 +2035,7 @@
       "evidence": [
         "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
       ],
-      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity \u2014 ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
     },
     "osmosis": {
       "caip2": "cosmos:osmosis-1",
@@ -2057,7 +2046,7 @@
       "evidence": [
         "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
       ],
-      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity \u2014 ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
     },
     "juno": {
       "caip2": "cosmos:juno-1",
@@ -2068,7 +2057,7 @@
       "evidence": [
         "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
       ],
-      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity \u2014 ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
     },
     "noble": {
       "caip2": "cosmos:noble-1",
@@ -2079,7 +2068,7 @@
       "evidence": [
         "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
       ],
-      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity \u2014 ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
     },
     "neutron": {
       "caip2": "cosmos:neutron-1",
@@ -2090,7 +2079,7 @@
       "evidence": [
         "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
       ],
-      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity \u2014 ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
     },
     "archway": {
       "caip2": "cosmos:archway-1",
@@ -2101,7 +2090,7 @@
       "evidence": [
         "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
       ],
-      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity \u2014 ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
     },
     "terra": {
       "caip2": "cosmos:columbus-5",
@@ -2112,7 +2101,7 @@
       "evidence": [
         "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
       ],
-      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity \u2014 ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
     },
     "terra-2": {
       "caip2": "cosmos:phoenix-1",
@@ -2123,7 +2112,7 @@
       "evidence": [
         "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
       ],
-      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity \u2014 ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
     },
     "saga": {
       "caip2": "cosmos:ssc-1",
@@ -2134,7 +2123,7 @@
       "evidence": [
         "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
       ],
-      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity \u2014 ics20 for ibc/ denoms, cw20 for contract addresses, tokenfactory for factory/ denoms, native otherwise. All four are provisional."
     },
     "starknet": {
       "nativeAsset": "slip44:9004",
@@ -2155,7 +2144,7 @@
       "addressFormat": "near-account",
       "confidence": "low",
       "evidence": [
-        "no CASA namespace for NEAR — \"near:mainnet\" is community convention"
+        "no CASA namespace for NEAR \u2014 \"near:mainnet\" is community convention"
       ]
     },
     "cardano": {
@@ -2672,7 +2661,7 @@
         "eip155:7560 (Cyber Mainnet)",
         "eip155:85449 (CYBERTRUST)"
       ],
-      "reason": "ambiguous name match — needs a human to pick"
+      "reason": "ambiguous name match \u2014 needs a human to pick"
     },
     "venom": {
       "tokens": 1,
@@ -2835,6 +2824,12 @@
       "evmShaped": true,
       "candidates": [],
       "reason": "no CAIP-2 identified for this network yet"
+    },
+    "hyperliquid": {
+      "tokens": 46,
+      "evmShaped": false,
+      "candidates": [],
+      "reason": "CoinGecko files HyperCore SPOT tokens here (0x + 32 hex), which are indices in Hyperliquid's own order-book state machine, NOT HyperEVM contract addresses. Mapping this slug to eip155:999/erc20 was wrong: it produced 45 rejected rows and would have produced 45 wrong CAIP-19s if the address check had been looser. HyperEVM ERC-20s are mapped separately under the `hyperevm` slug. Needs a CAIP-2 for HyperCore, which does not exist yet."
     }
   }
 }

@@ -34,16 +34,16 @@ one file (`/far.json.gz`) if you would rather hold it locally.
 | | |
 |---|---|
 | CoinGecko coins | 18,090 |
-| — resolvable to at least one CAIP-19 | 16,706 (92.3%) |
-| CAIP-19 identities | 24,413 across 194 chains |
+| — resolvable to at least one CAIP-19 | 16,739 (92.5%) |
+| CAIP-19 identities | 24,473 across 193 chains |
 | Native units of account | 42 chain identities |
 | DTI token records | 5,785 |
 | — with a proposed CoinGecko link | 1,929 (33.3%) |
 | — accepted after human review | 0 |
 | DTI ledger records | 275 |
-| CoinGecko platforms mapped to CAIP-2 | 194 |
-| — still unmapped | 106 |
-| Published files | 79,229 |
+| CoinGecko platforms mapped to CAIP-2 | 193 |
+| — still unmapped | 107 |
+| Published files | 79,289 |
 <!-- BUILD-STATS:END -->
 
 ## Read this before you trust a link

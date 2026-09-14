@@ -52,7 +52,10 @@ export const percentDecodeRef = (s) => decodeURIComponent(s);
 // — one Cosmos chain routinely carries all four kinds at once.
 function cosmosNamespace(raw) {
   if (raw.startsWith('ibc/')) return { ns: 'ics20', ref: raw.slice(4) };
-  if (raw.startsWith('factory/')) return { ns: 'tokenfactory', ref: raw };
+  // CAIP-19 caps asset_namespace at 8 characters, so this cannot be
+  // "tokenfactory" — that silently failed the grammar and dropped every
+  // factory denom on the floor.
+  if (raw.startsWith('factory/')) return { ns: 'factory', ref: raw };
   if (/^[a-z]+1[02-9ac-hj-np-z]{38,58}$/.test(raw)) return { ns: 'cw20', ref: raw };
   return { ns: 'native', ref: raw }; // uatom, aarch, uinit …
 }
@@ -75,14 +78,25 @@ export function normalizeAddress(identity, addressFormat) {
       // realm are not recoverable from the alias, so we only emit when the
       // alias is in the default 0.0.* space, which is what every HTS token
       // issued to date uses.
+      // CoinGecko stores BOTH the native shard.realm.num token ID and the EVM
+      // alias, depending on the row. The native form IS the CAIP-19 reference,
+      // so take it directly; only the alias needs decoding.
+      if (/^\d+\.\d+\.\d+$/.test(raw)) return raw;
       if (!/^0x0{24}[0-9a-fA-F]{16}$/.test(raw)) return null;
       return `0.0.${BigInt(raw).toString(10)}`;
     case 'xrpl-currency-issuer': {
-      const m = raw.match(/^([0-9A-Fa-f]{40}|[A-Za-z0-9]{3})\.(r[1-9A-HJ-NP-Za-km-z]{24,34})$/);
+      // Three live shapes: 3-char ISO-style code, 40-hex code, or a longer
+      // human-readable name (e.g. "Equilibrium"). A bare issuer address with no
+      // currency code is NOT resolvable — it names an account, not an asset —
+      // and is correctly rejected.
+      const m = raw.match(/^([0-9A-Fa-f]{40}|[A-Za-z0-9]{1,20})\.(r[1-9A-HJ-NP-Za-km-z]{24,34})$/);
       return m ? `${m[1]}.${m[2]}` : null;
     }
     case 'stellar-asset':
-      return /^[A-Za-z0-9]{1,12}-G[A-Z2-7]{55}$/.test(raw) ? raw : null;
+      // Classic asset (CODE-GISSUER) or a Soroban SEP-41 contract (C…strkey).
+      // They take DIFFERENT asset namespaces, resolved in buildCaip19.
+      if (/^[A-Za-z0-9]{1,12}-G[A-Z2-7]{55}$/.test(raw)) return raw;
+      return /^C[A-Z2-7]{55}$/.test(raw) ? raw : null;
     case 'asa-id':
       return /^[0-9]{1,20}$/.test(raw) ? raw : null;
     // Families whose reference grammar is still provisional pass through with a
@@ -114,6 +128,10 @@ export function buildCaip19(platformEntry, identity) {
   if (address === null) return null;
   let namespace = platformEntry.assetNamespace;
   let reference = address;
+  if (platformEntry.addressFormat === 'stellar-asset') {
+    namespace = /^C[A-Z2-7]{55}$/.test(address) ? 'sep41' : 'asset';
+    reference = percentEncodeRef(address);
+  }
   if (platformEntry.addressFormat === 'cosmos-denom') {
     const picked = cosmosNamespace(address.trim());
     namespace = picked.ns;
