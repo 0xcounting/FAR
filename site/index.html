@@ -1,0 +1,274 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FAR — Free Asset Resolver</title>
+<meta name="description" content="An open cross-reference between CAIP-19, CoinGecko IDs and ISO 24165 DTIs. Static files, no key, no rate limit.">
+<style>
+:root{
+  --bg:#fbfaf8; --panel:#fff; --ink:#1a1916; --muted:#6b6862; --line:#e5e1d9;
+  --accent:#8a5a2b; --accent-soft:#f3ebe1;
+  --exact:#2f6f4e; --proposed:#8a6d1f; --inferred:#8a4b2b; --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --bg:#14130f; --panel:#1c1a16; --ink:#eae6dd; --muted:#9a948a; --line:#2e2a24;
+  --accent:#d9a066; --accent-soft:#2a221a;
+  --exact:#7dc39a; --proposed:#d9c06a; --inferred:#e0a07a;
+}}
+:root[data-theme=dark]{
+  --bg:#14130f; --panel:#1c1a16; --ink:#eae6dd; --muted:#9a948a; --line:#2e2a24;
+  --accent:#d9a066; --accent-soft:#2a221a;
+  --exact:#7dc39a; --proposed:#d9c06a; --inferred:#e0a07a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line);padding:44px 0 32px;margin-bottom:36px}
+h1{margin:0 0 6px;font-size:30px;letter-spacing:-.02em;font-weight:620}
+h1 span{color:var(--accent)}
+.tag{color:var(--muted);font-size:16px;margin:0 0 22px;max-width:60ch}
+h2{font-size:20px;letter-spacing:-.01em;margin:44px 0 12px;font-weight:600}
+h3{font-size:15px;margin:26px 0 8px;font-weight:600}
+p{margin:0 0 14px;max-width:68ch}
+a{color:var(--accent)}
+code,kbd{font-family:var(--mono);font-size:.88em}
+code{background:var(--accent-soft);padding:.12em .38em;border-radius:4px}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+  padding:13px 15px;overflow-x:auto;margin:0 0 14px}
+pre code{background:none;padding:0;font-size:12.5px;line-height:1.55}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:9px;overflow:hidden;margin:0 0 8px}
+.stat{background:var(--panel);padding:13px 14px}
+.stat b{display:block;font-size:21px;font-weight:620;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat span{display:block;color:var(--muted);font-size:11.5px;margin-top:3px;letter-spacing:.02em}
+.explorer{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;margin:0 0 10px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+input[type=text]{flex:1 1 300px;min-width:0;font-family:var(--mono);font-size:13.5px;
+  padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink)}
+input[type=text]:focus{outline:2px solid var(--accent);outline-offset:-1px}
+button{font:inherit;font-size:13.5px;padding:10px 16px;border:1px solid var(--accent);
+  border-radius:7px;background:var(--accent);color:var(--bg);cursor:pointer;font-weight:530}
+button:hover{opacity:.88}
+button.ghost{background:none;color:var(--accent);border-color:var(--line);font-weight:450;padding:6px 11px;font-size:12.5px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:11px 0 0}
+.hint{color:var(--muted);font-size:12.5px;margin:10px 0 0}
+.out{margin:14px 0 0;display:none}
+.out.on{display:block}
+.route{font-family:var(--mono);font-size:12px;color:var(--muted);margin:0 0 7px;word-break:break-all}
+.route b{color:var(--ink);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin:0 0 14px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:11.5px;letter-spacing:.03em;text-transform:uppercase}
+td code{font-size:12px}
+.pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 7px;border-radius:20px;
+  font-family:var(--mono);letter-spacing:.02em}
+.p-exact{background:color-mix(in srgb,var(--exact) 16%,transparent);color:var(--exact)}
+.p-accepted{background:color-mix(in srgb,var(--exact) 16%,transparent);color:var(--exact)}
+.p-proposed{background:color-mix(in srgb,var(--proposed) 18%,transparent);color:var(--proposed)}
+.p-inferred{background:color-mix(in srgb,var(--inferred) 18%,transparent);color:var(--inferred)}
+.note{border-left:3px solid var(--accent);background:var(--accent-soft);
+  padding:12px 15px;border-radius:0 7px 7px 0;margin:0 0 16px}
+.note p:last-child{margin:0}
+footer{border-top:1px solid var(--line);margin:56px 0 0;padding:24px 0 48px;color:var(--muted);font-size:13px}
+.err{color:var(--inferred)}
+@media(max-width:560px){h1{font-size:25px}.stat b{font-size:18px}}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>FAR <span>— Free Asset Resolver</span></h1>
+  <p class="tag">An open cross-reference between <b>CAIP-19</b>, <b>CoinGecko IDs</b> and
+  <b>ISO&nbsp;24165 DTIs</b>. Every lookup is a static file: no key, no rate limit, no server
+  that can be down differently from any other file.</p>
+  <div class="stats" id="stats"><div class="stat"><b>…</b><span>loading</span></div></div>
+  <p class="hint" id="built"></p>
+</header>
+
+<h2>Try it</h2>
+<p>Type an asset name, ticker, CoinGecko ID, CAIP-19 or DTI. The resolver tries each route
+in turn and shows you which one answered — the same thing your code would do.</p>
+
+<div class="explorer">
+  <div class="row">
+    <input type="text" id="q" placeholder="tether" spellcheck="false" autocomplete="off">
+    <button id="go">Resolve</button>
+  </div>
+  <div class="chips">
+    <button class="ghost" data-q="tether">tether</button>
+    <button class="ghost" data-q="USDC">USDC</button>
+    <button class="ghost" data-q="bitcoin">bitcoin</button>
+    <button class="ghost" data-q="eip155:1/erc20:0xdac17f958d2ee523a2206206994597c13d831ec7">a CAIP-19</button>
+    <button class="ghost" data-q="2RJ2NRNJ5">a DTI</button>
+    <button class="ghost" data-q="wrapped-ether">wrapped-ether</button>
+  </div>
+  <div class="out" id="out"></div>
+</div>
+
+<h2>Routes</h2>
+<table>
+<tr><th>Route</th><th>Key</th><th>Returns</th></tr>
+<tr><td><code>/name/{slug}.json</code></td><td>lowercased, punctuation→<code>-</code></td><td>every asset with that name — a <i>group</i>, because names are not unique</td></tr>
+<tr><td><code>/symbol/{slug}.json</code></td><td>same slug rule</td><td>every asset with that ticker. <code>usdc</code> returns 60+</td></tr>
+<tr><td><code>/cg/{id}.json</code></td><td>CoinGecko ID</td><td>one asset with all its chain deployments</td></tr>
+<tr><td><code>/caip/{ns}/{ref}/{ans}/{aref}.json</code></td><td>CAIP-19 as a path</td><td>the asset at that exact identifier</td></tr>
+<tr><td><code>/dti/{DTI}.json</code></td><td>9-char ISO 24165 id</td><td>the DTI record and any linked asset</td></tr>
+<tr><td><code>/ledger/{DLI}.json</code></td><td>DTI ledger id</td><td>a chain, with its CAIP-2</td></tr>
+</table>
+
+<h3>Bulk and metadata</h3>
+<table>
+<tr><td><code>/far.json.gz</code></td><td colspan="2">the entire registry, ~1.8&nbsp;MB — often simpler than making requests</td></tr>
+<tr><td><code>/index.json</code></td><td colspan="2">counts, source hashes, route list</td></tr>
+<tr><td><code>/manifest.json</code></td><td colspan="2">sha256 of every file plus a Merkle root</td></tr>
+<tr><td><code>/_namespace-gaps.json</code></td><td colspan="2">identifiers we had to invent because no CASA spec defines one</td></tr>
+<tr><td><code>/_unlinked.json</code></td><td colspan="2">DTI records with no CoinGecko link — the contributor queue</td></tr>
+</table>
+
+<div class="note">
+<p><b>A CAIP-19 becomes a path.</b> <code>:</code> and <code>/</code> become directory
+separators, so <code>eip155:1/erc20:0xdac1…</code> is
+<code>/caip/eip155/1/erc20/0xdac1….json</code>. A <code>%</code> in a reference
+becomes <code>~</code>, because a literal <code>%</code> is decoded by the server before
+the file is ever looked up.</p>
+</div>
+
+<h2>Read this before you trust a link</h2>
+<p>Every DTI↔CoinGecko link carries a <code>status</code>. They are not equally reliable
+and the difference is measured, not asserted:</p>
+<table>
+<tr><th>Status</th><th>Who decided</th><th>Measured accuracy</th></tr>
+<tr><td><span class="pill p-exact">exact</span></td><td>Derived from the contract address in the DTIF registry record</td><td>ground truth</td></tr>
+<tr><td><span class="pill p-accepted">accepted</span></td><td>A human, in a reviewed pull request</td><td>—</td></tr>
+<tr><td><span class="pill p-proposed">proposed</span></td><td>A deterministic rule: exact name, optionally corroborated by ticker</td><td><b>88.0%</b> (name+symbol)<br><b>43.6%</b> (name alone)</td></tr>
+<tr><td><span class="pill p-inferred">inferred</span></td><td>A language model, with its reasoning published on the record</td><td><b>80.8%</b></td></tr>
+</table>
+<p>Those percentages come from grading the name-based tiers against the address-derived
+ones. If a wrong link would cost you something — a tax filing, a regulatory report —
+filter to <code>exact</code> and <code>accepted</code>.</p>
+<div class="note">
+<p><b>Almost every error is the same error:</b> linking a <i>bridged or pegged
+deployment</i> to the canonical asset it wraps. Two DTI records both named
+“USD Coin” with ticker USDC turn out to be <code>bridged-usdc</code> on Bitgert and
+<code>celer-bridged-usdc-astar</code> on Astar. Neither is Circle’s USDC, and no amount of
+name-matching could have told them apart.</p>
+</div>
+
+<h2>Verifying what you fetched</h2>
+<pre><code>curl -s https://0xcounting.github.io/FAR/cg/tether.json | shasum -a 256
+# compare against the entry for cg/tether.json in /manifest.json</code></pre>
+<p>The manifest also carries a Merkle root over every <code>(path, hash)</code> pair, so a
+single file can be proven to belong to a published release without downloading the rest —
+an inclusion proof is about 17 hashes. Builds are deterministic: same inputs, same root.</p>
+
+<h2>Using it in code</h2>
+<pre><code>const BASE = 'https://0xcounting.github.io/FAR';
+
+// by name — returns a GROUP, because names are not unique
+const r = await fetch(`${BASE}/name/${slug}.json`);
+if (r.status === 404) return null;            // no asset by that name
+const { assets } = await r.json();
+
+// by CAIP-19 — ":" and "/" become path separators, "%" becomes "~"
+const path = caip19.replace(/:/g, '/').replace(/%/g, '~');
+const one = await fetch(`${BASE}/caip/${path}.json`);</code></pre>
+
+<footer>
+  <p>Code MIT · curated data CC0 · upstream sources keep their own terms.
+  Not affiliated with DTIF, CoinGecko or CASA.<br>
+  <a href="https://github.com/0xcounting/FAR">Source and contributing</a> ·
+  <a href="https://github.com/0xcounting/FAR/blob/main/GOVERNANCE.md">Governance</a> ·
+  <a href="_namespace-gaps.json">Namespace gaps</a></p>
+</footer>
+</div>
+
+<script>
+const BASE = location.pathname.replace(/\/[^/]*$/, '');
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const slug = s => s.normalize('NFKD').replace(/\p{Diacritic}/gu,'').toLowerCase()
+  .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'') || '_';
+
+fetch(`${BASE}/index.json`).then(r=>r.json()).then(d=>{
+  const c = d.counts, n = x => (x??0).toLocaleString('en-US');
+  $('#stats').innerHTML = [
+    [n(c.coins),'assets'],[n(c.deployments),'CAIP-19 ids'],[n(c.platformsMapped),'chains'],
+    [n(c.dtiLinked),'DTIs linked'],[n(c.dtiExact),'address-derived'],[n(c.files),'files served'],
+  ].map(([v,l])=>`<div class="stat"><b>${v}</b><span>${l}</span></div>`).join('');
+  $('#built').textContent = `Built ${d.version} · every file hashed in /manifest.json`;
+}).catch(()=>{ $('#stats').innerHTML = '<div class="stat"><b>—</b><span>stats unavailable</span></div>'; });
+
+// Try each route in turn, exactly as a consumer would.
+function routesFor(q){
+  const t = q.trim(), out = [];
+  if (t.includes('/') && t.includes(':'))
+    out.push(['caip19', `/caip/${t.replace(/:/g,'/').replace(/%/g,'~')}.json`]);
+  if (/^[0-9A-Z]{9}$/.test(t)) { out.push(['dti',`/dti/${t}.json`]); out.push(['ledger',`/ledger/${t}.json`]); }
+  out.push(['coingeckoId',`/cg/${slug(t)}.json`]);
+  out.push(['name',`/name/${slug(t)}.json`]);
+  out.push(['symbol',`/symbol/${slug(t)}.json`]);
+  return out;
+}
+
+async function resolve(q){
+  const out = $('#out'); out.className = 'out on';
+  out.innerHTML = '<p class="hint">resolving…</p>';
+  const tried = [];
+  for (const [kind, path] of routesFor(q)) {
+    let res;
+    try { res = await fetch(BASE + path); } catch { tried.push([kind,path,'network error']); continue; }
+    if (!res.ok) { tried.push([kind, path, res.status]); continue; }
+    const data = await res.json();
+    return render(kind, path, data, tried);
+  }
+  out.innerHTML = `<p class="err">No route matched <code>${esc(q)}</code>.</p>`
+    + `<p class="hint">Tried: ${tried.map(t=>`<code>${esc(t[1])}</code> → ${t[2]}`).join(' · ')}</p>`;
+}
+
+function assetRows(list){
+  return list.slice(0,12).map(a=>{
+    const dep = (a.deployments||[]).length;
+    const dti = (a.dti||[]);
+    const best = dti.find(d=>d.status==='exact') || dti.find(d=>d.status==='accepted') || dti[0];
+    const pill = best ? `<span class="pill p-${best.status}">${best.status}</span>` : '<span class="hint">—</span>';
+    const first = (a.deployments||[])[0];
+    return `<tr><td><code>${esc(a.coingeckoId)}</code><br><span class="hint">${esc(a.name||'')} ${esc(a.symbol||'')}</span></td>
+      <td>${dep} chain${dep===1?'':'s'}${first?`<br><code style="font-size:11px">${esc(first.caip19.slice(0,52))}${first.caip19.length>52?'…':''}</code>`:''}</td>
+      <td>${dti.length} ${pill}</td></tr>`;
+  }).join('');
+}
+
+function render(kind, path, data, tried){
+  const out = $('#out');
+  let head = `<p class="route">matched <b>${kind}</b> → <a href="${esc(BASE+path)}">${esc(path)}</a>`;
+  if (tried.length) head += ` <span class="hint">(after ${tried.length} miss${tried.length===1?'':'es'})</span>`;
+  head += '</p>';
+  let body = '';
+  if (data.assets && data.assets.length) {
+    body = `<table><tr><th>CoinGecko</th><th>Deployments</th><th>DTI links</th></tr>${assetRows(data.assets)}</table>`;
+    if (data.assets.length > 12) body += `<p class="hint">showing 12 of ${data.assets.length}</p>`;
+  } else if (data.asset) {
+    body = `<table><tr><th>CoinGecko</th><th>Deployments</th><th>DTI links</th></tr>${assetRows([data.asset])}</table>`;
+    const deps = data.asset.deployments||[];
+    if (deps.length) body += `<pre><code>${deps.slice(0,10).map(d=>esc(d.caip19)).join('\n')}${deps.length>10?`\n… ${deps.length-10} more`:''}</code></pre>`;
+  } else if (data.dti) {
+    const d = data.dti;
+    body = `<table><tr><th>DTI</th><th>Name</th><th>Type</th></tr>
+      <tr><td><code>${esc(d.dti)}</code></td><td>${esc(d.longName||'')}</td><td>${esc(d.typeLabel||d.type||'')}</td></tr></table>`;
+    if (data.assets && data.assets.length) body += `<table><tr><th>Linked to</th><th>Deployments</th><th>Status</th></tr>${assetRows(data.assets)}</table>`;
+    else body += `<p class="hint">No linked CoinGecko asset. That is the normal case — most DTI records are for tokens CoinGecko has never listed.</p>`;
+  } else if (data.ledger) {
+    const l = data.ledger;
+    body = `<table><tr><th>Ledger</th><th>CAIP-2</th><th>Kind</th></tr>
+      <tr><td>${esc(l.longName||'')}</td><td>${l.caip2?`<code>${esc(l.caip2)}</code>`:'<span class="hint">none — see note</span>'}</td>
+      <td>${esc(l.kind||'')} <span class="pill p-${l.confidence==='high'?'exact':'proposed'}">${esc(l.confidence||'')}</span></td></tr></table>`;
+    if (!l.caip2 && l.kind === 'permissioned') body += `<p class="hint">A permissioned bank or CSD ledger. Having no CAIP-2 records an absence, not an impossibility — nobody has published a namespace for it.</p>`;
+  }
+  out.innerHTML = head + body + `<p class="hint">Raw: <a href="${esc(BASE+path)}">${esc(path)}</a></p>`;
+}
+
+$('#go').onclick = () => resolve($('#q').value);
+$('#q').addEventListener('keydown', e => { if (e.key === 'Enter') resolve($('#q').value); });
+document.querySelectorAll('[data-q]').forEach(b => b.onclick = () => { $('#q').value = b.dataset.q; resolve(b.dataset.q); });
+resolve('tether');
+</script>

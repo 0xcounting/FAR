@@ -2,7 +2,7 @@
 // Builds the published dump from the vendored snapshots plus the curated
 // tables in data/. Deterministic: same inputs -> byte-identical output, which
 // is what makes the Merkle root in the manifest meaningful.
-import { mkdirSync, writeFileSync, rmSync, readFileSync, statSync, readdirSync } from 'node:fs';
+import { mkdirSync, writeFileSync, rmSync, readFileSync, statSync, readdirSync, copyFileSync, existsSync } from 'node:fs';
 import { gzipSync } from 'node:zlib';
 import { join } from 'node:path';
 import { loadSources } from './lib/sources.js';
@@ -334,6 +334,16 @@ const indexDoc = {
   },
 };
 emit('index.json', indexDoc);
+
+// The human-facing docs page. GitHub Pages serves index.html at "/", so the
+// site root becomes documentation while /index.json stays the machine route —
+// the two do not collide. Hashed into the manifest like every other file, so a
+// consumer can verify the page they are reading is the published one.
+if (existsSync('site/index.html')) {
+  const html = readFileSync('site/index.html');
+  writeFileSync(join(OUT, 'index.html'), html);
+  files.push({ path: 'index.html', sha256: sha256(html), bytes: html.length });
+}
 
 const root = merkleRoot(files);
 const manifest = { ...meta(), generated: everything.generated, merkleRoot: root, algorithm: 'sha256/rfc6962-style', counts, files };
