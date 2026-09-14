@@ -5,11 +5,17 @@ tables. **You only ever edit the curated tables.** `dist/` is generated and is
 not in git.
 
 ```
-data/platforms.json   CoinGecko platform -> CAIP-2 chain + asset namespace
-data/natives.json     coins that ARE a chain's unit of account (BTC, ETH, …)
-data/links.json       DTI <-> CoinGecko links a human has accepted or rejected
-data/sources/*.gz     upstream snapshots — replaced by the refresh job, not by hand
+data/platforms.json        CoinGecko platform -> CAIP-2 chain + asset namespace
+data/natives.json          coins that ARE a chain's unit of account (BTC, ETH, …)
+data/links.json            DTI <-> CoinGecko links a human has accepted or rejected
+data/ledgers.json          DTI ledger records (DLIs) -> CAIP-2
+data/links-inferred.json   model-asserted links — GENERATED, do not hand-edit
+data/sources/*.gz          upstream snapshots — replaced by the refresh job, not by hand
 ```
+
+`data/links-inferred.json` is written by `scripts/ingest-agent-results.js` from a
+model run. Editing it by hand is pointless: the next run overwrites it. To keep
+a link, **promote** it (below).
 
 Setup is `git clone` and nothing else — Node 22+, zero dependencies.
 
@@ -20,6 +26,31 @@ node scripts/propose-platforms.js   # suggests candidates for unmapped platforms
 ```
 
 ## The four useful contributions
+
+### 0. Promote a model-inferred link
+
+The fastest useful contribution. A model has already done the reading and left
+its reasoning on the record; you are supplying the evidence it could not get.
+
+Open `/dti/{DTI}.json`, find a link with `"status": "inferred"`, and read its
+`reasoning`. Then check the one thing the model could not: **the contract
+address**, via DTIF's public registry record for that DTI. If the address
+matches the CoinGecko platform entry for the coin the model picked, move the
+link into `data/links.json` with that address as the rationale, and cite the
+model's reasoning as the prior:
+
+```json
+{
+  "dti": "5XMDC8VG3",
+  "coingeckoId": "pixelverse-xyz",
+  "rationale": "Confirmed the inferred link. DTIF record gives AuxiliaryTechnicalReference 0x… on ledger …, which matches CoinGecko's `ethereum` platform entry for pixelverse-xyz.",
+  "decidedIn": "https://github.com/0xcounting/far/issues/…"
+}
+```
+
+**Disproving one is worth just as much.** Add it to `rejected` instead — CI
+refuses to publish an inferred link that contradicts a human rejection, so a
+single `rejected` entry kills that proposal permanently, including on re-runs.
 
 ### 1. Confirm or reject a proposed DTI link
 
@@ -96,7 +127,22 @@ and are marked `low`. Confirming one is quick and the evidence is concrete:
 Name matching has already been wrong here at least once — `core` matched
 "MemeCore" (4352) instead of CoreDAO (1116) — so this is not busywork.
 
-### 4. Add a missing native
+### 4. Raise a `proposed` ledger or platform
+
+`data/ledgers.json` maps DTIF's 275 ledger records to CAIP-2; 62 have none.
+Some of those are correct and permanent — SWIAT, Clearstream D7, JP Morgan
+Kinexys and other bank or CSD ledgers are `kind: "permissioned"` and will never
+have a public chain identifier. CI enforces that a permissioned ledger has no
+CAIP-2, so do not "fix" those.
+
+The ones worth work are `kind: "public"` with `caip2: null`: chains whose
+genesis hash nobody could reach. Several are recorded with an explicit
+`uncertainty` naming exactly what could not be verified — Chiliz Legacy needs
+`eth_chainId` off a surviving archive node; Bitcoin Diamond, Bitcoin Gold and
+eCash all inherit Bitcoin's or BCH's genesis hash, so a `bip122` reference
+does not distinguish them and inventing a fork-block reference would be a guess.
+
+### 5. Add a missing native
 
 `data/natives.json` covers 28 coins. Cardano, TON, Polkadot and others are
 missing. A native needs a CAIP-2 you can cite and a SLIP-0044 coin type

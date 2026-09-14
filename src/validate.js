@@ -11,6 +11,7 @@ import { slug, caipPath, unCaipPath } from './lib/slug.js';
 
 const problems = [];
 const fail = (rule, detail) => problems.push({ rule, detail });
+const readOptional = (p, fallback) => { try { return JSON.parse(readFileSync(p, 'utf8')); } catch { return fallback; } };
 
 const platformTable = JSON.parse(readFileSync('data/platforms.json', 'utf8'));
 const natives = JSON.parse(readFileSync('data/natives.json', 'utf8')).natives;
@@ -95,6 +96,36 @@ for (const a of links.accepted ?? []) {
   }
 }
 
+// --- model-inferred links --------------------------------------------------
+// The weakest tier still has to carry its own accountability: who asserted it
+// and why. A model link with no reasoning cannot be disputed, and an
+// undisputable claim is the thing this registry exists not to publish.
+const inferred = readOptional('data/links-inferred.json', { links: [] });
+const acceptedPairs = new Set((links.accepted ?? []).map((l) => `${l.dti}|${l.coingeckoId}`));
+const rejectedPairs = new Set((links.rejected ?? []).map((l) => `${l.dti}|${l.coingeckoId}`));
+for (const l of inferred.links ?? []) {
+  if (!DTI_RE.test(l.dti ?? '')) fail('inferred.dti-malformed', JSON.stringify(l));
+  if (!coinIds.has(l.coingeckoId)) fail('inferred.unknown-coingecko-id', `${l.dti} -> ${l.coingeckoId}`);
+  if (!l.reasoning) fail('inferred.no-reasoning', `${l.dti} -> ${l.coingeckoId}`);
+  if (!l.assertedBy) fail('inferred.no-assertedBy', `${l.dti} -> ${l.coingeckoId}`);
+  // A human rejection is final. A model must never quietly reinstate a pair a
+  // reviewer has already thrown out.
+  if (rejectedPairs.has(`${l.dti}|${l.coingeckoId}`)) {
+    fail('inferred.contradicts-human-rejection', `${l.dti} -> ${l.coingeckoId}`);
+  }
+}
+
+// --- ledger table ----------------------------------------------------------
+const ledgers = readOptional('data/ledgers.json', { ledgers: {} }).ledgers;
+for (const [dli, l] of Object.entries(ledgers)) {
+  if (!DTI_RE.test(dli)) fail('ledger.dli-malformed', dli);
+  if (l.caip2 != null && !isValidCaip2(l.caip2)) fail('ledger.caip2-invalid', `${dli}: ${l.caip2}`);
+  if (!['public', 'permissioned', 'unknown'].includes(l.kind)) fail('ledger.kind-invalid', `${dli}: ${l.kind}`);
+  if (!Array.isArray(l.evidence) || l.evidence.length === 0) fail('ledger.no-evidence', dli);
+  // A permissioned ledger having no CAIP-2 is the CORRECT outcome, not a gap.
+  if (l.kind === 'permissioned' && l.caip2) fail('ledger.permissioned-should-have-no-caip2', dli);
+}
+
 // --- routing invariants ----------------------------------------------------
 // Slugging must round-trip for CAIP IDs, or a published URL cannot be turned
 // back into the identifier it names.
@@ -115,6 +146,8 @@ if (problems.length === 0) {
     natives: Object.keys(natives).length,
     acceptedLinks: (links.accepted ?? []).length,
     rejectedLinks: (links.rejected ?? []).length,
+    inferredLinks: (inferred.links ?? []).length,
+    ledgers: Object.keys(ledgers).length,
   };
   console.log('validate: OK', JSON.stringify(counts));
   process.exit(0);

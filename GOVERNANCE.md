@@ -14,9 +14,33 @@ entries that omit them. If a claim cannot be sourced, it does not go in at
 `medium` or above — it goes in at `low` with a note saying why, or it stays in
 the `unmapped` backlog where its absence is visible.
 
-This is why the DTI links ship as `proposed` rather than quietly presented as
-fact. We could publish 1,929 name matches and look complete. Publishing them as
-guesses is less impressive and more useful.
+This is why the DTI links ship as `proposed` and `inferred` rather than quietly
+presented as fact. We could publish thousands of name matches and model verdicts
+and look complete. Publishing them as guesses, each carrying the reasoning that
+produced it, is less impressive and more useful.
+
+### On machine-generated claims
+
+A large part of this registry was proposed by language models: chain identifiers
+for ~65 platforms, CAIP-2 for ~97 DTI ledgers, and several thousand candidate
+links. That is a deliberate choice — the alternative was leaving those blank —
+and it comes with three hard rules:
+
+1. **Model output never enters above the lowest tier.** Platforms land at
+   `confidence: "proposed"`, links at `status: "inferred"`. Promotion is a human
+   act, by pull request, with evidence a model could not obtain.
+2. **Every machine claim names its asserter and states its own uncertainty.**
+   `assertedBy` and `uncertainty` are enforced by CI. A claim that cannot say
+   what it failed to verify does not get published.
+3. **A human decision always wins, in both directions.** CI rejects an inferred
+   link that contradicts a human `rejected` entry, so disproving a proposal
+   kills it permanently — including across re-runs of the model.
+
+Models were also wrong in instructive ways, and the record of that is kept
+rather than tidied away: one adjudication run refused ~40 correct links because
+a bug in the candidate generator never showed it the right answer. The lesson
+encoded in the process is that a confident machine verdict is evidence about the
+*retrieval*, not only about the asset.
 
 ## Roles
 

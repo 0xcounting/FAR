@@ -22,6 +22,7 @@ GET /symbol/usdt.json
 GET /cg/tether.json
 GET /caip/eip155/1/erc20/0xdac17f958d2ee523a2206206994597c13d831ec7.json
 GET /dti/2RJ2NRNJ5.json
+GET /ledger/PJP8FVDQ0.json
 ```
 
 Every route is a static file. There is no server, no API key, no rate limit, and
