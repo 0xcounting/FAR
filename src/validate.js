@@ -19,13 +19,20 @@ const coins = JSON.parse(gunzipSync(readFileSync('data/sources/coingecko-coins.j
 const coinIds = new Set(coins.map((c) => c.id));
 
 // --- platforms -------------------------------------------------------------
-const VALID_CONFIDENCE = new Set(['high', 'medium', 'low']);
+// Four tiers, in descending order of how much a consumer should trust them.
+// "proposed" is the new floor: a language model asserted it and no human has
+// checked. It is published because a proposal that can be disputed is more
+// useful than a blank, but it must never be mistaken for a reviewed claim.
+const VALID_CONFIDENCE = new Set(['high', 'medium', 'low', 'proposed']);
 for (const [name, p] of Object.entries(platformTable.platforms)) {
   if (!isValidCaip2(p.caip2)) fail('platform.caip2-invalid', `${name}: ${p.caip2}`);
   if (!VALID_CONFIDENCE.has(p.confidence)) fail('platform.confidence-invalid', `${name}: ${p.confidence}`);
   // Evidence is not decoration. A mapping nobody can check is a mapping nobody
   // can dispute, which is the failure mode this whole repo exists to avoid.
   if (!Array.isArray(p.evidence) || p.evidence.length === 0) fail('platform.no-evidence', name);
+  // A model-generated entry must carry its own uncertainty statement, so the
+  // thing a reviewer should check first travels with the claim.
+  if (p.confidence === 'proposed' && p.assertedBy == null) fail('platform.proposed-needs-assertedBy', name);
   if (p.confidence === 'high' && !p.evidence.some((e) => /production|CASA|ChainAgnostic/i.test(e))) {
     fail('platform.high-confidence-needs-strong-evidence', name);
   }

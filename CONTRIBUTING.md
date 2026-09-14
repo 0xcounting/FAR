@@ -33,7 +33,7 @@ record and the CoinGecko coin are the same asset, then add it:
 {
   "dti": "2RJ2NRNJ5",
   "coingeckoId": "tether",
-  "rationale": "DTIF record 2RJ2NRNJ5 'Tether' is the Ethereum USDT; DTIF's public lookup shows AuxiliaryTechnicalReference 0xdac17f958d2ee523a2206206994597c13d831ec7, which matches CoinGecko's ethereum platform entry for coin id 'tether'.",
+  "rationale": "DTIF's public registry record for 2RJ2NRNJ5 gives AuxiliaryDistributedLedger 3Q57NZGGJ (= ledger 'Core') and AuxiliaryTechnicalReference 0x9ebab27608bd64aff36f027049aecc69102a0d1e, which is CoinGecko's `core` platform entry for coin id 'tether'. NOTE: this record is USDT on Core, NOT on Ethereum \u2014 the long name is bare 'Tether' for every chain, so the name alone cannot tell you which deployment a record is.",
   "decidedIn": "https://github.com/0xcounting/far/issues/12"
 }
 ```
@@ -48,6 +48,13 @@ What counts as establishing it:
 - ✅ The DTI record's ISIN resolves to an instrument whose prospectus names the contract.
 - ❌ The names match. That is what the automatic rule already did.
 - ❌ The symbols match. `USDC` is 62 different assets.
+
+That example is deliberately the one that caught me out. An earlier draft of
+this file asserted 2RJ2NRNJ5 was Ethereum USDT at `0xdac17f...`, because
+"Tether" plus a plausible address *reads* correct. It is Tether on **Core**.
+All 18 DTI records named "Tether" carry the identical long name and ticker and
+differ only in the redacted ledger field — which is precisely why name evidence
+is not evidence.
 
 **Rejecting is a contribution.** A `rejected` entry suppresses a wrong automatic
 proposal permanently, which is worth as much as an accepted one.

@@ -133,10 +133,14 @@ of them. Each entry in a group carries its own `deployments` (the CAIP-19 on eac
 chain it exists on) and `related`:
 
 - `related.sameName` / `related.sameSymbol` — the other coins in the collision.
-- `related.dtiEquivalent` — coins the **DTI registry itself** declares
-  functionally fungible with this one. This is the strongest cross-chain
-  "same economic asset" signal in the dataset, because a standards body asserted
-  it rather than us inferring it.
+- `related.dtiEquivalent` — coins the DTI registry declares functionally fungible
+  with this one. **In practice this is almost always empty, and the reason is
+  worth knowing.** `EquivalentDigitalTokenGroupDTI` does not cluster an asset's
+  deployments: measured across all 5,785 records, every group has exactly one
+  member. Each type-3 record points at a single type-0 record, pairwise. So the
+  field cannot be used to enumerate "all the chains USDT is on" — which is what
+  it looks like it should do. It is kept because the pairing is real
+  information, not because it delivers the cross-chain grouping.
 
 ## Contributing
 
