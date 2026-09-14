@@ -1919,13 +1919,15 @@
     },
     "tron": {
       "nativeAsset": "slip44:195",
-      "note": "CAIP-2 is ratified; there is NO ratified CAIP-19 asset namespace for Tron. \"trc20\" is this registry's provisional choice.",
-      "caip2": "tron:0x2b6653dc",
+      "note": "Was published as the DEPRECATED hex form tron:0x2b6653dc. The ratified profile uses decimal. Asset namespace trc20 matches the CAIP-19 profile this project proposed upstream; base58check is canonical for the reference because tron/caip10.md already mandates that exact regex for accounts, so one namespace does not describe the same 20 bytes two ways.",
+      "caip2": "tron:728126428",
       "assetNamespace": "trc20",
       "addressFormat": "base58check",
-      "confidence": "medium",
+      "confidence": "high",
       "evidence": [
-        "ChainAgnostic/namespaces tron/caip2.md (mainnet 728126428 / 0x2b6653dc)"
+        "ChainAgnostic/namespaces tron/caip2.md (merged in PR #170) makes the DECIMAL chain id canonical: tron:728126428",
+        "That profile’s Backwards Compatibility section deprecates the hex form tron:0x2b6653dc (agreed in TRON Wallet Dev Community Call #5, tronprotocol/pm#229)",
+        "Live: eth_chainId returns 0x2b6653dc = 728126428"
       ]
     },
     "stellar": {
@@ -2551,18 +2553,14 @@
       "assetNamespace": "jetton",
       "nativeAsset": "slip44:607",
       "addressFormat": "ton-friendly-address",
-      "confidence": "proposed",
-      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "confidence": "high",
       "namespaceRatified": true,
       "assetNamespaceRatified": false,
       "evidence": [
-        "ChainAgnostic/namespaces has a `tvm/` directory; tvm/caip2.md (Draft, PR #52) states 'The name of the chain is built according to the following rule: tvm:<global_id>' and lists the test case '# TON mainnet (global id = -239)  tvm:-239' -- https://raw.githubusercontent.com/ChainAgnostic/namespaces/main/tvm/caip2.md",
-        "No tvm/caip19.md exists in the repo tree (verified via GitHub trees API on ChainAgnostic/namespaces@main), so no asset namespace is specified for TVM chains",
-        "Sample identity EQC7rnHHtMVBKyhiGnAbtYIlzGxS0dfi3ZbHExFX0LYi9cAH resolves on https://tonapi.io/v2/jettons/EQC7rn... to a jetton master with raw address 0:bbae71c7b4c5412b28621a701bb58225cc6c52d1d7e2dd96c7131157d0b622f5, symbol @BTC25 -- so the identities are jetton master contract addresses in user-friendly (bounceable, base64) form",
-        "SLIP-44 line '| 607 | TON | TON |' -- https://raw.githubusercontent.com/satoshilabs/slips/master/slip-0044.md"
+        "ChainAgnostic/namespaces tvm/caip2.md defines tvm:<global_id> and lists TON mainnet (-239) as a worked example",
+        "tvm/README.md scopes the namespace to Everscale, TON, Venom and Gosh explicitly"
       ],
-      "note": "asset_namespace `jetton` IS MY INVENTION -- no spec defines an asset namespace for the tvm namespace. CRITICAL IMPLEMENTATION WARNING: the user-friendly TON address form is 48 chars of base64 and the URL-safe variant contains `_` and `-` (sample 2 is EQBT2Ee4Lx5w9uI7oMly5upXNs3ABWL_Fwk1uiM74gZCGaYt, note the `_`). CAIP-19's asset_reference charset is [-.%a-zA-Z0-9], which EXCLUDES `_` and `+` and `/`. So CoinGecko's raw identity cannot be dropped into a CAIP-19 asset_reference verbatim. Options: (a) normalise to URL-safe base64 and percent-encode `_` as %5F, or (b) use the raw form's account-id hex (workchain 0 assumed) e.g. bbae71c7b4c5412b28621a701bb58225cc6c52d1d7e2dd96c7131157d0b622f5, which is charset-clean but drops the workchain and the bounceable/testnet flags. addressFormat `ton-friendly-address` (NEW, for you to implement): 48 chars, base64 or base64url alphabet, first byte encodes flags so the string begins EQ/UQ/kQ/0Q; decodes to 36 bytes = 1 flag byte + 1 signed workchain byte + 32 address bytes + 2-byte CRC16-XMODEM checksum.",
-      "uncertainty": "Whether SLIP-44 coin type 607 labelled 'TON' is The Open Network (TON's own docs use m/44'/607') or a different 'TON' project -- the SLIP-44 table row carries no URL. Also, tvm:-239 is a Draft profile whose reference (-239) begins with '-'; CAIP-2's reference regex [-_a-zA-Z0-9]{1,32} permits it, but some naive parsers split on '-'."
+      "note": "CASA ratified tvm covers TON. The asset namespace \"jetton\" is still this registry’s invention — tvm has no caip19.md — so the CHAIN id is standard while the ASSET id is not."
     },
     "bittensor": {
       "caip2": "polkadot:2f0555cc76fc2840a25a6ea3b9637146",
@@ -2756,7 +2754,7 @@
     },
     "dogechain": {
       "caip2": "eip155:2000",
-      "assetNamespace": null,
+      "assetNamespace": "erc20",
       "nativeAsset": null,
       "addressFormat": "evm-lowercase",
       "confidence": "proposed",
@@ -2923,7 +2921,7 @@
       "caip2": "cosmos:interwoven-1",
       "assetNamespace": null,
       "nativeAsset": null,
-      "addressFormat": "initia-asset",
+      "addressFormat": "cosmos-denom",
       "confidence": "proposed",
       "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
       "namespaceRatified": true,
@@ -2977,7 +2975,7 @@
       "caip2": "cosmos:Oraichain",
       "assetNamespace": null,
       "nativeAsset": null,
-      "addressFormat": "cosmos-addr-or-denom",
+      "addressFormat": "cosmos-denom",
       "confidence": "proposed",
       "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
       "namespaceRatified": true,
@@ -2995,7 +2993,7 @@
       "caip2": "cosmos:kaiyo-1",
       "assetNamespace": null,
       "nativeAsset": null,
-      "addressFormat": "cosmos-addr-or-denom",
+      "addressFormat": "cosmos-denom",
       "confidence": "proposed",
       "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
       "namespaceRatified": true,
@@ -3052,7 +3050,7 @@
       "caip2": "cosmos:pio-mainnet-1",
       "assetNamespace": null,
       "nativeAsset": "slip44:505",
-      "addressFormat": "cosmos-addr-or-denom",
+      "addressFormat": "cosmos-denom",
       "confidence": "proposed",
       "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
       "namespaceRatified": true,
@@ -3069,7 +3067,7 @@
     },
     "humanode": {
       "caip2": "eip155:5234",
-      "assetNamespace": null,
+      "assetNamespace": "erc20",
       "nativeAsset": null,
       "addressFormat": "evm-lowercase",
       "confidence": "proposed",
@@ -3288,7 +3286,7 @@
     },
     "aelf": {
       "caip2": "aelf:AELF",
-      "assetNamespace": null,
+      "assetNamespace": "mtoken",
       "nativeAsset": "slip44:1616",
       "addressFormat": "aelf-address",
       "confidence": "medium",
@@ -3298,11 +3296,11 @@
         "Live: /api/blockChain/chainStatus on aelf-public-node.aelf.io returns ChainId \"AELF\"; tdvv-public-node returns \"tDVV\"",
         "ChainHelper.cs — chain id is the low three bytes of the int32 little-endian form, big-endian, plain base58 (round-tripped: AELF<->9992731, tDVV<->1866392)"
       ],
-      "note": "KNOWN AMBIGUITY: aelf documents its TestNet main chain as ALSO using chain id AELF, so aelf:AELF may not distinguish MainNet from TestNet. The testnet endpoints returned HTTP 522 so this could not be confirmed live; it is flagged in the CASA draft as the item most likely to need community correction. Separately: aelf tokens live in a SHARED MultiToken system contract, so token identity is (chain id, symbol) and never a contract address — every aelf token in CoinGecko collides on one address because of this."
+      "note": "KNOWN AMBIGUITY: aelf documents its TestNet main chain as ALSO using chain id AELF, so aelf:AELF may not distinguish MainNet from TestNet. The testnet endpoints returned HTTP 522 so this could not be confirmed live; it is flagged in the CASA draft as the item most likely to need community correction. Separately: aelf tokens live in a SHARED MultiToken system contract, so token identity is (chain id, symbol) and never a contract address — every aelf token in CoinGecko collides on one address because of this. aelf tokens live in a SHARED MultiToken system contract, so every token on a chain has the SAME contract address and identity is really (chain id, symbol). \"mtoken\" names that contract-scoped standard; a future CAIP-19 profile should key on the symbol instead, which is why this is provisional."
     },
     "tdvv-sidechain": {
       "caip2": "aelf:tDVV",
-      "assetNamespace": null,
+      "assetNamespace": "mtoken",
       "nativeAsset": "slip44:1616",
       "addressFormat": "aelf-address",
       "confidence": "proposed",
@@ -3315,7 +3313,7 @@
         "No 'aelf' directory in ChainAgnostic/namespaces",
         "SLIP-0044 line '| 1616 | ELF | AELF |'"
       ],
-      "note": "Same invented namespace as 'aelf' above - 'aelf' IS MY INVENTION. This is aelf's first dAppChain (sidechain), chain id 'tDVV', DISTINCT from the MainChain 'AELF'. CoinGecko lists the SAME coin (id 'aelf', symbol ELF) on both platforms with different contract addresses (MainChain JRmBduh4..., tDVV 7RzVGiuVWkvL4VfVHdZfQF2Tri3sgLe9U991bohHFfSRZXuGX) - i.e. these are two different deployments of the MultiToken system contract on two different chains, and exchanges warn that MainChain and dAppChain deposits are NOT interchangeable. Same per-token-collision caveat and same '_'-is-illegal-in-CAIP-19 caveat as the 'aelf' entry. addressFormat 'aelf-address' IS MY INVENTION (see the aelf entry for the exact shape).",
+      "note": "Same invented namespace as 'aelf' above - 'aelf' IS MY INVENTION. This is aelf's first dAppChain (sidechain), chain id 'tDVV', DISTINCT from the MainChain 'AELF'. CoinGecko lists the SAME coin (id 'aelf', symbol ELF) on both platforms with different contract addresses (MainChain JRmBduh4..., tDVV 7RzVGiuVWkvL4VfVHdZfQF2Tri3sgLe9U991bohHFfSRZXuGX) - i.e. these are two different deployments of the MultiToken system contract on two different chains, and exchanges warn that MainChain and dAppChain deposits are NOT interchangeable. Same per-token-collision caveat and same '_'-is-illegal-in-CAIP-19 caveat as the 'aelf' entry. addressFormat 'aelf-address' IS MY INVENTION (see the aelf entry for the exact shape). Same MultiToken caveat as the aelf main chain.",
       "uncertainty": "Namespace prefix unratified/invented; asset_reference design unresolved (shared system-contract address, illegal '_' character for CAIP-19)."
     },
     "akash": {
@@ -3357,9 +3355,9 @@
     },
     "babylon-genesis": {
       "caip2": "cosmos:bbn-1",
-      "assetNamespace": "cw20",
+      "assetNamespace": null,
       "nativeAsset": null,
-      "addressFormat": "cosmos-bech32-contract",
+      "addressFormat": "cosmos-denom",
       "confidence": "proposed",
       "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
       "namespaceRatified": true,
@@ -3380,18 +3378,14 @@
       "assetNamespace": "tip3",
       "nativeAsset": null,
       "addressFormat": "tvm-address",
-      "confidence": "proposed",
-      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "confidence": "medium",
       "namespaceRatified": true,
       "assetNamespaceRatified": false,
       "evidence": [
-        "Live JSON-RPC getBlockchainConfig against https://jrpc.venom.foundation returned {\"globalId\":1,...} (checked 2026-09-14) - Venom mainnet's TVM global_id is 1",
-        "ChainAgnostic/namespaces/tvm/caip2.md defines the format as tvm:<global_id> with global_id an integer in [-2147483648, 2147483648], regex [-]?[0-9]{1-10}, and lists Everscale mainnet = tvm:42 and TON mainnet = tvm:-239",
-        "ChainAgnostic/namespaces/tvm/ contains only README.md and caip2.md - there is NO caip19.md, so no TVM asset namespace is ratified",
-        "No VENOM entry in SLIP-0044"
+        "ChainAgnostic/namespaces tvm/caip2.md defines tvm:<global_id> and lists Venom as a worked example",
+        "tvm/README.md scopes the namespace to Everscale, TON, Venom and Gosh explicitly"
       ],
-      "note": "The CAIP-2 here is well grounded: the tvm namespace IS ratified, it keys on global_id, and I read Venom mainnet's global_id (1) straight off its own JSON-RPC rather than from memory. Venom is NOT listed in tvm/caip2.md itself (only Everscale 42 and TON -239 are), and that doc explicitly warns 'at time of writing there is not a central registry' of global_ids - so tvm:1 follows the ratified rule but is not enumerated upstream. THE ASSET NAMESPACE 'tip3' IS MY INVENTION (TIP-3 is the Venom/Everscale fungible-token standard, analogous to ERC-20); nothing ratifies it. addressFormat 'tvm-address' IS MY INVENTION: shape is <workchain_id>:<64 lowercase hex>, e.g. '0:1c5ebbde66ef5c2e7bcd49fd3d37762204d225762b03b37cac9c9fd0a5e70f0b', regex ^-?[0-9]+:[0-9a-f]{64}$ (workchain is usually 0, and -1 for the masterchain). The identity is the TIP-3 TokenRoot contract address. CAIP-19 CAVEAT: ':' is NOT in the CAIP-19 asset_reference charset [-.%a-zA-Z0-9], so the raw '0:1c5e...' string cannot be used verbatim as an asset_reference - it needs percent-encoding (0%3A1c5e...) or a different separator.",
-      "uncertainty": "global_id 1 is a small integer; I verified it from Venom's own mainnet RPC, but there is no upstream registry entry for Venom in tvm/caip2.md to corroborate it. The asset namespace and the ':'-in-asset_reference problem are both unresolved."
+      "note": "Asset namespace \"tip3\" is provisional; tvm has no ratified CAIP-19 profile."
     },
     "eos": {
       "caip2": "antelope:aca376f206b8fc25a6ed44dbdc66547c",
@@ -3568,9 +3562,9 @@
     },
     "aura-network": {
       "caip2": "cosmos:aura_6322-2",
-      "assetNamespace": "cw20",
+      "assetNamespace": null,
       "nativeAsset": null,
-      "addressFormat": "cosmwasm-bech32",
+      "addressFormat": "cosmos-denom",
       "confidence": "proposed",
       "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
       "namespaceRatified": true,
@@ -3712,18 +3706,14 @@
       "assetNamespace": null,
       "nativeAsset": "slip44:396",
       "addressFormat": "tvm-address",
-      "confidence": "proposed",
-      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "confidence": "high",
       "namespaceRatified": true,
       "assetNamespaceRatified": false,
       "evidence": [
-        "ChainAgnostic/namespaces tvm/caip2.md: reference = the chain's `global_id`; Test Cases state verbatim `# Everscale mainnet (global id = 42)` -> `tvm:42` (and TON mainnet -> tvm:-239)",
-        "SLIP-0044: | 396 | EVER | Everscale |",
-        "CONTRADICTING EVIDENCE - CoinGecko coins/wrapped-ever: platforms = {\"everscale\": \"0x29d578cec46b50fa5c88a99c6a4b70184c062953\"} but blockchain_site[0] = https://etherscan.io/token/0x29d578cec46b50fa5c88a99c6a4b70184c062953",
-        "Verified live 2026-09-14 on ETHEREUM MAINNET (https://ethereum-rpc.publicnode.com): eth_call symbol() on 0x29d578cec46b50fa5c88a99c6a4b70184c062953 returns \"WEVER\", name() returns \"Wrapped Ever\", decimals() returns 9 - so that address is a real ERC-20 on eip155:1"
+        "ChainAgnostic/namespaces tvm/caip2.md defines tvm:<global_id> and lists Everscale mainnet (global id = 42) as a worked example",
+        "tvm/README.md scopes the namespace to Everscale, TON, Venom and Gosh explicitly"
       ],
-      "note": "READ THIS BEFORE USING THE ROW. `tvm:42` is the correct, ratified CAIP-2 for the Everscale L1 and I am confident in it. But the ONE sample identity on this platform is MIS-FILED by CoinGecko: 0x29d578cec46b50fa5c88a99c6a4b70184c062953 is a 20-byte EVM address that I verified live on ETHEREUM MAINNET as the WEVER (Wrapped Ever, 9 decimals) ERC-20. Genuine Everscale/TVM addresses are `<workchain>:<64 hex>` (e.g. 0:a49cd4e1...), which this is not. So that single row should almost certainly be emitted as `eip155:1/erc20:0x29d578cec46b50fa5c88a99c6a4b70184c062953`, NOT under tvm:42. assetNamespace is null precisely because the platform's chain and its only identity disagree - it must be decided per identity. addressFormat `tvm-address` is a NEW name describing what a REAL Everscale identity looks like: `<workchain id, usually 0 or -1>` + `:` + 64 lowercase hex - the sample does NOT match it and would fail that validator, which is the correct outcome.",
-      "uncertainty": "Whether the registry wants tvm:42 (the platform's true chain) or a per-identity override to eip155:1 (what the single sample actually is). Also, no TVM caip19.md exists, so Everscale's TIP-3 token asset namespace is undefined. I did not independently query an Everscale node for global_id=42; that rests on the tvm/caip2.md test case."
+      "note": "CASA tvm/caip2.md uses tvm:42 as its primary worked example. NOTE: CoinGecko files this platform’s only identity as an ETHEREUM mainnet ERC-20 (verified by reading symbol()/name() on eip155:1), so that row is mis-filed upstream and is rejected here rather than published as a TVM asset."
     }
   },
   "unmapped": {
