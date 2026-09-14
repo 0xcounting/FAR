@@ -2,10 +2,10 @@
   "$schema": "./../schema/links-exact.schema.json",
   "_readme": "DTI <-> CoinGecko links derived from the CONTRACT ADDRESS in the DTIF registry record, not from names. basis \"address-exact\" means the DTI-derived CAIP-19 matched a CoinGecko deployment exactly. \"address-only-chain-differs\" means the address matched a unique CoinGecko coin but the two sources disagree about the chain, or we lack a CAIP-2 for that ledger.",
   "stats": {
-    "withCaip19": 3097,
-    "matchedExact": 1355,
+    "withCaip19": 3099,
+    "matchedExact": 1356,
     "matchedAddressOnly": 111,
-    "noMatch": 1631,
+    "noMatch": 1632,
     "groupsResolved": 1061,
     "groupsSpanningSeveralCoins": 14
   },
@@ -9503,6 +9503,15 @@
       "basis": "address-exact",
       "allCoinIds": [
         "metis-token"
+      ]
+    },
+    {
+      "dti": "GN9M0Z238",
+      "coingeckoId": "usd-coin",
+      "caip19": "eip155:999/erc20:0xb88339cb7199b77e23db6e890353e22632ba630f",
+      "basis": "address-exact",
+      "allCoinIds": [
+        "usd-coin"
       ]
     },
     {

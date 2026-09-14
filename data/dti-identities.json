@@ -5,12 +5,12 @@
     "total": 5785,
     "group": 2302,
     "noLedger": 0,
-    "unknownLedgerCaip2": 120,
+    "unknownLedgerCaip2": 107,
     "noReference": 0,
     "unknownMechanism": 0,
     "malformed": 0,
-    "resolved": 3097,
-    "native": 251
+    "resolved": 3099,
+    "native": 262
   },
   "identities": [
     {
@@ -3549,9 +3549,9 @@
       "ledgerDli": "J0JT9FGS0",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "cosmos:allora-mainnet-1",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "4KKQKCV6D",
@@ -3714,9 +3714,9 @@
       "ledgerDli": "F2FWGL09C",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "polkadot:060e3dd3fa2904d031206bb913c95468",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "4P3XPDRCK",
@@ -5964,9 +5964,9 @@
       "ledgerDli": "Q005CK5KV",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "bip122:ebe158d09325c470276619ebc5f7f87c",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "6PC0N0QWT",
@@ -10142,9 +10142,9 @@
       "ledgerDli": "GVZ17GPVW",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "eip155:15150",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "BBCNHQ240",
@@ -18705,9 +18705,9 @@
       "ledgerDli": "NLVXQC04T",
       "mechanism": "Polkadot Asset",
       "technicalReference": "79228162514264337593543950342",
-      "caip2": null,
-      "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "caip2": "polkadot:daab8df776eb52ec604a5df5d388bb62",
+      "caip19": "polkadot:daab8df776eb52ec604a5df5d388bb62/asset:79228162514264337593543950342",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "KNS06KRXQ",
@@ -22693,9 +22693,9 @@
       "ledgerDli": "TVJ8CVVTX",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "cosmos:dydx-mainnet-1",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "P6XNHFFFC",
@@ -22825,9 +22825,9 @@
       "ledgerDli": "CCG01S2TT",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "cosmos:self-1",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "PC2X7TKH5",
@@ -24012,9 +24012,9 @@
       "ledgerDli": "NLVXQC04T",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "polkadot:daab8df776eb52ec604a5df5d388bb62",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "QF1G0XXMM",
@@ -39576,9 +39576,9 @@
       "ledgerDli": "MZ5M6DZGB",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "eip155:999",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "815LXQMQ1",
@@ -40911,9 +40911,9 @@
       "ledgerDli": "N449BXPN1",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "aleo:0",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "980MRN40Q",
@@ -44132,9 +44132,9 @@
       "ledgerDli": "CX5QR7FRT",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "eip155:1012",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "CV1W46KPH",
@@ -47112,9 +47112,9 @@
       "ledgerDli": "MZ5M6DZGB",
       "mechanism": "ERC-20",
       "technicalReference": "0xb88339cb7199b77e23db6e890353e22632ba630f",
-      "caip2": null,
-      "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "caip2": "eip155:999",
+      "caip19": "eip155:999/erc20:0xb88339cb7199b77e23db6e890353e22632ba630f",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "GNDDSWKVB",
@@ -49708,9 +49708,9 @@
       "ledgerDli": "ZPP6364TV",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "monero:4b49042122496cc7e94d392b29bd12eb",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "JQCH4ZRFB",

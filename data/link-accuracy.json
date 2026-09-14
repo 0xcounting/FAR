@@ -4,10 +4,10 @@
   "scores": [
     {
       "label": "rule-proposed (all)",
-      "checkable": 1211,
-      "right": 1042,
+      "checkable": 1212,
+      "right": 1043,
       "wrong": 169,
-      "accuracy": 0.8604459124690339,
+      "accuracy": 0.8605610561056105,
       "wrongExamples": [
         {
           "dti": "17ZBWJJ2K",
@@ -77,10 +77,10 @@
     },
     {
       "label": "rule: name+symbol",
-      "checkable": 1156,
-      "right": 1018,
+      "checkable": 1157,
+      "right": 1019,
       "wrong": 138,
-      "accuracy": 0.8806228373702422,
+      "accuracy": 0.8807260155574762,
       "wrongExamples": [
         {
           "dti": "17ZBWJJ2K",

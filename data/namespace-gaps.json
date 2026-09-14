@@ -7,71 +7,121 @@
       "usedBy": [
         "cardano (cip34:1-764824073)",
         "ledger Cardano"
-      ]
+      ],
+      "upstream": null,
+      "status": "no CASA proposal exists"
     },
     "near": {
       "tokens": 72,
       "usedBy": [
         "near-protocol (near:mainnet)"
-      ]
+      ],
+      "upstream": null,
+      "status": "no CASA proposal exists"
     },
     "radix": {
       "tokens": 18,
       "usedBy": [
         "radix (radix:mainnet)"
-      ]
+      ],
+      "upstream": {
+        "pr": 198,
+        "url": "https://github.com/ChainAgnostic/namespaces/pull/198",
+        "state": "open",
+        "proposes": "radix:mainnet",
+        "matchesOurs": true,
+        "author": "AVaunt-consulting"
+      },
+      "status": "proposed upstream by the ecosystem — do NOT duplicate; our identifier already matches"
     },
     "kaspa": {
       "tokens": 12,
       "usedBy": [
         "kasplex (kaspa:mainnet)"
-      ]
+      ],
+      "upstream": {
+        "pr": 193,
+        "url": "https://github.com/ChainAgnostic/namespaces/pull/193",
+        "state": "open",
+        "proposes": "kaspa:mainnet",
+        "matchesOurs": true,
+        "author": "elldeeone"
+      },
+      "status": "proposed upstream by the ecosystem — do NOT duplicate; our identifier already matches"
     },
     "movement": {
       "tokens": 11,
       "usedBy": [
         "movement (movement:126)",
         "ledger Movement"
-      ]
+      ],
+      "upstream": {
+        "pr": 179,
+        "url": "https://github.com/ChainAgnostic/namespaces/pull/179",
+        "state": "open",
+        "proposes": "movement:126",
+        "matchesOurs": true,
+        "author": "ganymedio"
+      },
+      "status": "proposed upstream by the ecosystem — do NOT duplicate; our identifier already matches"
     },
     "massa": {
       "tokens": 5,
       "usedBy": [
         "massa (massa:77658377)"
-      ]
+      ],
+      "upstream": null,
+      "status": "no CASA proposal exists"
     },
     "icon": {
       "tokens": 2,
       "usedBy": [
         "icon (icon:1)",
         "ledger ICON"
-      ]
+      ],
+      "upstream": null,
+      "status": "no CASA proposal exists"
     },
     "supra": {
       "tokens": 2,
       "usedBy": [
         "supra (supra:8)"
-      ]
+      ],
+      "upstream": {
+        "pr": 192,
+        "url": "https://github.com/ChainAgnostic/namespaces/pull/192",
+        "state": "open",
+        "proposes": "supra:8",
+        "matchesOurs": true,
+        "author": "supra-bharatjain"
+      },
+      "status": "proposed upstream by the ecosystem — do NOT duplicate; our identifier already matches"
     },
     "aelf": {
       "tokens": 2,
       "usedBy": [
         "aelf (aelf:AELF)",
         "tdvv-sidechain (aelf:tDVV)"
-      ]
+      ],
+      "upstream": null,
+      "status": "no CASA proposal exists"
     },
     "fuel": {
       "tokens": 1,
       "usedBy": [
         "fuel-ignition (fuel:9889)"
-      ]
+      ],
+      "upstream": null,
+      "status": "no CASA proposal exists"
     },
     "kadena": {
       "tokens": 1,
       "usedBy": [
         "kadena (kadena:mainnet01)",
         "ledger Kadena"
-      ]
+      ],
+      "upstream": null,
+      "status": "no CASA proposal exists"
     }
   },
   "assetNamespaces": {
@@ -245,6 +295,111 @@
       "usedBy": [
         "kadena"
       ]
+    }
+  },
+  "_upstreamNote": "CASA's CONTRIBUTING expects a namespace to be proposed by people who can speak for that ecosystem — the editors ask for interlocutors and reviewers familiar with it, and the merged PRs are authored by ecosystem insiders. FAR is a consumer of these identifiers, not a representative of those chains, so an unsolicited PR from us is likely to stall for want of ecosystem sign-off. Where a proposal already exists we align with it rather than duplicating it; where none exists, the honest contribution is to raise the gap with the ecosystem rather than to speak for it.",
+  "chainsIdentifiedWithNoNamespace": {
+    "_readme": "Chains that ISO 24165 (DTIF) already assigns a ledger identifier to, which we positively identified — in most cases from the anchor block hash DTIF itself publishes — and for which ChainAgnostic/namespaces has NO namespace at all. These are not ambiguous chains: the anchor hash is a verifiable genesis. They are the sharpest evidence that the CAIP identifier space lags what a formal standards body already registers.",
+    "count": 14,
+    "chains": {
+      "Internet Computer": {
+        "dli": "MQ5RG84D1",
+        "tokensBlocked": 2,
+        "anchorBlockHash": null,
+        "anchorAlgorithm": null,
+        "note": "ICP's subnet/canister architecture has no single chain-level identifier that any ratified namespace expresses."
+      },
+      "VITE": {
+        "dli": "5VV51K5CR",
+        "tokensBlocked": 2,
+        "anchorBlockHash": "aab4613d8e4c87fc184885f4ca1840eed78ebe12321606461697f5ec78c8a76f",
+        "anchorAlgorithm": "BLAKE2b-256",
+        "note": "Vite uses a block-lattice/DAG with a snapshot chain; there is no CAIP-2 shape defined for it."
+      },
+      "Ardor": {
+        "dli": "ZC36F4S9J",
+        "tokensBlocked": 1,
+        "anchorBlockHash": "53da814b5873e31a1f82bb099afadf092db2b62c1732b8ed90242cb13c9192cb",
+        "anchorAlgorithm": "SHA-256",
+        "note": "Ardor's parent chain plus child chains (Ignis etc.) would additionally need a sub-chain convention that no CAIP defines."
+      },
+      "BitShares": {
+        "dli": "54BTHT3DJ",
+        "tokensBlocked": 1,
+        "anchorBlockHash": "00000001b656820f72f6b28cda811778632d4998",
+        "anchorAlgorithm": "SHA-224 (160Bits)",
+        "note": "BitShares, Steem and Hive are all Graphene chains in this batch and all fail for the same reason - only Hive got a ratified namespace."
+      },
+      "NEM": {
+        "dli": "LGF2S77LT",
+        "tokensBlocked": 1,
+        "anchorBlockHash": "438cf6375dab5a0d32f9b7bf151d4539e00a590f7c022d5572c7d41815a24be4",
+        "anchorAlgorithm": "Keccak-256",
+        "note": "Distinct ledger from Symbol (also in this batch), which likewise has no namespace."
+      },
+      "v.systems": {
+        "dli": "T919R4K61",
+        "tokensBlocked": 1,
+        "anchorBlockHash": "3yYNd7quEWaWytrAug4yGwQvpL3PVJegf9d9NTv9PVE3ouBYJs5PTQqxCjd294uK1zPLj6G5Tk447LqFMWdSFvaQ",
+        "anchorAlgorithm": "SHA-256 (Base58)",
+        "note": "v.systems is a Scorex/Waves-lineage SPoS chain; the ratified 'waves' namespace covers Waves itself, not this derivative."
+      },
+      "Aeternity": {
+        "dli": "52387R92R",
+        "tokensBlocked": 1,
+        "anchorBlockHash": "kh_pbtwgLrNu23k9PA6XCZnUbtsvEFeQGgavY4FS2do3QP8kcp2z",
+        "anchorAlgorithm": "BLAKE2 (Base58)",
+        "note": "Chain identification is solid; only the namespace is missing."
+      },
+      "Nebulas": {
+        "dli": "FDTRGVM23",
+        "tokensBlocked": 1,
+        "anchorBlockHash": "06662b890841bec3493c9cf13a983c0c60533949a62485e59f47cd164fd60b7f",
+        "anchorAlgorithm": "SHA3-256",
+        "note": "The only 'Nebulas' match in the EVM registry is 'Unicorn Ultra Nebulas Testnet' (eip155:2484), an unrelated project."
+      },
+      "Siacoin": {
+        "dli": "9BQXLVJ3G",
+        "tokensBlocked": 1,
+        "anchorBlockHash": "25f6e3b9295a61f69fcb956aca9f0076234ecf2e02d399db5448b6e22f26e81c",
+        "anchorAlgorithm": "BLAKE2b-256",
+        "note": "Sia is a UTXO-like chain but uses BLAKE2b, not double-SHA-256, so bip122 (which is defined over Bitcoin-family genesis hashes) is not a defensible fit."
+      },
+      "Atto": {
+        "dli": "Z49T2MRTR",
+        "tokensBlocked": 1,
+        "anchorBlockHash": "D1C37D6BBB8F9984029EA21712BB1AA6D2B3D0CD9A484C8CC3B967B7A0501C08",
+        "anchorAlgorithm": "BLAKE2b-256",
+        "note": "Same structural problem as Nano in this batch: block-lattice ledgers have no CAIP-2 shape defined."
+      },
+      "NKN": {
+        "dli": "40BS814X7",
+        "tokensBlocked": 1,
+        "anchorBlockHash": "5589c4c22fcef3139b4bdc14cfb1e6ca56565bf4685d0ea3678daf578992411d",
+        "anchorAlgorithm": "SHA-256",
+        "note": "An ERC-20 NKN also exists on Ethereum, but that is a different ledger from the native chain this DLI names."
+      },
+      "Nuls": {
+        "dli": "4DR1WNK88",
+        "tokensBlocked": 1,
+        "anchorBlockHash": "8221e980cc9707b4fcf05ac79e70b8ac75f00550bb7da9292e6d6432a716ea88",
+        "anchorAlgorithm": "SHA-256 (Base58)",
+        "note": "Do not substitute eip155:119 - ENULS is a distinct ledger from the NULS main chain named here."
+      },
+      "Kaspa": {
+        "dli": "9D9CWH8R7",
+        "tokensBlocked": 1,
+        "anchorBlockHash": null,
+        "anchorAlgorithm": null,
+        "note": "Do not substitute eip155:104566 - KaspaClassic is a different chain from Kaspa."
+      },
+      "Nano": {
+        "dli": "MDMXVQ432",
+        "tokensBlocked": 1,
+        "anchorBlockHash": null,
+        "anchorAlgorithm": null,
+        "note": "Nano does have a well-known genesis open block hash, so a future 'nano' namespace could use it - but nothing ratified consumes it today."
+      }
     }
   }
 }
