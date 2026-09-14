@@ -2150,13 +2150,16 @@
     },
     "cardano": {
       "nativeAsset": "slip44:1815",
-      "note": "No ratified CAIP-2 for Cardano. Reference is policyId+assetNameHex concatenated, as CoinGecko stores it.",
-      "caip2": "cip34:1-764824073",
+      "note": "Reference format is CIP-34’s <network-id>-<network-magic>, verified live. The NAMESPACE was changed from the provisional \"cip34\" to \"cardano\": CASA names a namespace after the ecosystem, not after a specification document, and the two document-named namespaces (eip155, bip122) bound cross-ecosystem families where no ecosystem name would fit — which is not Cardano’s situation. \"cip34:\" strings are in real circulation (@dcspark/cip34-js, x402) and remain a recognised legacy alias. Submitted to CASA as the \"cardano\" namespace.",
+      "caip2": "cardano:1-764824073",
       "assetNamespace": "native",
       "addressFormat": "cardano-asset",
-      "confidence": "low",
+      "confidence": "medium",
       "evidence": [
-        "CIP-34 network identifier; no CASA namespace for Cardano"
+        "Koios /genesis on Cardano mainnet: networkMagic 764824073, networkId \"Mainnet\"",
+        "IntersectMBO/cardano-node mainnet-shelley-genesis.json confirms the same magic",
+        "CIP-34 \"Chain ID Registry\" defines the <network-id>-<network-magic> reference form",
+        "CIP-19 network tag table gives the Mainnet -> 1 / Testnet -> 0 numeric mapping"
       ]
     },
     "anubis": {
