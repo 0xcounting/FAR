@@ -27,6 +27,30 @@ const jaccard = (a, b) => {
   for (const t of a) if (b.has(t)) inter++;
   return inter / (a.size + b.size - inter);
 };
+// DTI short names are frequently chain-decorated: "1AXS" (Harmony), "AXSet"
+// and "WETHe" (Avalanche), "wXLM" (wrapped). Stripping the decoration recovers
+// the underlying ticker.
+//
+// The rules below are deliberately NARROW. A broader version that also stripped
+// leading so/j/m/x/a/e/b/p prefixes destroyed the entire AFREUM family — "AISK"
+// (Afreum Icelandic krona) became "isk", "AAMD" became "amd" — inventing
+// confident-looking matches out of currency codes. Precision beats recall here,
+// because every bad candidate competes for one of 12 slots.
+function tickerVariants(sym) {
+  const out = new Set();
+  const s = (sym ?? '').trim();
+  if (s.length < 3) return [];
+  if (/^[0-9]+[A-Za-z]{2,}$/.test(s)) out.add(s.replace(/^[0-9]+/, ''));   // 1AXS -> AXS
+  if (/^[A-Z0-9]{3,}[a-z]{1,2}$/.test(s)) out.add(s.replace(/[a-z]+$/, '')); // AXSet -> AXS
+  if (/^w[A-Z]{3,}$/.test(s)) out.add(s.slice(1));                          // wXLM -> XLM
+  // "BNB-bsc", "USDC.e" — a chain tag appended with a separator. Require the
+  // stem to be >= 3 chars so currency-code families are not mangled.
+  const sep = s.match(/^([A-Za-z0-9]{3,})[.\-][A-Za-z0-9]{1,6}$/);
+  if (sep) out.add(sep[1]);
+  out.delete(s);
+  return [...out];
+}
+
 // "Wrapped Ether" -> "we"; catches DTI long names against CoinGecko tickers.
 const acronym = (s) => s.split(/[^A-Za-z0-9]+/).filter(Boolean).map((w) => w[0]).join('').toLowerCase();
 
@@ -74,6 +98,13 @@ for (const t of tokens) {
 
   for (const c of byName.get(nameKey) ?? []) bump(c, 4, 'name-exact');
   for (const k of symKeys) for (const c of bySym.get(k) ?? []) bump(c, 3, `symbol-exact:${k}`);
+  // Scored below an exact ticker: the decoration was stripped by rule, and the
+  // rule can be wrong.
+  for (const raw of t.shortNames) {
+    for (const v of tickerVariants(raw)) {
+      for (const c of bySym.get(slug(v)) ?? []) bump(c, 2.5, `symbol-variant:${raw}->${v}`);
+    }
+  }
   // Acronym of the DTI long name equals a CoinGecko ticker ("Wrapped Ether"→WE).
   if (acr.length >= 2) for (const c of bySym.get(acr) ?? []) bump(c, 2, 'acronym-matches-symbol');
   // Fuzzy name similarity, capped so it can suggest but never dominate.
