@@ -14,7 +14,7 @@
 // reference; they resolve to <caip2>/slip44:<coinType> where we know the type.
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
 import { gunzipSync } from 'node:zlib';
-import { buildCaip19, isValidCaip19, isValidCaip2 } from '../src/lib/caip.js';
+import { buildCaip19, isValidCaip19, isValidCaip2, percentEncodeRef } from '../src/lib/caip.js';
 
 const DIR = process.env.FAR_DTIF_OUT ?? '/tmp/dtif';
 const readNd = (f) => existsSync(f)
@@ -62,6 +62,17 @@ for (const r of ledgerRecs) {
     publicLedger: inf.PublicDistributedLedgerIndication ?? null,
     url: inf.URL ?? null,
   };
+  // Ledgers fetched directly from the API have no `kind` yet. DTIF states it
+  // itself via PublicDistributedLedgerIndication; where that is absent, an
+  // anchor hash implies a public chain (a permissioned ledger has no published
+  // genesis), and otherwise we say "unknown" rather than assume.
+  if (!entry.kind) {
+    entry.kind = inf.PublicDistributedLedgerIndication === true ? 'public'
+      : inf.PublicDistributedLedgerIndication === false ? 'permissioned'
+      : hash ? 'public' : 'unknown';
+  }
+  entry.confidence ??= 'proposed';
+  entry.evidence = entry.evidence?.length ? entry.evidence : ['DTIF registry ledger record'];
   // A double-SHA-256 anchor is a Bitcoin-family genesis hash, and CAIP-2 for
   // that family is literally its first 32 hex characters — so this is derived,
   // not inferred, and outranks anything a model proposed.
@@ -95,6 +106,9 @@ const MECHANISM_NS = {
   'zrc-2': 'zrc2', 'oep-4': 'oep4', 'src-20': 'src20', 'psp22': 'psp22',
   'crc20': 'crc20', 'crc-20': 'crc20', 'tip-3': 'tip3', 'tip3': 'tip3',
   'ibc coin': 'ics20', 'ibc': 'ics20', 'native attribute': 'native',
+  'ft': 'ftoken',            // Flow fungible token — "ft" is under CAIP-19's 3-char minimum
+  'sui coin': 'coin', 'brc-20': 'brc20', 'move coin': 'coin',
+  'fungible asset': 'faobj', // Aptos Fungible Asset — "fa" likewise too short
   'sep-1': 'asset', 'sep-41': 'sep41', 'grc-20': 'grc20', 'fa-2': 'fa2',
   'arc-3': 'asa', 'arc-200': 'arc200', 'oep-8': 'oep8', 'nep-17': 'nep17',
   'trc-10': 'trc10', 'xrc-20': 'xrc20', 'prc-20': 'prc20', 'rune': 'rune',
@@ -106,7 +120,7 @@ const MECHANISM_NS = {
   'sip-10': 'sip010', 'brc 2.0': 'brc20', 'dog-20': 'dog20',
   'bep-2': 'bep2', 'bep2': 'bep2', 'eosio.token': 'token', 'omni': 'omni',
   'slp token': 'slp', 'fungible cashtoken': 'cashtkn', 'sora token': 'sora',
-  'sui coin': 'coin', 'fungible asset': 'fa', 'ft': 'ft', 'plt': 'plt',
+  'sui coin': 'coin', 'plt': 'plt',
   'ats': 'ats', 'wsc': 'wsc', 'liquidasset': 'liqasset',
   'cardano smart contract': 'native', 'native coin': 'native',
   'statemintasset': 'asset', 'statemineasset': 'asset', 'polkadot asset': 'asset',
@@ -149,8 +163,14 @@ for (const r of tokenRecs) {
   rec.caip2 = caip2;
   if (!caip2) { stats.unknownLedgerCaip2++; out.push({ ...rec, basis: 'ledger-has-no-caip2' }); continue; }
 
+  // For the "Native Attribute" mechanism DTIF often records a DOCUMENTATION URL
+  // rather than an identifier — a link to the chain's source describing its
+  // native unit. That is not an address and must not be encoded as one.
+  const ref0 = nrm.AuxiliaryTechnicalReference ?? '';
+  const isUrl = /^https?:\/\//i.test(ref0);
+
   // Native / protocol token: the ledger's own unit of account, no contract.
-  if (type === 1 || !nrm.AuxiliaryTechnicalReference) {
+  if (type === 1 || !nrm.AuxiliaryTechnicalReference || isUrl) {
     stats.native++;
     out.push({ ...rec, basis: 'protocol-token-no-reference' });
     continue;
@@ -165,7 +185,13 @@ for (const r of tokenRecs) {
   const built = platformEntry
     ? buildCaip19({ ...platformEntry, assetNamespace: namespace }, nrm.AuxiliaryTechnicalReference)
     : null;
-  const caip19 = built?.caip19 ?? `${caip2}/${namespace}:${nrm.AuxiliaryTechnicalReference}`;
+  // Without a matching platform entry we still have to produce a legal
+  // reference, so apply the same rules by hand: an `ibc/<hash>` denom carries
+  // its namespace in the prefix, and everything else is percent-encoded so
+  // characters CAIP-19 forbids survive reversibly.
+  let rawRef = nrm.AuxiliaryTechnicalReference;
+  if (namespace === 'ics20' && rawRef.startsWith('ibc/')) rawRef = rawRef.slice(4);
+  const caip19 = built?.caip19 ?? `${caip2}/${namespace}:${percentEncodeRef(rawRef)}`;
   if (!isValidCaip19(caip19)) { stats.malformed++; out.push({ ...rec, basis: 'malformed-caip19' }); continue; }
   stats.resolved++;
   out.push({ ...rec, caip19, basis: 'dtif-registry-exact' });

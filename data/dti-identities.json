@@ -5,12 +5,12 @@
     "total": 5785,
     "group": 2302,
     "noLedger": 0,
-    "unknownLedgerCaip2": 139,
+    "unknownLedgerCaip2": 120,
     "noReference": 0,
     "unknownMechanism": 0,
-    "malformed": 22,
-    "resolved": 3083,
-    "native": 224
+    "malformed": 0,
+    "resolved": 3097,
+    "native": 251
   },
   "identities": [
     {
@@ -3851,8 +3851,8 @@
       "mechanism": "IBC Coin",
       "technicalReference": "ibc/0588381B59FDEA3AA08D45C71B5F0D554CCC403FEBBAF2DAF0A7C566874234ED",
       "caip2": "cosmos:crypto-org-chain-mainnet-1",
-      "caip19": null,
-      "basis": "malformed-caip19"
+      "caip19": "cosmos:crypto-org-chain-mainnet-1/ics20:0588381B59FDEA3AA08D45C71B5F0D554CCC403FEBBAF2DAF0A7C566874234ED",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "4TLSSHJS8",
@@ -4698,8 +4698,8 @@
       "mechanism": "Native Attribute",
       "technicalReference": "https://github.com/terra-money/core/blob/v0.5.13/types/assets/assets.go -> MicroLunaDenom = uusd",
       "caip2": "cosmos:columbus-5",
-      "caip19": "cosmos:columbus-5/native:https%3A%2F%2Fgithub.com%2Fterra-money%2Fcore%2Fblob%2Fv0.5.13%2Ftypes%2Fassets%2Fassets.go%20-%3E%20MicroLunaDenom%20%3D%20uusd",
-      "basis": "dtif-registry-exact"
+      "caip19": null,
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "5KCTDK9Z7",
@@ -6825,9 +6825,9 @@
       "ledgerDli": "P16TGKN3B",
       "mechanism": "BRC-20",
       "technicalReference": "317c92141a691dec3c88931f991eac95b946cc435b9060cfbdebd1cc42ff1673i0",
-      "caip2": null,
-      "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "caip2": "bip122:000000000019d6689c085ae165831e93",
+      "caip19": "bip122:000000000019d6689c085ae165831e93/ord:317c92141a691dec3c88931f991eac95b946cc435b9060cfbdebd1cc42ff1673i0",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "7DRLKL3B1",
@@ -7408,7 +7408,7 @@
       "technicalReference": "https://github.com/ontio/ontology/blob/master/smartcontract/service/native/utils/params.go -> OntContractAddress, _        = common.AddressParseFromBytes([]byte{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01})",
       "caip2": "bip122:1b8fa7f242d0eeb4395f89cbb59e4c29",
       "caip19": null,
-      "basis": "malformed-caip19"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "805GWPCD0",
@@ -8899,7 +8899,7 @@
       "technicalReference": "https://github.com/openhive-network/hive/blob/master/libraries/protocol/include/hive/protocol/hive_operations.hpp -> hbd_amount = asset( 0, HBD_SYMBOL )",
       "caip2": "hive:beeab0de000000000000000000000000",
       "caip19": null,
-      "basis": "malformed-caip19"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "9B3MH0QK5",
@@ -9986,9 +9986,9 @@
       "ledgerDli": "4LK9BCGBF",
       "mechanism": "ERC-20",
       "technicalReference": "0xe4fa682f94610ccd170680cc3b045d77d9e528a8",
-      "caip2": null,
-      "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "caip2": "eip155:98866",
+      "caip19": "eip155:98866/erc20:0xe4fa682f94610ccd170680cc3b045d77d9e528a8",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "B6PL55JZH",
@@ -10418,8 +10418,8 @@
       "mechanism": "Native Attribute",
       "technicalReference": "https://github.com/terra-money/core/blob/v0.5.13/types/assets/assets.go -> MicroLunaDenom = ucny",
       "caip2": "cosmos:columbus-5",
-      "caip19": "cosmos:columbus-5/native:https%3A%2F%2Fgithub.com%2Fterra-money%2Fcore%2Fblob%2Fv0.5.13%2Ftypes%2Fassets%2Fassets.go%20-%3E%20MicroLunaDenom%20%3D%20ucny",
-      "basis": "dtif-registry-exact"
+      "caip19": null,
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "BKNGQHNHT",
@@ -11553,9 +11553,9 @@
       "ledgerDli": "P16TGKN3B",
       "mechanism": "BRC-20",
       "technicalReference": "9b664bdd6f5ed80d8d88957b63364c41f3ad4efb8eee11366aa16435974d9333i0",
-      "caip2": null,
-      "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "caip2": "bip122:000000000019d6689c085ae165831e93",
+      "caip19": "bip122:000000000019d6689c085ae165831e93/ord:9b664bdd6f5ed80d8d88957b63364c41f3ad4efb8eee11366aa16435974d9333i0",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "CH627V7J4",
@@ -16511,8 +16511,8 @@
       "mechanism": "IBC Coin",
       "technicalReference": "ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9",
       "caip2": "eip155:1776",
-      "caip19": null,
-      "basis": "malformed-caip19"
+      "caip19": "eip155:1776/ics20:C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "HX56HH1ZX",
@@ -20260,9 +20260,9 @@
       "ledgerDli": "2D6172M61",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "eip155:177",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "M1XZ3HVX3",
@@ -20667,8 +20667,8 @@
       "mechanism": "IBC Coin",
       "technicalReference": "ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9",
       "caip2": "cosmos:bitsong-2b",
-      "caip19": null,
-      "basis": "malformed-caip19"
+      "caip19": "cosmos:bitsong-2b/ics20:C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "MCVX0QJTC",
@@ -21070,8 +21070,8 @@
       "mechanism": "Native Attribute",
       "technicalReference": "https://github.com/terra-money/core/blob/v0.5.13/types/assets/assets.go -> MicroLunaDenom = umnt",
       "caip2": "cosmos:columbus-5",
-      "caip19": "cosmos:columbus-5/native:https%3A%2F%2Fgithub.com%2Fterra-money%2Fcore%2Fblob%2Fv0.5.13%2Ftypes%2Fassets%2Fassets.go%20-%3E%20MicroLunaDenom%20%3D%20umnt",
-      "basis": "dtif-registry-exact"
+      "caip19": null,
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "MTCJTRNZR",
@@ -21560,7 +21560,7 @@
       "technicalReference": "https://neoscan.io/asset/c56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b",
       "caip2": "bip122:d42561e3d30e15be6400b6df2f328e02",
       "caip19": null,
-      "basis": "malformed-caip19"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "N82FX493S",
@@ -21570,7 +21570,7 @@
       "technicalReference": "https://github.com/thetatoken/theta-protocol-ledger/blob/v3.2.0/ledger/types/coin.go -> Coins.TFuelWei",
       "caip2": "eip155:361",
       "caip19": null,
-      "basis": "malformed-caip19"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "N886T4TWH",
@@ -24756,9 +24756,9 @@
       "ledgerDli": "HGKSHLJ9M",
       "mechanism": "ERC-20",
       "technicalReference": "0x2d270e6886d130d724215a266106e6832161eaed",
-      "caip2": null,
-      "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "caip2": "eip155:57073",
+      "caip19": "eip155:57073/erc20:0x2d270e6886d130d724215a266106e6832161eaed",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "R44LHZ7PC",
@@ -25828,8 +25828,8 @@
       "mechanism": "IBC Coin",
       "technicalReference": "ibc/401E8BFB2B898C62A272A77F721A04A2345E3A4D93F69E467B7C98A9CF998FEE",
       "caip2": "cosmos:crypto-org-chain-mainnet-1",
-      "caip19": null,
-      "basis": "malformed-caip19"
+      "caip19": "cosmos:crypto-org-chain-mainnet-1/ics20:401E8BFB2B898C62A272A77F721A04A2345E3A4D93F69E467B7C98A9CF998FEE",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "S2TQC8T57",
@@ -27068,9 +27068,9 @@
       "ledgerDli": "QLK5DG37G",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "eip155:9745",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "T67DW1N39",
@@ -27826,7 +27826,7 @@
       "technicalReference": "https://github.com/terra-money/core/blob/v0.5.13/types/assets/assets.go -> MicroLunaDenom = uluna",
       "caip2": "cosmos:columbus-5",
       "caip19": null,
-      "basis": "malformed-caip19"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "TVDFR4GBX",
@@ -28949,9 +28949,9 @@
       "ledgerDli": "P16TGKN3B",
       "mechanism": "BRC-20",
       "technicalReference": "77df24c9f1bd1c6a606eb12eeae3e2a2db40774d54b839b5ae11f438353ddf47i0",
-      "caip2": null,
-      "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "caip2": "bip122:000000000019d6689c085ae165831e93",
+      "caip19": "bip122:000000000019d6689c085ae165831e93/ord:77df24c9f1bd1c6a606eb12eeae3e2a2db40774d54b839b5ae11f438353ddf47i0",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "VZCXR9VP5",
@@ -30105,9 +30105,9 @@
       "ledgerDli": "283701TWM",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "eip155:7258",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "X5B92NG0R",
@@ -31757,9 +31757,9 @@
       "ledgerDli": "F7FJKHTC1",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "eip155:36888",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "ZLXV21ZTH",
@@ -32464,8 +32464,8 @@
       "mechanism": "Native Attribute",
       "technicalReference": "https://github.com/terra-money/core/blob/v0.5.13/types/assets/assets.go -> MicroLunaDenom = ugbp",
       "caip2": "cosmos:columbus-5",
-      "caip19": "cosmos:columbus-5/native:https%3A%2F%2Fgithub.com%2Fterra-money%2Fcore%2Fblob%2Fv0.5.13%2Ftypes%2Fassets%2Fassets.go%20-%3E%20MicroLunaDenom%20%3D%20ugbp",
-      "basis": "dtif-registry-exact"
+      "caip19": null,
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "1CZ5XS888",
@@ -33038,9 +33038,9 @@
       "ledgerDli": "K24JW3PCS",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "eip155:1597",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "2264S8FW2",
@@ -33258,8 +33258,8 @@
       "mechanism": "Native Attribute",
       "technicalReference": "https://github.com/terra-money/core/blob/v0.5.13/types/assets/assets.go -> MicroLunaDenom = ueur",
       "caip2": "cosmos:columbus-5",
-      "caip19": "cosmos:columbus-5/native:https%3A%2F%2Fgithub.com%2Fterra-money%2Fcore%2Fblob%2Fv0.5.13%2Ftypes%2Fassets%2Fassets.go%20-%3E%20MicroLunaDenom%20%3D%20ueur",
-      "basis": "dtif-registry-exact"
+      "caip19": null,
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "29L06QD8P",
@@ -33268,8 +33268,8 @@
       "mechanism": "FT",
       "technicalReference": "A.231cc0dbbcffc4b7.RLY",
       "caip2": "flow:mainnet",
-      "caip19": null,
-      "basis": "malformed-caip19"
+      "caip19": "flow:mainnet/ftoken:A.231cc0dbbcffc4b7.RLY",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "29Q4954QS",
@@ -34174,7 +34174,7 @@
       "technicalReference": "https://neoscan.io/asset/602c79718b16e442de58778e148d0b1084e3b2dffd5de6b7b16cee7969282de7",
       "caip2": "bip122:d42561e3d30e15be6400b6df2f328e02",
       "caip19": null,
-      "basis": "malformed-caip19"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "35210Q7N7",
@@ -36349,7 +36349,7 @@
       "technicalReference": "https://github.com/ontio/ontology/blob/master/smartcontract/service/native/utils/params.go -> OntContractAddress, _        = common.AddressParseFromBytes([]byte{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02})",
       "caip2": "bip122:1b8fa7f242d0eeb4395f89cbb59e4c29",
       "caip19": null,
-      "basis": "malformed-caip19"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "52XJ63N9D",
@@ -36684,9 +36684,9 @@
       "ledgerDli": "PCKNL6864",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "bip122:00000016c72096930787c7e7de4ad069",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "5CMGWLV2M",
@@ -37219,9 +37219,9 @@
       "ledgerDli": "Q4RS231QL",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "movement:126",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "5TNK2PBMD",
@@ -37779,8 +37779,8 @@
       "mechanism": "Fungible Asset",
       "technicalReference": "0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b",
       "caip2": "aptos:1",
-      "caip19": null,
-      "basis": "malformed-caip19"
+      "caip19": "aptos:1/faobj:0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "6BP8GLQ1G",
@@ -38976,9 +38976,9 @@
       "ledgerDli": "MHG1P99M3",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "icon:1",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "7FS1WX5VK",
@@ -39498,8 +39498,8 @@
       "mechanism": "Fungible Asset",
       "technicalReference": "0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b",
       "caip2": "aptos:1",
-      "caip19": null,
-      "basis": "malformed-caip19"
+      "caip19": "aptos:1/faobj:0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "7X0W2C94Z",
@@ -39793,8 +39793,8 @@
       "mechanism": "Fungible Asset",
       "technicalReference": "0x435ad41e7b383cef98899c4e5a22c8dc88ab67b22f95e5663d6c6649298c3a9d",
       "caip2": "aptos:1",
-      "caip19": null,
-      "basis": "malformed-caip19"
+      "caip19": "aptos:1/faobj:0x435ad41e7b383cef98899c4e5a22c8dc88ab67b22f95e5663d6c6649298c3a9d",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "85PSZKCSZ",
@@ -43921,9 +43921,9 @@
       "ledgerDli": "P16TGKN3B",
       "mechanism": "BRC-20",
       "technicalReference": "307ffac5d20fc188f723706f85d75c926550d536f5fd1113839586f38542971ci0",
-      "caip2": null,
-      "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "caip2": "bip122:000000000019d6689c085ae165831e93",
+      "caip19": "bip122:000000000019d6689c085ae165831e93/ord:307ffac5d20fc188f723706f85d75c926550d536f5fd1113839586f38542971ci0",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "CPLCKVT11",
@@ -44589,9 +44589,9 @@
       "ledgerDli": "P16TGKN3B",
       "mechanism": "BRC-20",
       "technicalReference": "b61b0172d95e266c18aea0c624db987e971a5d6d4ebc2aaed85da4642d635735i0",
-      "caip2": null,
-      "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "caip2": "bip122:000000000019d6689c085ae165831e93",
+      "caip19": "bip122:000000000019d6689c085ae165831e93/ord:b61b0172d95e266c18aea0c624db987e971a5d6d4ebc2aaed85da4642d635735i0",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "D94114L7T",
@@ -44975,9 +44975,9 @@
       "ledgerDli": "Q4RS231QL",
       "mechanism": "Move Coin",
       "technicalReference": "0x1::aptos_coin::AptosCoin",
-      "caip2": null,
-      "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "caip2": "movement:126",
+      "caip19": "movement:126/coin:0x1%3A%3Aaptos%5Fcoin%3A%3AAptosCoin",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "DMKBMRJHD",
@@ -46445,8 +46445,8 @@
       "mechanism": "Native Attribute",
       "technicalReference": "https://github.com/terra-money/core/blob/v0.5.13/types/assets/assets.go -> MicroLunaDenom = usdr",
       "caip2": "cosmos:columbus-5",
-      "caip19": "cosmos:columbus-5/native:https%3A%2F%2Fgithub.com%2Fterra-money%2Fcore%2Fblob%2Fv0.5.13%2Ftypes%2Fassets%2Fassets.go%20-%3E%20MicroLunaDenom%20%3D%20usdr",
-      "basis": "dtif-registry-exact"
+      "caip19": null,
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "G1S5FD4D4",
@@ -47020,9 +47020,9 @@
       "ledgerDli": "HGKSHLJ9M",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "eip155:57073",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "GKZV2NDR0",
@@ -47423,9 +47423,9 @@
       "ledgerDli": "4LK9BCGBF",
       "mechanism": null,
       "technicalReference": null,
-      "caip2": null,
+      "caip2": "eip155:98866",
       "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "GZ8FQFJKZ",
@@ -49362,7 +49362,7 @@
       "technicalReference": "https://github.com/thetatoken/theta-protocol-ledger/blob/v3.2.0/ledger/types/coin.go -> Coins.ThetaWei",
       "caip2": "eip155:361",
       "caip19": null,
-      "basis": "malformed-caip19"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "JHGPNC767",
@@ -49494,8 +49494,8 @@
       "mechanism": "Fungible Asset",
       "technicalReference": "0x7b5e9cac3433e9202f28527f707c89e1e47b19de2c33e4db9521a63ad219b739",
       "caip2": "aptos:1",
-      "caip19": null,
-      "basis": "malformed-caip19"
+      "caip19": "aptos:1/faobj:0x7b5e9cac3433e9202f28527f707c89e1e47b19de2c33e4db9521a63ad219b739",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "JLTZF0ZGC",
@@ -53259,8 +53259,8 @@
       "mechanism": "Native Attribute",
       "technicalReference": "https://github.com/terra-money/core/blob/v0.5.13/types/assets/assets.go -> MicroLunaDenom = ujpy",
       "caip2": "cosmos:columbus-5",
-      "caip19": "cosmos:columbus-5/native:https%3A%2F%2Fgithub.com%2Fterra-money%2Fcore%2Fblob%2Fv0.5.13%2Ftypes%2Fassets%2Fassets.go%20-%3E%20MicroLunaDenom%20%3D%20ujpy",
-      "basis": "dtif-registry-exact"
+      "caip19": null,
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "MVTH0BTN9",
@@ -53367,9 +53367,9 @@
       "ledgerDli": "4LK9BCGBF",
       "mechanism": "ERC-20",
       "technicalReference": "0x222365ef19f7947e5484218551b56bb3965aa7af",
-      "caip2": null,
-      "caip19": null,
-      "basis": "ledger-has-no-caip2"
+      "caip2": "eip155:98866",
+      "caip19": "eip155:98866/erc20:0x222365ef19f7947e5484218551b56bb3965aa7af",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "N0BMRXJKD",
@@ -54880,8 +54880,8 @@
       "mechanism": "FT",
       "technicalReference": "A.b19436aae4d94622.FiatToken",
       "caip2": "flow:mainnet",
-      "caip19": null,
-      "basis": "malformed-caip19"
+      "caip19": "flow:mainnet/ftoken:A.b19436aae4d94622.FiatToken",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "P7L7D5RFT",
@@ -58952,7 +58952,7 @@
       "technicalReference": "https://github.com/openhive-network/hive/blob/master/libraries/protocol/include/hive/protocol/hive_operations.hpp -> hive_amount = asset( 0, HIVE_SYMBOL )",
       "caip2": "hive:beeab0de000000000000000000000000",
       "caip19": null,
-      "basis": "malformed-caip19"
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "SWJZ97J00",
@@ -59302,8 +59302,8 @@
       "mechanism": "Fungible Asset",
       "technicalReference": "0x50038be55be5b964cfa32cf128b5cf05f123959f286b4cc02b86cafd48945f89",
       "caip2": "aptos:1",
-      "caip19": null,
-      "basis": "malformed-caip19"
+      "caip19": "aptos:1/faobj:0x50038be55be5b964cfa32cf128b5cf05f123959f286b4cc02b86cafd48945f89",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "T8HCTG9W6",
@@ -59905,8 +59905,8 @@
       "mechanism": "IBC Coin",
       "technicalReference": "ibc/F51BB221BAA275F2EBF654F70B005627D7E713AFFD6D86AFD1E43CAA886149F4",
       "caip2": "eip155:1776",
-      "caip19": null,
-      "basis": "malformed-caip19"
+      "caip19": "eip155:1776/ics20:F51BB221BAA275F2EBF654F70B005627D7E713AFFD6D86AFD1E43CAA886149F4",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "TQB32FQ1C",
@@ -62317,8 +62317,8 @@
       "mechanism": "CIS-2",
       "technicalReference": "<9390,0>",
       "caip2": "ccd:9dd9ca4d19e9393877d2c44b70f89acb",
-      "caip19": null,
-      "basis": "malformed-caip19"
+      "caip19": "ccd:9dd9ca4d19e9393877d2c44b70f89acb/cis2:%3C9390%2C0%3E",
+      "basis": "dtif-registry-exact"
     },
     {
       "dti": "X3WZ1HNWL",
@@ -63280,8 +63280,8 @@
       "mechanism": "Native Attribute",
       "technicalReference": "https://github.com/terra-money/core/blob/v0.5.13/types/assets/assets.go -> MicroLunaDenom = ukrw",
       "caip2": "cosmos:columbus-5",
-      "caip19": "cosmos:columbus-5/native:https%3A%2F%2Fgithub.com%2Fterra-money%2Fcore%2Fblob%2Fv0.5.13%2Ftypes%2Fassets%2Fassets.go%20-%3E%20MicroLunaDenom%20%3D%20ukrw",
-      "basis": "dtif-registry-exact"
+      "caip19": null,
+      "basis": "protocol-token-no-reference"
     },
     {
       "dti": "XZKT5FBVP",
