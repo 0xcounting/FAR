@@ -3,11 +3,1495 @@
   "_readme": "Links asserted by a language model from names and tickers alone, because the DTI snapshot redacts the contract address. Published at status \"inferred\" — BELOW the deterministic \"proposed\" tier and far below human-reviewed \"accepted\". Each carries the model's own confidence and its reasoning, which is what a disputer argues with. Promoting one to accepted means moving it into data/links.json by pull request with checkable evidence.",
   "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
   "verdictCounts": {
-    "link": 1356,
-    "no-link": 1058,
-    "unsure": 148
+    "link": 1759,
+    "no-link": 1128,
+    "unsure": 188
   },
   "links": [
+    {
+      "dti": "10G31SK86",
+      "coingeckoId": "dogwifcoin",
+      "modelConfidence": "high",
+      "reasoning": "DTI long name 'dogwifhat' and short name WIF match CoinGecko 'dogwifhat' (WIF) exactly, including casing; the other WIF candidates are differently-named copies ('DogWifHat' on Base, 'DOGWIFHOOD', 'WIF on ETH') with negligible liquidity.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "34V259NQP",
+      "coingeckoId": "gas",
+      "modelConfidence": "high",
+      "reasoning": "DTI long name 'Gas' and ticker GAS, typed as a token hosted on another ledger, match CoinGecko 'Gas' (GAS) which is the NEO network's utility token issued on the NEO ledger; the only same-ticker alternative, 'gas-2', is an unrelated Solana token named 'GAS'.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "3555NMHK2",
+      "coingeckoId": "aurora-near",
+      "modelConfidence": "high",
+      "reasoning": "Name 'Aurora' and ticker AURORA match CoinGecko 'Aurora' (AURORA) exactly, and that coin is deployed on Ethereum, NEAR and Aurora - consistent with this DTI equivalence group spanning several ledgers; 'aurora-terminal' is an unrelated Solana token of the same name.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "4H95J0R2X",
+      "coingeckoId": "bitcoin",
+      "modelConfidence": "high",
+      "reasoning": "DTI long name 'Bitcoin', short names BTC/XBT and type 'native token of a ledger' identify the Bitcoin blockchain's own unit, which is CoinGecko 'Bitcoin' (BTC).",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "4Q1G4VWZ2",
+      "coingeckoId": "joe",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'JOE'/JOE matches CoinGecko 'JOE' (JOE), the LFJ/Trader Joe token, which is deployed on Avalanche, BNB Chain, Arbitrum and Mantle - matching a DTI record typed as hosted on another ledger with a multi-deployment group; 'joe-2' is an unrelated Solana token.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "5JRWC5LZQ",
+      "coingeckoId": "coredaoorg",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Core'/CORE including a native-token record identifies a blockchain's own unit of account, which is CoinGecko 'Core' (CORE), the Core DAO chain token; 'core-2' is a Solana meme token of the same name.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "6G2M4BLN9",
+      "coingeckoId": "ark",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Ark'/ARK with a native-token record names a ledger's own unit, matching CoinGecko 'ARK' (ARK), the ARK blockchain; the alternative 'ark-3' is a BNB Chain token ('ARK DeFAI') and so cannot be a native unit.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "6PC0N0QWT",
+      "coingeckoId": "leo-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'LEO'/LEO, typed as a token hosted on other ledgers with a multi-deployment group, matches CoinGecko 'LEO Token' (LEO) - Bitfinex's UNUS SED LEO, which is issued on both Ethereum and EOS; the exact-name alternatives ('Leo', 'LEO' by Leopold) are unrelated micro-cap tokens.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "7FS1WX5VK",
+      "coingeckoId": "goatseus-maximus",
+      "modelConfidence": "medium",
+      "reasoning": "Long name 'Goatseus Maximus' and ticker GOAT match CoinGecko 'Goatseus Maximus' (GOAT) exactly; the only other exact-name candidate, 'goatseus-maximus-on-eth', is a separate Ethereum listing of the same meme, so the canonical entry is the right target for the asset as a whole.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "8HBMRV08Q",
+      "coingeckoId": "useless-3",
+      "modelConfidence": "high",
+      "reasoning": "Long name 'Useless Coin' and ticker USELESS match CoinGecko 'Useless Coin' (USELESS) exactly including casing, and that coin is listed on both Solana and BNB Chain, matching a two-member DTI group; 'USELESS COIN' is a distinct pump.fun token.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "BC9HM85Q6",
+      "coingeckoId": "dodo",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'DODO'/DODO matches CoinGecko 'DODO' (DODO), the DODO DEX token, which is deployed on Ethereum, NEAR, Aurora and Energi - consistent with a DTI record typed as hosted on another ledger with a multi-deployment group; 'dodo-2' is an unrelated Ethereum meme token.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "C23C4MD1D",
+      "coingeckoId": "ark",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Ark'/ARK with a native-token record names a ledger's own unit, matching CoinGecko 'ARK' (ARK), the ARK blockchain; the alternative 'ark-3' is a BNB Chain token ('ARK DeFAI') and so cannot be a native unit.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "CFF75TLC3",
+      "coingeckoId": "edge",
+      "modelConfidence": "medium",
+      "reasoning": "DTI 'Edge'/EDGE matches CoinGecko 'Edge' (EDGE), the Edge Network token on Ethereum, by name (exact casing) and ticker; 'edge-2' is a Base token displayed as 'EDGE', and 'edgeX'/'Definitive' are different names. Medium because 'Edge' is a common word and the DTI record carries no further detail.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "CT2TZWNCQ",
+      "coingeckoId": "wen-4",
+      "modelConfidence": "medium",
+      "reasoning": "Of the WEN candidates only 'wen-4' matches both the DTI long name 'Wen' (same casing) and the ticker WEN; 'wen-2' trades as $WEN, and 'Wen Lambo'/'WEN Token' are different names. Medium because the id is numbered, indicating a name collision.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "DF7T6Z000",
+      "coingeckoId": "wen-4",
+      "modelConfidence": "medium",
+      "reasoning": "Of the WEN candidates only 'wen-4' matches both the DTI long name 'Wen' (same casing) and the ticker WEN; 'wen-2' trades as $WEN, and 'Wen Lambo'/'WEN Token' are different names. Medium because the id is numbered, indicating a name collision.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "DKL80HPK3",
+      "coingeckoId": "beam-2",
+      "modelConfidence": "medium",
+      "reasoning": "DTI 'Beam'/BEAM is typed as a token hosted on other ledgers, which rules out CoinGecko 'BEAM' - the native coin of the Mimblewimble Beam chain - and points to 'Beam' (BEAM), the ERC-20 gaming token; name and ticker match exactly.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "DMTN3PVDK",
+      "coingeckoId": "joe",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'JOE'/JOE matches CoinGecko 'JOE' (JOE), the LFJ/Trader Joe token, which is deployed on Avalanche, BNB Chain, Arbitrum and Mantle - matching a DTI record typed as hosted on another ledger with a multi-deployment group; 'joe-2' is an unrelated Solana token.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "DX81GC616",
+      "coingeckoId": "moo-deng",
+      "modelConfidence": "medium",
+      "reasoning": "Long name 'Moo Deng' and ticker MOODENG match CoinGecko 'Moo Deng' (MOODENG) exactly; the alternative 'MOO DENG' is a separate Ethereum listing of the same meme with far less liquidity, so the canonical Solana entry is the asset meant.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "H3X85BK7M",
+      "coingeckoId": "moo-deng",
+      "modelConfidence": "medium",
+      "reasoning": "Long name 'Moo Deng' and ticker MOODENG match CoinGecko 'Moo Deng' (MOODENG) exactly; the alternative 'MOO DENG' is a separate Ethereum listing of the same meme with far less liquidity, so the canonical Solana entry is the asset meant.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "H9W8HR1JD",
+      "coingeckoId": "troll-2",
+      "modelConfidence": "low",
+      "reasoning": "DTI long name 'TROLL' (all caps) and ticker TROLL match CoinGecko 'TROLL' (TROLL) on Solana in both name casing and ticker, whereas 'Troll' is a separate Ethereum token. Low confidence: the id is numbered, several TROLL memes exist, and the redacted ledger means the casing match is the only discriminator.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "JG63F041Q",
+      "coingeckoId": "edge",
+      "modelConfidence": "medium",
+      "reasoning": "DTI 'Edge'/EDGE matches CoinGecko 'Edge' (EDGE), the Edge Network token on Ethereum, by name (exact casing) and ticker; 'edge-2' is a Base token displayed as 'EDGE', and 'edgeX'/'Definitive' are different names. Medium because 'Edge' is a common word and the DTI record carries no further detail.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "JPM88GN3L",
+      "coingeckoId": "tribe-2",
+      "modelConfidence": "medium",
+      "reasoning": "DTI 'Tribe'/TRIBE matches CoinGecko 'Tribe' (TRIBE), the Fei Protocol governance token on Ethereum; the only other exact-name candidate is a Sonic-chain token from equaldao with negligible size.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "JS2NV8SRL",
+      "coingeckoId": "aurora-near",
+      "modelConfidence": "high",
+      "reasoning": "Name 'Aurora' and ticker AURORA match CoinGecko 'Aurora' (AURORA) exactly, and that coin is deployed on Ethereum, NEAR and Aurora - consistent with this DTI equivalence group spanning several ledgers; 'aurora-terminal' is an unrelated Solana token of the same name.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "K1NS41N51",
+      "coingeckoId": "bitcoin",
+      "modelConfidence": "medium",
+      "reasoning": "Name 'Bitcoin' with ticker BTC and no wrapper or bridge wording; DTI places it in the same functionally-fungible group as the native Bitcoin record, so it denotes BTC. Flagged medium because the record is typed as hosted on another ledger, which usually means a wrapped representation whose own CoinGecko entry may exist.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L3H852881",
+      "coingeckoId": "aurora-near",
+      "modelConfidence": "high",
+      "reasoning": "Name 'Aurora' and ticker AURORA match CoinGecko 'Aurora' (AURORA) exactly, and that coin is deployed on Ethereum, NEAR and Aurora - consistent with this DTI equivalence group spanning several ledgers; 'aurora-terminal' is an unrelated Solana token of the same name.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LDQ7G0HM4",
+      "coingeckoId": "grass",
+      "modelConfidence": "high",
+      "reasoning": "Long name 'Grass' and ticker GRASS match CoinGecko 'Grass' (GRASS) exactly; the only other candidate, 'grass-2', is an unrelated Base token reusing the name.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LGXBHQK43",
+      "coingeckoId": "aurora-near",
+      "modelConfidence": "high",
+      "reasoning": "Name 'Aurora' and ticker AURORA match CoinGecko 'Aurora' (AURORA) exactly, and that coin is deployed on Ethereum, NEAR and Aurora - consistent with this DTI equivalence group spanning several ledgers; 'aurora-terminal' is an unrelated Solana token of the same name.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "M1LRSF05N",
+      "coingeckoId": "useless-3",
+      "modelConfidence": "high",
+      "reasoning": "Long name 'Useless Coin' and ticker USELESS match CoinGecko 'Useless Coin' (USELESS) exactly including casing, and that coin is listed on both Solana and BNB Chain, matching a two-member DTI group; 'USELESS COIN' is a distinct pump.fun token.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "M5D76SHV5",
+      "coingeckoId": "dash",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Dash'/DASH with a native-token record names the Dash blockchain's own unit, which is CoinGecko 'Dash' (DASH); 'dash-2' is an Ethereum token and cannot be a native unit.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MNCR2MKHP",
+      "coingeckoId": "grass",
+      "modelConfidence": "high",
+      "reasoning": "Long name 'Grass' and ticker GRASS match CoinGecko 'Grass' (GRASS) exactly; the only other candidate, 'grass-2', is an unrelated Base token reusing the name.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "PCM57R0JT",
+      "coingeckoId": "beam-2",
+      "modelConfidence": "medium",
+      "reasoning": "DTI 'Beam'/BEAM is typed as a token hosted on other ledgers, which rules out CoinGecko 'BEAM' - the native coin of the Mimblewimble Beam chain - and points to 'Beam' (BEAM), the ERC-20 gaming token; name and ticker match exactly.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "PPDH6B273",
+      "coingeckoId": "dash",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Dash'/DASH with a native-token record names the Dash blockchain's own unit, which is CoinGecko 'Dash' (DASH); 'dash-2' is an Ethereum token and cannot be a native unit.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "QB6HJWNP1",
+      "coingeckoId": "dodo",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'DODO'/DODO matches CoinGecko 'DODO' (DODO), the DODO DEX token, which is deployed on Ethereum, NEAR, Aurora and Energi - consistent with a DTI record typed as hosted on another ledger with a multi-deployment group; 'dodo-2' is an unrelated Ethereum meme token.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "R2723C879",
+      "coingeckoId": "aurora-near",
+      "modelConfidence": "high",
+      "reasoning": "Name 'Aurora' and ticker AURORA match CoinGecko 'Aurora' (AURORA) exactly, and that coin is deployed on Ethereum, NEAR and Aurora - consistent with this DTI equivalence group spanning several ledgers; 'aurora-terminal' is an unrelated Solana token of the same name.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "R5M1NMD2C",
+      "coingeckoId": "dogwifcoin",
+      "modelConfidence": "high",
+      "reasoning": "DTI long name 'dogwifhat' and short name WIF match CoinGecko 'dogwifhat' (WIF) exactly, including casing; the other WIF candidates are differently-named copies ('DogWifHat' on Base, 'DOGWIFHOOD', 'WIF on ETH') with negligible liquidity.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "SW2NXBK4D",
+      "coingeckoId": "hive",
+      "modelConfidence": "medium",
+      "reasoning": "Name 'Hive' and ticker HIVE match CoinGecko 'Hive' (HIVE) exactly; the alternatives ('HIVE' on Base, 'Hive Protocol', 'Hive Token', 'SolHive') are differently-named projects. Medium because DTI types this record as hosted on another ledger while CoinGecko 'Hive' is the Hive blockchain's own unit, so the record may describe a bridged representation.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "TBJRP1QWJ",
+      "coingeckoId": "hive",
+      "modelConfidence": "medium",
+      "reasoning": "Name 'Hive' and ticker HIVE match CoinGecko 'Hive' (HIVE) exactly; the alternatives ('HIVE' on Base, 'Hive Protocol', 'Hive Token', 'SolHive') are differently-named projects. Medium because DTI types this record as hosted on another ledger while CoinGecko 'Hive' is the Hive blockchain's own unit, so the record may describe a bridged representation.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "TJZP16CLW",
+      "coingeckoId": "tribe-2",
+      "modelConfidence": "medium",
+      "reasoning": "DTI 'Tribe'/TRIBE matches CoinGecko 'Tribe' (TRIBE), the Fei Protocol governance token on Ethereum; the only other exact-name candidate is a Sonic-chain token from equaldao with negligible size.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "TV1PFWQ7X",
+      "coingeckoId": "goatseus-maximus",
+      "modelConfidence": "medium",
+      "reasoning": "Long name 'Goatseus Maximus' and ticker GOAT match CoinGecko 'Goatseus Maximus' (GOAT) exactly; the only other exact-name candidate, 'goatseus-maximus-on-eth', is a separate Ethereum listing of the same meme, so the canonical entry is the right target for the asset as a whole.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "V15WLZJMF",
+      "coingeckoId": "bitcoin",
+      "modelConfidence": "medium",
+      "reasoning": "This record is the functionally-fungible group for 'Bitcoin' (BTC/XBT) whose members include the native Bitcoin record 4H95J0R2X, so it denotes the same economic asset as CoinGecko 'Bitcoin' (BTC).",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "X70FVW3GT",
+      "coingeckoId": "beam-2",
+      "modelConfidence": "medium",
+      "reasoning": "DTI 'Beam'/BEAM is typed as a token hosted on other ledgers, which rules out CoinGecko 'BEAM' - the native coin of the Mimblewimble Beam chain - and points to 'Beam' (BEAM), the ERC-20 gaming token; name and ticker match exactly.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "XHKMM2P1P",
+      "coingeckoId": "aurora-near",
+      "modelConfidence": "high",
+      "reasoning": "Name 'Aurora' and ticker AURORA match CoinGecko 'Aurora' (AURORA) exactly, and that coin is deployed on Ethereum, NEAR and Aurora - consistent with this DTI equivalence group spanning several ledgers; 'aurora-terminal' is an unrelated Solana token of the same name.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "XQHRNLHWM",
+      "coingeckoId": "leo-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'LEO'/LEO, typed as a token hosted on other ledgers with a multi-deployment group, matches CoinGecko 'LEO Token' (LEO) - Bitfinex's UNUS SED LEO, which is issued on both Ethereum and EOS; the exact-name alternatives ('Leo', 'LEO' by Leopold) are unrelated micro-cap tokens.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "XZDKBPFTV",
+      "coingeckoId": "troll-2",
+      "modelConfidence": "low",
+      "reasoning": "DTI long name 'TROLL' (all caps) and ticker TROLL match CoinGecko 'TROLL' (TROLL) on Solana in both name casing and ticker, whereas 'Troll' is a separate Ethereum token. Low confidence: the id is numbered, several TROLL memes exist, and the redacted ledger means the casing match is the only discriminator.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "ZBGBZSRB5",
+      "coingeckoId": "coredaoorg",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Core'/CORE including a native-token record identifies a blockchain's own unit of account, which is CoinGecko 'Core' (CORE), the Core DAO chain token; 'core-2' is a Solana meme token of the same name.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "3TZ6V51J9",
+      "coingeckoId": "xfinite-entertainment-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Xfinite Entertainment Token' (XET) matches CoinGecko 'Xfinite Entertainment' (XET) on both name and ticker; no other candidate was offered.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "QBGXW5RWK",
+      "coingeckoId": "xfinite-entertainment-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Xfinite Entertainment Token' (XET) matches CoinGecko 'Xfinite Entertainment' (XET) on both name and ticker; no other candidate was offered.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "22NPQNT1H",
+      "coingeckoId": "league-of-kingdoms",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'League of Kingdoms Arena' (LOKA) is the League of Kingdoms game token, matching CoinGecko 'League of Kingdoms' (LOKA) on ticker and on the distinctive project name; four DTI records for one asset is the expected per-deployment pattern.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "818V8QXLG",
+      "coingeckoId": "league-of-kingdoms",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'League of Kingdoms Arena' (LOKA) is the League of Kingdoms game token, matching CoinGecko 'League of Kingdoms' (LOKA) on ticker and on the distinctive project name; four DTI records for one asset is the expected per-deployment pattern.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "QD3NM0MZQ",
+      "coingeckoId": "league-of-kingdoms",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'League of Kingdoms Arena' (LOKA) is the League of Kingdoms game token, matching CoinGecko 'League of Kingdoms' (LOKA) on ticker and on the distinctive project name; four DTI records for one asset is the expected per-deployment pattern.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "XG3S0NSVG",
+      "coingeckoId": "league-of-kingdoms",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'League of Kingdoms Arena' (LOKA) is the League of Kingdoms game token, matching CoinGecko 'League of Kingdoms' (LOKA) on ticker and on the distinctive project name; four DTI records for one asset is the expected per-deployment pattern.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "19T0P4NPX",
+      "coingeckoId": "unlend-finance",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'UniLend Finance Token' (UFT) matches CoinGecko 'UniLend Finance' (UFT) on name and ticker; the id spelling 'unlend-finance' is CoinGecko's own slug for UniLend.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "1B9XWTSFN",
+      "coingeckoId": "basic-attention-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Basic Attention Token' (BAT) matches CoinGecko 'Basic Attention' (BAT) exactly on the distinctive project name and ticker; 'Batic' and 'BitBat Token' are unrelated names that merely share the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "3XQ8N9BVL",
+      "coingeckoId": "basic-attention-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Basic Attention Token' (BAT) matches CoinGecko 'Basic Attention' (BAT) exactly on the distinctive project name and ticker; 'Batic' and 'BitBat Token' are unrelated names that merely share the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "4X6Z0FWJT",
+      "coingeckoId": "rari-governance-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Rari Governance Token' (RGT) matches CoinGecko 'Rari Governance' (RGT) on name and ticker; the other candidates are other projects' governance tokens with different tickers.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "51F8M277P",
+      "coingeckoId": "basic-attention-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Basic Attention Token' (BAT) matches CoinGecko 'Basic Attention' (BAT) exactly on the distinctive project name and ticker; 'Batic' and 'BitBat Token' are unrelated names that merely share the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "5C24S9MMZ",
+      "coingeckoId": "unlend-finance",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'UniLend Finance Token' (UFT) matches CoinGecko 'UniLend Finance' (UFT) on name and ticker; the id spelling 'unlend-finance' is CoinGecko's own slug for UniLend.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "7S6NLCJ58",
+      "coingeckoId": "basic-attention-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Basic Attention Token' (BAT) matches CoinGecko 'Basic Attention' (BAT) exactly on the distinctive project name and ticker; 'Batic' and 'BitBat Token' are unrelated names that merely share the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "D51DH3VGT",
+      "coingeckoId": "rari-governance-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Rari Governance Token' (RGT) matches CoinGecko 'Rari Governance' (RGT) on name and ticker; the other candidates are other projects' governance tokens with different tickers.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MQ3D6VHLF",
+      "coingeckoId": "unlend-finance",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'UniLend Finance Token' (UFT) matches CoinGecko 'UniLend Finance' (UFT) on name and ticker; the id spelling 'unlend-finance' is CoinGecko's own slug for UniLend.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "P9R0DDN1T",
+      "coingeckoId": "basic-attention-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Basic Attention Token' (BAT) matches CoinGecko 'Basic Attention' (BAT) exactly on the distinctive project name and ticker; 'Batic' and 'BitBat Token' are unrelated names that merely share the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "SD3T05550",
+      "coingeckoId": "basic-attention-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Basic Attention Token' (BAT) matches CoinGecko 'Basic Attention' (BAT) exactly on the distinctive project name and ticker; 'Batic' and 'BitBat Token' are unrelated names that merely share the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "SP03807R9",
+      "coingeckoId": "basic-attention-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Basic Attention Token' (BAT) matches CoinGecko 'Basic Attention' (BAT) exactly on the distinctive project name and ticker; 'Batic' and 'BitBat Token' are unrelated names that merely share the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "WX3CL76ZD",
+      "coingeckoId": "bancor",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Bancor Network Token' (BNT) matches CoinGecko 'Bancor Network' (BNT) on name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "5QB9VPP18",
+      "coingeckoId": "wall-street-bets-dapp",
+      "modelConfidence": "low",
+      "reasoning": "Of the WSB candidates only 'WallStreetBets DApp' actually spells the DTI name 'Wall Street Bets'; 'Wall Street Baby' and 'WSB Coin' are different phrases that merely share the ticker. Low confidence: several small WSB tokens exist and the DTI record gives no contract or ledger to confirm.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "H1GKPJJLX",
+      "coingeckoId": "wall-street-bets-dapp",
+      "modelConfidence": "low",
+      "reasoning": "Of the WSB candidates only 'WallStreetBets DApp' actually spells the DTI name 'Wall Street Bets'; 'Wall Street Baby' and 'WSB Coin' are different phrases that merely share the ticker. Low confidence: several small WSB tokens exist and the DTI record gives no contract or ledger to confirm.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "2PJ009JL4",
+      "coingeckoId": "paris-saint-germain-fan-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Paris Saint-Germain' (PSG) matches CoinGecko 'Paris Saint-Germain Fan Token' (PSG) on club name and ticker; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "4XG3KHWP1",
+      "coingeckoId": "paris-saint-germain-fan-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Paris Saint-Germain' (PSG) matches CoinGecko 'Paris Saint-Germain Fan Token' (PSG) on club name and ticker; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "1CT9N861W",
+      "coingeckoId": "xtcom-token",
+      "modelConfidence": "medium",
+      "reasoning": "DTI 'XT Token' with ticker XT matches CoinGecko 'XT.com' (XT), the XT exchange token; the only other candidate is Wirex's WXT, a different ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "5XB0LVT4G",
+      "coingeckoId": "status",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Status Network Token' (SNT) matches CoinGecko 'Status' (SNT) on project name and ticker; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "8342SCN68",
+      "coingeckoId": "huobi-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Huobi Token' (HT) matches CoinGecko 'Huobi' (HT) on name and ticker; the native-token and hosted-token records are the expected Heco/Ethereum deployments of one asset.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "86QL75JKD",
+      "coingeckoId": "aragon",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Aragon Network Token' (ANT) matches CoinGecko 'Aragon' (ANT) on name and ticker; the other ANT candidates are 'All InX' and 'Autonomi', unrelated projects sharing the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "8Z8D9H7FB",
+      "coingeckoId": "huobi-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Huobi Token' (HT) matches CoinGecko 'Huobi' (HT) on name and ticker; the native-token and hosted-token records are the expected Heco/Ethereum deployments of one asset.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "9GPWKWLDD",
+      "coingeckoId": "status",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Status Network Token' (SNT) matches CoinGecko 'Status' (SNT) on project name and ticker; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "B95X33147",
+      "coingeckoId": "measurable-data-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Measuarable Data Token' (a typo for Measurable) with ticker MDT matches CoinGecko 'Measurable Data' (MDT); it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "CFT2WVB5L",
+      "coingeckoId": "measurable-data-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Measuarable Data Token' (a typo for Measurable) with ticker MDT matches CoinGecko 'Measurable Data' (MDT); it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "F25635ZT8",
+      "coingeckoId": "stepn",
+      "modelConfidence": "high",
+      "reasoning": "'Green Metaverse Token' is the formal name of STEPN's GMT, and CoinGecko lists it as 'GMT' (GMT) under the id 'stepn'; ticker and formal name agree.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "FDGL5MD21",
+      "coingeckoId": "district0x",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'district0x Network Token' (DNT) matches CoinGecko 'district0x' (DNT) on name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "FQM4CQTFJ",
+      "coingeckoId": "mmfinance",
+      "modelConfidence": "medium",
+      "reasoning": "DTI 'Mad Meerkat Finance' (MMF) matches CoinGecko 'MMFinance (Cronos)' (MMF) - MMFinance is the Mad Meerkat Finance DEX and MMF is its token; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "FR9D0M141",
+      "coingeckoId": "huobi-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Huobi Token' (HT) matches CoinGecko 'Huobi' (HT) on name and ticker; the native-token and hosted-token records are the expected Heco/Ethereum deployments of one asset.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "FVVM5K1LJ",
+      "coingeckoId": "stepn",
+      "modelConfidence": "high",
+      "reasoning": "'Green Metaverse Token' is the formal name of STEPN's GMT, and CoinGecko lists it as 'GMT' (GMT) under the id 'stepn'; ticker and formal name agree.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "FX7ZCPFPX",
+      "coingeckoId": "coti",
+      "modelConfidence": "high",
+      "reasoning": "'Currency of the Internet' is what COTI stands for, and the ticker COTI matches CoinGecko 'COTI' (COTI) exactly.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "H2WS5TW9R",
+      "coingeckoId": "paragonsdao",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Paragons DAO Token' (PDT) matches CoinGecko 'ParagonsDAO' (PDT) on name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "HD9F0F6K3",
+      "coingeckoId": "paragonsdao",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Paragons DAO Token' (PDT) matches CoinGecko 'ParagonsDAO' (PDT) on name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "J3ZLNM7HL",
+      "coingeckoId": "xtcom-token",
+      "modelConfidence": "medium",
+      "reasoning": "DTI 'XT Token' with ticker XT matches CoinGecko 'XT.com' (XT), the XT exchange token; the only other candidate is Wirex's WXT, a different ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "JFJW0JTV0",
+      "coingeckoId": "mmfinance",
+      "modelConfidence": "medium",
+      "reasoning": "DTI 'Mad Meerkat Finance' (MMF) matches CoinGecko 'MMFinance (Cronos)' (MMF) - MMFinance is the Mad Meerkat Finance DEX and MMF is its token; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L02L1JP4M",
+      "coingeckoId": "district0x",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'district0x Network Token' (DNT) matches CoinGecko 'district0x' (DNT) on name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MQX9MVJCX",
+      "coingeckoId": "aragon",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Aragon Network Token' (ANT) matches CoinGecko 'Aragon' (ANT) on name and ticker; the other ANT candidates are 'All InX' and 'Autonomi', unrelated projects sharing the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "QHK63QF47",
+      "coingeckoId": "measurable-data-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Measuarable Data Token' (a typo for Measurable) with ticker MDT matches CoinGecko 'Measurable Data' (MDT); it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "SWJZ97J00",
+      "coingeckoId": "aragon",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Aragon Network Token' (ANT) matches CoinGecko 'Aragon' (ANT) on name and ticker; the other ANT candidates are 'All InX' and 'Autonomi', unrelated projects sharing the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "VQ5ZSJXQ0",
+      "coingeckoId": "status",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Status Network Token' (SNT) matches CoinGecko 'Status' (SNT) on project name and ticker; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "X41MS94D1",
+      "coingeckoId": "status",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Status Network Token' (SNT) matches CoinGecko 'Status' (SNT) on project name and ticker; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "XDMP5FSV0",
+      "coingeckoId": "fetch-ai",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Artificial Superintelligence Alliance' with ticker FET matches CoinGecko 'Artificial Superintelligence Alliance' (FET) exactly on name and ticker; the ASI-ticker alternative 'AltSignals' is a different project.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "37QP0NB0G",
+      "coingeckoId": "msol",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Marinade staked SOL mSOL' matches CoinGecko 'Marinade Staked SOL' (MSOL) on name and ticker; the DTI record names the liquid-staking token itself, so linking to the staking token rather than SOL is correct.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MS0D6Z6XW",
+      "coingeckoId": "msol",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Marinade staked SOL mSOL' matches CoinGecko 'Marinade Staked SOL' (MSOL) on name and ticker; the DTI record names the liquid-staking token itself, so linking to the staking token rather than SOL is correct.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "RJHN9038Q",
+      "coingeckoId": "fetch-ai",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Artificial Superintelligence Alliance' with ticker FET matches CoinGecko 'Artificial Superintelligence Alliance' (FET) exactly on name and ticker; the ASI-ticker alternative 'AltSignals' is a different project.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "291SG90B8",
+      "coingeckoId": "kyber-network-crystal",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Kyber Network Crystal v2' (KNC) matches CoinGecko 'Kyber Network Crystal' (KNC), which is the v2 token; the other candidate is explicitly 'Kyber Network Crystal Legacy' (KNCL), the v1 asset, so the generation is unambiguous.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "8JTDJ95PK",
+      "coingeckoId": "kyber-network-crystal",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Kyber Network Crystal v2' (KNC) matches CoinGecko 'Kyber Network Crystal' (KNC), which is the v2 token; the other candidate is explicitly 'Kyber Network Crystal Legacy' (KNCL), the v1 asset, so the generation is unambiguous.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "HFT3N3C48",
+      "coingeckoId": "kyber-network-crystal",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Kyber Network Crystal v2' (KNC) matches CoinGecko 'Kyber Network Crystal' (KNC), which is the v2 token; the other candidate is explicitly 'Kyber Network Crystal Legacy' (KNCL), the v1 asset, so the generation is unambiguous.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L0DZSBLVZ",
+      "coingeckoId": "kyber-network-crystal",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Kyber Network Crystal v2' (KNC) matches CoinGecko 'Kyber Network Crystal' (KNC), which is the v2 token; the other candidate is explicitly 'Kyber Network Crystal Legacy' (KNCL), the v1 asset, so the generation is unambiguous.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "2XC43NWWH",
+      "coingeckoId": "staked-ether",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Lido Staked ETH' with ticker stETH matches CoinGecko 'Lido Staked Ether' (STETH); the record names the staking derivative itself, not ETH, and that derivative has its own coin.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "70SQQZW91",
+      "coingeckoId": "alethea-artificial-liquid-intelligence-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Artificial Liquid Intelligence Token' (ALI) matches CoinGecko 'Artificial Liquid Intelligence' (ALI) on the full distinctive name and ticker; 'Alita' merely shares the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MXBXC1Q5K",
+      "coingeckoId": "alethea-artificial-liquid-intelligence-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Artificial Liquid Intelligence Token' (ALI) matches CoinGecko 'Artificial Liquid Intelligence' (ALI) on the full distinctive name and ticker; 'Alita' merely shares the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "SVLH387V4",
+      "coingeckoId": "alethea-artificial-liquid-intelligence-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Artificial Liquid Intelligence Token' (ALI) matches CoinGecko 'Artificial Liquid Intelligence' (ALI) on the full distinctive name and ticker; 'Alita' merely shares the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "VX83G46GV",
+      "coingeckoId": "staked-ether",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Lido Staked ETH' with ticker stETH matches CoinGecko 'Lido Staked Ether' (STETH); the record names the staking derivative itself, not ETH, and that derivative has its own coin.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "Z0Q5Q3G7W",
+      "coingeckoId": "alethea-artificial-liquid-intelligence-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Artificial Liquid Intelligence Token' (ALI) matches CoinGecko 'Artificial Liquid Intelligence' (ALI) on the full distinctive name and ticker; 'Alita' merely shares the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "DGMQMFZD4",
+      "coingeckoId": "ethereum-classic",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Ethereum Classic Ether' (ETC), including a native-token record, names the Ethereum Classic chain's own unit, which is CoinGecko 'Ethereum Classic' (ETC).",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "GWQWXVV7J",
+      "coingeckoId": "ethereum-classic",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Ethereum Classic Ether' (ETC), including a native-token record, names the Ethereum Classic chain's own unit, which is CoinGecko 'Ethereum Classic' (ETC).",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "4MRQJ9KZX",
+      "coingeckoId": "virtual-protocol",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Virtual Protocol' (VIRTUAL) matches CoinGecko 'Virtuals Protocol' (VIRTUAL) on ticker and on the distinctive project name; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "7WMBV0R29",
+      "coingeckoId": "virtual-protocol",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Virtual Protocol' (VIRTUAL) matches CoinGecko 'Virtuals Protocol' (VIRTUAL) on ticker and on the distinctive project name; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "FPRDP6XFW",
+      "coingeckoId": "virtual-protocol",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Virtual Protocol' (VIRTUAL) matches CoinGecko 'Virtuals Protocol' (VIRTUAL) on ticker and on the distinctive project name; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N8DL4NDHC",
+      "coingeckoId": "virtual-protocol",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Virtual Protocol' (VIRTUAL) matches CoinGecko 'Virtuals Protocol' (VIRTUAL) on ticker and on the distinctive project name; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "P5B46MFPP",
+      "coingeckoId": "polkadot",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Polkadot DOT', including a native-token record, names the Polkadot relay chain's own unit, which is CoinGecko 'Polkadot' (DOT); the other DOT candidates are explicitly a Binance peg, an xcDOT derivative and unrelated memes.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "QJBV8L1M7",
+      "coingeckoId": "infinity-ground",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Infinity Ground AI' (AIN) matches CoinGecko 'Infinity Ground' (AIN) on the distinctive project name and ticker; 'AI Network' and 'AInalyst' share only the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "SGD9NLTRG",
+      "coingeckoId": "polkadot",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Polkadot DOT', including a native-token record, names the Polkadot relay chain's own unit, which is CoinGecko 'Polkadot' (DOT); the other DOT candidates are explicitly a Binance peg, an xcDOT derivative and unrelated memes.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "ZMGT6X1ZK",
+      "coingeckoId": "infinity-ground",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Infinity Ground AI' (AIN) matches CoinGecko 'Infinity Ground' (AIN) on the distinctive project name and ticker; 'AI Network' and 'AInalyst' share only the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "D444MB2WJ",
+      "coingeckoId": "terra-luna",
+      "modelConfidence": "high",
+      "reasoning": "DTI names the post-fork legacy chain explicitly - 'Terra Classic' with ticker LUNC - which is CoinGecko 'Terra Luna Classic' (LUNC); the wrapper candidates ('Terra Classic (Wormhole)', 'Wrapped LUNC') are distinct wrapped assets and the new Terra LUNA is not implicated.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "TV5T68SZJ",
+      "coingeckoId": "terra-luna",
+      "modelConfidence": "high",
+      "reasoning": "DTI names the post-fork legacy chain explicitly - 'Terra Classic' with ticker LUNC - which is CoinGecko 'Terra Luna Classic' (LUNC); the wrapper candidates ('Terra Classic (Wormhole)', 'Wrapped LUNC') are distinct wrapped assets and the new Terra LUNA is not implicated.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "3018X51VR",
+      "coingeckoId": "binance-peg-dogecoin",
+      "modelConfidence": "high",
+      "reasoning": "The DTI name says 'Binance Pegged Dogecoin', i.e. the peg, not Dogecoin itself, and CoinGecko lists that wrapper separately as 'Binance-Peg Dogecoin' (DOGE); linking to 'Dogecoin' would conflate wrapper and underlying.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "H2HH5KSSH",
+      "coingeckoId": "binance-peg-dogecoin",
+      "modelConfidence": "high",
+      "reasoning": "The DTI name says 'Binance Pegged Dogecoin', i.e. the peg, not Dogecoin itself, and CoinGecko lists that wrapper separately as 'Binance-Peg Dogecoin' (DOGE); linking to 'Dogecoin' would conflate wrapper and underlying.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "1TZDCS4N8",
+      "coingeckoId": "draggable-aktionariat-ag",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Draggable Aktionariat AG Shares' (DAKS) matches CoinGecko 'Draggable Aktionariat AG' (DAKS) exactly on company name and ticker; this tokenized share is one of the few that is actually listed.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "510BQMK10",
+      "coingeckoId": "tellor",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Tellor Tributes PoS' (TRB) matches CoinGecko 'Tellor Tributes' (TRB); 'PoS' marks the Polygon PoS deployment of the same asset, which DTI records per ledger.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "80W9VVL68",
+      "coingeckoId": "wrapped-beacon-eth",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Wrapped Binance Beacon ETH' (wBETH) matches CoinGecko 'Wrapped Beacon ETH' (WBETH), which is Binance's wrapped beacon-chain ETH; the record names the wrapper and the wrapper has its own coin.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "BZ0D059KK",
+      "coingeckoId": "wrapped-beacon-eth",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Wrapped Binance Beacon ETH' (wBETH) matches CoinGecko 'Wrapped Beacon ETH' (WBETH), which is Binance's wrapped beacon-chain ETH; the record names the wrapper and the wrapper has its own coin.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "HXZ97GZZW",
+      "coingeckoId": "wrapped-beacon-eth",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Wrapped Binance Beacon ETH' (wBETH) matches CoinGecko 'Wrapped Beacon ETH' (WBETH), which is Binance's wrapped beacon-chain ETH; the record names the wrapper and the wrapper has its own coin.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "JVDLT0TCK",
+      "coingeckoId": "cronos-zkevm-cro",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Cronos zkEVM' with ticker zkCRO, typed as a ledger's native unit, matches CoinGecko 'Cronos zkEVM CRO' (ZKCRO).",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N6BWN824K",
+      "coingeckoId": "smart-layer-network",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Smart Layer Network Token' (SLN) matches CoinGecko 'Smart Layer Network' (SLN) on name and ticker; 'Solland' shares only the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "TVBT0WK7J",
+      "coingeckoId": "wrapped-beacon-eth",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Wrapped Binance Beacon ETH' (wBETH) matches CoinGecko 'Wrapped Beacon ETH' (WBETH), which is Binance's wrapped beacon-chain ETH; the record names the wrapper and the wrapper has its own coin.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "XB1KVFMHK",
+      "coingeckoId": "smart-layer-network",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Smart Layer Network Token' (SLN) matches CoinGecko 'Smart Layer Network' (SLN) on name and ticker; 'Solland' shares only the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "83MH7QSCL",
+      "coingeckoId": "crypto-com-staked-eth",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Crypto.com Wrapped Staked ETH' with ticker CDCETH matches CoinGecko 'Crypto.com Staked ETH' (CDCETH); the record names the wrapper itself, which has its own coin.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "Q6ZFM12VM",
+      "coingeckoId": "crypto-com-staked-eth",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Crypto.com Wrapped Staked ETH' with ticker CDCETH matches CoinGecko 'Crypto.com Staked ETH' (CDCETH); the record names the wrapper itself, which has its own coin.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "ZLX3SSPX5",
+      "coingeckoId": "kyber-network-crystal",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Kyber Network Crystal v2' (KNC) matches CoinGecko 'Kyber Network Crystal' (KNC), which is the v2 token; the other candidate is explicitly 'Kyber Network Crystal Legacy' (KNCL), the v1 asset, so the generation is unambiguous.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "46VQ8B7LM",
+      "coingeckoId": "immutable-x",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Immutable X' with ticker IMX matches CoinGecko 'Immutable' (IMX), the Immutable X token; the other 'Immutable' candidate trades as DARA, a different ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "9LJ0XLJBT",
+      "coingeckoId": "immutable-x",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Immutable X' with ticker IMX matches CoinGecko 'Immutable' (IMX), the Immutable X token; the other 'Immutable' candidate trades as DARA, a different ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "FCKV4QPK7",
+      "coingeckoId": "immutable-x",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Immutable X' with ticker IMX matches CoinGecko 'Immutable' (IMX), the Immutable X token; the other 'Immutable' candidate trades as DARA, a different ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "SCC5PHRL9",
+      "coingeckoId": "immutable-x",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Immutable X' with ticker IMX matches CoinGecko 'Immutable' (IMX), the Immutable X token; the other 'Immutable' candidate trades as DARA, a different ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "67VXHPZQ3",
+      "coingeckoId": "polyhedra-network",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Polyhedra Network Token' (ZKJ) matches CoinGecko 'Polyhedra Network' (ZKJ) on name and ticker; the other candidates carry ticker PNT.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "9V66W5M31",
+      "coingeckoId": "alpine-f1-team-fan-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'ALPINE Fan Token' (ALPINE) matches CoinGecko 'Alpine F1 Team Fan Token' (ALPINE) on name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LTSB7W5CZ",
+      "coingeckoId": "threshold-network-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Threshold Network Token' with the one-letter ticker T matches CoinGecko 'Threshold Network' (T) on the full project name and ticker; 'Talos' shares only the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "PNMD0SFLX",
+      "coingeckoId": "threshold-network-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Threshold Network Token' with the one-letter ticker T matches CoinGecko 'Threshold Network' (T) on the full project name and ticker; 'Talos' shares only the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "V29TD6S32",
+      "coingeckoId": "alpine-f1-team-fan-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'ALPINE Fan Token' (ALPINE) matches CoinGecko 'Alpine F1 Team Fan Token' (ALPINE) on name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "WBRGJ0BFP",
+      "coingeckoId": "polyhedra-network",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Polyhedra Network Token' (ZKJ) matches CoinGecko 'Polyhedra Network' (ZKJ) on name and ticker; the other candidates carry ticker PNT.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "ZD8MMMF72",
+      "coingeckoId": "brz",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Brazilian Digital Token' (BRZ) matches CoinGecko 'Brazilian Digital' (BRZ) on name and ticker; the other candidates carry ticker BDT.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "B6CSM27H8",
+      "coingeckoId": "superstate-short-duration-us-government-securities-fund-ustb",
+      "modelConfidence": "medium",
+      "reasoning": "The candidate's CoinGecko id is the exact slug of the DTI long name ('superstate-short-duration-us-government-securities-fund-ustb') and the ticker USTB matches; the displayed name now reads 'Invesco Short Duration US Government Securities Fund', which is the same tokenized fund after an adviser rename. Medium because it is a tokenized security and the display name no longer matches the DTI name.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LPN4K68QT",
+      "coingeckoId": "superstate-short-duration-us-government-securities-fund-ustb",
+      "modelConfidence": "medium",
+      "reasoning": "The candidate's CoinGecko id is the exact slug of the DTI long name ('superstate-short-duration-us-government-securities-fund-ustb') and the ticker USTB matches; the displayed name now reads 'Invesco Short Duration US Government Securities Fund', which is the same tokenized fund after an adviser rename. Medium because it is a tokenized security and the display name no longer matches the DTI name.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "RV1FKF901",
+      "coingeckoId": "superstate-short-duration-us-government-securities-fund-ustb",
+      "modelConfidence": "medium",
+      "reasoning": "The candidate's CoinGecko id is the exact slug of the DTI long name ('superstate-short-duration-us-government-securities-fund-ustb') and the ticker USTB matches; the displayed name now reads 'Invesco Short Duration US Government Securities Fund', which is the same tokenized fund after an adviser rename. Medium because it is a tokenized security and the display name no longer matches the DTI name.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "SNJSZ847H",
+      "coingeckoId": "superstate-short-duration-us-government-securities-fund-ustb",
+      "modelConfidence": "medium",
+      "reasoning": "The candidate's CoinGecko id is the exact slug of the DTI long name ('superstate-short-duration-us-government-securities-fund-ustb') and the ticker USTB matches; the displayed name now reads 'Invesco Short Duration US Government Securities Fund', which is the same tokenized fund after an adviser rename. Medium because it is a tokenized security and the display name no longer matches the DTI name.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "1CTDC3RXV",
+      "coingeckoId": "mask-network",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Mask Network PoS' (MASK) matches CoinGecko 'Mask Network' (MASK); 'PoS' marks the Polygon PoS deployment of the same asset.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "1JFB5W3V4",
+      "coingeckoId": "origin-protocol",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'OriginToken' (OGN) matches CoinGecko 'Origin Token' (OGN) on name and ticker; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "1SM976GP1",
+      "coingeckoId": "lazio-fan-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'FC Lazio Fan Token' (LAZIO) matches CoinGecko 'Lazio Fan Token' (LAZIO) on club name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "1ZKNRN953",
+      "coingeckoId": "thunder-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Thunder Core' with ticker TT, including a native-token record, names the ThunderCore chain's own unit, matching CoinGecko 'ThunderCore' (TT); 'TDEX Token' shares only the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "3DWKDS5H2",
+      "coingeckoId": "satoshi-island",
+      "modelConfidence": "medium",
+      "reasoning": "DTI 'Satoshi Island Coin' (STC) matches CoinGecko 'Satoshi Island' (STC) on the distinctive project name and ticker; 'shitcoin' and 'Starcoin' share only the ticker. Medium because the coin currently has no tracked market data.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "4DHTM5D7P",
+      "coingeckoId": "internet-computer",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Internet Computer Token' (ICP), including a native-token record, names the Internet Computer's own unit, which is CoinGecko 'Internet Computer' (ICP).",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "4N5X371R3",
+      "coingeckoId": "origin-protocol",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'OriginToken' (OGN) matches CoinGecko 'Origin Token' (OGN) on name and ticker; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "53DCR7F4Z",
+      "coingeckoId": "santos-fc-fan-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'FC Santos Fan Token' (SANTOS) matches CoinGecko 'Santos FC Fan Token' (SANTOS) on club name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "58537HRPB",
+      "coingeckoId": "origin-protocol",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'OriginToken' (OGN) matches CoinGecko 'Origin Token' (OGN) on name and ticker; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "6PF7WDK49",
+      "coingeckoId": "wrapped-tron",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Wrapped TRX' (WTRX) names the wrapper and matches CoinGecko 'Wrapped Tron' (WTRX) on ticker and meaning; the other 'Wrapped X' candidates wrap entirely different assets.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "7KL6LCVWQ",
+      "coingeckoId": "internet-computer",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Internet Computer Token' (ICP), including a native-token record, names the Internet Computer's own unit, which is CoinGecko 'Internet Computer' (ICP).",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "8QT6TDLH7",
+      "coingeckoId": "santos-fc-fan-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'FC Santos Fan Token' (SANTOS) matches CoinGecko 'Santos FC Fan Token' (SANTOS) on club name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "91B6PJ77K",
+      "coingeckoId": "origin-protocol",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'OriginToken' (OGN) matches CoinGecko 'Origin Token' (OGN) on name and ticker; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "98MBBPTCK",
+      "coingeckoId": "tornado-cash",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'TornadoCash' (TORN) matches CoinGecko 'Tornado Cash' (TORN) on name and ticker; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "BJSS8NQTW",
+      "coingeckoId": "kardiachain",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Kardia Chain' (KAI), including a native-token record, names the KardiaChain ledger's own unit, matching CoinGecko 'KardiaChain' (KAI); 'Kai Ken', 'KAIKO' and 'Komputai' share only the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "CD8F7WP43",
+      "coingeckoId": "tornado-cash",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'TornadoCash' (TORN) matches CoinGecko 'Tornado Cash' (TORN) on name and ticker; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LQ8Z82GDP",
+      "coingeckoId": "tonstakers",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Tonstakers TON' with ticker tsTON matches CoinGecko 'Tonstakers' (TSTON), the Tonstakers liquid-staking receipt for TON; the record names the staking token itself, and the other candidates carry ticker TT.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "M1KKL82QN",
+      "coingeckoId": "satoshi-island",
+      "modelConfidence": "medium",
+      "reasoning": "DTI 'Satoshi Island Coin' (STC) matches CoinGecko 'Satoshi Island' (STC) on the distinctive project name and ticker; 'shitcoin' and 'Starcoin' share only the ticker. Medium because the coin currently has no tracked market data.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "P61JVFV5T",
+      "coingeckoId": "tonstakers",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Tonstakers TON' with ticker tsTON matches CoinGecko 'Tonstakers' (TSTON), the Tonstakers liquid-staking receipt for TON; the record names the staking token itself, and the other candidates carry ticker TT.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "PNM7DHFVZ",
+      "coingeckoId": "tornado-cash",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'TornadoCash' (TORN) matches CoinGecko 'Tornado Cash' (TORN) on name and ticker; it is the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "STXDTB1ZW",
+      "coingeckoId": "kardiachain",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Kardia Chain' (KAI), including a native-token record, names the KardiaChain ledger's own unit, matching CoinGecko 'KardiaChain' (KAI); 'Kai Ken', 'KAIKO' and 'Komputai' share only the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "T8HCTG9W6",
+      "coingeckoId": "binance-peg-busd",
+      "modelConfidence": "high",
+      "reasoning": "The DTI name says 'Binance Peg BUSD Token', i.e. the peg itself, which CoinGecko lists separately as 'Binance-Peg BUSD' (BUSD); linking to the original 'BUSD' or to another chain's bridged BUSD would name a different asset.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "W78WR9G6C",
+      "coingeckoId": "lazio-fan-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'FC Lazio Fan Token' (LAZIO) matches CoinGecko 'Lazio Fan Token' (LAZIO) on club name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "XC96DF5QG",
+      "coingeckoId": "thunder-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Thunder Core' with ticker TT, including a native-token record, names the ThunderCore chain's own unit, matching CoinGecko 'ThunderCore' (TT); 'TDEX Token' shares only the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "1J4GM86GD",
+      "coingeckoId": "across-protocol",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Across Protocol Token' (ACX) matches CoinGecko 'Across Protocol' (ACX) on name and ticker; the other candidate is Aptos (APT), a different ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "31VC5VD5F",
+      "coingeckoId": "magic-crystal",
+      "modelConfidence": "medium",
+      "reasoning": "DTI 'Magic Crystal Coin' (MC) matches CoinGecko 'Magic Crystal' (MC), the Tap Fantasy game token; 'MarketCat', 'Merit Circle' and 'Merry Christmas' share only the ticker. Medium because the coin has no tracked market data to corroborate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "4SNDZGBVP",
+      "coingeckoId": "yield-guild-games",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Yield Guild Games Token' (YGG) matches CoinGecko 'Yield Guild Games' (YGG) on name and ticker; the seven DTI records are the expected per-deployment split of one asset.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "6DTC4XTMQ",
+      "coingeckoId": "yield-guild-games",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Yield Guild Games Token' (YGG) matches CoinGecko 'Yield Guild Games' (YGG) on name and ticker; the seven DTI records are the expected per-deployment split of one asset.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "7477K8QBJ",
+      "coingeckoId": "monsta-infinite",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Monsta Infinite Token' (MONI) matches CoinGecko 'Monsta Infinite' (MONI) on name and ticker; 'Moni' shares only the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KH705BS8B",
+      "coingeckoId": "yield-guild-games",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Yield Guild Games Token' (YGG) matches CoinGecko 'Yield Guild Games' (YGG) on name and ticker; the seven DTI records are the expected per-deployment split of one asset.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "P4KSZZ6D9",
+      "coingeckoId": "magic-crystal",
+      "modelConfidence": "medium",
+      "reasoning": "DTI 'Magic Crystal Coin' (MC) matches CoinGecko 'Magic Crystal' (MC), the Tap Fantasy game token; 'MarketCat', 'Merit Circle' and 'Merry Christmas' share only the ticker. Medium because the coin has no tracked market data to corroborate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "R39PLJGC6",
+      "coingeckoId": "yield-guild-games",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Yield Guild Games Token' (YGG) matches CoinGecko 'Yield Guild Games' (YGG) on name and ticker; the seven DTI records are the expected per-deployment split of one asset.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "SK4500VGM",
+      "coingeckoId": "animal-concerts-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Animal Concerts Token' (ANML) matches CoinGecko 'Animal Concerts' (ANML) on name and ticker; the other candidates carry ticker ACT.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "SKNTM0081",
+      "coingeckoId": "animal-concerts-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Animal Concerts Token' (ANML) matches CoinGecko 'Animal Concerts' (ANML) on name and ticker; the other candidates carry ticker ACT.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "WV93P8B45",
+      "coingeckoId": "yield-guild-games",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Yield Guild Games Token' (YGG) matches CoinGecko 'Yield Guild Games' (YGG) on name and ticker; the seven DTI records are the expected per-deployment split of one asset.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "XF936QSL4",
+      "coingeckoId": "yield-guild-games",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Yield Guild Games Token' (YGG) matches CoinGecko 'Yield Guild Games' (YGG) on name and ticker; the seven DTI records are the expected per-deployment split of one asset.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "XT3JBC35Q",
+      "coingeckoId": "across-protocol",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Across Protocol Token' (ACX) matches CoinGecko 'Across Protocol' (ACX) on name and ticker; the other candidate is Aptos (APT), a different ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "ZS4FZ9TFL",
+      "coingeckoId": "yield-guild-games",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Yield Guild Games Token' (YGG) matches CoinGecko 'Yield Guild Games' (YGG) on name and ticker; the seven DTI records are the expected per-deployment split of one asset.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "ZXQF9858V",
+      "coingeckoId": "monsta-infinite",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Monsta Infinite Token' (MONI) matches CoinGecko 'Monsta Infinite' (MONI) on name and ticker; 'Moni' shares only the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "C75S6N2RJ",
+      "coingeckoId": "berachain-bera",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Berachain BERA' with ticker BERA, including a native-token record, names the Berachain ledger's own unit, matching CoinGecko 'Berachain' (BERA); the remaining candidates carry ticker BB.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L7XQXLN44",
+      "coingeckoId": "berachain-bera",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Berachain BERA' with ticker BERA, including a native-token record, names the Berachain ledger's own unit, matching CoinGecko 'Berachain' (BERA); the remaining candidates carry ticker BB.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "BSGDS8Q2R",
+      "coingeckoId": "wrapped-ethereum-sollet",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Wrapped Ethereum' with the distinctive short name soETH is the Sollet-wrapped ETH on Solana, which CoinGecko lists as 'Wrapped Ethereum (Sollet)' (SOETH); the wrapper has its own coin, so it must not be linked to Ethereum.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "CHB6L1NZK",
+      "coingeckoId": "wrapped-ethereum-sollet",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Wrapped Ethereum' with the distinctive short name soETH is the Sollet-wrapped ETH on Solana, which CoinGecko lists as 'Wrapped Ethereum (Sollet)' (SOETH); the wrapper has its own coin, so it must not be linked to Ethereum.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "2735TG3MB",
+      "coingeckoId": "singularitynet",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'SingularityNET Token' (AGIX) matches CoinGecko 'SingularityNET' (AGIX) on name and ticker; the other candidates carry ticker ST.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "2DQCCFTSS",
+      "coingeckoId": "singularitynet",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'SingularityNET Token' (AGIX) matches CoinGecko 'SingularityNET' (AGIX) on name and ticker; the other candidates carry ticker ST.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "4J1RGHH6X",
+      "coingeckoId": "singularitynet",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'SingularityNET Token' (AGIX) matches CoinGecko 'SingularityNET' (AGIX) on name and ticker; the other candidates carry ticker ST.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "7C4GTNG0F",
+      "coingeckoId": "levva-protocol",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Levva Protocol Token' (LVVA) matches CoinGecko 'Levva Protocol' (LVVA) on name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "7WRFHGC6N",
+      "coingeckoId": "levva-protocol",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Levva Protocol Token' (LVVA) matches CoinGecko 'Levva Protocol' (LVVA) on name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "CT1TWGPSJ",
+      "coingeckoId": "neutrino",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Neutrino Index' with short names XTN/USDN matches CoinGecko 'Neutrino Index Token' (XTN), the Waves-ecosystem token formerly ticketed USDN; both DTI short names are accounted for by that single rename.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "HFZXSJJHJ",
+      "coingeckoId": "neutrino",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Neutrino Index' with short names XTN/USDN matches CoinGecko 'Neutrino Index Token' (XTN), the Waves-ecosystem token formerly ticketed USDN; both DTI short names are accounted for by that single rename.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "HMWPQK1GS",
+      "coingeckoId": "realio-network",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Realio Network' (RIO) matches CoinGecko 'Realio Network Token' (RIO) on name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LJPVDTGGX",
+      "coingeckoId": "neutrino",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Neutrino Index' with short names XTN/USDN matches CoinGecko 'Neutrino Index Token' (XTN), the Waves-ecosystem token formerly ticketed USDN; both DTI short names are accounted for by that single rename.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N3C3RTS7W",
+      "coingeckoId": "realio-network",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Realio Network' (RIO) matches CoinGecko 'Realio Network Token' (RIO) on name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "RVJ2VRQ3D",
+      "coingeckoId": "neutrino",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Neutrino Index' with short names XTN/USDN matches CoinGecko 'Neutrino Index Token' (XTN), the Waves-ecosystem token formerly ticketed USDN; both DTI short names are accounted for by that single rename.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "WKLHJRTP2",
+      "coingeckoId": "singularitynet",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'SingularityNET Token' (AGIX) matches CoinGecko 'SingularityNET' (AGIX) on name and ticker; the other candidates carry ticker ST.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "27NHGD92L",
+      "coingeckoId": "decentraland",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Decentraland MANA' matches CoinGecko 'Decentraland' (MANA); the alternatives are the Wormhole-bridged MANA and an unrelated meme, and the DTI name carries no wrapper wording.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "8SGXDMQN6",
+      "coingeckoId": "binance-peg-iotex",
+      "modelConfidence": "high",
+      "reasoning": "The DTI name says 'Binance-Peg IoTeX Network', i.e. the peg, which CoinGecko lists separately as 'Binance-Peg IoTeX' (IOTX); linking to native 'IoTeX' would conflate wrapper and underlying.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "8V4HL8BTV",
+      "coingeckoId": "polkastarter",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'PolkastarterToken' (POLS) matches CoinGecko 'Polkastarter' (POLS) on name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "F6W5TF66L",
+      "coingeckoId": "decentraland",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Decentraland MANA' matches CoinGecko 'Decentraland' (MANA); the alternatives are the Wormhole-bridged MANA and an unrelated meme, and the DTI name carries no wrapper wording.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "QX0D8V546",
+      "coingeckoId": "binance-peg-iotex",
+      "modelConfidence": "high",
+      "reasoning": "The DTI name says 'Binance-Peg IoTeX Network', i.e. the peg, which CoinGecko lists separately as 'Binance-Peg IoTeX' (IOTX); linking to native 'IoTeX' would conflate wrapper and underlying.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "SJQM3H2DL",
+      "coingeckoId": "decentraland",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Decentraland MANA' matches CoinGecko 'Decentraland' (MANA); the alternatives are the Wormhole-bridged MANA and an unrelated meme, and the DTI name carries no wrapper wording.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "VNX4XZ3VR",
+      "coingeckoId": "polkastarter",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'PolkastarterToken' (POLS) matches CoinGecko 'Polkastarter' (POLS) on name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "1136CLSDN",
+      "coingeckoId": "stronghold-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Stronghold SHx' (SHX) matches CoinGecko 'Stronghold' (SHX) on name and ticker; the other candidates carry ticker SS.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "2MTMX7RJR",
+      "coingeckoId": "bittorrent",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'BitTorrent New' (BTT) names the post-redenomination token, which is CoinGecko 'BitTorrent' (BTT); the other candidate is explicitly 'BitTorrent [OLD]' (BTTOLD), the superseded asset.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "2RKRC4B02",
+      "coingeckoId": "stronghold-token",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Stronghold SHx' (SHX) matches CoinGecko 'Stronghold' (SHX) on name and ticker; the other candidates carry ticker SS.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
     {
       "dti": "WVBTKS08V",
       "coingeckoId": "usd-coin",
@@ -6719,6 +8203,1343 @@
       "coingeckoId": "liquity-usd",
       "modelConfidence": "high",
       "reasoning": "'LUSD Stablecoin' is the exact ERC-20 name of Liquity's LUSD, matching CoinGecko 'Liquity USD' (LUSD); the other LUSD candidates are numbered or [OLD] collisions.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "K5DR3W9TP",
+      "coingeckoId": "wrapped-hbar",
+      "modelConfidence": "high",
+      "reasoning": "DTI long name 'Wrapped HBAR' and ticker WHBAR match CoinGecko 'Wrapped HBAR (SaucerSwap)' (WHBAR), the canonical wrapped-HBAR contract; the only other candidate, Wrapped HLP, is a different asset.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "K5JM47G2B",
+      "coingeckoId": "ethereum",
+      "modelConfidence": "high",
+      "reasoning": "'Ethereum Token' with ticker ETH names ether itself - it is the contract name used by pegged ETH deployments, which CoinGecko folds into the 'Ethereum' coin; every other ETH-ticker candidate is a named bridge, a plus-token or an unrelated meme.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "K6FFQLQKR",
+      "coingeckoId": "wrapped-bitcoin",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Wrapped BTC' / WBTC matches CoinGecko 'Wrapped Bitcoin' (WBTC), the canonical wrapper; all other candidates name a specific bridge (Scroll, StarkGate, Celer, Cronos and so on).",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "K79PF0NLX",
+      "coingeckoId": "safepal",
+      "modelConfidence": "high",
+      "reasoning": "'SafePal Token' and SFP match CoinGecko 'SafePal' (SFP) on both name and ticker; the ST candidates are acronym noise.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "K9NSZWF6J",
+      "coingeckoId": "ocean-protocol",
+      "modelConfidence": "high",
+      "reasoning": "'Ocean Token' is the contract name of Ocean Protocol's OCEAN; name and ticker both corroborate CoinGecko 'Ocean Protocol' (OCEAN).",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KCRQ56P3R",
+      "coingeckoId": "wrapped-bitcoin",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Wrapped BTC' / WBTC matches CoinGecko 'Wrapped Bitcoin' (WBTC), the canonical wrapper; every other candidate names a specific chain's bridged WBTC.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KD23BVN3R",
+      "coingeckoId": "dai",
+      "modelConfidence": "high",
+      "reasoning": "'Dai Stablecoin' is the contract name of MakerDAO's DAI; CoinGecko 'Dai' (DAI) is that asset, while every other candidate explicitly names a bridge deployment.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KDNJ1M5PQ",
+      "coingeckoId": "pnetwork",
+      "modelConfidence": "high",
+      "reasoning": "'pNetwork Token' and PNT match CoinGecko 'pNetwork' (PNT); Pheasant Network only shares the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KDZPMF09M",
+      "coingeckoId": "omisego",
+      "modelConfidence": "high",
+      "reasoning": "'OMGToken' is the OMG Network contract name and OMG is its ticker; the only rival candidate, 'OH MY GOD', is an unrelated meme sharing the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KFDS2CPBT",
+      "coingeckoId": "veno-finance",
+      "modelConfidence": "high",
+      "reasoning": "'VenoToken' / VNO matches Veno Finance (VNO), the only VNO candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KH9MT0QWS",
+      "coingeckoId": "wrapped-bitcoin",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Wrapped BTC' / WBTC matches CoinGecko 'Wrapped Bitcoin' (WBTC); the remaining candidates are all chain-specific bridged copies.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KHB3RS11D",
+      "coingeckoId": "binancecoin",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Binance' with ticker BNB is Binance Coin; CoinGecko 'BNB' (id binancecoin) is that asset, the others being Wormhole and Anubis bridge wrappers.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KHHF1BRMK",
+      "coingeckoId": "quickswap",
+      "modelConfidence": "high",
+      "reasoning": "'New Quickswap' distinguishes the post-migration QUICK token, which is CoinGecko 'Quickswap' (QUICK); the pre-migration contract is the separate 'Quickswap [OLD]' coin.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KJD615P2T",
+      "coingeckoId": "theta-token",
+      "modelConfidence": "high",
+      "reasoning": "'THETA' matches CoinGecko 'Theta Network' (THETA), the only THETA candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KJVKZ3X3W",
+      "coingeckoId": "b3",
+      "modelConfidence": "high",
+      "reasoning": "DTI long name 'B3' and ticker B3 match CoinGecko 'B3 (Base)' (B3), the only B3 candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KK89N29JW",
+      "coingeckoId": "franklin-templeton-benji",
+      "modelConfidence": "high",
+      "reasoning": "'Franklin OnChain U.S. Government Money Fund' with share ticker BENJI is Franklin Templeton's tokenized money-market fund, matching 'Franklin Templeton BENJI'; the other BENJI candidates are memecoins.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KKF5J57KT",
+      "coingeckoId": "gari-network",
+      "modelConfidence": "high",
+      "reasoning": "'Gari' / GARI matches Gari Network (GARI), the only GARI candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KKJCF7VK7",
+      "coingeckoId": "usd-coin",
+      "modelConfidence": "high",
+      "reasoning": "'USD Coin' is Circle's USDC and CoinGecko 'USDC' (id usd-coin) is that asset; the other candidates are named bridge deployments or yield wrappers (USDC+).",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KM18K28K8",
+      "coingeckoId": "octopus-network",
+      "modelConfidence": "high",
+      "reasoning": "CoinGecko id octopus-network is the Octopus Network OCT token, since renamed 'Omnity Convertible Token'; the id and the OCT ticker both corroborate 'Octopus Network Token'.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KM4XJWNGZ",
+      "coingeckoId": "gelato",
+      "modelConfidence": "medium",
+      "reasoning": "'Gelato Network Token' (GEL) is Gelato's governance token, CoinGecko 'Gelato' (id gelato); the numbered gelato-2 entry signals a name collision with a different project.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KMQC8Q056",
+      "coingeckoId": "radicle",
+      "modelConfidence": "high",
+      "reasoning": "Radicle's RAD token is CoinGecko id radicle, now displayed as 'Radworks' after the project rename; the RAD ticker matches.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KNBWHRBHH",
+      "coingeckoId": "subquery-network",
+      "modelConfidence": "high",
+      "reasoning": "'SubQueryToken' / SQT matches SubQuery Network (SQT), the only SQT candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KNQXFV3H2",
+      "coingeckoId": "usd-coin",
+      "modelConfidence": "high",
+      "reasoning": "'USD Coin' is Circle's USDC and CoinGecko 'USDC' (id usd-coin) is that asset; every other candidate names a specific bridge or a USDC+ yield wrapper.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KNWFGSXVM",
+      "coingeckoId": "filecoin",
+      "modelConfidence": "high",
+      "reasoning": "'FIL' matches Filecoin (FIL); the only other candidate explicitly names the Binance peg rather than the asset.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KNZ5BB1H2",
+      "coingeckoId": "concentrated-voting-power",
+      "modelConfidence": "high",
+      "reasoning": "'PowerPool' with ticker CVP matches 'PowerPool Concentrated Voting Power' (CVP), the only CVP candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KPXS8WST3",
+      "coingeckoId": "leo-token",
+      "modelConfidence": "high",
+      "reasoning": "'Bitfinex LEO Token' is UNUS SED LEO, CoinGecko 'LEO Token' (id leo-token); the other LEO candidates are unrelated projects reusing the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KR4DF4ZJ2",
+      "coingeckoId": "schuman-europ",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'EUROP' / EUROP matches Schuman Financial's 'EUROP' (EUROP), the only EUROP candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KR5MGRG8F",
+      "coingeckoId": "weth",
+      "modelConfidence": "high",
+      "reasoning": "'Wrapped Ether' / WETH matches CoinGecko 'WETH', the canonical wrapper coin; every other candidate names a specific chain's bridged WETH.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KS1N444VF",
+      "coingeckoId": "bella-protocol",
+      "modelConfidence": "high",
+      "reasoning": "'Bella' / BEL matches Bella Protocol (BEL); the Bellscoin entries are a separate asset sharing the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KSCZ9SM03",
+      "coingeckoId": "wanchain-bridged-usdt-xdc-network",
+      "modelConfidence": "medium",
+      "reasoning": "'USDT xinfin' with ticker xUSDT is USDT on the XinFin/XDC network, and the only xUSDT candidate is WanBridge's bridged USDT on XDC - the same deployment rather than Tether's own token.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KTD7CM99P",
+      "coingeckoId": "ethereum",
+      "modelConfidence": "high",
+      "reasoning": "'Eth on Blast' is ether used as the native gas asset of the Blast L2, the same economic asset CoinGecko tracks as 'Ethereum' (ETH); no Blast-specific ETH coin exists.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KTMZ4H48X",
+      "coingeckoId": "digitex-futures-exchange",
+      "modelConfidence": "high",
+      "reasoning": "'DigitexFutures' / DGTX matches CoinGecko 'Digitex' (DGTX), the only DGTX candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KTPNJWJNF",
+      "coingeckoId": "ferro",
+      "modelConfidence": "high",
+      "reasoning": "'FerroToken' / FER matches Ferro (FER), the only FER candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KTSQVDVDS",
+      "coingeckoId": "yzy",
+      "modelConfidence": "medium",
+      "reasoning": "DTI 'YZY MONEY' / YZY matches the coin literally named 'YZY' (id yzy); the other YZY-ticker candidate, Swasticoin, has an unrelated name.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KV0LGF1QZ",
+      "coingeckoId": "usd-coin",
+      "modelConfidence": "high",
+      "reasoning": "'USD Coin' is Circle's USDC; CoinGecko 'USDC' (id usd-coin) is that asset, while the rest of the candidates name specific bridges or USDC+ wrappers.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KV1W7C94F",
+      "coingeckoId": "celsius-degree-token",
+      "modelConfidence": "high",
+      "reasoning": "'Celsius' / CEL matches 'Celsius Network' (CEL), the only CEL candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KVF1031CQ",
+      "coingeckoId": "senso",
+      "modelConfidence": "high",
+      "reasoning": "'Sensorium' is the Sensorium Galaxy project whose token is SENSO; CoinGecko 'SENSO' (SENSO) is the only match and the abbreviation is the standard one.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KVGVFVWK3",
+      "coingeckoId": "mines-of-dalarnia",
+      "modelConfidence": "high",
+      "reasoning": "'Dalarnia' / DAR matches 'Mines of Dalarnia' (DAR), the only DAR candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KVPVC7B5M",
+      "coingeckoId": "stasis-eurs",
+      "modelConfidence": "high",
+      "reasoning": "'STASIS EURS Token' / EURS matches 'STASIS EURO' (EURS) on issuer name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KW8QK0BWT",
+      "coingeckoId": "shadowtokens-bridged-usdc-elastos",
+      "modelConfidence": "high",
+      "reasoning": "'USD Coin on Elastos' with ticker ethUSDC is exactly the Shadow Token bridged USDC on Elastos (ETHUSDC) - the bridged deployment, not Circle's USDC.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KWW47P1NF",
+      "coingeckoId": "wrapped-bitcoin",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Wrapped BTC' / WBTC matches CoinGecko 'Wrapped Bitcoin' (WBTC); the other candidates all name a specific chain's bridged WBTC.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "KX2HZ9M0M",
+      "coingeckoId": "starknet",
+      "modelConfidence": "high",
+      "reasoning": "'StarkNet Token' / STRK matches Starknet (STRK); the Dinari tokenized stock only shares the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L09Q657BK",
+      "coingeckoId": "tether",
+      "modelConfidence": "high",
+      "reasoning": "'USD Tether' / USDT is Tether's USDT; CoinGecko 'Tether' (USDT) is that asset, while the other candidates name specific bridges or USDT+ yield wrappers.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L0FM5CT8B",
+      "coingeckoId": "dai",
+      "modelConfidence": "high",
+      "reasoning": "'Dai Stablecoin' is the contract name of MakerDAO's DAI; CoinGecko 'Dai' (DAI) is that asset and the rest of the candidates are named bridge deployments.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L0SDJTMGX",
+      "coingeckoId": "harmony-horizen-bridged-usdc-harmony",
+      "modelConfidence": "high",
+      "reasoning": "Short name 1USDC is Harmony's prefix for Horizon-bridged assets, and the only 1USDC candidate is 'Harmony Horizon Bridged USDC (Harmony)' - the bridged token itself.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L138VL6TG",
+      "coingeckoId": "uniswap",
+      "modelConfidence": "medium",
+      "reasoning": "'Uniswap on xDai' is the Gnosis-chain deployment of Uniswap's UNI, which CoinGecko tracks under the single 'Uniswap' (UNI) coin; no Gnosis-specific UNI coin is offered.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L2BKTJ5WW",
+      "coingeckoId": "wormhole",
+      "modelConfidence": "high",
+      "reasoning": "'Wormhole Token' with ticker W is the Wormhole protocol's W token, CoinGecko 'Wormhole' (W); the other W-ticker candidates are unrelated memecoins.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L2TL6XG45",
+      "coingeckoId": "weth",
+      "modelConfidence": "high",
+      "reasoning": "'Wrapped Ether' / WETH matches CoinGecko 'WETH', the canonical wrapper; every other candidate names a specific chain's bridged WETH.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L4H5RRFN1",
+      "coingeckoId": "terrausd",
+      "modelConfidence": "high",
+      "reasoning": "'Terra Classic USD' / USTC matches 'TerraClassicUSD' (USTC); the only other candidate is explicitly the wrapped version.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L520L9N39",
+      "coingeckoId": "weth",
+      "modelConfidence": "medium",
+      "reasoning": "The record's short name is WETH, so it names wrapped ether rather than ether itself; CoinGecko 'WETH' is the canonical wrapper, the remaining candidates being chain-specific bridged WETH.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L59BRGHDW",
+      "coingeckoId": "swipe",
+      "modelConfidence": "high",
+      "reasoning": "Swipe's SXP token is CoinGecko id swipe, now displayed as 'Solar' after the rebrand; the SXP ticker matches and it is the only SXP candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L6GTZC9G4",
+      "coingeckoId": "ripple",
+      "modelConfidence": "high",
+      "reasoning": "'Ripple XRP' / XRP matches CoinGecko 'XRP' (id ripple); the other XRP-ticker candidates are memecoins or named bridges.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L6N3VM7CM",
+      "coingeckoId": "kernel-2",
+      "modelConfidence": "medium",
+      "reasoning": "'KERNEL' matches KernelDAO's KERNEL token (id kernel-2), the only KERNEL candidate; the numbered id reflects a name collision, but no rival Kernel project is offered here.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L6V0QQ9WB",
+      "coingeckoId": "ethereum",
+      "modelConfidence": "high",
+      "reasoning": "The record names ether itself (ETH); CoinGecko 'Ethereum' is that asset, while the other ETH-ticker candidates are named bridges or unrelated tokens.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L6V4WF308",
+      "coingeckoId": "usd-coin",
+      "modelConfidence": "medium",
+      "reasoning": "'USD Coin from Ethereum' is a chain-bridged deployment of Circle's USDC; no coin for that specific bridge is among the candidates and CoinGecko tracks the asset as 'USDC'.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L7CKSKP8K",
+      "coingeckoId": "boba-network",
+      "modelConfidence": "high",
+      "reasoning": "'Boba Token' / BOBA matches 'Boba Network' (BOBA); 'Boba Cat' is an unrelated memecoin.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L7WHMH414",
+      "coingeckoId": "ribbon-finance",
+      "modelConfidence": "high",
+      "reasoning": "'Ribbon' / RBN matches Ribbon Finance (RBN), the only RBN candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "L89BP19NM",
+      "coingeckoId": "pepe",
+      "modelConfidence": "medium",
+      "reasoning": "'Pepe Coin' with ticker PEPE matches the original 'Pepe' (id pepe); every other candidate carries a qualifying name (Based Pepe, PepeSol, Pepe CTO) marking it as a different token.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LBMZ0F5MB",
+      "coingeckoId": "allianceblock-nexera",
+      "modelConfidence": "high",
+      "reasoning": "'AllianceBlock Nexera Token' / NXRA matches 'Nexera' (NXRA, id allianceblock-nexera) on both project name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LC6XCHBM0",
+      "coingeckoId": "usd-coin",
+      "modelConfidence": "high",
+      "reasoning": "'USD Coin' is Circle's USDC; CoinGecko 'USDC' (id usd-coin) is that asset and the remaining candidates are named bridges or USDC+ wrappers.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LD6JM2JN2",
+      "coingeckoId": "usd-coinvertible",
+      "modelConfidence": "high",
+      "reasoning": "'USDCV' matches 'USD CoinVertible' (USDCV), SG-Forge's dollar stablecoin; the ticker is distinctive and the second candidate is plain USDC.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LF5F508L4",
+      "coingeckoId": "ethereum",
+      "modelConfidence": "high",
+      "reasoning": "'Eth on Zircuit' is ether used as the native gas asset of the Zircuit L2 - the same economic asset CoinGecko tracks as 'Ethereum'.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LFRNRXPB5",
+      "coingeckoId": "gatechain-token",
+      "modelConfidence": "high",
+      "reasoning": "'GateChainToken' / GT matches CoinGecko id gatechain-token ('Gate', GT).",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LGF6FD5NZ",
+      "coingeckoId": "binance-peg-tezos-token",
+      "modelConfidence": "medium",
+      "reasoning": "The record is an auxiliary token on a host ledger named 'Tezos Token' with ticker XTZ - the exact name and symbol of the Binance-Peg Tezos BEP-20; native XTZ would not be typed as an auxiliary token.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LGWSMX228",
+      "coingeckoId": "injective-protocol",
+      "modelConfidence": "high",
+      "reasoning": "'Injective Token' is the contract name of INJ; CoinGecko 'Injective' (INJ) is that asset and the IT candidates are acronym noise.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LH1CBF1TD",
+      "coingeckoId": "terrausd-wormhole",
+      "modelConfidence": "medium",
+      "reasoning": "'Wrapped UST Token (PoS)' is the Polygon-PoS wrapped UST, which arrived via Wormhole; 'TerraUSD (Wormhole)' (UST) is the wrapper itself rather than native UST, which is what this record names.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LHG7JSCRM",
+      "coingeckoId": "tether",
+      "modelConfidence": "high",
+      "reasoning": "'Tether USD' is the contract name of Tether's USDT; CoinGecko 'Tether' (USDT) is that asset and the other candidates are named bridges or yield wrappers.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LHJ7G3KXG",
+      "coingeckoId": "matic-network",
+      "modelConfidence": "high",
+      "reasoning": "'Matic' / MATIC matches CoinGecko 'MATIC (migrated to POL)' (id matic-network), the Polygon token; MaziMatic is an unrelated name match.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LHM0LH8BQ",
+      "coingeckoId": "band-protocol",
+      "modelConfidence": "medium",
+      "reasoning": "'BandToken on xDai' is the Gnosis-chain deployment of Band Protocol's BAND, which CoinGecko tracks under the single 'Band' coin; no Gnosis-specific BAND coin is offered.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LJ1PCCFGN",
+      "coingeckoId": "wrapped-bitcoin",
+      "modelConfidence": "high",
+      "reasoning": "DTI 'Wrapped BTC' / WBTC matches CoinGecko 'Wrapped Bitcoin' (WBTC), the canonical wrapper; the other candidates name specific bridges.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LK2DD49JM",
+      "coingeckoId": "weth",
+      "modelConfidence": "high",
+      "reasoning": "'Wrapped Ether' / WETH matches CoinGecko 'WETH', the canonical wrapper coin; the rest of the candidates are chain-specific bridged WETH.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LK4B4JZJ5",
+      "coingeckoId": "akash-network",
+      "modelConfidence": "high",
+      "reasoning": "'AKT' matches Akash Network (AKT); 'Akita Inu' only shares the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LKH3QWLGX",
+      "coingeckoId": "arpa",
+      "modelConfidence": "high",
+      "reasoning": "'ARPA Token' / ARPA matches CoinGecko 'ARPA' (ARPA), the only ARPA candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LKW22K2RT",
+      "coingeckoId": "loom-network-new",
+      "modelConfidence": "medium",
+      "reasoning": "'Loom Token' is the contract name of Loom Network's LOOM, and CoinGecko's 'Loom Network (NEW)' is the live post-migration coin; the other candidate is an unrelated 'Loom'.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LLL3GN0S8",
+      "coingeckoId": "alibabacoin",
+      "modelConfidence": "medium",
+      "reasoning": "'Binance ABBC' (BABBC) is the BSC representation of ABBC Coin, which CoinGecko tracks as 'ABBC' (id alibabacoin); no separate BABBC coin is offered and the Boeing candidates are acronym noise.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LLRPNCLLK",
+      "coingeckoId": "kamino",
+      "modelConfidence": "high",
+      "reasoning": "'Kamino Finance' / KMNO matches Kamino (KMNO), the only KMNO candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LM10WXF20",
+      "coingeckoId": "frontier-token",
+      "modelConfidence": "medium",
+      "reasoning": "'Wrapped FRONT' is the contract name of Frontier's FRONT on its non-native chain deployment; CoinGecko tracks FRONT as the single 'Frontier' coin and no separate wrapped-FRONT coin exists.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LM4F7B48Z",
+      "coingeckoId": "concierge-io",
+      "modelConfidence": "high",
+      "reasoning": "'Travala com Token' with ticker AVA matches 'AVA (Travala)' (id concierge-io) by both project name and ticker; the BSC-bridged AVA entry is a different deployment.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LNTLV89WS",
+      "coingeckoId": "weth",
+      "modelConfidence": "high",
+      "reasoning": "'Wrapped Ether' / WETH matches CoinGecko 'WETH', the canonical wrapper; every other candidate names a specific chain's bridged WETH.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LQ5NLKWNC",
+      "coingeckoId": "bitshares",
+      "modelConfidence": "medium",
+      "reasoning": "'BTStoken' with ticker BTS names BitShares' BTS, the only BTS candidate; the record is a hosted deployment of that same asset.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LQJ9TKJ32",
+      "coingeckoId": "og-fan-token",
+      "modelConfidence": "medium",
+      "reasoning": "'OG' with ticker OG matches 'OG Fan Token' (OG), the only OG candidate offered.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LR8JVPTK5",
+      "coingeckoId": "usd-coin",
+      "modelConfidence": "high",
+      "reasoning": "'USD Coin' is Circle's USDC; CoinGecko 'USDC' (id usd-coin) is that asset, the rest of the candidates being named bridges or USDC+ wrappers.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LRWZRPNBG",
+      "coingeckoId": "tether",
+      "modelConfidence": "high",
+      "reasoning": "'USDT' is Tether's USDT; CoinGecko 'Tether' (USDT) is that asset and every other candidate names a specific bridge or yield wrapper.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LSHS5Z3CZ",
+      "coingeckoId": "cosmos",
+      "modelConfidence": "medium",
+      "reasoning": "'Cosmos PoS' is a hosted (Polygon PoS) deployment of Cosmos Hub's ATOM; CoinGecko tracks ATOM as the single 'Cosmos Hub' coin and the CP candidates are acronym noise.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LTRBL7W8J",
+      "coingeckoId": "helium",
+      "modelConfidence": "high",
+      "reasoning": "'HNT' matches Helium (HNT), the only HNT candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LTZB13WH0",
+      "coingeckoId": "franklin-templeton-benji",
+      "modelConfidence": "high",
+      "reasoning": "'Franklin OnChain U.S. Government Money Fund' with share ticker BENJI is Franklin Templeton's tokenized money-market fund, matching 'Franklin Templeton BENJI'; the other BENJI candidates are memecoins.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LV8516WCR",
+      "coingeckoId": "dodo",
+      "modelConfidence": "high",
+      "reasoning": "'DODO bird' is the contract name of DODO's DODO token; CoinGecko 'DODO' (id dodo) is that asset, the numbered dodo-2 being a collision.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LWKPW76T7",
+      "coingeckoId": "ethereum",
+      "modelConfidence": "high",
+      "reasoning": "'Ether' with ticker ETH is ether itself; CoinGecko 'Ethereum' (ETH) is that asset, while the other candidates are named bridges or unrelated tokens.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LX0G7NM0K",
+      "coingeckoId": "stasis-eurs",
+      "modelConfidence": "high",
+      "reasoning": "'Eurs' / EURS matches STASIS's EURS ('STASIS EURO'), the only EURS candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LX44T481K",
+      "coingeckoId": "celer-network",
+      "modelConfidence": "high",
+      "reasoning": "'CelerToken' / CELR matches Celer Network (CELR), the only CELR candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LXMPJ21BK",
+      "coingeckoId": "bitcoin-cash",
+      "modelConfidence": "medium",
+      "reasoning": "'Bitcoin Cash on smartBCH' is BCH used as the native asset of the smartBCH sidechain - the same economic asset as CoinGecko 'Bitcoin Cash'; the alternative candidate is explicitly the Binance peg.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LXVNJGM0D",
+      "coingeckoId": "ooki",
+      "modelConfidence": "high",
+      "reasoning": "'Ooki Token' / OOKI matches Ooki (OOKI), the only OOKI candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LZ66XPD2K",
+      "coingeckoId": "usd-coin",
+      "modelConfidence": "medium",
+      "reasoning": "'USD C on xDai' is the Gnosis-chain deployment of Circle's USDC; no Gnosis-specific USDC coin is among the candidates and CoinGecko tracks the asset as 'USDC'.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "LZGTM9GWH",
+      "coingeckoId": "chronobank",
+      "modelConfidence": "high",
+      "reasoning": "'ChronoTech Token' / TIME matches CoinGecko 'chrono.tech' (TIME, id chronobank); the other TIME candidates are unrelated projects reusing the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "M09N7VZFR",
+      "coingeckoId": "ethereum",
+      "modelConfidence": "high",
+      "reasoning": "'Eth on Codex' is ether used as the native gas asset of the Codex chain - the same economic asset CoinGecko tracks as 'Ethereum'.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "M0KBCH37Q",
+      "coingeckoId": "unifi-protocol-dao",
+      "modelConfidence": "high",
+      "reasoning": "'UNFI' matches 'Unifi Protocol DAO' (UNFI), the only UNFI candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "M175J0K8D",
+      "coingeckoId": "spell-token",
+      "modelConfidence": "high",
+      "reasoning": "'Spell Token' is the contract name of Abracadabra's SPELL; CoinGecko 'Spell' (SPELL) is that asset and 'The Spellcaster' is an unrelated meme.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "M1MFJQKGL",
+      "coingeckoId": "io",
+      "modelConfidence": "medium",
+      "reasoning": "'IO' with ticker IO matches io.net's IO token (id io), the only IO candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "M2GR9LKZ6",
+      "coingeckoId": "ethereum",
+      "modelConfidence": "high",
+      "reasoning": "'Ethereum Token' with ticker ETH names ether hosted on another ledger - the contract name used by pegged ETH deployments, which CoinGecko folds into the 'Ethereum' coin; the other candidates are named bridges or unrelated tokens.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "M2HHNHT0D",
+      "coingeckoId": "holotoken",
+      "modelConfidence": "medium",
+      "reasoning": "'HoloToken on xDai' is the Gnosis-chain deployment of Holo's HOT; CoinGecko tracks HOT as the single 'Holo' coin and it is the only HOT candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "M2QL71JV4",
+      "coingeckoId": "sushi",
+      "modelConfidence": "high",
+      "reasoning": "'SushiToken' is the contract name of SushiSwap's SUSHI; CoinGecko 'Sushi' (SUSHI) is that asset, 'Sushi Fighter' being an unrelated meme.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "M39B9CQL3",
+      "coingeckoId": "saakuru-labs",
+      "modelConfidence": "high",
+      "reasoning": "'Saakuru Protocol' with ticker SKR matches 'Saakuru' (SKR, id saakuru-labs); 'Seeker' only shares the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "M3F18CFSJ",
+      "coingeckoId": "neon",
+      "modelConfidence": "high",
+      "reasoning": "'NEON EVM Token' / NEON matches Neon (NEON), the Neon EVM token; NEXION only shares the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "M5WBDT24X",
+      "coingeckoId": "usd-coin",
+      "modelConfidence": "high",
+      "reasoning": "'USD Coin' is Circle's USDC; CoinGecko 'USDC' (id usd-coin) is that asset and the other candidates are named bridges or USDC+ wrappers.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "M6C11KCND",
+      "coingeckoId": "pax-gold",
+      "modelConfidence": "high",
+      "reasoning": "'Paxos Gold' / PAXG matches 'PAX Gold' (PAXG) on issuer name and ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "M8K77XN2R",
+      "coingeckoId": "digitex-futures-exchange",
+      "modelConfidence": "high",
+      "reasoning": "'DigitexFutures' / DGTX matches CoinGecko 'Digitex' (DGTX), the only DGTX candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "M8VSMMHDG",
+      "coingeckoId": "usd-coin",
+      "modelConfidence": "medium",
+      "reasoning": "'USD Coin PoS' is the Polygon-PoS deployment of Circle's USDC; no Polygon-bridge USDC coin is among the candidates and CoinGecko tracks the asset as 'USDC'.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "M9LNQXMNV",
+      "coingeckoId": "enjincoin",
+      "modelConfidence": "high",
+      "reasoning": "'Enjin' / ENJ matches 'Enjin Coin' (ENJ), the only ENJ candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MB010PCS4",
+      "coingeckoId": "ethereum-push-notification-service",
+      "modelConfidence": "high",
+      "reasoning": "The DTI long name is the literal former name of Push Protocol, whose CoinGecko id is ethereum-push-notification-service; the PUSH ticker matches.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MB3PVX3VC",
+      "coingeckoId": "quick",
+      "modelConfidence": "high",
+      "reasoning": "'Old Quickswap' names the pre-migration QUICK contract, which CoinGecko lists as 'Quickswap [OLD]' (id quick); the current token is the separate 'Quickswap' coin.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MB592N5Z5",
+      "coingeckoId": "numbers-protocol",
+      "modelConfidence": "medium",
+      "reasoning": "'NUM Token via ChainPort io' is the ChainPort-ported deployment of Numbers Protocol's NUM, which CoinGecko tracks under the single 'Numbers Protocol' coin.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MB71JXT40",
+      "coingeckoId": "binancecoin",
+      "modelConfidence": "high",
+      "reasoning": "'Binance Coin' / BNB matches CoinGecko 'BNB' (id binancecoin); the other BNB candidates explicitly name Wormhole and Anubis bridges.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MB9R0SCB2",
+      "coingeckoId": "theta-token",
+      "modelConfidence": "high",
+      "reasoning": "'THETA' matches CoinGecko 'Theta Network' (THETA), the only THETA candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MBKSZCVQM",
+      "coingeckoId": "alchemy-pay",
+      "modelConfidence": "high",
+      "reasoning": "'Alchemy' with ticker ACH matches 'Alchemy Pay' (ACH), the only ACH candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MBQSB4WDK",
+      "coingeckoId": "unifi-protocol-dao",
+      "modelConfidence": "high",
+      "reasoning": "'UNFI' matches 'Unifi Protocol DAO' (UNFI), the only UNFI candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MC3GWMNCZ",
+      "coingeckoId": "bitcoin-gold",
+      "modelConfidence": "medium",
+      "reasoning": "'Btgold Org' reads as bitcoingold.org and the BTG ticker matches 'Bitcoin Gold'; 'Openverse Network' shares only the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MC73KT6K4",
+      "coingeckoId": "cosmos",
+      "modelConfidence": "high",
+      "reasoning": "'Cosmos' with ticker ATOM matches 'Cosmos Hub' (ATOM); 'Cosmo' is a different token caught only by name similarity.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MCVX0QJTC",
+      "coingeckoId": "apenft",
+      "modelConfidence": "high",
+      "reasoning": "'APENFT' matches CoinGecko id apenft (now displayed as AINFT) with ticker NFT; 'NFT Protocol' is a different project.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MDLR8VGRS",
+      "coingeckoId": "convex-finance",
+      "modelConfidence": "high",
+      "reasoning": "'Convex Token' / CVX matches Convex Finance (CVX); the Chevron tokenized stock only shares the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MFC9WD1FX",
+      "coingeckoId": "usd-coin",
+      "modelConfidence": "high",
+      "reasoning": "'USD Coin' is Circle's USDC; CoinGecko 'USDC' (id usd-coin) is that asset and the other candidates are named bridges or USDC+ wrappers.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MFT7HMS7F",
+      "coingeckoId": "bio-protocol",
+      "modelConfidence": "medium",
+      "reasoning": "'BIO' with ticker BIO matches 'Bio Protocol' (BIO); the only rival candidate, 'Bio Unit 000', is an unrelated token.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MGQZ517X0",
+      "coingeckoId": "thorchain",
+      "modelConfidence": "medium",
+      "reasoning": "The record is THORChain's RUNE hosted on Ethereum; no live ERC-20 RUNE coin is among the candidates and CoinGecko tracks RUNE as 'THORChain', while 'Rune' (rune-2) is an unrelated project.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MGV6H93B8",
+      "coingeckoId": "wing-finance",
+      "modelConfidence": "high",
+      "reasoning": "'Wing Token' / WING matches Wing Finance (WING); the WisdomTree candidate is acronym noise.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MHNZBBQTL",
+      "coingeckoId": "compound-ether",
+      "modelConfidence": "high",
+      "reasoning": "'Compound Ether' with ticker cETH matches CoinGecko 'cETH' (id compound-ether); the other candidate is a wrapper of that token.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MHSMZSN36",
+      "coingeckoId": "ethereum",
+      "modelConfidence": "high",
+      "reasoning": "'Eth on Scroll' is ether used as the native gas asset of the Scroll L2 - the same economic asset CoinGecko tracks as 'Ethereum'.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MKVW9WZ64",
+      "coingeckoId": "weth",
+      "modelConfidence": "high",
+      "reasoning": "'Wrapped Ether' / WETH matches CoinGecko 'WETH', the canonical wrapper; the other candidates all name a specific chain's bridged WETH.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "ML8G8X1V9",
+      "coingeckoId": "iris-network",
+      "modelConfidence": "medium",
+      "reasoning": "'IRIS' with ticker IRIS matches IRISnet (IRIS); the other candidate, 'I.R.I.S', is an unrelated project.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MM976LHZ6",
+      "coingeckoId": "wirex",
+      "modelConfidence": "high",
+      "reasoning": "'Wirex Token' / WXT matches CoinGecko 'WXT Token' (id wirex); WEEX Token shares only the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MN2HDRTG9",
+      "coingeckoId": "vvs-finance",
+      "modelConfidence": "high",
+      "reasoning": "'VVS Token' / VVS matches VVS Finance (VVS), the only VVS candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MN7ZK7N7Q",
+      "coingeckoId": "ethereum",
+      "modelConfidence": "high",
+      "reasoning": "The record names ether itself (ETH); CoinGecko 'Ethereum' is that asset, the other candidates being named bridges, plus-tokens or memes.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MN818MFC7",
+      "coingeckoId": "havven",
+      "modelConfidence": "high",
+      "reasoning": "'Synthetix Network Token' is the contract name of SNX; CoinGecko 'Synthetix' (id havven) is that asset.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MNB68CVWV",
+      "coingeckoId": "ribbon-finance",
+      "modelConfidence": "high",
+      "reasoning": "'Ribbon' / RBN matches Ribbon Finance (RBN), the only RBN candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MNV29PCPF",
+      "coingeckoId": "tether",
+      "modelConfidence": "high",
+      "reasoning": "'Tether USD' is the contract name of Tether's USDT; CoinGecko 'Tether' (USDT) is that asset and the rest are named bridges or yield wrappers.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MQ81KWDCP",
+      "coingeckoId": "io",
+      "modelConfidence": "medium",
+      "reasoning": "'IO' with ticker IO matches io.net's IO token (id io), the only IO candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MRC1QSXWQ",
+      "coingeckoId": "wrapped-steth",
+      "modelConfidence": "high",
+      "reasoning": "'Lido wstETH' / WSTETH matches CoinGecko 'Wrapped stETH' (WSTETH), Lido's own wrapper; every other candidate names a specific chain's bridged wstETH.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MRQBVKJ85",
+      "coingeckoId": "wrapped-steth",
+      "modelConfidence": "high",
+      "reasoning": "'Wrapped liquid staked Ether 2 0' is the literal contract name of Lido's wstETH; CoinGecko 'Wrapped stETH' is that token, the others being bridged copies of it.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MRXL173RG",
+      "coingeckoId": "minted",
+      "modelConfidence": "medium",
+      "reasoning": "'MTD' matches 'Minted' (MTD), the only MTD candidate; the DTI record gives only the ticker, so the match rests on that alone.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MS8TW0GNX",
+      "coingeckoId": "hop-protocol",
+      "modelConfidence": "medium",
+      "reasoning": "'Hop' with ticker HOP matches Hop Protocol (HOP); 'hop cat' is a memecoin reusing the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MTCJTRNZR",
+      "coingeckoId": "oraichain-token",
+      "modelConfidence": "high",
+      "reasoning": "'Oraichain Token' / ORAI matches Oraichain (ORAI), the only ORAI candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MV10RXC24",
+      "coingeckoId": "jupiter-perpetuals-liquidity-provider-token",
+      "modelConfidence": "high",
+      "reasoning": "'Jupiter Perps LP' / JLP matches 'Jupiter Perpetuals Liquidity Provider Token' (JLP), the only JLP candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MW2GQD34J",
+      "coingeckoId": "stable-mint-usd",
+      "modelConfidence": "medium",
+      "reasoning": "'USDSM' matches 'Stable Mint USD' (USDSM) on a distinctive ticker; the other candidate is the different USDS stablecoin caught by name similarity.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "MWS853GDH",
+      "coingeckoId": "weth",
+      "modelConfidence": "high",
+      "reasoning": "'Wrapped Ether' / WETH matches CoinGecko 'WETH', the canonical wrapper; every other candidate names a specific chain's bridged WETH.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N018N3Q0Z",
+      "coingeckoId": "stepn",
+      "modelConfidence": "high",
+      "reasoning": "'GreenMetaverseToken' is the contract name of STEPN's GMT; CoinGecko 'GMT' (id stepn) is that asset.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N01MRH960",
+      "coingeckoId": "fetch-ai",
+      "modelConfidence": "high",
+      "reasoning": "'Fetch' / FET matches Fetch.ai's FET, now listed as 'Artificial Superintelligence Alliance' (id fetch-ai); the FETCHR candidates are unrelated name matches.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N06L5TBWG",
+      "coingeckoId": "chainlink",
+      "modelConfidence": "high",
+      "reasoning": "'Chainlink Token' is the contract name of LINK; CoinGecko 'Chainlink' (LINK) is that asset, the others being an Osmosis alloy and a Linea bridge.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N145MVDP5",
+      "coingeckoId": "binance-peg-cardano",
+      "modelConfidence": "medium",
+      "reasoning": "'Cardano Token' with ticker ADA is the exact name and symbol of the Binance-Peg Cardano BEP-20, and the record is typed as one deployment among several ledgers rather than a native token.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N26VFQW6M",
+      "coingeckoId": "aerodrome-finance",
+      "modelConfidence": "high",
+      "reasoning": "'Aerodrome' / AERO matches Aerodrome Finance (AERO), the only AERO candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N2QHWFQNJ",
+      "coingeckoId": "apenft",
+      "modelConfidence": "high",
+      "reasoning": "'APENFT' matches CoinGecko id apenft (now displayed as AINFT) with ticker NFT; 'NFT Protocol' is a different project.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N3562D9RZ",
+      "coingeckoId": "ethereum",
+      "modelConfidence": "high",
+      "reasoning": "'Eth on Scroll' is ether used as the native gas asset of the Scroll L2 - the same economic asset CoinGecko tracks as 'Ethereum'.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N3T05NZG8",
+      "coingeckoId": "augur",
+      "modelConfidence": "high",
+      "reasoning": "'Reputation' with ticker REP is Augur's REP token; CoinGecko 'Augur' (REP) is that asset and the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N4L7B7NDJ",
+      "coingeckoId": "apecoin",
+      "modelConfidence": "medium",
+      "reasoning": "'ApeCoin PoS' is the Polygon-PoS deployment of ApeCoin's APE, which CoinGecko tracks under the single 'ApeCoin' coin; the other APE candidates are unrelated memecoins.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N5DG5PWTG",
+      "coingeckoId": "parsiq",
+      "modelConfidence": "high",
+      "reasoning": "'Parsiq Token' / PRQ matches PARSIQ (PRQ), the only PRQ candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N6RVTJ7L0",
+      "coingeckoId": "tether-gold",
+      "modelConfidence": "high",
+      "reasoning": "'XAUT' matches Tether Gold (XAUT), the only XAUT candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N7165NQ94",
+      "coingeckoId": "superfarm",
+      "modelConfidence": "high",
+      "reasoning": "'SuperFarm' matches CoinGecko id superfarm, now displayed as 'SuperVerse', with ticker SUPER; the other SUPER candidates are unrelated memecoins.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N756VVZRC",
+      "coingeckoId": "curve-dao-token",
+      "modelConfidence": "high",
+      "reasoning": "'Curve DAO Token' is the contract name of CRV; CoinGecko 'Curve DAO' (id curve-dao-token) is that asset, the other CRV candidate being a Stargate bridge.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N7JTT7LR2",
+      "coingeckoId": "tether",
+      "modelConfidence": "high",
+      "reasoning": "'Tether USDt' is Tether's USDT; CoinGecko 'Tether' (USDT) is that asset and the other candidates name specific bridges or yield wrappers.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N82FX493S",
+      "coingeckoId": "theta-fuel",
+      "modelConfidence": "high",
+      "reasoning": "'TFUEL' matches Theta Fuel (TFUEL), the only TFUEL candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N8KZCV8BC",
+      "coingeckoId": "ftx-token",
+      "modelConfidence": "high",
+      "reasoning": "'FTX Token' / FTT matches CoinGecko 'FTX' (id ftx-token); 'Flying Tulip' is acronym noise.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N8Q1P9XRN",
+      "coingeckoId": "usd-coin",
+      "modelConfidence": "high",
+      "reasoning": "'USD Coin' is Circle's USDC; CoinGecko 'USDC' (id usd-coin) is that asset and the remaining candidates are named bridges or USDC+ wrappers.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N8X51TRM5",
+      "coingeckoId": "ethereum",
+      "modelConfidence": "medium",
+      "reasoning": "'ETH via channel 0' is ether delivered over an IBC channel onto a host chain; the underlying economic asset is ether, which CoinGecko tracks as 'Ethereum', and no channel-specific coin exists.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N9BNP470B",
+      "coingeckoId": "binance-peg-litecoin",
+      "modelConfidence": "medium",
+      "reasoning": "'Litecoin Token' with ticker LTC is the exact name and symbol of the Binance-Peg Litecoin BEP-20, and the record is typed as a deployment on a host ledger rather than native LTC.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N9MN2LS4M",
+      "coingeckoId": "cryptex-finance",
+      "modelConfidence": "high",
+      "reasoning": "'Cryptex' / CTX matches Cryptex Finance (CTX), the only CTX candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N9SKNTDTX",
+      "coingeckoId": "dai",
+      "modelConfidence": "high",
+      "reasoning": "'Dai Stablecoin' is the contract name of MakerDAO's DAI; CoinGecko 'Dai' (DAI) is that asset while every other candidate names a bridge deployment.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "N9TJVZ0C4",
+      "coingeckoId": "wanusdc",
+      "modelConfidence": "high",
+      "reasoning": "Short name wanUSDC is Wanchain's bridge prefix, and the candidate 'Bridged USD Coin (Wanchain)' (WANUSDC) is exactly that bridged deployment rather than Circle's USDC.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NB7P3330P",
+      "coingeckoId": "project-galaxy",
+      "modelConfidence": "high",
+      "reasoning": "'Project Galaxy' / GAL matches CoinGecko id project-galaxy (GAL, since migrated to Gravity); the Galatasaray fan token and 'one unchill gal' only share the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NBM8KWVX6",
+      "coingeckoId": "thunder-token",
+      "modelConfidence": "medium",
+      "reasoning": "'ETH Peg Thunder Token' (TT) is ThunderCore's TT represented on Ethereum; CoinGecko tracks TT as the single 'ThunderCore' coin, while TDEX Token is an unrelated project.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NBQPNFDX4",
+      "coingeckoId": "vebetterdao",
+      "modelConfidence": "high",
+      "reasoning": "'B3TR' matches VeBetterDAO's B3TR, the only B3TR candidate and a distinctive ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NBVPDBTLB",
+      "coingeckoId": "woo-network",
+      "modelConfidence": "high",
+      "reasoning": "'Wootrade Network' is the contract name of WOO Network's WOO; CoinGecko 'WOO' (id woo-network) is that asset, the other candidate being an unrelated token.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NC7PW4ZNN",
+      "coingeckoId": "project-galaxy",
+      "modelConfidence": "high",
+      "reasoning": "'Project Galaxy' / GAL matches CoinGecko id project-galaxy (GAL, since migrated to Gravity); the other GAL candidates are unrelated projects.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NCZ3C80ZQ",
+      "coingeckoId": "wing-finance",
+      "modelConfidence": "high",
+      "reasoning": "'Wing Token' / WING matches Wing Finance (WING); the WisdomTree candidate is acronym noise.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NFKTLR007",
+      "coingeckoId": "tether",
+      "modelConfidence": "high",
+      "reasoning": "'Tether USD' is the contract name of Tether's USDT; CoinGecko 'Tether' (USDT) is that asset and the rest name specific bridges or yield wrappers.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NG7JVPZR1",
+      "coingeckoId": "tellor",
+      "modelConfidence": "high",
+      "reasoning": "'Tellor' / TRB matches 'Tellor Tributes' (TRB), the only TRB candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NGFD0XT8F",
+      "coingeckoId": "dai",
+      "modelConfidence": "medium",
+      "reasoning": "'Dai Stablecoin on xDai' is the Gnosis-chain deployment of MakerDAO's DAI; CoinGecko tracks it under the single 'Dai' coin and no Gnosis-specific DAI coin is offered.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NGJ92SFVM",
+      "coingeckoId": "uma",
+      "modelConfidence": "high",
+      "reasoning": "'UMA Voting Token v1' is the contract name of UMA's governance token; CoinGecko 'UMA' (UMA) is that asset and the only candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NGR9V40F4",
+      "coingeckoId": "sushi",
+      "modelConfidence": "high",
+      "reasoning": "'SushiToken' is the contract name of SushiSwap's SUSHI; CoinGecko 'Sushi' (SUSHI) is that asset, 'Sushi Fighter' being an unrelated meme.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NHFMT5VCS",
+      "coingeckoId": "aavegotchi",
+      "modelConfidence": "high",
+      "reasoning": "'Aavegotchi GHST Token' / GHST matches Aavegotchi (GHST); the AGT candidates are acronym noise.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NJ7X4BCTD",
+      "coingeckoId": "tether",
+      "modelConfidence": "high",
+      "reasoning": "'TetherToken' with ticker USDt is Tether's USDT; CoinGecko 'Tether' is that asset and the other candidates name specific bridges or yield wrappers.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NJQZHKP11",
+      "coingeckoId": "wirex",
+      "modelConfidence": "high",
+      "reasoning": "'Wirex Token' / WXT matches CoinGecko 'WXT Token' (id wirex); WEEX Token shares only the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NJVDLVNH7",
+      "coingeckoId": "pundi-x-2",
+      "modelConfidence": "medium",
+      "reasoning": "'Pundi X Token' / PUNDIX matches CoinGecko 'Pundi X' (PUNDIX, id pundi-x-2), the current PUNDIX token and the only PUNDIX candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NJVGV8864",
+      "coingeckoId": "bella-protocol",
+      "modelConfidence": "high",
+      "reasoning": "'Bella' / BEL matches Bella Protocol (BEL); the Bellscoin entries are a separate asset sharing the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NLWPNNWQZ",
+      "coingeckoId": "starknet",
+      "modelConfidence": "high",
+      "reasoning": "'StarkNet Token' / STRK matches Starknet (STRK); the Dinari tokenized stock only shares the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NM3V4WGW9",
+      "coingeckoId": "mines-of-dalarnia",
+      "modelConfidence": "high",
+      "reasoning": "'Dalarnia' / DAR matches 'Mines of Dalarnia' (DAR), the only DAR candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NM4XM1Z5F",
+      "coingeckoId": "prometeus",
+      "modelConfidence": "high",
+      "reasoning": "'Prometeus' / PROM matches CoinGecko 'Prom' (id prometeus); the other candidate is an unrelated 'Prometheus'.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NMKFQ5XJV",
+      "coingeckoId": "tether",
+      "modelConfidence": "medium",
+      "reasoning": "'Tether USD from Ethereum' is a chain-bridged deployment of Tether's USDT; no coin for that specific bridge is among the candidates and CoinGecko tracks the asset as 'Tether'.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NNLKTXT94",
+      "coingeckoId": "aergo",
+      "modelConfidence": "medium",
+      "reasoning": "'Aergo' / AERGO matches CoinGecko id aergo, displayed as 'Aergo [OLD]' after the project's token migration; it is the only AERGO candidate.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NNMB6ZN5S",
+      "coingeckoId": "orbs",
+      "modelConfidence": "medium",
+      "reasoning": "'Orbs PoS' is the Polygon-PoS deployment of Orbs' ORBS token; CoinGecko tracks ORBS as the single 'Orbs' coin, while Orbitopia only shares the ticker.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NP80VPBVX",
+      "coingeckoId": "cardano",
+      "modelConfidence": "medium",
+      "reasoning": "'ADA' names Cardano's ADA and CoinGecko 'Cardano' is that asset; the remaining candidates are the explicitly Binance-pegged version and a memecoin.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NQ0VS0JG1",
+      "coingeckoId": "gnosis",
+      "modelConfidence": "high",
+      "reasoning": "'Gnosis Token' / GNO matches Gnosis (GNO); the other candidate is explicitly the Linea bridge.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NQ89K5S8K",
+      "coingeckoId": "dai",
+      "modelConfidence": "high",
+      "reasoning": "'Dai Stablecoin' is the contract name of MakerDAO's DAI; CoinGecko 'Dai' (DAI) is that asset and every other candidate names a bridge deployment.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NQSKGRFR3",
+      "coingeckoId": "ethos",
+      "modelConfidence": "high",
+      "reasoning": "'Voyager' with ticker VGX is Voyager's VGX token, listed as 'VGX Token' under CoinGecko id ethos; 'Voyager AI' is an unrelated name match.",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
+    },
+    {
+      "dti": "NQTJR75V2",
+      "coingeckoId": "matic-network",
+      "modelConfidence": "high",
+      "reasoning": "'Matic' / MATIC matches CoinGecko 'MATIC (migrated to POL)' (id matic-network), the Polygon token; MaziMatic is an unrelated name match.",
       "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)"
     },
     {

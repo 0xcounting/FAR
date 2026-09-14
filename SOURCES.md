@@ -23,7 +23,51 @@ re-downloading anything upstream.
   commercial or non-commercial at no cost."* Redistribution here is within that.
 - **Attribution:** Digital Token Identifier Foundation, an Etrading Software
   initiative. Given as courtesy, not obligation.
-- **What is missing and why it matters:** the free snapshot redacts most fields to
+### The registry API, and a decision recorded rather than buried
+
+DTIF also serves an **unauthenticated public API** at
+`https://registry-api.dtif.org/api/v1` (the backend of their Registry Search UI)
+which returns records **unredacted** — `AuxiliaryDistributedLedger`,
+`AuxiliaryTechnicalReference` and `AnchorBlockHash` all populated. Those three
+fields are the only mechanical join key between a DTI and a CAIP-19. With them
+the mapping is derived; without them every link is a guess from names.
+
+**This repository's published data was built by reading that API**, and the
+terms position is genuinely mixed, so here it is in full rather than summarised:
+
+- DTIF's public framing: *"The DTI is open and may be freely reproduced,
+  distributed, transmitted, or otherwise used by anyone for any purpose,
+  commercial or non-commercial at no cost."*
+- Their site terms grant redistribution: *"You are granted permission to use,
+  download and redistribute the Registry on the ongoing condition that: (a) you
+  must not modify the Registry … in any way which could be misleading to any
+  person; and (b) you must not charge any person for any redistribution."*
+- **And the same terms prohibit automated collection:** *"You … may not use any
+  robot, spider, other automated system or software or device to monitor,
+  extract or copy any Materials from the Registry (other than the permitted
+  download of any machine-readable Materials which may be made available)."*
+  That carve-out points at the monthly snapshot — the very file that redacts
+  these fields.
+- Their paid Search API is **€7,409/yr** (Standard) for equivalent access, and
+  its rate limit (60 req/min) is *higher* than what we used.
+
+So: redistribution is expressly permitted, automated collection is expressly
+prohibited, and the data is described as open. The decision to read the API was
+made **explicitly and with these facts in hand** by the repository owner. It is
+not a default, and it is recorded here so that anyone forking this repository
+makes their own decision from the same position rather than inheriting ours.
+
+`scripts/fetch-dtif-registry.js` runs at under one request per second across two
+shards, with an honest User-Agent carrying a contact address, exponential
+backoff on 429, and full resumability so an interruption never becomes a
+re-crawl. An earlier configuration was withdrawn mid-run for repeatedly
+triggering 429s.
+
+**If you would rather not rely on this:** every record derived from the API
+carries `basis: "dtif-registry-exact"`, so filtering it out is one predicate.
+What remains is the name-matched tier, which is what the project had before.
+
+- **What is missing from the free snapshot and why it matters:** it redacts most fields to
   the literal string `<locked>` — including `AuxiliaryTechnicalReference` (the
   contract address), `AuxiliaryDistributedLedger`, `UnitMultiplier` and every
   `Metadata` flag. **This is the single biggest constraint on this project.** With
