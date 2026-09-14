@@ -60,11 +60,25 @@ const acronym = (s) => s.split(/[^A-Za-z0-9]+/).filter(Boolean).map((w) => w[0])
 // `anubis-bridged-usdc-anubis` — the adjudicating model then correctly refused
 // to link, because the right answer was never shown to it.
 const DERIVATIVE = /(bridged|wrapped|peg|pegged|-on-|portal|wormhole|synthetic|staked|receipt|\bold\b|\bv[0-9]\b)/i;
+
+// Deployment count is the one signal here that is DATA rather than string shape.
+// An asset deployed on many chains is overwhelmingly likely to be the original
+// rather than something that merely took its ticker. This was added after the
+// string-only version ranked `woo` — a memecoin with a short id — above
+// `woo-network` for four "Wootrade Network" records: brevity is a weak proxy
+// for canonicality and a memecoin can always claim a shorter name.
+const deploymentCount = new Map();
+for (const row of rd('data/sources/coingecko-platforms.json.gz')) {
+  deploymentCount.set(row.coinId, (deploymentCount.get(row.coinId) ?? 0) + 1);
+}
+
 const canonicality = (c) => {
   let s = 0;
   if (!DERIVATIVE.test(c.id) && !DERIVATIVE.test(c.name)) s += 2;
   if (!/-\d+$/.test(c.id)) s += 1;           // `meow-5` is a collision survivor
-  s += Math.max(0, 2 - c.id.split('-').length * 0.25); // shorter ids are usually the original
+  s += Math.max(0, 1 - c.id.split('-').length * 0.15);
+  const n = deploymentCount.get(c.id) ?? 0;
+  s += Math.min(3, Math.log2(n + 1));        // 1 chain ~ +1, 7 chains ~ +3
   return s;
 };
 
