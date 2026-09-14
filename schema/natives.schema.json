@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/0xcounting/far/schema/natives.schema.json",
+  "$id": "https://github.com/0xcounting/FAR/schema/natives.schema.json",
   "title": "FAR native asset table",
   "type": "object",
   "required": ["natives"],

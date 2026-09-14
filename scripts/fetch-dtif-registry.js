@@ -27,7 +27,7 @@ const BASE = 'https://registry-api.dtif.org/api/v1';
 // Identifies the client and points at a contactable place, WITHOUT putting a
 // personal address in an outbound header or in a public repository. Issues are
 // the right contact channel for an open-data project anyway.
-const UA = '0xcounting-far/0.1 (+https://github.com/0xcounting/far; open CAIP-19<->DTI cross-reference; contact via repository issues)';
+const UA = '0xcounting-far/0.1 (+https://github.com/0xcounting/FAR; open CAIP-19<->DTI cross-reference; contact via repository issues)';
 const OUT = process.env.FAR_DTIF_OUT ?? '/tmp/dtif';
 const DELAY_MS = Number(process.env.FAR_DTIF_DELAY ?? 1000);
 const KIND = process.argv[2]; // 'ledger' | 'token'

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/0xcounting/far/schema/links.schema.json",
+  "$id": "https://github.com/0xcounting/FAR/schema/links.schema.json",
   "title": "FAR curated DTI links",
   "type": "object",
   "required": ["accepted", "rejected"],

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/0xcounting/far/schema/platforms.schema.json",
+  "$id": "https://github.com/0xcounting/FAR/schema/platforms.schema.json",
   "title": "FAR platform table",
   "type": "object",
   "required": [

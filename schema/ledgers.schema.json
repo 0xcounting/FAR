@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/0xcounting/far/schema/ledgers.schema.json",
+  "$id": "https://github.com/0xcounting/FAR/schema/ledgers.schema.json",
   "title": "FAR DTI ledger table",
   "description": "DTI ledger records (DLIs) mapped to CAIP-2 — DTIF's own chain vocabulary in CAIP terms. Does NOT say which ledger a given token record sits on; the snapshot redacts that.",
   "type": "object",

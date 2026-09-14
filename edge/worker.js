@@ -27,7 +27,7 @@ export default {
     if (!object) {
       // A 404 here is a normal answer, not an error: "no asset by that name" is
       // exactly what a resolver should say. Keep it cheap and cacheable.
-      return json({ error: 'not_found', path: key, docs: 'https://github.com/0xcounting/far' }, 404, {
+      return json({ error: 'not_found', path: key, docs: 'https://github.com/0xcounting/FAR' }, 404, {
         'cache-control': 'public, max-age=60',
       });
     }

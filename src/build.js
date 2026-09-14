@@ -180,7 +180,7 @@ const emit = (path, value) => {
   files.push({ path, sha256: sha256(body), bytes: body.length });
 };
 
-const meta = () => ({ registry: 'far', version: REGISTRY_VERSION, docs: 'https://github.com/0xcounting/far' });
+const meta = () => ({ registry: 'far', version: REGISTRY_VERSION, docs: 'https://github.com/0xcounting/FAR' });
 const compact = (c) => ({
   coingeckoId: c.coingeckoId, name: c.name, symbol: c.symbol,
   deployments: c.deployments, dti: c.dti, related: c.related,

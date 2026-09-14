@@ -44,7 +44,7 @@ model's reasoning as the prior:
   "dti": "5XMDC8VG3",
   "coingeckoId": "pixelverse-xyz",
   "rationale": "Confirmed the inferred link. DTIF record gives AuxiliaryTechnicalReference 0x… on ledger …, which matches CoinGecko's `ethereum` platform entry for pixelverse-xyz.",
-  "decidedIn": "https://github.com/0xcounting/far/issues/…"
+  "decidedIn": "https://github.com/0xcounting/FAR/issues/…"
 }
 ```
 
@@ -65,7 +65,7 @@ record and the CoinGecko coin are the same asset, then add it:
   "dti": "2RJ2NRNJ5",
   "coingeckoId": "tether",
   "rationale": "DTIF's public registry record for 2RJ2NRNJ5 gives AuxiliaryDistributedLedger 3Q57NZGGJ (= ledger 'Core') and AuxiliaryTechnicalReference 0x9ebab27608bd64aff36f027049aecc69102a0d1e, which is CoinGecko's `core` platform entry for coin id 'tether'. NOTE: this record is USDT on Core, NOT on Ethereum \u2014 the long name is bare 'Tether' for every chain, so the name alone cannot tell you which deployment a record is.",
-  "decidedIn": "https://github.com/0xcounting/far/issues/12"
+  "decidedIn": "https://github.com/0xcounting/FAR/issues/12"
 }
 ```
 
