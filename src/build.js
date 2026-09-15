@@ -105,8 +105,27 @@ for (const [coingeckoId, entries] of Object.entries(nativeTable)) {
   }
 }
 stats.natives = nativeCount;
+// Order deployments by how much of the registry lives on each chain, biggest
+// first, then alphabetically.
+//
+// They used to sort alphabetically by CAIP-19, which buried the deployment a
+// reader almost always wants: WETH's canonical Ethereum contract came SECOND
+// behind a Terra IBC voucher, and USDC's first-listed chain was Algorand —
+// purely because "cosmos:" and "algorand:" precede "eip155:" in ASCII. Twice a
+// reader concluded the registry only knew about the chain shown first.
+//
+// The weight is the number of assets this registry holds on that chain, which
+// is data rather than a hand-maintained opinion about which chains matter. It
+// is computed from the same inputs as everything else, so the build stays
+// deterministic and the Merkle root stays meaningful.
+const chainWeight = new Map();
 for (const coin of coinsById.values()) {
-  coin.deployments.sort((a, b) => (a.caip19 < b.caip19 ? -1 : 1));
+  for (const d of coin.deployments) chainWeight.set(d.caip2, (chainWeight.get(d.caip2) ?? 0) + 1);
+}
+for (const coin of coinsById.values()) {
+  coin.deployments.sort((a, b) =>
+    (chainWeight.get(b.caip2) ?? 0) - (chainWeight.get(a.caip2) ?? 0) ||
+    (a.caip19 < b.caip19 ? -1 : a.caip19 > b.caip19 ? 1 : 0));
 }
 
 // --------------------------------------------------------------------- DTI --
