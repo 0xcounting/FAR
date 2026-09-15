@@ -57,6 +57,45 @@ button.ghost.on{background:var(--accent);color:var(--bg);border-color:var(--acce
 .hint{color:var(--muted);font-size:12.5px;margin:10px 0 0}
 .out{margin:14px 0 0;display:none}
 .out.on{display:block}
+
+/* Routes: every candidate and what it returned, so nothing is hidden and a
+   miss never looks like a failure of the view you are currently reading. */
+.routes{display:flex;flex-direction:column;gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:0 0 14px}
+.rt{display:flex;align-items:center;gap:10px;background:var(--panel);
+  padding:9px 12px;border:0;width:100%;text-align:left;font:inherit;font-size:13px;
+  color:var(--ink);cursor:pointer;border-radius:0}
+.rt:hover{background:var(--accent-soft)}
+.rt[disabled]{cursor:default;color:var(--muted)}
+.rt[disabled]:hover{background:var(--panel)}
+.rt.sel{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
+.rt .k{font-family:var(--mono);font-weight:600;min-width:96px}
+.rt .n{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--muted);font-size:12.5px}
+.rt .p{font-family:var(--mono);font-size:11.5px;color:var(--muted);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* One card per asset. Nested lists live inside the card instead of being
+   crushed into a table cell. */
+details.card{background:var(--panel);border:1px solid var(--line);
+  border-radius:8px;margin:0 0 8px;overflow:hidden}
+details.card>summary{padding:11px 13px;cursor:pointer;display:flex;
+  align-items:center;gap:9px;flex-wrap:wrap;list-style:none}
+details.card>summary::-webkit-details-marker{display:none}
+details.card>summary:hover{background:var(--accent-soft)}
+details.card[open]>summary{border-bottom:1px solid var(--line)}
+summary .id{font-family:var(--mono);font-size:13px;font-weight:600}
+summary .nm{color:var(--muted);font-size:12.5px}
+summary .ct{margin-left:auto;color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+.body{padding:12px 13px}
+.body h4{margin:0 0 7px;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--muted);font-weight:600}
+.body h4+ul{margin:0 0 15px}
+.body ul{list-style:none;padding:0;margin:0;max-height:260px;overflow-y:auto}
+.body li{font-family:var(--mono);font-size:11.5px;padding:3px 0;
+  border-bottom:1px solid var(--line);word-break:break-all;line-height:1.5}
+.body li:last-child{border-bottom:0}
+.body li .meta{font-family:ui-sans-serif,system-ui;color:var(--muted);font-size:11px;margin-left:6px}
+.empty{color:var(--muted);font-size:12.5px;margin:0 0 12px}
 .route{font-family:var(--mono);font-size:12px;color:var(--muted);margin:0 0 7px;word-break:break-all}
 .route b{color:var(--ink);font-weight:600}
 table{border-collapse:collapse;width:100%;font-size:13.5px;margin:0 0 14px}
@@ -319,72 +358,91 @@ function countOf(d){
   return 0;
 }
 
-function renderAll(hits, all, active){
-  const out = $('#out');
-  const tabs = hits.map((h, i) => {
-    const n = countOf(h.data);
-    return `<button class="ghost${i === active ? ' on' : ''}" data-hit="${i}">${esc(h.kind)} <b>${n}</b></button>`;
-  }).join('');
-  const missed = all.filter(r => r.status !== 200);
-  // Say WHY a route missed where the reason is a common misconception, rather
-  // than reporting a bare path. "usdc" is not a CoinGecko id — the id is
-  // "usd-coin" — and a reader who does not know that reads the miss as a fault.
-  const why = m => m.kind === 'coingeckoId'
-    ? ' <span class="hint">(that is a ticker or name, not a CoinGecko id)</span>' : '';
-  const missNote = missed.length
-    ? `<p class="hint">Not a ${missed.map(m => `<b>${esc(m.kind)}</b>`).join(' or ')}: `
-      + `${missed.map(m => `<code>${esc(m.path)}</code>${why(m)}`).join(', ')}</p>` : '';
-  const h = hits[active];
-  const looked = slug($('#q').value.trim());
-  out.innerHTML = `<p class="route">looked up as <b>${esc(looked)}</b> · `
-    + `<b>${hits.length}</b> route${hits.length === 1 ? '' : 's'} answered — `
-    + `showing <b>${esc(h.kind)}</b> → <a href="${esc(BASE + h.path)}">${esc(h.path)}</a></p>`
-    + `<div class="chips">${tabs}</div>`
-    + `<div id="pane">${paneFor(h.data)}</div>` + missNote;
-  out.querySelectorAll('[data-hit]').forEach(b =>
-    b.onclick = () => renderAll(hits, all, Number(b.dataset.hit)));
-}
-
-function assetRows(list){
-  return list.slice(0,12).map(a=>{
-    const deps = a.deployments || [], dti = a.dti || [];
-    const best = dti.find(d=>d.status==='exact') || dti.find(d=>d.status==='accepted') || dti[0];
-    const pill = best ? `<span class="pill p-${best.status}">${best.status}</span>` : '<span class="hint">—</span>';
-    // Show up to three real identifiers and SAY how many more there are. Showing
-    // one with no denominator read as "this asset is only on Algorand" when the
-    // asset was on 31 chains.
-    const shown = deps.slice(0,3).map(d=>`<code style="font-size:11px">${esc(d.caip19.slice(0,58))}${d.caip19.length>58?'…':''}</code>`).join('<br>');
-    const more = deps.length > 3 ? `<br><span class="hint">+ ${deps.length-3} more</span>` : '';
-    const fam = a.family ? `<br><span class="pill p-${esc(a.family.family)}">${esc(a.family.family)}</span>${a.family.citedBy?` <span class="hint">cited by ${a.family.citedBy}</span>`:''}` : '';
-    return `<tr><td><code>${esc(a.coingeckoId)}</code><br><span class="hint">${esc(a.name||'')} · ${esc(a.symbol||'')}</span>${fam}</td>
-      <td><b>${deps.length}</b> chain${deps.length===1?'':'s'}${deps.length?'<br>'+shown+more:''}</td>
-      <td>${dti.length} ${pill}</td></tr>`;
-  }).join('');
+// Every asset renders as a card that OPENS to show its complete deployment and
+// DTI lists. Nothing is cut to a fixed number: an earlier version truncated to
+// three deployments and twelve assets with no way to see the rest, which made
+// the most interesting cases — a coin on 31 chains, a ticker shared by 62
+// assets — precisely the ones you could not inspect. Long lists scroll inside
+// the card instead.
+function card(a, open){
+  const deps = a.deployments || [], dti = a.dti || [];
+  const fam = a.family ? `<span class="pill p-${esc(a.family.family)}">${esc(a.family.family)}</span>` : '';
+  const depList = deps.length
+    ? `<h4>${deps.length} deployment${deps.length===1?'':'s'}</h4><ul>${deps.map(d =>
+        `<li>${esc(d.caip19)}${d.chainName ? `<span class="meta">${esc(d.chainName)}</span>` : ''}</li>`).join('')}</ul>`
+    : '<p class="empty">No CAIP-19 identifier. Usually a native coin on a chain we have no CAIP-2 for.</p>';
+  const dtiList = dti.length
+    ? `<h4>${dti.length} DTI link${dti.length===1?'':'s'}</h4><ul>${dti.map(d =>
+        `<li>${esc(d.dti)} <span class="pill p-${esc(d.status)}">${esc(d.status)}</span>`
+        + `<span class="meta">${esc(d.longName||'')}${d.basis?` · ${esc(d.basis)}`:''}</span></li>`).join('')}</ul>`
+    : '<p class="empty">No DTI link. Normal — most assets are not in the ISO 24165 registry.</p>';
+  return `<details class="card"${open?' open':''}>
+    <summary><span class="id">${esc(a.coingeckoId)}</span>
+      <span class="nm">${esc(a.name||'')} · ${esc(a.symbol||'')}</span> ${fam}
+      <span class="ct">${deps.length} chain${deps.length===1?'':'s'} · ${dti.length} DTI</span></summary>
+    <div class="body">${depList}${dtiList}</div></details>`;
 }
 
 function paneFor(data){
-  let body = '';
-  if (data.assets && data.assets.length) {
-    body = `<table><tr><th>Asset</th><th>Deployments</th><th>DTI links</th></tr>${assetRows(data.assets)}</table>`;
-    if (data.assets.length > 12) body += `<p class="hint">showing 12 of ${data.assets.length}</p>`;
-  } else if (data.asset) {
-    body = `<table><tr><th>Asset</th><th>Deployments</th><th>DTI links</th></tr>${assetRows([data.asset])}</table>`;
-    const deps = data.asset.deployments||[];
-    if (deps.length) body += `<pre><code>${deps.slice(0,10).map(d=>esc(d.caip19)).join('\n')}${deps.length>10?`\n… ${deps.length-10} more`:''}</code></pre>`;
-  } else if (data.dti) {
+  if (data.assets && data.assets.length)
+    return data.assets.map((a,i) => card(a, i === 0 && data.assets.length <= 3)).join('');
+  if (data.asset) return card(data.asset, true);
+  if (data.dti) {
     const d = data.dti;
-    body = `<table><tr><th>DTI</th><th>Name</th><th>Type</th></tr>
-      <tr><td><code>${esc(d.dti)}</code></td><td>${esc(d.longName||'')}</td><td>${esc(d.typeLabel||d.type||'')}</td></tr></table>`;
-    if (data.assets && data.assets.length) body += `<table><tr><th>Linked to</th><th>Deployments</th><th>Status</th></tr>${assetRows(data.assets)}</table>`;
-    else body += `<p class="hint">No linked CoinGecko asset. That is the normal case — most DTI records are for tokens CoinGecko has never listed.</p>`;
-  } else if (data.ledger) {
-    const l = data.ledger;
-    body = `<table><tr><th>Ledger</th><th>CAIP-2</th><th>Kind</th></tr>
-      <tr><td>${esc(l.longName||'')}</td><td>${l.caip2?`<code>${esc(l.caip2)}</code>`:'<span class="hint">none — see note</span>'}</td>
-      <td>${esc(l.kind||'')} <span class="pill p-${l.confidence==='high'?'exact':'proposed'}">${esc(l.confidence||'')}</span></td></tr></table>`;
-    if (!l.caip2 && l.kind === 'permissioned') body += `<p class="hint">A permissioned bank or CSD ledger. Having no CAIP-2 records an absence, not an impossibility — nobody has published a namespace for it.</p>`;
+    const head = `<details class="card" open><summary><span class="id">${esc(d.dti)}</span>
+      <span class="nm">${esc(d.longName||'')}</span>
+      <span class="ct">${esc(d.typeLabel||d.type||'')}</span></summary>
+      <div class="body">${d.isin?`<h4>ISIN</h4><ul><li>${esc(d.isin)}</li></ul>`:''}
+      ${(data.groupMembers&&data.groupMembers.length)?`<h4>${data.groupMembers.length} group member${data.groupMembers.length===1?'':'s'}</h4><ul>${data.groupMembers.map(m=>`<li>${esc(m)}</li>`).join('')}</ul>`:''}
+      ${d.inferredChain&&d.inferredChain.caip19?`<h4>chain</h4><ul><li>${esc(d.inferredChain.caip19)}<span class="meta">${esc(d.inferredChain.basis)}</span></li></ul>`:''}
+      </div></details>`;
+    const linked = (data.assets||[]).length
+      ? data.assets.map(a => card(a, true)).join('')
+      : '<p class="empty">No linked CoinGecko asset — the normal case. Most DTI records are for tokens CoinGecko has never listed.</p>';
+    return head + linked;
   }
-  return body;
+  if (data.ledger) {
+    const l = data.ledger;
+    return `<details class="card" open><summary><span class="id">${esc(l.longName||'')}</span>
+      <span class="nm">${l.caip2?esc(l.caip2):'no CAIP-2'}</span>
+      <span class="pill p-${l.confidence==='high'?'canonical':'derivative'}">${esc(l.confidence||'')}</span></summary>
+      <div class="body">
+      ${l.caip2?`<h4>CAIP-2</h4><ul><li>${esc(l.caip2)}</li></ul>`:
+        `<p class="empty">${l.kind==='permissioned'
+          ? 'A permissioned bank or CSD ledger. No CAIP-2 records an absence, not an impossibility — nobody has published a namespace for it.'
+          : 'No CAIP-2 identified for this ledger yet.'}</p>`}
+      ${l.anchorBlockHash?`<h4>anchor block hash</h4><ul><li>${esc(l.anchorBlockHash)}<span class="meta">${esc(l.anchorBlockHashAlgorithm||'')}</span></li></ul>`:''}
+      ${(l.evidence||[]).length?`<h4>evidence</h4><ul>${l.evidence.map(e=>`<li style="font-family:inherit;font-size:12px">${esc(e)}</li>`).join('')}</ul>`:''}
+      </div></details>`;
+  }
+  return '<p class="empty">Nothing to show.</p>';
+}
+
+// The routes panel lists EVERY candidate with what it returned. A route that
+// missed is shown greyed in place rather than as a note under the results,
+// where it read as an error about the view you were looking at.
+function renderAll(hits, all, active){
+  const out = $('#out');
+  const why = k => k === 'coingeckoId' ? 'that is a ticker or name, not an id'
+             : k === 'caip19' ? 'not a CAIP-19'
+             : `no ${k} by that key`;
+  const rows = all.map(r => {
+    const i = hits.indexOf(r);
+    if (r.status !== 200)
+      return `<button class="rt" disabled><span class="k">${esc(r.kind)}</span>`
+        + `<span class="p">${esc(r.path)}</span><span class="n">${esc(why(r.kind))}</span></button>`;
+    const n = countOf(r.data);
+    return `<button class="rt${i === active ? ' sel' : ''}" data-hit="${i}">`
+      + `<span class="k">${esc(r.kind)}</span><span class="p">${esc(r.path)}</span>`
+      + `<span class="n">${n} result${n === 1 ? '' : 's'}</span></button>`;
+  }).join('');
+  const h = hits[active];
+  out.innerHTML = `<p class="route">looked up as <b>${esc(slug($('#q').value.trim()))}</b></p>`
+    + `<div class="routes">${rows}</div>`
+    + paneFor(h.data)
+    + `<p class="hint">Raw JSON: <a href="${esc(BASE + h.path)}">${esc(h.path)}</a></p>`;
+  out.querySelectorAll('[data-hit]').forEach(b =>
+    b.onclick = () => renderAll(hits, all, Number(b.dataset.hit)));
 }
 
 $('#go').onclick = () => resolve($('#q').value);
