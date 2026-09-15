@@ -192,6 +192,40 @@ for (const l of links) {
   });
 }
 
+// ------------------------------------------------- resolve per deployment --
+// Attach each DTI to the DEPLOYMENT it actually names, rather than leaving it
+// in a flat list on the coin.
+//
+// This corrects a modelling error. The resolvable unit is a deployment — one
+// asset on one chain — which has exactly ONE CAIP-19, one CoinGecko id and at
+// most one DTI. A CoinGecko coin is a FAMILY of those. Publishing 31 CAIP-19s
+// beside 53 DTIs on one coin and leaving the reader to pair them up is not
+// resolution, it is enumeration, and it is why asking this registry for "USDC"
+// returned lists instead of an answer.
+//
+// A DTI can only be placed when the link carries a CAIP-19, which means it came
+// from the address. Name-matched links name an ASSET but not a deployment, so
+// they stay at coin level under `dtiUnplaced` and are labelled as such rather
+// than being silently attached to an arbitrary chain.
+let placedDti = 0, unplacedDti = 0;
+for (const coin of coinsById.values()) {
+  const byCaip = new Map();
+  for (const d of coin.dti) {
+    if (!d.caip19) continue;
+    if (!byCaip.has(d.caip19)) byCaip.set(d.caip19, []);
+    byCaip.get(d.caip19).push(d);
+  }
+  const placed = new Set();
+  for (const dep of coin.deployments) {
+    const hits = byCaip.get(dep.caip19) ?? [];
+    dep.dti = hits.map((d) => ({ dti: d.dti, status: d.status, basis: d.basis, longName: d.longName }));
+    for (const h of hits) placed.add(h.dti);
+  }
+  placedDti += placed.size;
+  coin.dtiUnplaced = coin.dti.filter((d) => !placed.has(d.dti));
+  unplacedDti += coin.dtiUnplaced.length;
+}
+
 // ----------------------------------------------------------------- family --
 // Which assets are the head of a naming family, which are wrappers of one, and
 // which are neither. Derived entirely from fields already published here, so a
@@ -246,7 +280,8 @@ const emit = (path, value) => {
 const meta = () => ({ registry: 'far', version: REGISTRY_VERSION, docs: 'https://github.com/0xcounting/FAR' });
 const compact = (c) => ({
   coingeckoId: c.coingeckoId, name: c.name, symbol: c.symbol,
-  deployments: c.deployments, dti: c.dti, related: c.related, family: c.family,
+  deployments: c.deployments, dti: c.dti, dtiUnplaced: c.dtiUnplaced,
+  related: c.related, family: c.family,
 });
 
 for (const coin of coinsById.values()) {
@@ -347,6 +382,10 @@ const counts = {
   dtiUnlinked: unlinked.length,
   coinsResolvable: [...coinsById.values()].filter((c) => c.deployments.length).length,
   family: familyCounts,
+  // How much of the registry is a complete three-way resolution: a single
+  // CAIP-19 carrying both a CoinGecko id and a DTI.
+  deploymentsWithDti: placedDti,
+  dtiNotPlacedOnAChain: unplacedDti,
   platformsMapped: Object.keys(platformTable.platforms).length,
   platformsUnmapped: Object.keys(platformTable.unmapped).length,
   files: files.length,
