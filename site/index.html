@@ -58,44 +58,37 @@ button.ghost.on{background:var(--accent);color:var(--bg);border-color:var(--acce
 .out{margin:14px 0 0;display:none}
 .out.on{display:block}
 
-/* Routes: every candidate and what it returned, so nothing is hidden and a
-   miss never looks like a failure of the view you are currently reading. */
-.routes{display:flex;flex-direction:column;gap:1px;background:var(--line);
-  border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:0 0 14px}
-.rt{display:flex;align-items:center;gap:10px;background:var(--panel);
-  padding:9px 12px;border:0;width:100%;text-align:left;font:inherit;font-size:13px;
-  color:var(--ink);cursor:pointer;border-radius:0}
-.rt:hover{background:var(--accent-soft)}
-.rt[disabled]{cursor:default;color:var(--muted)}
-.rt[disabled]:hover{background:var(--panel)}
-.rt.sel{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
-.rt .k{font-family:var(--mono);font-weight:600;min-width:96px}
-.rt .n{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--muted);font-size:12.5px}
-.rt .p{font-family:var(--mono);font-size:11.5px;color:var(--muted);
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Matching assets: one compact row each, click to resolve. */
+.hits{border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:0 0 14px}
+.hit{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:0;
+  border-bottom:1px solid var(--line);background:var(--panel);padding:9px 12px;
+  font:inherit;font-size:13px;color:var(--ink);cursor:pointer;border-radius:0}
+.hit:last-child{border-bottom:0}
+.hit:hover{background:var(--accent-soft)}
+.hit.sel{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
+.hit .id{font-family:var(--mono);font-weight:600}
+.hit .nm{color:var(--muted);font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hit .ct{margin-left:auto;color:var(--muted);font-size:12px;white-space:nowrap;font-variant-numeric:tabular-nums}
 
-/* One card per asset. Nested lists live inside the card instead of being
-   crushed into a table cell. */
-details.card{background:var(--panel);border:1px solid var(--line);
-  border-radius:8px;margin:0 0 8px;overflow:hidden}
-details.card>summary{padding:11px 13px;cursor:pointer;display:flex;
-  align-items:center;gap:9px;flex-wrap:wrap;list-style:none}
-details.card>summary::-webkit-details-marker{display:none}
-details.card>summary:hover{background:var(--accent-soft)}
-details.card[open]>summary{border-bottom:1px solid var(--line)}
-summary .id{font-family:var(--mono);font-size:13px;font-weight:600}
-summary .nm{color:var(--muted);font-size:12.5px}
-summary .ct{margin-left:auto;color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
-.body{padding:12px 13px}
-.body h4{margin:0 0 7px;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;
-  color:var(--muted);font-weight:600}
-.body h4+ul{margin:0 0 15px}
-.body ul{list-style:none;padding:0;margin:0;max-height:260px;overflow-y:auto}
-.body li{font-family:var(--mono);font-size:11.5px;padding:3px 0;
-  border-bottom:1px solid var(--line);word-break:break-all;line-height:1.5}
-.body li:last-child{border-bottom:0}
-.body li .meta{font-family:ui-sans-serif,system-ui;color:var(--muted);font-size:11px;margin-left:6px}
+/* The answer: one row per resolvable thing, all three identifiers on it. */
+.ans{border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:0 0 12px}
+.ans>header{padding:11px 13px;border-bottom:1px solid var(--line);background:var(--panel);
+  display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.ans>header .id{font-family:var(--mono);font-weight:620;font-size:14px}
+.ans>header .nm{color:var(--muted);font-size:13px}
+.scroll{max-height:400px;overflow:auto}
+table.ids{width:100%;border-collapse:collapse;font-size:12px}
+table.ids th{position:sticky;top:0;background:var(--panel);z-index:1;
+  font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);
+  text-align:left;padding:7px 11px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.ids td{padding:7px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+table.ids tr:last-child td{border-bottom:0}
+table.ids td.mono{font-family:var(--mono);font-size:11.5px;word-break:break-all}
+table.ids td.chain{white-space:nowrap;color:var(--muted)}
+table.ids .none{color:var(--muted)}
 .empty{color:var(--muted);font-size:12.5px;margin:0 0 12px}
+.fam{padding:10px 13px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.fam b{color:var(--ink)}
 
 /* The resolution table: one row is one fully-identified thing. */
 .res{width:100%;border-collapse:collapse;font-size:12px;margin:0 0 4px;display:block;
@@ -142,32 +135,28 @@ footer{border-top:1px solid var(--line);margin:56px 0 0;padding:24px 0 48px;colo
   <p class="hint" id="built"></p>
 </header>
 
-<h2>Try it</h2>
-<p>Give it any one identifier and it returns the others. The unit that resolves is a
-<b>deployment</b> — one asset on one chain — which has exactly one CAIP-19, one CoinGecko
-id and at most one DTI.</p>
-<p>Where a key names several things it says so rather than picking for you: a ticker like
-<code>USDC</code> is shared by 62 unrelated assets, and a single asset like
-<code>usd-coin</code> exists on 31 chains, each with its own identifier. Those are the two
-kinds of ambiguity this data has, and both are shown explicitly.</p>
+<h2>Look up an asset</h2>
+<p>Type a name, ticker, CoinGecko id, DTI or contract address. You get back the
+identifiers that name the same thing: <b>CoinGecko id</b>, <b>CAIP-19</b> and <b>DTI</b>.</p>
 
 <div class="explorer">
   <div class="row">
-    <input type="text" id="q" placeholder="tether" spellcheck="false" autocomplete="off">
-    <button id="go">Resolve</button>
+    <input type="text" id="q" placeholder="usdc" spellcheck="false" autocomplete="off" autofocus>
   </div>
   <div class="chips">
+    <button class="ghost" data-q="usdc">usdc</button>
     <button class="ghost" data-q="tether">tether</button>
-    <button class="ghost" data-q="USDC">USDC</button>
-    <button class="ghost" data-q="bitcoin">bitcoin</button>
-    <button class="ghost" data-q="eip155:1/erc20:0xdac17f958d2ee523a2206206994597c13d831ec7">a CAIP-19</button>
-    <button class="ghost" data-q="2RJ2NRNJ5">a DTI</button>
-    <button class="ghost" data-q="wrapped-ether">wrapped-ether (a trap)</button>
+    <button class="ghost" data-q="wrapped ether">wrapped ether (a trap)</button>
+    <button class="ghost" data-q="0xdac17f958d2ee523a2206206994597c13d831ec7">a contract address</button>
+    <button class="ghost" data-q="CK9PW1MFH">a DTI</button>
   </div>
-  <div class="out" id="out"></div>
+  <p class="hint" id="status">loading the registry…</p>
+  <div id="out"></div>
 </div>
 
-<h2>Routes</h2>
+<h2>Routes, if you are calling it from code</h2>
+<p>The lookup above needs none of these — it loads the whole registry once and searches
+locally. These are for a program that wants one file.</p>
 <table>
 <tr><th>Route</th><th>Key</th><th>Returns</th></tr>
 <tr><td><code>/name/{slug}.json</code></td><td>lowercased, punctuation→<code>-</code></td><td>every asset with that name — a <i>group</i>, because names are not unique</td></tr>
@@ -307,205 +296,100 @@ const one = await fetch(`${BASE}/caip/${path}.json`);</code></pre>
 const BASE = location.pathname.replace(/\/[^/]*$/, '');
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const slug = s => s.normalize('NFKD').replace(/\p{Diacritic}/gu,'').toLowerCase()
-  .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'') || '_';
+const norm = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '');
 
-fetch(`${BASE}/index.json`).then(r=>r.json()).then(d=>{
-  const c = d.counts, n = x => (x??0).toLocaleString('en-US');
+let INDEX = null, SEL = null;
+
+fetch(`${BASE}/index.json`).then(r => r.json()).then(d => {
+  const c = d.counts, n = x => (x ?? 0).toLocaleString('en-US');
   $('#stats').innerHTML = [
     [n(c.coins),'assets'],[n(c.deployments),'CAIP-19 ids'],[n(c.platformsMapped),'chains'],
-    [n(c.dtiLinked),'DTIs linked'],[n(c.dtiExact),'address-derived'],[n(c.files),'files served'],
-  ].map(([v,l])=>`<div class="stat"><b>${v}</b><span>${l}</span></div>`).join('');
+    [n(c.dtiLinked),'DTIs linked'],[n(c.deploymentsWithDti),'fully resolved'],[n(c.files),'files served'],
+  ].map(([v,l]) => `<div class="stat"><b>${v}</b><span>${l}</span></div>`).join('');
   $('#built').textContent = `Built ${d.version} · every file hashed in /manifest.json`;
-}).catch(()=>{ $('#stats').innerHTML = '<div class="stat"><b>—</b><span>stats unavailable</span></div>'; });
+}).catch(() => {});
 
-// Try each route in turn, exactly as a consumer would.
-function routesFor(q){
-  const t = q.trim(), out = [];
-  // A CAIP-19 is the one input that must NOT be case-folded. Move type tags
-  // (0x2::sui::SUI), Antelope symbol codes and base58 references are all
-  // case-sensitive by their own specifications, so lowercasing would name a
-  // different asset or nothing at all.
-  if (t.includes('/') && t.includes(':'))
-    out.push(['caip19', `/caip/${t.replace(/:/g,'/').replace(/%/g,'~')}.json`]);
-  // DTI and DLI codes are uppercase. Accept whatever the reader typed.
-  const code = t.toUpperCase();
-  if (/^[0-9A-Z]{9}$/.test(code)) {
-    out.push(['dti', `/dti/${code}.json`]);
-    out.push(['ledger', `/ledger/${code}.json`]);
+// The whole registry is loaded once and searched in the browser. That is why
+// there is no query API to guess at and no route to choose: a reader types
+// anything and gets rows.
+fetch(`${BASE}/search-index.json`).then(r => r.json()).then(d => {
+  INDEX = d;
+  // Precompute the match keys once rather than on every keystroke.
+  for (const a of INDEX) { a._i = norm(a.i); a._n = norm(a.n); a._s = norm(a.s); }
+  $('#status').textContent = `${d.length.toLocaleString()} assets loaded — searching happens in your browser, nothing is sent anywhere.`;
+  run($('#q').value || 'usdc');
+}).catch(e => { $('#status').innerHTML = `<span class="err">Could not load the index: ${esc(e.message)}</span>`; });
+
+// Lexical scoring, not semantic. For short identifiers an exact or prefix match
+// is what a reader means; "usdc" should find "usd-coin", never "dai" on the
+// grounds that both are stablecoins.
+function search(q){
+  const t = norm(q);
+  if (!t) return [];
+  const isDti = /^[0-9a-z]{9}$/i.test(q.trim());
+  const dti = q.trim().toUpperCase();
+  const addr = q.trim().toLowerCase();
+  const out = [];
+  for (const a of INDEX) {
+    let sc = 0;
+    if (a._i === t || a._s === t || a._n === t) sc = 100;
+    else if (a._i.startsWith(t) || a._n.startsWith(t) || a._s.startsWith(t)) sc = 70;
+    else if (a._i.includes(t) || a._n.includes(t)) sc = 40;
+    // An exact DTI or contract address is a precise answer and outranks a name.
+    if (isDti && ((a.u && a.u.includes(dti)) || (a.d && a.d.some(x => x[1] === dti)))) sc = Math.max(sc, 120);
+    if (addr.length > 8 && a.d && a.d.some(x => x[0].toLowerCase().includes(addr))) sc = Math.max(sc, 120);
+    if (!sc) continue;
+    // The head of a naming family first, then more deployments, then shorter id.
+    out.push([sc + (a.f === 'c' ? 8 : a.f === 'd' ? -4 : 0) + Math.min(6, (a.d || []).length / 5), a]);
   }
-  // Names, symbols and CoinGecko ids are slugged, which lowercases — so these
-  // three are case-insensitive already.
-  out.push(['coingeckoId',`/cg/${slug(t)}.json`]);
-  out.push(['name',`/name/${slug(t)}.json`]);
-  out.push(['symbol',`/symbol/${slug(t)}.json`]);
-  return out;
+  return out.sort((x, y) => y[0] - x[0] || x[1].i.length - y[1].i.length).slice(0, 60).map(x => x[1]);
 }
 
-async function resolve(q){
-  const out = $('#out'); out.className = 'out on';
-  out.innerHTML = '<p class="hint">resolving…</p>';
-  const cands = routesFor(q);
-  // Query every candidate route CONCURRENTLY and show all of them. An earlier
-  // version stopped at the first hit and reported only a miss count, which was
-  // actively misleading: "USDC" matched /name/ (1 asset, because CoinGecko
-  // renamed usd-coin to be literally named "USDC") and never revealed that
-  // /symbol/ also answered with 60+. A resolver that hides the other answers
-  // teaches the wrong mental model of a registry whose whole point is that one
-  // string can mean several things.
-  const results = await Promise.all(cands.map(async ([kind, path]) => {
-    try {
-      const res = await fetch(BASE + path);
-      if (!res.ok) return { kind, path, status: res.status };
-      return { kind, path, status: 200, data: await res.json() };
-    } catch { return { kind, path, status: 'error' }; }
-  }));
-  const hits = results.filter(r => r.status === 200);
-  if (!hits.length) {
-    out.innerHTML = `<p class="err">Nothing matched <code>${esc(q)}</code>.</p>`
-      + `<p class="hint">Tried ${results.map(r => `<code>${esc(r.path)}</code> → ${r.status}`).join(' · ')}</p>`;
-    return;
-  }
-  renderAll(hits, results, 0);
+const FAM = { c: 'canonical', d: 'derivative', s: 'standalone' };
+
+function answer(a){
+  const deps = a.d || [], un = a.u || [];
+  const rows = deps.length
+    ? `<div class="scroll"><table class="ids">
+        <thead><tr><th>CoinGecko id</th><th>CAIP-19</th><th>DTI</th><th>chain</th></tr></thead><tbody>
+        ${deps.map(([c19, dti, chain]) => `<tr>
+          <td class="mono">${esc(a.i)}</td>
+          <td class="mono">${esc(c19)}</td>
+          <td class="mono">${dti ? esc(dti) : '<span class="none">not registered</span>'}</td>
+          <td class="chain">${esc(chain || c19.split('/')[0])}</td></tr>`).join('')}
+      </tbody></table></div>`
+    : `<p class="empty" style="padding:12px 13px;margin:0">No CAIP-19 — usually a native coin on a chain with no CAIP-2 yet. CoinGecko id <code>${esc(a.i)}</code>.</p>`;
+  const famNote = deps.length > 1
+    ? `<div class="fam">This is a family: <b>${esc(a.i)}</b> names the same economic asset on
+       <b>${deps.length}</b> chains, and each row above is a distinct identifier.</div>` : '';
+  const unNote = un.length
+    ? `<div class="fam"><b>${un.length}</b> further DTI record${un.length===1?'':'s'} link to this asset but
+       could not be placed on a chain — they were matched by name, and only an address says which
+       deployment: ${un.slice(0,8).map(d=>`<code>${esc(d)}</code>`).join(' ')}${un.length>8?` +${un.length-8}`:''}</div>` : '';
+  return `<div class="ans"><header><span class="id">${esc(a.i)}</span>
+      <span class="nm">${esc(a.n)} · ${esc(a.s)}</span>
+      <span class="pill p-${FAM[a.f]}">${FAM[a.f]}</span></header>
+      ${rows}${famNote}${unNote}</div>`;
 }
 
-function countOf(d){
-  if (typeof d.count === 'number') return d.count;
-  if (d.assets) return d.assets.length;
-  if (d.asset || d.dti || d.ledger) return 1;
-  return 0;
-}
-
-// Every asset renders as a card that OPENS to show its complete deployment and
-// DTI lists. Nothing is cut to a fixed number: an earlier version truncated to
-// three deployments and twelve assets with no way to see the rest, which made
-// the most interesting cases — a coin on 31 chains, a ticker shared by 62
-// assets — precisely the ones you could not inspect. Long lists scroll inside
-// the card instead.
-function idRow(label, value, mono){
-  return `<tr><td style="color:var(--muted);width:92px">${esc(label)}</td>`
-    + `<td${mono?' class="c19"':''}>${value ? esc(value) : '<span class="none">not registered</span>'}</td></tr>`;
-}
-
-// An asset card. The body is a RESOLUTION TABLE: one row per deployment, each
-// row carrying every identifier that names that one thing. The previous version
-// listed 31 CAIP-19s and 53 DTIs separately and left the reader to pair them
-// up, which is enumeration rather than resolution.
-function card(a, open){
-  const deps = a.deployments || [], unplaced = a.dtiUnplaced || [];
-  const fam = a.family ? `<span class="pill p-${esc(a.family.family)}">${esc(a.family.family)}</span>` : '';
-
-  let body;
-  if (deps.length === 0) {
-    body = '<p class="empty">No CAIP-19 identifier — usually a native coin on a chain with no CAIP-2 yet.</p>';
-  } else if (deps.length === 1) {
-    // Unambiguous: state the three identifiers plainly. This is the answer.
-    const d = deps[0];
-    body = `<p class="lead">One deployment, so this resolves to a single set of identifiers.</p>`
-      + `<table class="res"><tbody>
-          ${idRow('CoinGecko', a.coingeckoId)}
-          ${idRow('CAIP-19', d.caip19, true)}
-          ${idRow('DTI', d.dti && d.dti[0] ? d.dti[0].dti : null)}
-          ${idRow('chain', d.chainName || d.caip2)}
-        </tbody></table>`;
-  } else {
-    const withDti = deps.filter(d => d.dti && d.dti.length).length;
-    body = `<p class="lead">This asset exists on <b>${deps.length}</b> chains. `
-      + `Each is a distinct CAIP-19, and ${withDti} of them also carry a DTI — `
-      + `so "${esc(a.coingeckoId)}" names a family, not one identifier.</p>`
-      + `<table class="res"><thead><tr><th>chain</th><th>DTI</th><th>CAIP-19</th></tr></thead><tbody>`
-      + deps.map(d => `<tr><td>${esc(d.chainName || d.caip2)}</td>`
-          + `<td class="dti">${d.dti && d.dti[0] ? esc(d.dti[0].dti) : '<span class="none">—</span>'}</td>`
-          + `<td class="c19">${esc(d.caip19)}</td></tr>`).join('')
-      + `</tbody></table>`;
-  }
-
-  if (unplaced.length) {
-    body += `<h4>${unplaced.length} DTI link${unplaced.length===1?'':'s'} not placed on a chain</h4>`
-      + `<p class="empty">These were matched by name, which identifies the asset but not which deployment. `
-      + `Only an address can place a DTI on a chain.</p>`
-      + `<ul>${unplaced.map(d => `<li>${esc(d.dti)} <span class="pill p-${esc(d.status)}">${esc(d.status)}</span>`
-      + `<span class="meta">${esc(d.longName||'')}</span></li>`).join('')}</ul>`;
-  }
-
-  return `<details class="card"${open?' open':''}>
-    <summary><span class="id">${esc(a.coingeckoId)}</span>
-      <span class="nm">${esc(a.name||'')} · ${esc(a.symbol||'')}</span> ${fam}
-      <span class="ct">${deps.length} chain${deps.length===1?'':'s'}</span></summary>
-    <div class="body">${body}</div></details>`;
-}
-
-function paneFor(data){
-  if (data.assets && data.assets.length) {
-    const n = data.assets.length;
-    // Ambiguity is stated, not implied by a long list. The reader asked for one
-    // thing; if the key names several, say so before showing them.
-    const lead = n === 1 ? ''
-      : `<p class="lead">This key names <b>${n}</b> different assets. `
-        + `They are not the same thing — the first is the one others are named after.</p>`;
-    return lead + data.assets.map((a,i) => card(a, n === 1 || i === 0)).join('');
-  }
-  if (data.asset) return card(data.asset, true);
-  if (data.dti) {
-    const d = data.dti;
-    const head = `<details class="card" open><summary><span class="id">${esc(d.dti)}</span>
-      <span class="nm">${esc(d.longName||'')}</span>
-      <span class="ct">${esc(d.typeLabel||d.type||'')}</span></summary>
-      <div class="body">${d.isin?`<h4>ISIN</h4><ul><li>${esc(d.isin)}</li></ul>`:''}
-      ${(data.groupMembers&&data.groupMembers.length)?`<h4>${data.groupMembers.length} group member${data.groupMembers.length===1?'':'s'}</h4><ul>${data.groupMembers.map(m=>`<li>${esc(m)}</li>`).join('')}</ul>`:''}
-      ${d.inferredChain&&d.inferredChain.caip19?`<h4>chain</h4><ul><li>${esc(d.inferredChain.caip19)}<span class="meta">${esc(d.inferredChain.basis)}</span></li></ul>`:''}
-      </div></details>`;
-    const linked = (data.assets||[]).length
-      ? data.assets.map(a => card(a, true)).join('')
-      : '<p class="empty">No linked CoinGecko asset — the normal case. Most DTI records are for tokens CoinGecko has never listed.</p>';
-    return head + linked;
-  }
-  if (data.ledger) {
-    const l = data.ledger;
-    return `<details class="card" open><summary><span class="id">${esc(l.longName||'')}</span>
-      <span class="nm">${l.caip2?esc(l.caip2):'no CAIP-2'}</span>
-      <span class="pill p-${l.confidence==='high'?'canonical':'derivative'}">${esc(l.confidence||'')}</span></summary>
-      <div class="body">
-      ${l.caip2?`<h4>CAIP-2</h4><ul><li>${esc(l.caip2)}</li></ul>`:
-        `<p class="empty">${l.kind==='permissioned'
-          ? 'A permissioned bank or CSD ledger. No CAIP-2 records an absence, not an impossibility — nobody has published a namespace for it.'
-          : 'No CAIP-2 identified for this ledger yet.'}</p>`}
-      ${l.anchorBlockHash?`<h4>anchor block hash</h4><ul><li>${esc(l.anchorBlockHash)}<span class="meta">${esc(l.anchorBlockHashAlgorithm||'')}</span></li></ul>`:''}
-      ${(l.evidence||[]).length?`<h4>evidence</h4><ul>${l.evidence.map(e=>`<li style="font-family:inherit;font-size:12px">${esc(e)}</li>`).join('')}</ul>`:''}
-      </div></details>`;
-  }
-  return '<p class="empty">Nothing to show.</p>';
-}
-
-// The routes panel lists EVERY candidate with what it returned. A route that
-// missed is shown greyed in place rather than as a note under the results,
-// where it read as an error about the view you were looking at.
-function renderAll(hits, all, active){
+function run(q){
+  if (!INDEX) return;
+  const hits = search(q);
   const out = $('#out');
-  const why = k => k === 'coingeckoId' ? 'that is a ticker or name, not an id'
-             : k === 'caip19' ? 'not a CAIP-19'
-             : `no ${k} by that key`;
-  const rows = all.map(r => {
-    const i = hits.indexOf(r);
-    if (r.status !== 200)
-      return `<button class="rt" disabled><span class="k">${esc(r.kind)}</span>`
-        + `<span class="p">${esc(r.path)}</span><span class="n">${esc(why(r.kind))}</span></button>`;
-    const n = countOf(r.data);
-    return `<button class="rt${i === active ? ' sel' : ''}" data-hit="${i}">`
-      + `<span class="k">${esc(r.kind)}</span><span class="p">${esc(r.path)}</span>`
-      + `<span class="n">${n} result${n === 1 ? '' : 's'}</span></button>`;
-  }).join('');
-  const h = hits[active];
-  out.innerHTML = `<p class="route">looked up as <b>${esc(slug($('#q').value.trim()))}</b></p>`
-    + `<div class="routes">${rows}</div>`
-    + paneFor(h.data)
-    + `<p class="hint">Raw JSON: <a href="${esc(BASE + h.path)}">${esc(h.path)}</a></p>`;
-  out.querySelectorAll('[data-hit]').forEach(b =>
-    b.onclick = () => renderAll(hits, all, Number(b.dataset.hit)));
+  if (!hits.length) { out.innerHTML = `<p class="empty">Nothing matches <code>${esc(q)}</code>.</p>`; return; }
+  const sel = hits.find(h => h.i === SEL) || hits[0];
+  // Only offer a picker when the query genuinely names more than one asset.
+  const list = hits.length > 1
+    ? `<p class="hint"><b>${hits.length}</b> assets match — these are different things, not one asset on many chains.</p>`
+      + `<div class="hits">${hits.slice(0, 40).map(h => `<button class="hit${h.i === sel.i ? ' sel' : ''}" data-id="${esc(h.i)}">
+          <span class="id">${esc(h.i)}</span><span class="nm">${esc(h.n)} · ${esc(h.s)}</span>
+          <span class="ct">${(h.d || []).length} chain${(h.d || []).length === 1 ? '' : 's'}</span></button>`).join('')}</div>`
+    : '';
+  out.innerHTML = list + answer(sel);
+  out.querySelectorAll('[data-id]').forEach(b => b.onclick = () => { SEL = b.dataset.id; run(q); });
 }
 
-$('#go').onclick = () => resolve($('#q').value);
-$('#q').addEventListener('keydown', e => { if (e.key === 'Enter') resolve($('#q').value); });
-document.querySelectorAll('[data-q]').forEach(b => b.onclick = () => { $('#q').value = b.dataset.q; resolve(b.dataset.q); });
-resolve('tether');
+let timer;
+$('#q').addEventListener('input', () => { SEL = null; clearTimeout(timer); timer = setTimeout(() => run($('#q').value), 90); });
+document.querySelectorAll('[data-q]').forEach(b => b.onclick = () => { $('#q').value = b.dataset.q; SEL = null; run(b.dataset.q); });
 </script>
