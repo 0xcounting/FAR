@@ -11,6 +11,7 @@ import { buildCaip19 } from './lib/caip.js';
 import { normalizeDtiRecords, matchableName } from './lib/dti.js';
 import { proposeLinks } from './lib/link.js';
 import { inferChainAndAddress } from './lib/dtiChain.js';
+import { citationIndex, classify, FAMILY_ORDER } from './lib/family.js';
 import { sha256, merkleRoot } from './lib/manifest.js';
 
 const OUT = process.env.FAR_OUT ?? 'dist';
@@ -191,6 +192,18 @@ for (const l of links) {
   });
 }
 
+// ----------------------------------------------------------------- family --
+// Which assets are the head of a naming family, which are wrappers of one, and
+// which are neither. Derived entirely from fields already published here, so a
+// consumer can recompute it and check — and so it adds no new input that could
+// make the build non-deterministic.
+const citations = citationIndex([...coinsById.keys()]);
+const familyCounts = {};
+for (const coin of coinsById.values()) {
+  coin.family = classify(coin, citations);
+  familyCounts[coin.family.family] = (familyCounts[coin.family.family] ?? 0) + 1;
+}
+
 // ---------------------------------------------------------------- relations --
 // "Relational assets": the other entries a caller almost always wants next.
 const byName = groupBy(coinsById.values(), (c) => slug(c.name));
@@ -233,7 +246,7 @@ const emit = (path, value) => {
 const meta = () => ({ registry: 'far', version: REGISTRY_VERSION, docs: 'https://github.com/0xcounting/FAR' });
 const compact = (c) => ({
   coingeckoId: c.coingeckoId, name: c.name, symbol: c.symbol,
-  deployments: c.deployments, dti: c.dti, related: c.related,
+  deployments: c.deployments, dti: c.dti, related: c.related, family: c.family,
 });
 
 for (const coin of coinsById.values()) {
@@ -333,6 +346,7 @@ const counts = {
   dtiLedgersWithCaip2: Object.values(ledgerTable).filter((l) => l.caip2).length,
   dtiUnlinked: unlinked.length,
   coinsResolvable: [...coinsById.values()].filter((c) => c.deployments.length).length,
+  family: familyCounts,
   platformsMapped: Object.keys(platformTable.platforms).length,
   platformsUnmapped: Object.keys(platformTable.unmapped).length,
   files: files.length,
@@ -374,7 +388,9 @@ writeFileSync(join(OUT, 'manifest.sha256'), `${sha256(manifestBody)}  manifest.j
 // ----------------------------------------------------------------- report ---
 const totalBytes = files.reduce((a, f) => a + f.bytes, 0);
 console.log(`far build ${REGISTRY_VERSION}  (${((Date.now() - t0) / 1000).toFixed(1)}s)`);
-for (const [k, v] of Object.entries(counts)) console.log(`  ${k.padEnd(20)} ${v}`);
+for (const [k, v] of Object.entries(counts)) {
+  console.log(`  ${k.padEnd(20)} ${typeof v === 'object' ? JSON.stringify(v) : v}`);
+}
 console.log(`  ${'totalBytes'.padEnd(20)} ${(totalBytes / 1e6).toFixed(1)} MB`);
 console.log(`  ${'merkleRoot'.padEnd(20)} ${root}`);
 console.log('  DTI chain inference:', JSON.stringify(chainBasisCounts));
@@ -407,7 +423,21 @@ function groupBy(iter, keyFn) {
     if (!m.has(k)) m.set(k, []);
     m.get(k).push(v);
   }
-  for (const g of m.values()) g.sort((a, b) => (a.coingeckoId < b.coingeckoId ? -1 : 1));
+  // The head of the family first, then everything else by how many other assets
+  // are named after it, then alphabetically.
+  //
+  // An earlier version ranked ALL derivatives last, which put a memecoin
+  // squatting the USDC ticker above Circle's actual bridged deployments — the
+  // squatter is unrelated to the group while the bridge is the same asset. A
+  // wrapper of the head is more relevant to someone asking "which USDC", not
+  // less, so relatedness rather than wrapper-ness orders the tail. The `family`
+  // field still tells a consumer which is which.
+  for (const g of m.values()) {
+    g.sort((a, b) =>
+      (a.family.family === 'canonical' ? 0 : 1) - (b.family.family === 'canonical' ? 0 : 1) ||
+      b.family.citedBy - a.family.citedBy ||
+      (a.coingeckoId < b.coingeckoId ? -1 : a.coingeckoId > b.coingeckoId ? 1 : 0));
+  }
   return m;
 }
 function others(map, key, self) {
