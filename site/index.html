@@ -96,6 +96,18 @@ table.ids .none{color:var(--muted)}
 .eq button{background:none;border:0;padding:0;font:inherit;font-family:var(--mono);
   color:var(--accent);cursor:pointer;text-decoration:underline}
 
+/* The endpoints that serve exactly this asset, with the ids filled in. */
+.ep{border-top:1px solid var(--line);padding:11px 13px}
+.ep h5{margin:0 0 7px;font-size:11px;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--muted);font-weight:600}
+.ep ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px}
+.ep li{display:flex;gap:9px;align-items:baseline;font-size:12px}
+.ep .verb{font-family:var(--mono);color:var(--muted);font-size:11px;min-width:26px}
+.ep a{font-family:var(--mono);font-size:11.5px;word-break:break-all}
+.ep .what{color:var(--muted);font-size:11px;white-space:nowrap}
+table.ids a{font-family:var(--mono);color:var(--accent);text-decoration:none;border-bottom:1px dotted currentColor}
+table.ids a:hover{border-bottom-style:solid}
+
 /* The resolution table: one row is one fully-identified thing. */
 .res{width:100%;border-collapse:collapse;font-size:12px;margin:0 0 4px;display:block;
   max-height:340px;overflow:auto}
@@ -304,8 +316,15 @@ const BASE = location.pathname.replace(/\/[^/]*$/, '');
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const norm = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '');
+// Same rules the build uses to name files, so a link here is the real file.
+const slug = s => String(s).normalize('NFKD').replace(/\p{Diacritic}/gu, '')
+  .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || '_';
+// ":" and "/" become path separators; a "%" in a reference becomes "~" because a
+// literal % is decoded by the server before the file is looked up.
+const caipPath = c19 => c19.replace(/:/g, '/').replace(/%/g, '~');
 
 let INDEX = null, SEL = null;
+const NAMES = new Set(), SYMS = new Set();
 
 fetch(`${BASE}/index.json`).then(r => r.json()).then(d => {
   const c = d.counts, n = x => (x ?? 0).toLocaleString('en-US');
@@ -325,6 +344,14 @@ fetch(`${BASE}/search-index.json`).then(r => r.json()).then(d => {
   for (const a of INDEX) {
     a._i = norm(a.i); a._n = norm(a.n); a._s = norm(a.s);
     a._a = (a.a || []).map(norm);          // DTI long names, used as aliases
+  }
+  // Which /name/ and /symbol/ files the build actually emitted. A name that
+  // slugs to "_" — emoji-only, or pure punctuation — is deliberately not
+  // published, so offering a link to it would hand the reader a 404.
+  for (const a of INDEX) {
+    const n = slug(a.n), y = slug(a.s);
+    if (n !== '_') NAMES.add(n);
+    if (y !== '_') SYMS.add(y);
   }
   $('#status').textContent = `${d.length.toLocaleString()} assets loaded — searching happens in your browser, nothing is sent anywhere.`;
   run($('#q').value || 'usdc');
@@ -378,9 +405,9 @@ function answer(a){
     ? `<div class="scroll"><table class="ids">
         <thead><tr><th>CoinGecko id</th><th>CAIP-19</th><th>DTI</th><th>chain</th></tr></thead><tbody>
         ${deps.map(([c19, dti, chain]) => `<tr>
-          <td class="mono">${esc(a.i)}</td>
-          <td class="mono">${esc(c19)}</td>
-          <td class="mono">${dti ? esc(dti) : '<span class="none">not registered</span>'}</td>
+          <td class="mono"><a href="${esc(BASE)}/cg/${esc(a.i)}.json">${esc(a.i)}</a></td>
+          <td class="mono"><a href="${esc(BASE)}/caip/${esc(caipPath(c19))}.json">${esc(c19)}</a></td>
+          <td class="mono">${dti ? `<a href="${esc(BASE)}/dti/${esc(dti)}.json">${esc(dti)}</a>` : '<span class="none">not registered</span>'}</td>
           <td class="chain">${esc(chain || c19.split('/')[0])}</td></tr>`).join('')}
       </tbody></table></div>`
     : `<p class="empty" style="padding:12px 13px;margin:0">No CAIP-19 — usually a native coin on a chain with no CAIP-2 yet. CoinGecko id <code>${esc(a.i)}</code>.</p>`;
@@ -396,10 +423,23 @@ function answer(a){
        these in the same functionally-fungible group, meaning they are the same economic
        asset even though CoinGecko lists them separately:
        ${a.e.map(id => `<button data-go="${esc(id)}">${esc(id)}</button>`).join(' · ')}</div>` : '';
+  // Every route that serves THIS asset, with its own ids substituted — so the
+  // jump from browsing to calling needs no guesswork about slug rules.
+  const ep = [[`/cg/${a.i}.json`, 'this asset, by CoinGecko id']];
+  if (NAMES.has(slug(a.n))) ep.push([`/name/${slug(a.n)}.json`, `every asset named "${a.n}"`]);
+  if (SYMS.has(slug(a.s))) ep.push([`/symbol/${slug(a.s)}.json`, `every asset with ticker ${a.s}`]);
+  if (deps.length) ep.push([`/caip/${caipPath(deps[0][0])}.json`, 'one deployment, by CAIP-19']);
+  const firstDti = (deps.find(d => d[1]) || [])[1] || (un[0] || null);
+  if (firstDti) ep.push([`/dti/${firstDti}.json`, 'the DTI record']);
+  const epBlock = `<div class="ep"><h5>endpoints serving this asset</h5><ul>`
+    + ep.map(([path, what]) => `<li><span class="verb">GET</span>`
+      + `<a href="${esc(BASE + path)}">${esc(path)}</a>`
+      + `<span class="what">${esc(what)}</span></li>`).join('')
+    + `</ul></div>`;
   return `<div class="ans"><header><span class="id">${esc(a.i)}</span>
       <span class="nm">${esc(a.n)} · ${esc(a.s)}</span>
       <span class="pill p-${FAM[a.f]}">${FAM[a.f]}</span></header>
-      ${rows}${famNote}${unNote}${eq}</div>`;
+      ${rows}${famNote}${unNote}${eq}${epBlock}</div>`;
 }
 
 function run(q){
