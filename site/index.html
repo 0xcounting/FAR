@@ -69,6 +69,9 @@ td code{font-size:12px}
 .p-accepted{background:color-mix(in srgb,var(--exact) 16%,transparent);color:var(--exact)}
 .p-proposed{background:color-mix(in srgb,var(--proposed) 18%,transparent);color:var(--proposed)}
 .p-inferred{background:color-mix(in srgb,var(--inferred) 18%,transparent);color:var(--inferred)}
+.p-canonical{background:color-mix(in srgb,var(--exact) 16%,transparent);color:var(--exact)}
+.p-derivative{background:color-mix(in srgb,var(--proposed) 16%,transparent);color:var(--proposed)}
+.p-standalone{background:var(--accent-soft);color:var(--muted)}
 .note{border-left:3px solid var(--accent);background:var(--accent-soft);
   padding:12px 15px;border-radius:0 7px 7px 0;margin:0 0 16px}
 .note p:last-child{margin:0}
@@ -174,6 +177,34 @@ the <code>name()</code>. CoinGecko displays “Wrapped ETC” from the symbol bu
 The only thing that separates them is the contract address — which is precisely why
 <span class="pill p-exact">exact</span> links exist and why the
 <span class="pill p-proposed">proposed</span> tier scores 43.6% on names alone.</p>
+
+<h2>Which of these 60 is the real one?</h2>
+<p>Ask for <code>/symbol/usdc.json</code> and you get 60 assets. Every asset carries a
+<code>family</code> saying whether it is the thing others are named after, a wrapper of
+something else, or neither — and groups are ordered so the head comes first.</p>
+<table>
+<tr><th>Family</th><th>Means</th><th>Test</th></tr>
+<tr><td><span class="pill p-canonical">canonical</span></td><td>Other assets are named after this one</td><td>a non-derivative id that at least one other id embeds, or a second-registry attestation</td></tr>
+<tr><td><span class="pill p-derivative">derivative</span></td><td>Its own name says it wraps something</td><td><code>bridged</code>, <code>wrapped</code>, <code>peg</code>, <code>wormhole</code>, <code>portal</code>, <code>staked</code>… at a token boundary</td></tr>
+<tr><td><span class="pill p-standalone">standalone</span></td><td>Neither — not part of a wrapper family</td><td>everything else</td></tr>
+</table>
+<div class="note">
+<p><b>This is not a quality score, and it is built so it cannot become one.</b>
+<code>standalone</code> is the normal state of most legitimate assets, including every
+new one — it does not mean “suspicious”. The buckets describe <i>naming structure</i>,
+which is observable. They say nothing about whether an asset is good, safe or real,
+and <a href="https://github.com/0xcounting/FAR/blob/main/GOVERNANCE.md">this project
+does not rate assets</a>.</p>
+</div>
+<p><b>You can check it yourself.</b> Every input is a field already in
+<code>/far.json.gz</code> — no curated list, no market data, no external feed. Recompute
+it from the published file and compare; the rule is about ten lines, in
+<a href="https://github.com/0xcounting/FAR/blob/main/src/lib/family.js"><code>src/lib/family.js</code></a>.
+Because it adds no new input, it also cannot weaken the Merkle root.</p>
+<p><b>What it will not do:</b> 86% of assets have neither citations nor a second-registry
+attestation, so for most of the registry this says <code>standalone</code> and nothing
+more. It finds the head of a family. It does not rank the long tail, and nothing in this
+data could.</p>
 
 <h2>Verifying what you fetched</h2>
 <pre><code>curl -s https://0xcounting.github.io/FAR/cg/tether.json | shasum -a 256
@@ -293,7 +324,8 @@ function assetRows(list){
     // asset was on 31 chains.
     const shown = deps.slice(0,3).map(d=>`<code style="font-size:11px">${esc(d.caip19.slice(0,58))}${d.caip19.length>58?'…':''}</code>`).join('<br>');
     const more = deps.length > 3 ? `<br><span class="hint">+ ${deps.length-3} more</span>` : '';
-    return `<tr><td><code>${esc(a.coingeckoId)}</code><br><span class="hint">${esc(a.name||'')} · ${esc(a.symbol||'')}</span></td>
+    const fam = a.family ? `<br><span class="pill p-${esc(a.family.family)}">${esc(a.family.family)}</span>${a.family.citedBy?` <span class="hint">cited by ${a.family.citedBy}</span>`:''}` : '';
+    return `<tr><td><code>${esc(a.coingeckoId)}</code><br><span class="hint">${esc(a.name||'')} · ${esc(a.symbol||'')}</span>${fam}</td>
       <td><b>${deps.length}</b> chain${deps.length===1?'':'s'}${deps.length?'<br>'+shown+more:''}</td>
       <td>${dti.length} ${pill}</td></tr>`;
   }).join('');

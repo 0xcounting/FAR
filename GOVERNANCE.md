@@ -116,6 +116,19 @@ A build that would break one of these fails CI.
 
 - **Rank, rate, or score assets.** It maps identifiers. It does not tell you
   whether something is a scam, a security, or a good idea.
+
+  The `family` field is not an exception to this and was designed so it cannot
+  become one. It records whether an asset is the head of a NAMING family
+  (`canonical`), declares itself a wrapper of something else (`derivative`), or
+  neither (`standalone`). Those are statements about observable structure, not
+  about merit: `standalone` is the ordinary state of most legitimate assets and
+  must never be presented as suspicion. It is computed only from fields this
+  registry already publishes, so anyone can recompute and audit it, and it
+  deliberately has no input that could be bought, lobbied for, or gamed by
+  spending money.
+
+  A proposal to add a spam, trust or quality classification is a change to this
+  section first, and to the data second.
 - **Accept payment for inclusion, position, or a faster decision.** There is
   nothing to buy. If someone claims otherwise, open an issue.
 - **Gate reads.** No key, no quota, no logging of who asked what. If the hosting
