@@ -102,7 +102,7 @@ in turn and shows you which one answered — the same thing your code would do.<
     <button class="ghost" data-q="bitcoin">bitcoin</button>
     <button class="ghost" data-q="eip155:1/erc20:0xdac17f958d2ee523a2206206994597c13d831ec7">a CAIP-19</button>
     <button class="ghost" data-q="2RJ2NRNJ5">a DTI</button>
-    <button class="ghost" data-q="wrapped-ether">wrapped-ether</button>
+    <button class="ghost" data-q="wrapped-ether">wrapped-ether (a trap)</button>
   </div>
   <div class="out" id="out"></div>
 </div>
@@ -155,6 +155,25 @@ deployment</i> to the canonical asset it wraps. Two DTI records both named
 <code>celer-bridged-usdc-astar</code> on Astar. Neither is Circle’s USDC, and no amount of
 name-matching could have told them apart.</p>
 </div>
+
+<h3>A worked example: two assets called “Wrapped Ether”</h3>
+<p>Try <code>wrapped-ether</code> in the resolver. It returns an asset on
+<b>Ethereum Classic</b>, which looks like a bug. It is not, and the reason is worth
+understanding before you rely on any name.</p>
+<p>The contract at <code>0x1953cab0…</code> on Ethereum Classic reports:</p>
+<pre><code>name()   = "Wrapped Ether"
+symbol() = "WETC"</code></pre>
+<p>It is WETH9 copy-deployed to another chain. The WETH9 source hardcodes
+<code>name = "Wrapped Ether"</code>, and whoever deployed it changed only the symbol —
+so a contract that wraps <b>ETC</b> truthfully calls itself “Wrapped Ether”. DTIF records
+the <code>name()</code>. CoinGecko displays “Wrapped ETC” from the symbol but derives its
+<i>id</i> from the name, giving the thoroughly misleading
+<code>wrapped-ether</code>. Every one of them is reporting the contract accurately.</p>
+<p><b>Two different DTI records are both named “Wrapped Ether”.</b> One resolves to
+<code>wrapped-ether</code> on Ethereum Classic, the other to <code>weth</code> on Ethereum.
+The only thing that separates them is the contract address — which is precisely why
+<span class="pill p-exact">exact</span> links exist and why the
+<span class="pill p-proposed">proposed</span> tier scores 43.6% on names alone.</p>
 
 <h2>Verifying what you fetched</h2>
 <pre><code>curl -s https://0xcounting.github.io/FAR/cg/tether.json | shasum -a 256
