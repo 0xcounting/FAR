@@ -59,7 +59,8 @@ button.ghost.on{background:var(--accent);color:var(--bg);border-color:var(--acce
 .out.on{display:block}
 
 /* Matching assets: one compact row each, click to resolve. */
-.hits{border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:0 0 14px}
+.hits{border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:0 0 14px;
+  max-height:300px;overflow-y:auto}
 .hit{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:0;
   border-bottom:1px solid var(--line);background:var(--panel);padding:9px 12px;
   font:inherit;font-size:13px;color:var(--ink);cursor:pointer;border-radius:0}
@@ -89,6 +90,11 @@ table.ids .none{color:var(--muted)}
 .empty{color:var(--muted);font-size:12.5px;margin:0 0 12px}
 .fam{padding:10px 13px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
 .fam b{color:var(--ink)}
+.eq{padding:10px 13px;border-top:1px solid var(--line);font-size:12.5px;
+  background:var(--accent-soft)}
+.eq b{color:var(--ink)}
+.eq button{background:none;border:0;padding:0;font:inherit;font-family:var(--mono);
+  color:var(--accent);cursor:pointer;text-decoration:underline}
 
 /* The resolution table: one row is one fully-identified thing. */
 .res{width:100%;border-collapse:collapse;font-size:12px;margin:0 0 4px;display:block;
@@ -146,7 +152,8 @@ identifiers that name the same thing: <b>CoinGecko id</b>, <b>CAIP-19</b> and <b
   <div class="chips">
     <button class="ghost" data-q="usdc">usdc</button>
     <button class="ghost" data-q="tether">tether</button>
-    <button class="ghost" data-q="wrapped ether">wrapped ether (a trap)</button>
+    <button class="ghost" data-q="wrapped ether">wrapped ether</button>
+    <button class="ghost" data-q="noble usdc">noble usdc</button>
     <button class="ghost" data-q="0xdac17f958d2ee523a2206206994597c13d831ec7">a contract address</button>
     <button class="ghost" data-q="CK9PW1MFH">a DTI</button>
   </div>
@@ -315,7 +322,10 @@ fetch(`${BASE}/index.json`).then(r => r.json()).then(d => {
 fetch(`${BASE}/search-index.json`).then(r => r.json()).then(d => {
   INDEX = d;
   // Precompute the match keys once rather than on every keystroke.
-  for (const a of INDEX) { a._i = norm(a.i); a._n = norm(a.n); a._s = norm(a.s); }
+  for (const a of INDEX) {
+    a._i = norm(a.i); a._n = norm(a.n); a._s = norm(a.s);
+    a._a = (a.a || []).map(norm);          // DTI long names, used as aliases
+  }
   $('#status').textContent = `${d.length.toLocaleString()} assets loaded — searching happens in your browser, nothing is sent anywhere.`;
   run($('#q').value || 'usdc');
 }).catch(e => { $('#status').innerHTML = `<span class="err">Could not load the index: ${esc(e.message)}</span>`; });
@@ -332,15 +342,30 @@ function search(q){
   const out = [];
   for (const a of INDEX) {
     let sc = 0;
-    if (a._i === t || a._s === t || a._n === t) sc = 100;
-    else if (a._i.startsWith(t) || a._n.startsWith(t) || a._s.startsWith(t)) sc = 70;
-    else if (a._i.includes(t) || a._n.includes(t)) sc = 40;
+    // An exact id or NAME match is the strongest lexical signal. An exact
+    // SYMBOL match is weaker on its own: tickers are squatted, and a memecoin
+    // with one deployment was outranking real USDC deployments purely by
+    // owning the string.
+    if (a._i === t || a._n === t) sc = 100;
+    else if (a._a.includes(t)) sc = 92;     // an alias DTIF records for it
+    else if (a._s === t) sc = 62;
+    else if (a._i.startsWith(t) || a._n.startsWith(t)) sc = 55;
+    else if (a._a.some(x => x.startsWith(t))) sc = 50;
+    else if (a._s.startsWith(t)) sc = 45;
+    else if (a._i.includes(t) || a._n.includes(t) || a._a.some(x => x.includes(t))) sc = 30;
     // An exact DTI or contract address is a precise answer and outranks a name.
     if (isDti && ((a.u && a.u.includes(dti)) || (a.d && a.d.some(x => x[1] === dti)))) sc = Math.max(sc, 120);
     if (addr.length > 8 && a.d && a.d.some(x => x[0].toLowerCase().includes(addr))) sc = Math.max(sc, 120);
     if (!sc) continue;
     // The head of a naming family first, then more deployments, then shorter id.
-    out.push([sc + (a.f === 'c' ? 8 : a.f === 'd' ? -4 : 0) + Math.min(6, (a.d || []).length / 5), a]);
+    // Evidence of being a real, widely-deployed asset breaks ties: deployment
+    // count, whether any deployment carries a DTI, and family head-ness.
+    const deps = (a.d || []).length;
+    const hasDti = (a.d || []).some(x => x[1]) || (a.u || []).length > 0;
+    out.push([sc
+      + (a.f === 'c' ? 10 : a.f === 'd' ? -2 : 0)
+      + Math.min(14, deps * 1.4)
+      + (hasDti ? 6 : 0), a]);
   }
   return out.sort((x, y) => y[0] - x[0] || x[1].i.length - y[1].i.length).slice(0, 60).map(x => x[1]);
 }
@@ -366,10 +391,15 @@ function answer(a){
     ? `<div class="fam"><b>${un.length}</b> further DTI record${un.length===1?'':'s'} link to this asset but
        could not be placed on a chain — they were matched by name, and only an address says which
        deployment: ${un.slice(0,8).map(d=>`<code>${esc(d)}</code>`).join(' ')}${un.length>8?` +${un.length-8}`:''}</div>` : '';
+  const eq = (a.e || []).length
+    ? `<div class="eq"><b>Declared equivalent</b> by DTIF — the ISO 24165 registry places
+       these in the same functionally-fungible group, meaning they are the same economic
+       asset even though CoinGecko lists them separately:
+       ${a.e.map(id => `<button data-go="${esc(id)}">${esc(id)}</button>`).join(' · ')}</div>` : '';
   return `<div class="ans"><header><span class="id">${esc(a.i)}</span>
       <span class="nm">${esc(a.n)} · ${esc(a.s)}</span>
       <span class="pill p-${FAM[a.f]}">${FAM[a.f]}</span></header>
-      ${rows}${famNote}${unNote}</div>`;
+      ${rows}${famNote}${unNote}${eq}</div>`;
 }
 
 function run(q){
@@ -387,6 +417,9 @@ function run(q){
     : '';
   out.innerHTML = list + answer(sel);
   out.querySelectorAll('[data-id]').forEach(b => b.onclick = () => { SEL = b.dataset.id; run(q); });
+  out.querySelectorAll('[data-go]').forEach(b => b.onclick = () => {
+    $('#q').value = b.dataset.go; SEL = b.dataset.go; run(b.dataset.go);
+  });
 }
 
 let timer;

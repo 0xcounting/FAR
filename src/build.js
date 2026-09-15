@@ -226,6 +226,45 @@ for (const coin of coinsById.values()) {
   unplacedDti += coin.dtiUnplaced.length;
 }
 
+// ------------------------------------------------- DTIF equivalence groups --
+// A DTIF "functionally fungible group" is a standards body stating that a set
+// of tokens are the same economic asset. Where such a group spans MORE THAN ONE
+// CoinGecko id, it expresses an equivalence CoinGecko does not.
+//
+// Noble's USDC is the case that surfaced this: CoinGecko files it as its own
+// coin, `ibc-bridged-usdc`, entirely separate from `usd-coin`. DTIF group
+// TJWK5QTRK contains both, so the relationship is SOURCED rather than inferred
+// by us — which matters, because asserting that two assets are the same thing
+// is exactly the judgement this registry should not be making on its own.
+//
+// Note this contradicts an earlier conclusion drawn from the REDACTED snapshot,
+// where the group field was a scalar and every group appeared to have exactly
+// one member. With full records, one group has 36.
+// Group membership lives on the type-2 GROUP records, which carry an explicit
+// member list — not on the token records, whose `equivalentGroup` only points
+// at a group. Read it from the identities file where those records live.
+const dtiGroups = readOptional('data/dti-identities.json', { identities: [] })
+  .identities.filter((i) => i.basis === 'functionally-fungible-group' && (i.groupMembers ?? []).length);
+const dtiToCoin = new Map();
+for (const coin of coinsById.values()) for (const d of coin.dti) dtiToCoin.set(d.dti, coin.coingeckoId);
+const equivalence = new Map();   // coingeckoId -> Set(coingeckoId)
+for (const g of dtiGroups) {
+  const coins = [...new Set(g.groupMembers.map((m) => dtiToCoin.get(m)).filter(Boolean))];
+  if (coins.length < 2) continue;
+  for (const c of coins) {
+    if (!equivalence.has(c)) equivalence.set(c, new Map());
+    for (const o of coins) if (o !== c) equivalence.get(c).set(o, g.dti);
+  }
+}
+let equivalentAssets = 0;
+for (const coin of coinsById.values()) {
+  const eq = equivalence.get(coin.coingeckoId);
+  coin.equivalentTo = eq
+    ? [...eq].map(([coingeckoId, viaGroup]) => ({ coingeckoId, viaGroup, source: 'DTIF functionally-fungible group' }))
+    : [];
+  if (coin.equivalentTo.length) equivalentAssets++;
+}
+
 // ----------------------------------------------------------------- family --
 // Which assets are the head of a naming family, which are wrappers of one, and
 // which are neither. Derived entirely from fields already published here, so a
@@ -281,7 +320,7 @@ const meta = () => ({ registry: 'far', version: REGISTRY_VERSION, docs: 'https:/
 const compact = (c) => ({
   coingeckoId: c.coingeckoId, name: c.name, symbol: c.symbol,
   deployments: c.deployments, dti: c.dti, dtiUnplaced: c.dtiUnplaced,
-  related: c.related, family: c.family,
+  related: c.related, family: c.family, equivalentTo: c.equivalentTo,
 });
 
 for (const coin of coinsById.values()) {
@@ -366,6 +405,15 @@ const searchIndex = [...coinsById.values()].map((a) => {
   if (d.length) r.d = d;
   const u = (a.dtiUnplaced ?? []).map((x) => x.dti);
   if (u.length) r.u = u;
+  // DTI long names are ALIASES this registry already holds and was not
+  // searching. CoinGecko calls the canonical wrapped ether "WETH" and never
+  // "Wrapped Ether", so searching that phrase found the Ethereum Classic
+  // wrapper and missed the mainnet one entirely.
+  const aliases = [...new Set([...a.dti, ...(a.dtiUnplaced ?? [])]
+    .map((d) => d.longName).filter(Boolean)
+    .filter((n) => n.toLowerCase() !== (a.name ?? '').toLowerCase()))];
+  if (aliases.length) r.a = aliases.slice(0, 8);
+  if (a.equivalentTo && a.equivalentTo.length) r.e = a.equivalentTo.map((x) => x.coingeckoId);
   return r;
 });
 emit('search-index.json', searchIndex);
@@ -400,6 +448,7 @@ const counts = {
   dtiUnlinked: unlinked.length,
   coinsResolvable: [...coinsById.values()].filter((c) => c.deployments.length).length,
   family: familyCounts,
+  assetsWithDtifEquivalence: equivalentAssets,
   // How much of the registry is a complete three-way resolution: a single
   // CAIP-19 carrying both a CoinGecko id and a DTI.
   deploymentsWithDti: placedDti,
