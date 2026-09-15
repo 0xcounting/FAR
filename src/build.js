@@ -352,6 +352,24 @@ writeFileSync(join(OUT, 'far.json.gz'), bigGz);
 files.push({ path: 'far.json', sha256: sha256(bigJson), bytes: bigJson.length });
 files.push({ path: 'far.json.gz', sha256: sha256(bigGz), bytes: bigGz.length });
 
+// A compact index the docs page loads once and searches locally. Carrying the
+// whole registry in the browser removes the need to guess which route a query
+// belongs to — the reader types anything and gets rows — and it is why the page
+// needs no server and no query API.
+//
+// Short keys and no prose: 3.3 MB raw, ~1.1 MB over the wire. The full
+// far.json is 14 MB, which would work but is four times the download for data
+// the page does not use.
+const searchIndex = [...coinsById.values()].map((a) => {
+  const r = { i: a.coingeckoId, n: a.name, s: a.symbol, f: a.family.family[0] };
+  const d = a.deployments.map((x) => [x.caip19, (x.dti && x.dti[0]) ? x.dti[0].dti : 0, x.chainName || '']);
+  if (d.length) r.d = d;
+  const u = (a.dtiUnplaced ?? []).map((x) => x.dti);
+  if (u.length) r.u = u;
+  return r;
+});
+emit('search-index.json', searchIndex);
+
 emit('_platforms.json', { ...meta(), ...platformTable });
 emit('_ledgers.json', { ...meta(), count: Object.keys(ledgerTable).length, ledgers: ledgerTable });
 // Identifiers this registry had to invent because no CASA spec defines one.
@@ -400,6 +418,7 @@ const indexDoc = {
     caip19: '/caip/{namespace}/{reference}/{assetNamespace}/{assetReference}.json  (e.g. /caip/eip155/1/erc20/0xdac17f958d2ee523a2206206994597c13d831ec7.json; a "%" in the reference becomes "~")', dti: '/dti/{DTI}.json',
     bulk: '/far.json.gz', manifest: '/manifest.json', platforms: '/_platforms.json',
     unlinked: '/_unlinked.json',
+    searchIndex: '/search-index.json',
     ledger: '/ledger/{DLI}.json',
     ledgers: '/_ledgers.json',
     namespaceGaps: '/_namespace-gaps.json',
