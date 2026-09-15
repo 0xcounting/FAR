@@ -96,6 +96,19 @@ summary .ct{margin-left:auto;color:var(--muted);font-size:12px;font-variant-nume
 .body li:last-child{border-bottom:0}
 .body li .meta{font-family:ui-sans-serif,system-ui;color:var(--muted);font-size:11px;margin-left:6px}
 .empty{color:var(--muted);font-size:12.5px;margin:0 0 12px}
+
+/* The resolution table: one row is one fully-identified thing. */
+.res{width:100%;border-collapse:collapse;font-size:12px;margin:0 0 4px;display:block;
+  max-height:340px;overflow:auto}
+.res th{position:sticky;top:0;background:var(--panel);z-index:1}
+.res td,.res th{padding:6px 9px;border-bottom:1px solid var(--line);
+  text-align:left;vertical-align:top;white-space:nowrap}
+.res td.c19{font-family:var(--mono);font-size:11px;white-space:normal;word-break:break-all}
+.res td.dti{font-family:var(--mono);font-size:11.5px}
+.res tr:last-child td{border-bottom:0}
+.res .none{color:var(--muted)}
+.lead{font-size:13px;margin:0 0 10px}
+.lead b{font-family:var(--mono)}
 .route{font-family:var(--mono);font-size:12px;color:var(--muted);margin:0 0 7px;word-break:break-all}
 .route b{color:var(--ink);font-weight:600}
 table{border-collapse:collapse;width:100%;font-size:13.5px;margin:0 0 14px}
@@ -130,8 +143,13 @@ footer{border-top:1px solid var(--line);margin:56px 0 0;padding:24px 0 48px;colo
 </header>
 
 <h2>Try it</h2>
-<p>Type an asset name, ticker, CoinGecko ID, CAIP-19 or DTI. The resolver tries each route
-in turn and shows you which one answered — the same thing your code would do.</p>
+<p>Give it any one identifier and it returns the others. The unit that resolves is a
+<b>deployment</b> — one asset on one chain — which has exactly one CAIP-19, one CoinGecko
+id and at most one DTI.</p>
+<p>Where a key names several things it says so rather than picking for you: a ticker like
+<code>USDC</code> is shared by 62 unrelated assets, and a single asset like
+<code>usd-coin</code> exists on 31 chains, each with its own identifier. Those are the two
+kinds of ambiguity this data has, and both are shown explicitly.</p>
 
 <div class="explorer">
   <div class="row">
@@ -364,28 +382,69 @@ function countOf(d){
 // the most interesting cases — a coin on 31 chains, a ticker shared by 62
 // assets — precisely the ones you could not inspect. Long lists scroll inside
 // the card instead.
+function idRow(label, value, mono){
+  return `<tr><td style="color:var(--muted);width:92px">${esc(label)}</td>`
+    + `<td${mono?' class="c19"':''}>${value ? esc(value) : '<span class="none">not registered</span>'}</td></tr>`;
+}
+
+// An asset card. The body is a RESOLUTION TABLE: one row per deployment, each
+// row carrying every identifier that names that one thing. The previous version
+// listed 31 CAIP-19s and 53 DTIs separately and left the reader to pair them
+// up, which is enumeration rather than resolution.
 function card(a, open){
-  const deps = a.deployments || [], dti = a.dti || [];
+  const deps = a.deployments || [], unplaced = a.dtiUnplaced || [];
   const fam = a.family ? `<span class="pill p-${esc(a.family.family)}">${esc(a.family.family)}</span>` : '';
-  const depList = deps.length
-    ? `<h4>${deps.length} deployment${deps.length===1?'':'s'}</h4><ul>${deps.map(d =>
-        `<li>${esc(d.caip19)}${d.chainName ? `<span class="meta">${esc(d.chainName)}</span>` : ''}</li>`).join('')}</ul>`
-    : '<p class="empty">No CAIP-19 identifier. Usually a native coin on a chain we have no CAIP-2 for.</p>';
-  const dtiList = dti.length
-    ? `<h4>${dti.length} DTI link${dti.length===1?'':'s'}</h4><ul>${dti.map(d =>
-        `<li>${esc(d.dti)} <span class="pill p-${esc(d.status)}">${esc(d.status)}</span>`
-        + `<span class="meta">${esc(d.longName||'')}${d.basis?` · ${esc(d.basis)}`:''}</span></li>`).join('')}</ul>`
-    : '<p class="empty">No DTI link. Normal — most assets are not in the ISO 24165 registry.</p>';
+
+  let body;
+  if (deps.length === 0) {
+    body = '<p class="empty">No CAIP-19 identifier — usually a native coin on a chain with no CAIP-2 yet.</p>';
+  } else if (deps.length === 1) {
+    // Unambiguous: state the three identifiers plainly. This is the answer.
+    const d = deps[0];
+    body = `<p class="lead">One deployment, so this resolves to a single set of identifiers.</p>`
+      + `<table class="res"><tbody>
+          ${idRow('CoinGecko', a.coingeckoId)}
+          ${idRow('CAIP-19', d.caip19, true)}
+          ${idRow('DTI', d.dti && d.dti[0] ? d.dti[0].dti : null)}
+          ${idRow('chain', d.chainName || d.caip2)}
+        </tbody></table>`;
+  } else {
+    const withDti = deps.filter(d => d.dti && d.dti.length).length;
+    body = `<p class="lead">This asset exists on <b>${deps.length}</b> chains. `
+      + `Each is a distinct CAIP-19, and ${withDti} of them also carry a DTI — `
+      + `so "${esc(a.coingeckoId)}" names a family, not one identifier.</p>`
+      + `<table class="res"><thead><tr><th>chain</th><th>DTI</th><th>CAIP-19</th></tr></thead><tbody>`
+      + deps.map(d => `<tr><td>${esc(d.chainName || d.caip2)}</td>`
+          + `<td class="dti">${d.dti && d.dti[0] ? esc(d.dti[0].dti) : '<span class="none">—</span>'}</td>`
+          + `<td class="c19">${esc(d.caip19)}</td></tr>`).join('')
+      + `</tbody></table>`;
+  }
+
+  if (unplaced.length) {
+    body += `<h4>${unplaced.length} DTI link${unplaced.length===1?'':'s'} not placed on a chain</h4>`
+      + `<p class="empty">These were matched by name, which identifies the asset but not which deployment. `
+      + `Only an address can place a DTI on a chain.</p>`
+      + `<ul>${unplaced.map(d => `<li>${esc(d.dti)} <span class="pill p-${esc(d.status)}">${esc(d.status)}</span>`
+      + `<span class="meta">${esc(d.longName||'')}</span></li>`).join('')}</ul>`;
+  }
+
   return `<details class="card"${open?' open':''}>
     <summary><span class="id">${esc(a.coingeckoId)}</span>
       <span class="nm">${esc(a.name||'')} · ${esc(a.symbol||'')}</span> ${fam}
-      <span class="ct">${deps.length} chain${deps.length===1?'':'s'} · ${dti.length} DTI</span></summary>
-    <div class="body">${depList}${dtiList}</div></details>`;
+      <span class="ct">${deps.length} chain${deps.length===1?'':'s'}</span></summary>
+    <div class="body">${body}</div></details>`;
 }
 
 function paneFor(data){
-  if (data.assets && data.assets.length)
-    return data.assets.map((a,i) => card(a, i === 0 && data.assets.length <= 3)).join('');
+  if (data.assets && data.assets.length) {
+    const n = data.assets.length;
+    // Ambiguity is stated, not implied by a long list. The reader asked for one
+    // thing; if the key names several, say so before showing them.
+    const lead = n === 1 ? ''
+      : `<p class="lead">This key names <b>${n}</b> different assets. `
+        + `They are not the same thing — the first is the one others are named after.</p>`;
+    return lead + data.assets.map((a,i) => card(a, n === 1 || i === 0)).join('');
+  }
   if (data.asset) return card(data.asset, true);
   if (data.dti) {
     const d = data.dti;
