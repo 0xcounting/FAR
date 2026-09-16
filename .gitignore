@@ -6,3 +6,11 @@ node_modules/
 # Full DTIF registry records obtained via the registry API are NOT vendored.
 # See SOURCES.md: the derived mappings are published, the bulk records are not.
 data/sources/dtif-*-full.json.gz
+
+# Correspondence, drafts and anything addressed to a third party never belongs
+# in a public repository. Keep them outside the working tree; these patterns are
+# a backstop, not the mechanism.
+outreach/
+correspondence/
+*email*.md
+*draft*.md

@@ -3,7 +3,7 @@
 // tables in data/. Deterministic: same inputs -> byte-identical output, which
 // is what makes the Merkle root in the manifest meaningful.
 import { mkdirSync, writeFileSync, rmSync, readFileSync, statSync, readdirSync, copyFileSync, existsSync } from 'node:fs';
-import { gzipSync } from 'node:zlib';
+import { gzipSync, gunzipSync } from 'node:zlib';
 import { join } from 'node:path';
 import { loadSources } from './lib/sources.js';
 import { slug, caipPath, isDegenerateSlug } from './lib/slug.js';
@@ -430,6 +430,31 @@ const searchIndex = [...coinsById.values()].map((a) => {
 });
 emit('search-index.json', searchIndex);
 
+// Outbound links: where a reader goes to see the thing itself. Explorer URLs
+// come from ethereum-lists/chains, which already carries them; the docs page
+// turns a CAIP-19 into a contract link with them. 2,326 chains, 25 KB gzipped.
+//
+// Deliberately NOT included: a per-DTI deep link to the DTIF registry. Their
+// search is a client-routed single-page app that serves an identical document
+// for every path, so a link to a specific record cannot be verified to land on
+// it, and a link that silently lands on the wrong page is worse than none.
+emit('_explorers.json', {
+  ...meta(),
+  _readme: 'chainId -> block explorer base URL, from ethereum-lists/chains (MIT). Used by the docs page to link a CAIP-19 to the contract it names.',
+  eip155: JSON.parse(gunzipSync(readFileSync('data/sources/evm-explorers.json.gz'))),
+  // Namespaces whose explorer needs a different path shape.
+  other: {
+    'solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp': 'https://solscan.io/token/',
+    'tron:728126428': 'https://tronscan.org/#/token20/',
+    'aptos:1': 'https://explorer.aptoslabs.com/object/',
+    'sui:mainnet': 'https://suivision.xyz/coin/',
+    'stellar:pubnet': 'https://stellar.expert/explorer/public/asset/',
+    'hedera:mainnet': 'https://hashscan.io/mainnet/token/',
+    'starknet:SN_MAIN': 'https://starkscan.co/contract/',
+    'algorand:wGHE2Pwdvd7S12BL5FaOP20EGYesN73k': 'https://allo.info/asset/',
+  },
+});
+
 emit('_platforms.json', { ...meta(), ...platformTable });
 emit('_ledgers.json', { ...meta(), count: Object.keys(ledgerTable).length, ledgers: ledgerTable });
 // Identifiers this registry had to invent because no CASA spec defines one.
@@ -483,6 +508,7 @@ const indexDoc = {
     ledger: '/ledger/{DLI}.json',
     ledgers: '/_ledgers.json',
     namespaceGaps: '/_namespace-gaps.json',
+    explorers: '/_explorers.json',
   },
 };
 emit('index.json', indexDoc);

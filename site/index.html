@@ -107,6 +107,8 @@ table.ids .none{color:var(--muted)}
 .ep .what{color:var(--muted);font-size:11px;white-space:nowrap}
 table.ids a{font-family:var(--mono);color:var(--accent);text-decoration:none;border-bottom:1px dotted currentColor}
 table.ids a:hover{border-bottom-style:solid}
+table.ids a.ext{border:0;font-size:11px;opacity:.65;text-decoration:none}
+table.ids a.ext:hover{opacity:1}
 
 /* The resolution table: one row is one fully-identified thing. */
 .res{width:100%;border-collapse:collapse;font-size:12px;margin:0 0 4px;display:block;
@@ -323,7 +325,7 @@ const slug = s => String(s).normalize('NFKD').replace(/\p{Diacritic}/gu, '')
 // literal % is decoded by the server before the file is looked up.
 const caipPath = c19 => c19.replace(/:/g, '/').replace(/%/g, '~');
 
-let INDEX = null, SEL = null;
+let INDEX = null, SEL = null, EXPL = null;
 const NAMES = new Set(), SYMS = new Set();
 
 fetch(`${BASE}/index.json`).then(r => r.json()).then(d => {
@@ -338,6 +340,8 @@ fetch(`${BASE}/index.json`).then(r => r.json()).then(d => {
 // The whole registry is loaded once and searched in the browser. That is why
 // there is no query API to guess at and no route to choose: a reader types
 // anything and gets rows.
+fetch(`${BASE}/_explorers.json`).then(r => r.json()).then(d => { EXPL = d; }).catch(() => {});
+
 fetch(`${BASE}/search-index.json`).then(r => r.json()).then(d => {
   INDEX = d;
   // Precompute the match keys once rather than on every keystroke.
@@ -399,6 +403,27 @@ function search(q){
 
 const FAM = { c: 'canonical', d: 'derivative', s: 'standalone' };
 
+// Where to see the thing itself. A CAIP-19 carries the chain and the reference,
+// which is everything an explorer URL needs — so the identifier this project
+// publishes is also the link.
+function explorerFor(c19){
+  if (!EXPL) return null;
+  const slash = c19.indexOf('/');
+  const caip2 = c19.slice(0, slash);
+  const asset = c19.slice(slash + 1);
+  const ref = decodeURIComponent(asset.slice(asset.indexOf(':') + 1).replace(/~/g, '%'));
+  const ns = asset.slice(0, asset.indexOf(':'));
+  if (ns === 'slip44') return null;                    // a native unit has no contract page
+  const m = /^eip155:(\d+)$/.exec(caip2);
+  if (m) {
+    const base = EXPL.eip155[m[1]];
+    if (!base) return null;
+    return `${base}/${ns === 'erc20' || ns === 'erc721' ? 'token' : 'address'}/${ref}`;
+  }
+  const other = EXPL.other[caip2];
+  return other ? other + ref : null;
+}
+
 function answer(a){
   const deps = a.d || [], un = a.u || [];
   const rows = deps.length
@@ -406,7 +431,8 @@ function answer(a){
         <thead><tr><th>CoinGecko id</th><th>CAIP-19</th><th>DTI</th><th>chain</th></tr></thead><tbody>
         ${deps.map(([c19, dti, chain]) => `<tr>
           <td class="mono"><a href="${esc(BASE)}/cg/${esc(a.i)}.json">${esc(a.i)}</a></td>
-          <td class="mono"><a href="${esc(BASE)}/caip/${esc(caipPath(c19))}.json">${esc(c19)}</a></td>
+          <td class="mono"><a href="${esc(BASE)}/caip/${esc(caipPath(c19))}.json">${esc(c19)}</a>${
+            explorerFor(c19) ? ` <a class="ext" href="${esc(explorerFor(c19))}" target="_blank" rel="noopener" title="view on the chain explorer">↗</a>` : ''}</td>
           <td class="mono">${dti ? `<a href="${esc(BASE)}/dti/${esc(dti)}.json">${esc(dti)}</a>` : '<span class="none">not registered</span>'}</td>
           <td class="chain">${esc(chain || c19.split('/')[0])}</td></tr>`).join('')}
       </tbody></table></div>`
@@ -431,6 +457,13 @@ function answer(a){
   if (deps.length) ep.push([`/caip/${caipPath(deps[0][0])}.json`, 'one deployment, by CAIP-19']);
   const firstDti = (deps.find(d => d[1]) || [])[1] || (un[0] || null);
   if (firstDti) ep.push([`/dti/${firstDti}.json`, 'the DTI record']);
+  const up = [[`https://www.coingecko.com/en/coins/${encodeURIComponent(a.i)}`, 'CoinGecko', 'the asset page this id belongs to']];
+  if (firstDti) up.push(['https://registry.dtif.org/', 'DTIF registry', `search for ${firstDti} — the registry is a client-routed app, so it cannot be deep-linked`]);
+  const upBlock = `<div class="ep"><h5>upstream</h5><ul>`
+    + up.map(([href, label, what]) => `<li><span class="verb">WWW</span>`
+      + `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(label)}</a>`
+      + `<span class="what">${esc(what)}</span></li>`).join('')
+    + `</ul></div>`;
   const epBlock = `<div class="ep"><h5>endpoints serving this asset</h5><ul>`
     + ep.map(([path, what]) => `<li><span class="verb">GET</span>`
       + `<a href="${esc(BASE + path)}">${esc(path)}</a>`
@@ -439,7 +472,7 @@ function answer(a){
   return `<div class="ans"><header><span class="id">${esc(a.i)}</span>
       <span class="nm">${esc(a.n)} · ${esc(a.s)}</span>
       <span class="pill p-${FAM[a.f]}">${FAM[a.f]}</span></header>
-      ${rows}${famNote}${unNote}${eq}${epBlock}</div>`;
+      ${rows}${famNote}${unNote}${eq}${epBlock}${upBlock}</div>`;
 }
 
 function run(q){

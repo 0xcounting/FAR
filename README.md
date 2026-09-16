@@ -50,7 +50,7 @@ one file (`/far.json.gz`) if you would rather hold it locally.
 | DTI ledger records | 275, 242 with a CAIP-2 |
 | CoinGecko platforms mapped to CAIP-2 | 290 |
 | — still unmapped | 10 |
-| Published files | 80,395 |
+| Published files | 80,396 |
 <!-- BUILD-STATS:END -->
 
 ## Read this before you trust a link
