@@ -356,9 +356,21 @@ for (const t of dtiTokens) {
 const chainBasisCounts = {};
 for (const rec of dtiTokens) {
   const linked = (linksByDti.get(rec.dti) ?? []).map((l) => coinsById.get(l.coingeckoId)).filter(Boolean);
+  // DTIF-origin fields and OUR annotations are kept in separate objects.
+  // Previously `typeLabel` — a label this project inferred, not one the
+  // standard publishes — sat inside the `dti` object beside genuine registry
+  // fields with nothing to distinguish them. DTIF's terms forbid modifying the
+  // Registry "in any way which could be misleading to any person", and a
+  // reader could not tell which fields were theirs.
+  const { typeLabel, ...dtifFields } = rec;
   emit(`dti/${rec.dti}.json`, {
     ...meta(), query: { by: 'dti', key: rec.dti },
-    dti: rec,
+    source: 'Fields under `dti` originate in the ISO 24165 registry operated by DTIF and are reproduced unmodified. Everything under `farAnnotations` was derived by this project and is not part of the registry.',
+    dti: dtifFields,
+    farAnnotations: {
+      typeLabel: typeLabel ?? null,
+      typeLabelNote: 'Inferred by this project from the record distribution and the ISO 24165 structure. NOT quoted from the standard.',
+    },
     groupMembers: (groupMembers.get(rec.dti) ?? []).filter((d) => d !== rec.dti).sort(),
     // Best-effort recovery of the two fields the free snapshot redacts. Never
     // a read — always an inference, and `basis` says which one.
