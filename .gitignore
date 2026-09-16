@@ -2,3 +2,7 @@ dist/
 node_modules/
 .DS_Store
 *.log
+
+# Full DTIF registry records obtained via the registry API are NOT vendored.
+# See SOURCES.md: the derived mappings are published, the bulk records are not.
+data/sources/dtif-*-full.json.gz

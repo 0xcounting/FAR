@@ -86,14 +86,28 @@ publishes:
 | *"may not use any robot … to monitor, extract or copy"* | **Not complied with.** The registry API was read programmatically. Recorded above, not hidden. |
 | *"We … are the owner(s) of all intellectual property rights"* | Acknowledged in `LICENSE-DATA`. An earlier version declared the whole published dump CC0, which would have purported to place DTIF's content in the public domain. Corrected. |
 
-**If DTIF would like something changed, the fastest route is an issue on this
-repository, and the maintainers will act on it.** The two things most likely to
-concern them are the bulk re-publication of full records in
-`data/sources/dtif-*-full.json.gz` — which substitutes for a product they sell —
-and the automated collection itself. Both can be removed on request: every
-record derived from them carries `basis: "dtif-registry-exact"`, so filtering
-them out is one predicate, and the project falls back to the name-matched tier
-it had before.
+**The bulk records are deliberately not published.** An earlier revision vendored
+all 5,785 full registry records, 3,189 of them carrying the contract address the
+free download redacts and DTIF sells through a EUR 7,409/yr API. Re-publishing
+those substitutes for a product they sell, which the derived mapping does not,
+so they were removed. What remains is the *derivation*: which CAIP-19 a DTI
+names, and which CoinGecko asset that is. Anyone wanting the registry itself
+should get it from DTIF.
+
+A consequence worth stating rather than glossing: `data/dti-identities.json` can
+no longer be re-derived from this repository. It is a curated input now, like
+`data/platforms.json`, and is trusted on the same basis — evidence recorded per
+record rather than a reproducible pipeline. The published build stays fully
+deterministic and every file stays hashed in the manifest; what changed is that
+one of the inputs has no upstream copy here.
+
+**If DTIF would like anything else changed, the fastest route is an issue on this
+repository, and the maintainers will act on it.** The remaining item they may
+object to is the automated collection itself. Every record derived from it
+carries `basis: "dtif-registry-exact"`, so removal is one predicate away and the
+project falls back to the name-matched tier it had before — which measured 88.0%
+and 43.6% accurate, against the address-derived ground truth those records
+provided.
 
 - **Not affiliated with or endorsed by DTIF.**
 
