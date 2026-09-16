@@ -197,9 +197,16 @@ for who decides and how disputes are resolved.
 
 ## Sources and licences
 
-Code is MIT. The curated tables in `data/` are CC0. Upstream data keeps its own
-terms — see [SOURCES.md](SOURCES.md), which records what each source permits and
-the sha256 of the exact snapshot every build consumed.
+Code is MIT. **The data is not under one licence and you should read
+[LICENSE-DATA](LICENSE-DATA) before redistributing any of it.** In short: the
+mapping tables and CAIP-19 identifiers this project constructs are CC0; the DTI
+codes, names, ISINs, anchor hashes and addresses originate in the ISO 24165
+registry and remain DTIF's intellectual property, redistributable on their
+conditions but not ours to place in the public domain.
+
+[SOURCES.md](SOURCES.md) records what each source permits, how this project
+obtained it, a compliance review against DTIF's conditions, and the sha256 of
+the exact snapshot every build consumed.
 
 FAR is not affiliated with, endorsed by, or speaking for the DTI Foundation,
 CoinGecko, or the Chain Agnostic Standards Alliance.

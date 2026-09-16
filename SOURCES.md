@@ -74,6 +74,27 @@ What remains is the name-matched tier, which is what the project had before.
   the address, DTI↔CAIP-19 would be a mechanical join with no ambiguity. Without
   it, every link is inferred from a name. Redaction is a tiering decision by
   DTIF, not a licence restriction: what we do have, we may republish.
+### Compliance review against DTIF's conditions
+
+Their grant is conditional. Reviewed against what this project actually
+publishes:
+
+| Condition | Status |
+|---|---|
+| *"must not modify the Registry … in any way which could be misleading"* | Registry fields are reproduced unmodified and are kept in a separate object from this project's own annotations. An earlier build put an inferred `typeLabel` inside the record beside genuine fields; that is fixed. |
+| *"must not charge any person for any redistribution"* | FAR is free, has no paid tier, and never will have one for this data. |
+| *"may not use any robot … to monitor, extract or copy"* | **Not complied with.** The registry API was read programmatically. Recorded above, not hidden. |
+| *"We … are the owner(s) of all intellectual property rights"* | Acknowledged in `LICENSE-DATA`. An earlier version declared the whole published dump CC0, which would have purported to place DTIF's content in the public domain. Corrected. |
+
+**If DTIF would like something changed, the fastest route is an issue on this
+repository, and the maintainers will act on it.** The two things most likely to
+concern them are the bulk re-publication of full records in
+`data/sources/dtif-*-full.json.gz` — which substitutes for a product they sell —
+and the automated collection itself. Both can be removed on request: every
+record derived from them carries `basis: "dtif-registry-exact"`, so filtering
+them out is one predicate, and the project falls back to the name-matched tier
+it had before.
+
 - **Not affiliated with or endorsed by DTIF.**
 
 ## CoinGecko
