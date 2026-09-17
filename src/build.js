@@ -12,7 +12,7 @@ import { normalizeDtiRecords, matchableName } from './lib/dti.js';
 import { proposeLinks } from './lib/link.js';
 import { inferChainAndAddress } from './lib/dtiChain.js';
 import { citationIndex, classify, FAMILY_ORDER } from './lib/family.js';
-import { sha256, merkleRoot } from './lib/manifest.js';
+import { sha256, merkleRoot, merkleProofs } from './lib/manifest.js';
 
 const OUT = process.env.FAR_OUT ?? 'dist';
 const t0 = Date.now();
@@ -271,7 +271,7 @@ for (const coin of coinsById.values()) {
 // which are neither. Derived entirely from fields already published here, so a
 // consumer can recompute it and check — and so it adds no new input that could
 // make the build non-deterministic.
-const citations = citationIndex([...coinsById.keys()]);
+const citations = citationIndex([...coinsById.values()]);
 const familyCounts = {};
 for (const coin of coinsById.values()) {
   coin.family = classify(coin, citations);
@@ -466,6 +466,53 @@ for (const [dli, l] of Object.entries(ledgerTable)) {
 }
 emit('_unlinked.json', { ...meta(), count: unlinked.length, unlinked });
 
+// The links a reviewer can responsibly accept from public evidence: proposals
+// whose CoinGecko asset has exactly ONE deployment, so the DTI cannot be
+// pointing at a different chain among those CoinGecko lists. Proposals on
+// multi-chain assets are excluded on purpose. Which deployment such a DTI names
+// is the redacted field, and no public source answers it, so no amount of
+// reviewer effort can move those to `accepted`.
+const nameCollisions = new Map();
+for (const t of dtiTokens) {
+  const k = matchableName(t.longName);
+  if (k) nameCollisions.set(k, (nameCollisions.get(k) ?? 0) + 1);
+}
+const acceptanceQueue = [];
+for (const coin of coinsById.values()) {
+  if (coin.deployments.length !== 1) continue;
+  for (const d of coin.dti) {
+    if (d.status === 'accepted') continue;
+    const rec = dtiById.get(d.dti);
+    acceptanceQueue.push({
+      dti: d.dti, dtiLongName: rec.longName, dtiShortName: rec.shortNames[0] ?? null,
+      coingeckoId: coin.coingeckoId, name: coin.name, symbol: coin.symbol,
+      caip19: coin.deployments[0].caip19,
+      dtiType: rec.type,
+      status: d.status, basis: d.basis, modelConfidence: d.modelConfidence,
+      // How many DTI records share this long name. 1 means the name is unique in
+      // the registry, which is the strongest position a name-based link can be in.
+      dtiNameCollisions: nameCollisions.get(matchableName(rec.longName)) ?? 1,
+    });
+  }
+}
+// Several DTI records pointing at ONE single-deployment coin cannot all be right:
+// a deployment has one DTI. Say how many compete, and sort the uncontested ones
+// first. This is a property of the data, not a reading of DTIType, whose meaning
+// DTIF's own two channels currently disagree on.
+const perCoin = new Map();
+for (const e of acceptanceQueue) perCoin.set(e.coingeckoId, (perCoin.get(e.coingeckoId) ?? 0) + 1);
+for (const e of acceptanceQueue) e.competingRecords = perCoin.get(e.coingeckoId);
+acceptanceQueue.sort((a, b) => a.competingRecords - b.competingRecords
+  || a.dtiNameCollisions - b.dtiNameCollisions
+  || (a.coingeckoId < b.coingeckoId ? -1 : a.coingeckoId > b.coingeckoId ? 1 : 0)
+  || (a.dti < b.dti ? -1 : 1));
+emit('_acceptance-queue.json', {
+  ...meta(),
+  _readme: 'Proposed DTI links on single-deployment assets, the only ones public evidence can support. `competingRecords` is how many DTI records propose the same coin (at most one can be right); `dtiNameCollisions` is how many DTI records share this long name (1 = unique). Sorted uncontested and unique first. To accept one: read the contract (scripts/gather-onchain-evidence.js prints a rationale), then add it to data/links.json in a pull request. See CONTRIBUTING.md.',
+  count: acceptanceQueue.length,
+  queue: acceptanceQueue,
+});
+
 // ---------------------------------------------------------------- manifest --
 const counts = {
   coins: coinsById.size,
@@ -482,6 +529,7 @@ const counts = {
   dtiChainRecovered: (chainBasisCounts['name-hint'] ?? 0) + (chainBasisCounts['sole-deployment'] ?? 0),
   dtiLedgersWithCaip2: Object.values(ledgerTable).filter((l) => l.caip2).length,
   dtiUnlinked: unlinked.length,
+  acceptanceQueue: acceptanceQueue.length,
   coinsResolvable: [...coinsById.values()].filter((c) => c.deployments.length).length,
   family: familyCounts,
   assetsWithDtifEquivalence: equivalentAssets,
@@ -503,6 +551,8 @@ const indexDoc = {
     caip19: '/caip/{namespace}/{reference}/{assetNamespace}/{assetReference}.json  (e.g. /caip/eip155/1/erc20/0xdac17f958d2ee523a2206206994597c13d831ec7.json; a "%" in the reference becomes "~")', dti: '/dti/{DTI}.json',
     bulk: '/far.json.gz', manifest: '/manifest.json', platforms: '/_platforms.json',
     unlinked: '/_unlinked.json',
+    acceptanceQueue: '/_acceptance-queue.json',
+    proof: '/proof/{path without .json}.json  (e.g. /proof/cg/tether.json proves cg/tether.json; /proof/index.html.json proves index.html)',
     searchIndex: '/search-index.json',
     ledger: '/ledger/{DLI}.json',
     ledgers: '/_ledgers.json',
@@ -510,8 +560,6 @@ const indexDoc = {
     explorers: '/_explorers.json',
   },
 };
-emit('index.json', indexDoc);
-
 // The human-facing docs page. GitHub Pages serves index.html at "/", so the
 // site root becomes documentation while /index.json stays the machine route —
 // the two do not collide. Hashed into the manifest like every other file, so a
@@ -529,10 +577,11 @@ if (existsSync('site/index.html')) {
   files.push({ path: 'v2.html', sha256: sha256(redirect), bytes: redirect.length });
 }
 
-// Every emitted file is now accounted for, including the docs pages, which are
-// pushed after `counts` is assembled. Set the total here so the published count
-// matches the manifest rather than trailing it by however many pages exist.
-counts.files = files.length;
+// index.json is the last file in. Its own entry is the +1, so the count it
+// publishes equals the manifest's.
+counts.files = files.length + 1;
+emit('index.json', indexDoc);
+
 const root = merkleRoot(files);
 const manifest = { ...meta(), generated: everything.generated, merkleRoot: root, algorithm: 'sha256/rfc6962-style', counts, files };
 const manifestBody = Buffer.from(JSON.stringify(manifest));
@@ -540,8 +589,22 @@ writeFileSync(join(OUT, 'manifest.json'), manifestBody);
 // A single line a consumer can pin in CI, or a human can compare by eye.
 writeFileSync(join(OUT, 'manifest.sha256'), `${sha256(manifestBody)}  manifest.json\n${root}  merkleRoot\n`);
 
+// One inclusion proof per published file, so a consumer can check a single
+// response against the root with ~17 hashes instead of the 11 MB manifest.
+// Proofs are derived FROM the tree, so they cannot be leaves of it: they are
+// written directly and deliberately left out of `files`.
+let proofCount = 0;
+for (const [path, proof] of merkleProofs(files)) {
+  const entry = files.find((f) => f.path === path);
+  const dest = join(OUT, 'proof', `${path.replace(/\.json$/, '')}.json`);
+  mkdirSync(join(dest, '..'), { recursive: true });
+  writeFileSync(dest, JSON.stringify({ ...meta(), path, sha256: entry.sha256, merkleRoot: root, proof }));
+  proofCount++;
+}
+
 // ----------------------------------------------------------------- report ---
 const totalBytes = files.reduce((a, f) => a + f.bytes, 0);
+console.log(`  proofs               ${proofCount} (not in manifest)`);
 console.log(`far build ${REGISTRY_VERSION}  (${((Date.now() - t0) / 1000).toFixed(1)}s)`);
 for (const [k, v] of Object.entries(counts)) {
   console.log(`  ${k.padEnd(20)} ${typeof v === 'object' ? JSON.stringify(v) : v}`);

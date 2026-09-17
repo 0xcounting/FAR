@@ -20,6 +20,7 @@ const rows = [
   ['— with a proposed CoinGecko match', `${n(counts.dtiLinked)} (${pct(counts.dtiLinked, counts.dtiTokens)})`],
   ['\u2003\u2003rule-proposed / model-inferred / human-accepted', `${n(counts.dtiProposed)} / ${n(counts.dtiInferred)} / ${n(counts.dtiAccepted)}`],
   ['— chain inferred from the proposed match', `${n(counts.dtiChainRecovered)} (${pct(counts.dtiChainRecovered, counts.dtiTokens)})`],
+  ['— acceptable from public evidence (single-deployment assets)', n(counts.acceptanceQueue)],
   ['DTI ledger records', `${n(counts.dtiLedgers)}, ${n(counts.dtiLedgersWithCaip2)} with a CAIP-2`],
   ['CoinGecko platforms mapped to CAIP-2', n(counts.platformsMapped)],
   ['— still unmapped', n(counts.platformsUnmapped)],

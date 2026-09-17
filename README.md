@@ -1,12 +1,19 @@
 # FAR — Free Asset Resolver
 
-A cross-reference between the three ways the world names a crypto asset:
+**A CoinGecko ID ↔ CAIP-19 resolver, published as static files.** Give it a
+CoinGecko id and get every chain the asset is deployed on as a standards-compliant
+CAIP-19; give it a CAIP-19 and get the CoinGecko id, so on-chain data can be
+priced. 17,000+ assets, 25,000+ deployments, 290 chains, 45 address formats
+normalised, no key, no server.
+
+It also carries the ISO 24165 **DTI** registry, with a bridge to it that is
+currently proposals rather than facts. Read on for why.
 
 | Identifier | Who issues it | How you get one | How many exist |
 |---|---|---|---|
 | **[CAIP-19](https://chainagnostic.org/CAIPs/caip-19)** | nobody — it is derived from the asset itself | deploy the token; the ID already exists | unbounded |
 | **CoinGecko ID** | CoinGecko | get listed | 18,090 |
-| **[DTI](https://dtif.org)** (ISO 24165) | DTI Foundation | apply; a governance process decides | 5,785 |
+| **[DTI](https://dtif.org)** (ISO 24165) | DTI Foundation | apply; a governance process decides | 5,775 |
 
 Each answers a different question. A DTI is what a European regulator expects on a
 MiCA or DAC8 report. A CoinGecko ID is what almost every price API keys on. A
@@ -45,29 +52,46 @@ one file (`/far.json.gz`) if you would rather hold it locally.
 | — with a proposed CoinGecko match | 3,688 (63.9%) |
 |   rule-proposed / model-inferred / human-accepted | 1,929 / 1,759 / 0 |
 | — chain inferred from the proposed match | 1,104 (19.1%) |
+| — acceptable from public evidence (single-deployment assets) | 1,091 |
 | DTI ledger records | 275, 209 with a CAIP-2 |
 | CoinGecko platforms mapped to CAIP-2 | 290 |
 | — still unmapped | 10 |
-| Published files | 80,396 |
+| Published files | 80,400 |
 <!-- BUILD-STATS:END -->
 
-## Read this before you trust a link
+## Where the DTI half stands
 
 **The DTI↔CoinGecko mapping is inferred from names, and it is published as
-proposals rather than as facts.**
+proposals rather than as facts. Zero DTIs currently resolve to a chain.**
 
 The free DTI snapshot redacts every structural field —
-`AuxiliaryTechnicalReference` (the contract address), `AuxiliaryDistributedLedger`,
-and the anchor block hashes all come through as the literal string `<locked>`.
-What is left is a name, a symbol, and an identifier. So there is **no key to join
-on**: a link can only be proposed by matching text, and text is not an identifier.
+`AuxiliaryTechnicalReference` (the contract address), `AuxiliaryDistributedLedger`
+(which chain), `AuxiliaryMechanism` and the anchor block hashes all come through as
+the literal string `<locked>`. What is left is a name, a symbol, and an identifier.
+So there is **no key to join on**: a link can only be proposed by matching text,
+and text is not an identifier.
 
-Every link therefore carries a `status` and a `basis`:
+**What would change that.** The build already consumes ledger and address per DTI
+if they are present (`data/dti-identities.json`, currently empty) and places each
+DTI on its exact CAIP-19 with no further code. That table fills the day a
+sanctioned source provides those fields; FAR has asked DTIF for one.
+
+**What can be done without that.** A proposal on an asset with exactly one
+deployment cannot be pointing at a different chain among those CoinGecko lists, so
+a reviewer can accept it from public evidence: the contract's own `name()` and
+`symbol()`, or issuer documentation. Those proposals are published at
+`/_acceptance-queue.json`. Proposals on multi-chain assets are **not** in the
+queue: which deployment such a DTI names is the redacted field, and no public
+source answers it, so no amount of reviewer effort can move them to `accepted`.
+The queue is the ceiling of what this registry can verify on its own.
+
+Every link carries a `status` and a `basis`:
 
 | `status` | Meaning |
 |---|---|
 | `accepted` | A human reviewed it and merged it into `data/links.json`. Safe to rely on. |
 | `proposed` | A rule in `src/lib/link.js` matched. **Plausible, not verified.** |
+| `inferred` | A language model chose among bounded candidates; its reasoning is on the record. **Plausible, not verified.** |
 
 **Why one coin attracts many DTIs.** DTI issues a record *per chain deployment*;
 CoinGecko issues one *per asset*. So `tether` draws 18 proposed DTIs — one for
@@ -80,6 +104,7 @@ asymmetry is the whole difficulty of this join in one sentence.
 | `curated` | Came from `data/links.json`. |
 | `name+symbol` | Exact normalised name match *and* an agreeing symbol, unique. |
 | `name-only` | Exact normalised name, unique on both sides, no symbol agreement. |
+| `model` | From `data/links-inferred.json`, with `modelConfidence` and `reasoning`. |
 
 If a wrong link would cost you something — a tax filing, a regulatory report, a
 reconciliation — **filter to `status: "accepted"`**. Everything else is a
@@ -108,18 +133,20 @@ dispute process exists to change.
 Every build publishes `/manifest.json`: the sha256 of every file, plus a Merkle
 root over `(path, hash)` pairs.
 
+Every file also has a proof at `/proof/<path without .json>.json`: its hash,
+the release root, and the ~17 sibling hashes that connect them. That is all you
+need to check one response belongs to the release, without the 11 MB manifest.
+
 ```bash
-curl -sO https://<host>/manifest.json
-curl -s  https://<host>/cg/tether.json | shasum -a 256
-# compare against the entry for cg/tether.json in the manifest
-node scripts/verify.js manifest.json cg/tether.json <hash>
+curl -sO https://<host>/cg/tether.json
+curl -sO https://<host>/proof/cg/tether.json          # ~1.3 KB
+node scripts/verify.js --proof-file tether.json cg/tether.json <merkleRoot>
 ```
 
-The Merkle root means you can verify that a single file belongs to a specific
-published release without downloading the other 79,228 — an inclusion proof is
-~17 hashes. The root is also printed in the build log and committed to the
-release, so two people can confirm they are looking at the same registry by
-comparing one 64-character string.
+Pass the root from somewhere you trust — the build log, a release, a value you
+pinned in CI — rather than the one inside the proof file; the latter only shows
+the proof is self-consistent. Two people can confirm they are looking at the same
+registry by comparing that one 64-character string.
 
 Builds are deterministic: the same vendored snapshots and the same curated tables
 produce byte-identical output and therefore the same root.
@@ -186,7 +213,9 @@ same as for any other claim.
 The registry is only as good as its curated tables, and those grow by pull
 request. In rough order of usefulness:
 
-1. **Confirm or reject a proposed DTI link** — turns a guess into a fact.
+1. **Accept or reject a DTI link from `/_acceptance-queue.json`** — turns a guess
+   into a fact. `scripts/gather-onchain-evidence.js` reads the contract and
+   prints the rationale.
 2. **Map an unmapped platform** — 106 of them, listed in `_platforms.json` under
    `unmapped`, worth 902 assets.
 3. **Raise a `low`-confidence platform to `medium`** by citing a source.
@@ -200,9 +229,9 @@ for who decides and how disputes are resolved.
 Code is MIT. **The data is not under one licence and you should read
 [LICENSE-DATA](LICENSE-DATA) before redistributing any of it.** In short: the
 mapping tables and CAIP-19 identifiers this project constructs are CC0; the DTI
-codes, names, ISINs, anchor hashes and addresses originate in the ISO 24165
-registry and remain DTIF's intellectual property, redistributable on their
-conditions but not ours to place in the public domain.
+codes, names, types and group pointers originate in the ISO 24165 registry and
+remain DTIF's intellectual property, redistributable on their conditions but not
+ours to place in the public domain.
 
 [SOURCES.md](SOURCES.md) records what each source permits, how this project
 obtained it, a compliance review against DTIF's conditions, and the sha256 of

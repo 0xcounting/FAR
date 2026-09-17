@@ -24,6 +24,11 @@ jobs:
       - name: build
         run: node src/build.js | tee build.log
 
+      # Unit tests run after the build because the CAIP-19 suite checks every
+      # published deployment for validity and route reversibility.
+      - name: test
+        run: npm test
+
       # Determinism is what makes the published Merkle root mean anything. If a
       # second build of the same tree produces a different root, something in the
       # build depends on time, filesystem order, or object iteration order.
@@ -49,8 +54,11 @@ jobs:
       - name: self-verify a sample of published files
         run: |
           set -e
+          ROOT=$(node -e "console.log(require('./dist/manifest.json').merkleRoot)")
           for f in cg/tether.json name/tether.json index.json _platforms.json; do
             node scripts/verify.js dist/manifest.json "dist/$f" "$f" --proof
+            # and the manifest-free path a consumer would actually use
+            node scripts/verify.js --proof-file "dist/proof/${f%.json}.json" "dist/$f" "$ROOT"
           done
 
       # A PR that changes a curated table should say what it changed in the

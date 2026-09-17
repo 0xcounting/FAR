@@ -29,8 +29,7 @@ Read this before redistributing any of it.
    This project therefore CANNOT and does not place that content in the
    public domain. It appears in:
 
-     data/sources/dti-registry.json.gz
-     data/ledgers.json      data/dti-identities.json
+     data/sources/dti-registry.json.gz        data/ledgers.json
      dist/dti/*.json        dist/ledger/*.json         dist/far.json[.gz]
      the search index, and any route carrying a DTI or DLI
 

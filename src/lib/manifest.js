@@ -58,3 +58,43 @@ export function merkleProof(entries, targetPath) {
   }
   return proof;
 }
+
+// Every inclusion proof at once, from one pass over the tree. `merkleProof`
+// above rebuilds the tree per call, which is fine for a consumer checking one
+// file and hopeless for a build emitting eighty thousand.
+export function merkleProofs(entries) {
+  const sorted = [...entries].sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0));
+  const proofs = sorted.map(() => []);
+  let level = sorted.map((e) => leafHash(e.path, e.sha256));
+  let owners = sorted.map((_, i) => [i]);   // which leaves each node's hash covers
+  while (level.length > 1) {
+    const next = [], nextOwners = [];
+    for (let i = 0; i < level.length; i += 2) {
+      if (i + 1 < level.length) {
+        for (const leaf of owners[i]) proofs[leaf].push({ side: 'right', hash: level[i + 1].toString('hex') });
+        for (const leaf of owners[i + 1]) proofs[leaf].push({ side: 'left', hash: level[i].toString('hex') });
+        next.push(nodeHash(level[i], level[i + 1]));
+        nextOwners.push(owners[i].concat(owners[i + 1]));
+      } else {
+        next.push(level[i]);                  // promoted, no sibling, no proof step
+        nextOwners.push(owners[i]);
+      }
+    }
+    level = next; owners = nextOwners;
+  }
+  const out = new Map();
+  sorted.forEach((e, i) => out.set(e.path, proofs[i]));
+  return out;
+}
+
+// Recompute the root from one leaf and its proof. This is the whole point of
+// the tree: a consumer holding a file, its path, ~17 hashes and the published
+// root can decide whether the file is in the release without the manifest.
+export function verifyProof(path, digest, proof, root) {
+  let h = leafHash(path, digest);
+  for (const step of proof) {
+    const s = Buffer.from(step.hash, 'hex');
+    h = step.side === 'right' ? nodeHash(h, s) : nodeHash(s, h);
+  }
+  return h.toString('hex') === root;
+}

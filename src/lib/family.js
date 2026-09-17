@@ -23,21 +23,38 @@
 // deterministic: the Merkle root still follows from the same sources.
 //
 // ── What it cannot do ─────────────────────────────────────────────────────────
-// It finds the HEAD of a naming family. Measured on the current data, 86% of
-// assets have neither citations nor a second-registry attestation, so for most
-// of the registry this says `standalone` and nothing more.
+// It finds the HEAD of a naming family. Most assets have neither citations nor
+// a second-registry attestation, so for most of the registry this says
+// `standalone` and nothing more.
 
 // A name that declares itself a wrapper of something else. Matched at token
 // boundaries so `pegaxy` is not read as a "peg", and `unstaked-thing` is.
 const DERIVATIVE = /(^|-)(bridged|wrapped|peg|pegged|portal|wormhole|synthetic|staked|anchored|alloyed|receipt)(-|$)/;
 
-// Count, for every id, how many OTHER ids embed it as a whole token run.
-// Done by generating each id's own token runs once (ids are short, so this is
-// linear in practice) rather than comparing every id against every other, which
-// would be 327 million substring tests on the current data.
-export function citationIndex(ids) {
-  const counts = new Map();
-  for (const id of ids) {
+export const isDerivative = (id, name) => DERIVATIVE.test(id) || DERIVATIVE.test((name ?? '').toLowerCase().replace(/[^a-z0-9]+/g, '-'));
+
+const normSym = (s) => String(s ?? '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+
+// For every asset, how many OTHER assets embed its id as a whole token run, and
+// how many of those also carry its ticker inside their own.
+//
+// The second count is what makes the first one usable. An id that happens to be
+// an ordinary word (`token`, `finance`, `base`) is embedded by hundreds of ids
+// that have nothing to do with it, so raw citation count crowns the wrong heads.
+// A citer corroborates only if it plausibly IS this asset elsewhere: it carries
+// the identical ticker (every bridged USDC is still USDC), or it declares itself
+// a wrapper and keeps the ticker inside its own (WBTC, stETH). "Baby Doge" shares
+// a word with "Baby" and a substring with its ticker; it is not a wrapper of it,
+// and this rule says so.
+//
+// Token runs are generated per id once (ids are short, so this is linear in
+// practice) rather than comparing every id against every other.
+export function citationIndex(assets) {
+  const symById = new Map();
+  for (const a of assets) symById.set(a.coingeckoId, normSym(a.symbol));
+  const index = new Map();
+  for (const a of assets) {
+    const id = a.coingeckoId;
     const parts = id.split('-');
     const seen = new Set();
     for (let i = 0; i < parts.length; i++) {
@@ -47,16 +64,24 @@ export function citationIndex(ids) {
         if (run !== id && run.length >= 3) seen.add(run);
       }
     }
-    for (const run of seen) counts.set(run, (counts.get(run) ?? 0) + 1);
+    const citerSym = symById.get(id);
+    const citerWraps = isDerivative(id, a.name);
+    for (const run of seen) {
+      if (!symById.has(run)) continue;         // only runs that ARE another asset
+      const e = index.get(run) ?? { citedBy: 0, corroborated: 0 };
+      e.citedBy++;
+      const headSym = symById.get(run);
+      if (headSym.length >= 3 && (citerSym === headSym || (citerWraps && citerSym.includes(headSym)))) e.corroborated++;
+      index.set(run, e);
+    }
   }
-  return counts;
+  return index;
 }
 
-export const isDerivative = (id, name) => DERIVATIVE.test(id) || DERIVATIVE.test((name ?? '').toLowerCase().replace(/[^a-z0-9]+/g, '-'));
 
 export function classify(asset, citations) {
   const id = asset.coingeckoId;
-  const citedBy = citations.get(id) ?? 0;
+  const { citedBy, corroborated } = citations.get(id) ?? { citedBy: 0, corroborated: 0 };
   const derivative = isDerivative(id, asset.name);
   // A second registry independently registering the asset is corroboration
   // that does not depend on naming at all, so it can establish a head even
@@ -66,10 +91,10 @@ export function classify(asset, citations) {
 
   let family;
   if (derivative) family = 'derivative';
-  else if (citedBy > 0 || attested) family = 'canonical';
+  else if (corroborated > 0 || attested) family = 'canonical';
   else family = 'standalone';
 
-  return { family, citedBy, attested, derivative };
+  return { family, citedBy, corroborated, attested, derivative };
 }
 
 // Order within a collision group: the head first, then ordinary assets, then

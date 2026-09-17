@@ -1,11 +1,14 @@
-// Optional Cloudflare Worker in front of an R2 bucket holding dist/.
+// NOT DEPLOYED. GitHub Pages is the origin for https://0xcounting.github.io/FAR
+// and nothing here is running.
 //
-// GitHub Pages is the canonical origin and needs none of this. This exists for
-// the case where you want a custom domain, control over cache headers, and
-// R2's zero egress cost.
+// This is a Cloudflare Worker in front of an R2 bucket holding dist/, kept as
+// the ready-made option for a custom domain, control over cache headers, and
+// R2's zero egress cost. The `r2` job in .github/workflows/deploy.yml syncs
+// dist/ into the bucket, and is gated on the R2_BUCKET repository variable, so
+// it does nothing until that is set.
 //
-// Deploy:  cd edge && npx wrangler deploy
-// Sync:    the `r2` job in .github/workflows/deploy.yml
+// To turn it on: set R2_BUCKET and the R2_* secrets, then `cd edge && npx
+// wrangler deploy`.
 export default {
   async fetch(request, env, ctx) {
     if (request.method !== 'GET' && request.method !== 'HEAD') {

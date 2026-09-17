@@ -60,8 +60,12 @@ single `rejected` entry kills that proposal permanently, including on re-runs.
 This is the highest-value change in the repo, because it converts a guess into a
 fact. 1,929 links are currently proposed and **zero** are accepted.
 
-Pick one from `/dti/{DTI}.json` or `_unlinked.json`, establish that the DTI
-record and the CoinGecko coin are the same asset, then add it:
+Start from `/_acceptance-queue.json`: every proposal whose CoinGecko asset has
+exactly one deployment, sorted so uncontested records with a unique name come
+first. Those are the only proposals public evidence can support. Run
+`node scripts/gather-onchain-evidence.js <DTI>` to read the contract and get a
+rationale, establish that the DTI record and the CoinGecko coin are the same
+asset, then add it:
 
 ```json
 {
