@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/0xcounting/FAR/schema/platforms.schema.json",
+  "title": "FAR platform table",
+  "type": "object",
+  "required": [
+    "platforms",
+    "unmapped"
+  ],
+  "properties": {
+    "platforms": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/platform"
+      }
+    },
+    "unmapped": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "tokens",
+          "reason"
+        ],
+        "properties": {
+          "tokens": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "evmShaped": {
+            "type": "boolean"
+          },
+          "candidates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "platform": {
+      "type": "object",
+      "required": [
+        "caip2",
+        "assetNamespace",
+        "addressFormat",
+        "confidence",
+        "evidence"
+      ],
+      "properties": {
+        "caip2": {
+          "type": "string",
+          "pattern": "^[-a-z0-9]{3,8}:[-_a-zA-Z0-9]{1,32}$"
+        },
+        "assetNamespace": {
+          "description": "null means the namespace is chosen per identity at build time (Cosmos).",
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[-a-z0-9]{3,8}$"
+        },
+        "nativeAsset": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^slip44:[0-9]+$"
+        },
+        "addressFormat": {
+          "type": "string"
+        },
+        "confidence": {
+          "description": "high = exercised in a production ingest or defined by a CASA spec. medium = hand-reviewed against a named source. low = auto name-match, or a provisional namespace with no ratified spec. proposed = asserted by a language model, no human review; carries assertedBy and usually uncertainty.",
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "proposed"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "disputed": {
+          "type": "boolean"
+        },
+        "assertedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Set when confidence is 'proposed': which model made the assertion and in what run."
+        },
+        "uncertainty": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "What specifically could not be verified. Non-null is expected on 'proposed' entries."
+        },
+        "namespaceRatified": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "assetNamespaceRatified": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}
