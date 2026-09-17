@@ -1,0 +1,17 @@
+{
+  "name": "far-registry",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Free Asset Resolver — an open cross-reference between CAIP-19, CoinGecko IDs and ISO 24165 DTIs",
+  "license": "MIT",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node src/build.js",
+    "validate": "node src/validate.js",
+    "propose-platforms": "node scripts/propose-platforms.js",
+    "gen-natives": "node scripts/gen-natives.js",
+    "verify": "node scripts/verify.js",
+    "serve": "node scripts/serve.js"
+  }
+}

@@ -1,0 +1,785 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FAR — Free Asset Resolver</title>
+<meta name="description" content="An open cross-reference between CAIP-19, CoinGecko IDs and ISO 24165 DTIs.">
+<style>
+/* ---------------------------------------------------------------------------
+   shadcn/ui design tokens, taken verbatim from the registry "neutral" base
+   (ui.shadcn.com/r/colors/neutral.json) and the Tailwind v4 radius scale.
+   OKLCH, as shadcn now ships; each token is a complete color, so it is used
+   as var(--token) rather than wrapped. No React, Tailwind or build step: the
+   component classes below reproduce shadcn's geometry against these tokens.
+--------------------------------------------------------------------------- */
+:root{
+  --radius:0.625rem;
+  --radius-sm:calc(var(--radius) - 4px);
+  --radius-md:var(--radius-md);
+  --radius-lg:var(--radius);
+  --radius-xl:calc(var(--radius) + 4px);
+
+  --background:oklch(1 0 0);
+  --foreground:oklch(0.145 0 0);
+  --card:oklch(1 0 0);
+  --card-foreground:oklch(0.145 0 0);
+  --popover:oklch(1 0 0);
+  --popover-foreground:oklch(0.145 0 0);
+  --primary:oklch(0.205 0 0);
+  --primary-foreground:oklch(0.985 0 0);
+  --secondary:oklch(0.97 0 0);
+  --secondary-foreground:oklch(0.205 0 0);
+  --muted:oklch(0.97 0 0);
+  --muted-foreground:oklch(0.556 0 0);
+  --accent:oklch(0.97 0 0);
+  --accent-foreground:oklch(0.205 0 0);
+  --destructive:oklch(0.577 0.245 27.325);
+  --border:oklch(0.922 0 0);
+  --input:oklch(0.922 0 0);
+  --ring:oklch(0.708 0 0);
+  --chart-1:oklch(0.87 0 0);
+  --chart-2:oklch(0.556 0 0);
+  --chart-3:oklch(0.439 0 0);
+  --chart-4:oklch(0.371 0 0);
+  --chart-5:oklch(0.269 0 0);
+  --ok:oklch(0.62 0.17 149);
+  --ok-fg:oklch(0.48 0.14 149);
+  --warn:oklch(0.75 0.16 75);
+  --warn-fg:oklch(0.52 0.13 75);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ok-fg:oklch(0.76 0.16 149);
+  --warn-fg:oklch(0.83 0.15 75);
+  --background:oklch(0.145 0 0);
+  --foreground:oklch(0.985 0 0);
+  --card:oklch(0.205 0 0);
+  --card-foreground:oklch(0.985 0 0);
+  --popover:oklch(0.205 0 0);
+  --popover-foreground:oklch(0.985 0 0);
+  --primary:oklch(0.922 0 0);
+  --primary-foreground:oklch(0.205 0 0);
+  --secondary:oklch(0.269 0 0);
+  --secondary-foreground:oklch(0.985 0 0);
+  --muted:oklch(0.269 0 0);
+  --muted-foreground:oklch(0.708 0 0);
+  --accent:oklch(0.269 0 0);
+  --accent-foreground:oklch(0.985 0 0);
+  --destructive:oklch(0.704 0.191 22.216);
+  --border:oklch(1 0 0 / 10%);
+  --input:oklch(1 0 0 / 15%);
+  --ring:oklch(0.556 0 0);
+}}
+:root[data-theme="dark"]{
+  --ok-fg:oklch(0.76 0.16 149);
+  --warn-fg:oklch(0.83 0.15 75);
+  --background:oklch(0.145 0 0);
+  --foreground:oklch(0.985 0 0);
+  --card:oklch(0.205 0 0);
+  --card-foreground:oklch(0.985 0 0);
+  --popover:oklch(0.205 0 0);
+  --popover-foreground:oklch(0.985 0 0);
+  --primary:oklch(0.922 0 0);
+  --primary-foreground:oklch(0.205 0 0);
+  --secondary:oklch(0.269 0 0);
+  --secondary-foreground:oklch(0.985 0 0);
+  --muted:oklch(0.269 0 0);
+  --muted-foreground:oklch(0.708 0 0);
+  --accent:oklch(0.269 0 0);
+  --accent-foreground:oklch(0.985 0 0);
+  --destructive:oklch(0.704 0.191 22.216);
+  --border:oklch(1 0 0 / 10%);
+  --input:oklch(1 0 0 / 15%);
+  --ring:oklch(0.556 0 0);
+}
+
+*,*::before,*::after{box-sizing:border-box;border:0 solid var(--border)}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--background); color:var(--foreground);
+  font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:14px; line-height:1.5; font-feature-settings:"rlig" 1,"calt" 1;
+  -webkit-font-smoothing:antialiased;
+}
+.mono,code,pre,kbd{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}
+a{color:inherit;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--border)}
+a:hover{text-decoration-color:var(--foreground)}
+
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+.stack>*+*{margin-top:24px}
+.sep{height:1px;width:100%;background:var(--border);margin:48px 0}
+
+/* typography ------------------------------------------------------------- */
+h1{font-size:2.25rem;font-weight:800;letter-spacing:-.025em;line-height:1.1;margin:0}
+h2{font-size:1.5rem;font-weight:600;letter-spacing:-.025em;margin:0 0 8px;scroll-margin:80px}
+h3{font-size:1.125rem;font-weight:600;letter-spacing:-.015em;margin:32px 0 8px}
+h5{font-size:.6875rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;
+   color:var(--muted-foreground);margin:0 0 8px}
+p{margin:0 0 12px}
+.lead{font-size:1.125rem;color:var(--muted-foreground);line-height:1.65;max-width:70ch}
+.muted,.hint{font-size:.8125rem;color:var(--muted-foreground)}
+.hint{margin:8px 0 0}
+
+/* card ------------------------------------------------------------------- */
+.card{border:1px solid var(--border);border-radius:var(--radius-lg);
+  background:var(--card);color:var(--card-foreground);
+  box-shadow:0 1px 2px 0 rgb(0 0 0 / .05)}
+.card-header{padding:20px 20px 0;display:flex;flex-direction:column;gap:6px}
+.card-title{font-size:1rem;font-weight:600;letter-spacing:-.01em;line-height:1.2}
+.card-desc{font-size:.8125rem;color:var(--muted-foreground)}
+.card-content{padding:20px}
+
+/* badge ------------------------------------------------------------------ */
+.badge,.pill{display:inline-flex;align-items:center;border-radius:9999px;
+  border:1px solid transparent;padding:2px 10px;font-size:.6875rem;font-weight:600;
+  line-height:1.35;white-space:nowrap}
+.badge-secondary,.pill{background:var(--secondary);color:var(--secondary-foreground)}
+.badge-outline{border-color:var(--border);color:var(--foreground)}
+.badge-destructive{background:var(--destructive);color:var(--destructive-foreground)}
+.p-canonical{background:color-mix(in oklch, var(--ok) 14%, transparent);color:var(--ok-fg);border-color:color-mix(in oklch, var(--ok) 32%, transparent)}
+.p-derivative{background:color-mix(in oklch, var(--warn) 16%, transparent);color:var(--warn-fg);border-color:color-mix(in oklch, var(--warn) 32%, transparent)}
+.p-standalone{background:var(--muted);color:var(--muted-foreground);border-color:var(--border)}
+
+/* button ----------------------------------------------------------------- */
+.btn,button.ghost,.hit,.eq button{display:inline-flex;align-items:center;justify-content:center;
+  gap:6px;border-radius:var(--radius-md);font-size:.8125rem;font-weight:500;
+  cursor:pointer;transition:background-color .15s,color .15s,border-color .15s;
+  background:var(--background);color:var(--foreground);
+  border:1px solid var(--input);padding:0 12px;height:32px;font-family:inherit}
+.btn:hover,button.ghost:hover,.eq button:hover{background:var(--accent);color:var(--accent-foreground)}
+.btn:focus-visible,.input:focus-visible,.hit:focus-visible{outline:none;box-shadow:0 0 0 2px var(--ring)}
+button.ghost{border-color:transparent;background:var(--secondary);color:var(--secondary-foreground)}
+.eq button{height:26px;padding:0 10px;font-size:.75rem}
+
+/* input ------------------------------------------------------------------ */
+.input{display:flex;height:44px;width:100%;border-radius:var(--radius-md);
+  border:1px solid var(--input);background:transparent;padding:0 14px;
+  font-size:1rem;font-family:inherit;color:var(--foreground);
+  box-shadow:0 1px 2px 0 rgb(0 0 0 / .05);transition:border-color .15s,box-shadow .15s}
+.input::placeholder{color:var(--muted-foreground)}
+
+/* table ------------------------------------------------------------------ */
+.scroll{width:100%;overflow-x:auto;border:1px solid var(--border);
+  border-radius:var(--radius-md)}
+table{width:100%;border-collapse:collapse;font-size:.8125rem;caption-side:bottom}
+thead tr{border-bottom:1px solid var(--border)}
+th{height:38px;padding:0 12px;text-align:left;vertical-align:middle;font-weight:500;
+   color:var(--muted-foreground);white-space:nowrap}
+td{padding:9px 12px;vertical-align:middle;border-top:1px solid var(--border)}
+tbody tr:hover{background:color-mix(in oklch, var(--muted) 50%, transparent)}
+table.ids td.mono{font-size:.75rem}
+td.chain{color:var(--muted-foreground)}
+.docs-table{border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden}
+.docs-table td:first-child{white-space:nowrap}
+
+/* code ------------------------------------------------------------------- */
+code{background:var(--muted);padding:.15em .4em;border-radius:4px;font-size:.85em}
+pre{background:var(--muted);border:1px solid var(--border);
+  border-radius:var(--radius-md);padding:16px;overflow-x:auto;margin:0 0 12px}
+pre code{background:none;padding:0;font-size:.8125rem;line-height:1.7}
+
+/* alert ------------------------------------------------------------------ */
+.alert{position:relative;width:100%;border-radius:var(--radius-lg);
+  border:1px solid var(--border);padding:14px 16px;font-size:.8125rem;
+  background:var(--card)}
+.alert-title{font-weight:600;margin:0 0 4px;font-size:.875rem;letter-spacing:-.01em}
+.alert-warn{border-color:color-mix(in oklch, var(--warn) 40%, transparent);background:color-mix(in oklch, var(--warn) 8%, transparent)}
+
+/* stats ------------------------------------------------------------------ */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:28px 0 0}
+.stat{border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px 16px;
+  background:var(--card);display:flex;flex-direction:column;gap:2px}
+.stat b{font-size:1.375rem;font-weight:700;letter-spacing:-.02em;line-height:1.15;
+  font-variant-numeric:tabular-nums}
+.stat span{font-size:.75rem;color:var(--muted-foreground)}
+
+/* explorer --------------------------------------------------------------- */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.hits{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;
+  margin:12px 0 0;max-height:280px;overflow-y:auto;overscroll-behavior:contain;
+  padding:8px;border:1px solid var(--border);border-radius:var(--radius-md);
+  background:color-mix(in oklch, var(--muted) 35%, transparent)}
+.hit{height:auto;padding:9px 11px;flex-direction:column;align-items:flex-start;gap:2px;
+  text-align:left;background:var(--card)}
+.hit.sel{border-color:var(--foreground);background:var(--accent)}
+.hit .id{font-family:ui-monospace,monospace;font-size:.75rem;font-weight:600}
+.hit .nm{font-size:.75rem;color:var(--muted-foreground);font-weight:400}
+.hit .ct{font-size:.6875rem;color:var(--muted-foreground)}
+
+.ans{border:1px solid var(--border);border-radius:var(--radius-lg);
+  background:var(--card);overflow:hidden;margin-top:12px}
+.ans>header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:14px 16px;border-bottom:1px solid var(--border);background:color-mix(in oklch, var(--muted) 40%, transparent)}
+.ans>header .id{font-family:ui-monospace,monospace;font-weight:600;font-size:.9375rem}
+.ans>header .nm{color:var(--muted-foreground);font-size:.8125rem}
+.ans .scroll{border:0;border-radius:0;max-height:400px;overflow:auto;overscroll-behavior:contain}
+.ans table.ids thead th{position:sticky;top:0;z-index:1;background:var(--card);
+  box-shadow:inset 0 -1px 0 var(--border)}
+/* Fixed layout so the CAIP-19 column keeps a bounded width instead of pushing
+   the others out. `anywhere` wraps only when a token genuinely will not fit,
+   unlike break-all, which breaks eagerly mid-identifier. Below the min-width
+   the wrapper scrolls horizontally rather than crushing every column. */
+table.ids{table-layout:fixed;min-width:620px}
+table.ids th:nth-child(1){width:21%}
+table.ids th:nth-child(2){width:45%}
+table.ids th:nth-child(3){width:16%}
+table.ids th:nth-child(4){width:18%}
+table.ids td.mono{overflow-wrap:anywhere;word-break:normal;line-height:1.45}
+table.ids td.chain{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ans .fam,.ans .eq{padding:12px 16px;border-top:1px solid var(--border);font-size:.8125rem;
+  color:var(--muted-foreground)}
+.ans .eq{background:color-mix(in oklch, var(--muted) 40%, transparent)}
+.ans .eq b{color:var(--foreground)}
+.ep{padding:14px 16px;border-top:1px solid var(--border)}
+.ep ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.ep li{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;font-size:.8125rem}
+.ep a{font-family:ui-monospace,monospace;font-size:.75rem}
+.verb{font-family:ui-monospace,monospace;font-size:.625rem;font-weight:700;
+  background:var(--secondary);color:var(--muted-foreground);
+  padding:1px 6px;border-radius:4px;letter-spacing:.04em}
+.what{color:var(--muted-foreground);font-size:.75rem}
+.ext{text-decoration:none;opacity:.55}
+.ext:hover{opacity:1}
+.none{color:var(--muted-foreground);font-style:italic;font-size:.75rem}
+.empty{color:var(--muted-foreground);padding:16px 0}
+.err{color:var(--destructive)}
+
+.hits,.ans .scroll,.scroll{scrollbar-width:thin;
+  scrollbar-color:color-mix(in oklch, var(--muted-foreground) 45%, transparent) transparent}
+.hits::-webkit-scrollbar,.ans .scroll::-webkit-scrollbar,.scroll::-webkit-scrollbar{width:9px;height:9px}
+.hits::-webkit-scrollbar-thumb,.ans .scroll::-webkit-scrollbar-thumb,.scroll::-webkit-scrollbar-thumb{
+  background:color-mix(in oklch, var(--muted-foreground) 40%, transparent);
+  border-radius:9999px;border:2px solid transparent;background-clip:content-box}
+/* split-pane JSON viewer ------------------------------------------------- */
+#matches:not(:empty){margin-bottom:16px}
+/* Only the scrollable table shares its row with the viewer. Everything below
+   it in the card — the family notes, the endpoint lists — stays full width. */
+.tablerow{display:grid;grid-template-columns:minmax(0,1fr)}
+.tablerow.split{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+@media(max-width:900px){.tablerow.split{grid-template-columns:minmax(0,1fr)}}
+.tablerow.split table.ids{min-width:0}
+.tablerow.split table.ids th:nth-child(1){width:24%}
+.tablerow.split table.ids th:nth-child(2){width:40%}
+.tablerow.split table.ids th:nth-child(3){width:18%}
+.tablerow.split table.ids th:nth-child(4){width:18%}
+/* Flush against the table it sits beside, and exactly as tall, so the two
+   panes read as one row rather than as a card floating next to a card. */
+.tablerow.split #viewer{border:0;border-left:1px solid var(--border);border-radius:0;
+  height:400px}
+@media(max-width:900px){.tablerow.split #viewer{border-left:0;
+  border-top:1px solid var(--border);height:320px}}
+#viewer{background:var(--card);overflow:hidden;
+  display:flex;flex-direction:column;min-width:0}
+#viewer>header{display:flex;align-items:center;gap:8px;padding:9px 10px;flex:0 0 auto;
+  border-bottom:1px solid var(--border);
+  background:color-mix(in oklch, var(--muted) 40%, transparent)}
+#vurl{font-family:ui-monospace,monospace;font-size:.75rem;flex:1 1 auto;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;direction:rtl;text-align:left}
+#vmeta{flex:0 0 auto;white-space:nowrap}
+.vclose{height:26px;width:26px;padding:0;flex:0 0 auto;font-size:.75rem}
+#viewer pre{margin:0;border:0;border-radius:0;background:transparent;
+  overflow:auto;overscroll-behavior:contain;flex:1 1 auto;padding:12px 14px}
+#viewer code{font-size:.75rem;line-height:1.55;white-space:pre}
+.j-k{color:var(--foreground);font-weight:600}
+.j-s{color:var(--ok-fg)}
+.j-n{color:var(--warn-fg)}
+.j-b{color:var(--destructive);font-weight:600}
+.j-u{color:var(--muted-foreground);font-style:italic}
+a.json-open{cursor:pointer}
+footer{color:var(--muted-foreground);font-size:.8125rem;padding:32px 0 56px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:14px 0;margin-bottom:8px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:600;letter-spacing:-.01em}
+.dot{width:8px;height:8px;border-radius:9999px;background:var(--ok)}
+header.hero{padding:24px 0 8px}
+@media(max-width:640px){h1{font-size:1.75rem}.container{padding:0 16px}}
+</style>
+
+<div class="container">
+
+<div class="topbar">
+  <div class="brand"><span class="dot"></span> FAR</div>
+  <div style="display:flex;gap:8px;align-items:center">
+    <a class="btn" href="https://github.com/0xcounting/FAR">GitHub</a>
+    <button class="btn" id="theme" title="Toggle theme" aria-label="Toggle theme">◐</button>
+  </div>
+</div>
+
+<header class="hero">
+  <h1>Free Asset Resolver</h1>
+  <p class="lead" style="margin-top:14px">An open cross-reference between <b>CAIP-19</b>,
+  <b>CoinGecko IDs</b> and <b>ISO&nbsp;24165 DTIs</b>. Every lookup is a static file:
+  no key, no rate limit, no server that can be down differently from any other file.</p>
+  <div class="stats" id="stats"><div class="stat"><b>…</b><span>loading</span></div></div>
+  <p class="hint" id="built"></p>
+</header>
+
+<div class="sep"></div>
+
+<section>
+  <h2>Look up an asset</h2>
+  <p class="muted" style="max-width:70ch">Type a name, ticker, CoinGecko id, DTI or contract
+  address. You get back the identifiers that name the same thing.</p>
+
+  <div class="card" style="margin-top:16px">
+    <div class="card-content">
+      <input type="text" class="input" id="q" placeholder="usdc" spellcheck="false"
+             autocomplete="off" autofocus>
+      <div class="chips">
+        <button class="ghost" data-q="usdc">usdc</button>
+        <button class="ghost" data-q="tether">tether</button>
+        <button class="ghost" data-q="wrapped ether">wrapped ether</button>
+        <button class="ghost" data-q="noble usdc">noble usdc</button>
+        <button class="ghost" data-q="0xdac17f958d2ee523a2206206994597c13d831ec7">a contract address</button>
+        <button class="ghost" data-q="CK9PW1MFH">a DTI</button>
+      </div>
+      <p class="hint" id="status">loading the registry…</p>
+      <div id="matches"></div>
+      <div id="out"></div>
+      <div id="vhold" hidden>
+        <aside id="viewer" hidden>
+          <header>
+            <span class="verb">GET</span>
+            <a id="vurl" target="_blank" rel="noopener" title="open the raw file"></a>
+            <span id="vmeta" class="what"></span>
+            <button class="btn vclose" id="vclose" title="Close (Esc)" aria-label="Close">✕</button>
+          </header>
+          <pre><code id="vbody"></code></pre>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<section>
+  <h2>Routes</h2>
+  <p class="muted" style="max-width:70ch">The lookup above needs none of these. It loads the
+  whole registry once and searches locally. These are for a program that wants one file.</p>
+
+  <div class="scroll docs-table" style="margin-top:16px">
+  <table>
+    <thead><tr><th>Route</th><th>Key</th><th>Returns</th></tr></thead>
+    <tbody>
+    <tr><td><code>/name/{slug}.json</code></td><td class="muted">lowercased, punctuation→<code>-</code></td><td>every asset with that name, a <i>group</i>, because names are not unique</td></tr>
+    <tr><td><code>/symbol/{slug}.json</code></td><td class="muted">same slug rule</td><td>every asset with that ticker. <code>usdc</code> returns 60+</td></tr>
+    <tr><td><code>/cg/{id}.json</code></td><td class="muted">CoinGecko ID</td><td>one asset with all its chain deployments</td></tr>
+    <tr><td><code>/caip/{ns}/{ref}/{ans}/{aref}.json</code></td><td class="muted">CAIP-19 as a path</td><td>the asset at that exact identifier</td></tr>
+    <tr><td><code>/dti/{DTI}.json</code></td><td class="muted">9-char ISO 24165 id</td><td>the DTI record and any linked asset</td></tr>
+    <tr><td><code>/ledger/{DLI}.json</code></td><td class="muted">DTI ledger id</td><td>a chain, with its CAIP-2</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Bulk and metadata</h3>
+  <div class="scroll docs-table">
+  <table><tbody>
+    <tr><td><code>/far.json.gz</code></td><td>the entire registry, ~1.8&nbsp;MB, often simpler than making requests</td></tr>
+    <tr><td><code>/index.json</code></td><td>counts, source hashes, route list</td></tr>
+    <tr><td><code>/manifest.json</code></td><td>sha256 of every file plus a Merkle root</td></tr>
+    <tr><td><code>/_namespace-gaps.json</code></td><td>identifiers we had to invent because no CASA spec defines one</td></tr>
+    <tr><td><code>/_unlinked.json</code></td><td>DTI records with no CoinGecko link, the contributor queue</td></tr>
+  </tbody></table>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<section>
+  <h2>Read this before you trust a link</h2>
+  <p class="muted" style="max-width:70ch">Every DTI to CoinGecko link carries a
+  <code>status</code>. They are not equally reliable.</p>
+
+  <div class="scroll docs-table" style="margin:16px 0">
+  <table>
+    <thead><tr><th>Status</th><th>Who decided</th><th>Measured accuracy</th></tr></thead>
+    <tbody>
+    <tr><td><span class="badge badge-outline">accepted</span></td><td>A human, in a reviewed pull request, citing public evidence</td><td>the only tier to rely on</td></tr>
+    <tr><td><span class="badge badge-secondary">proposed</span></td><td>A deterministic rule: exact name, optionally corroborated by ticker</td><td class="muted">unmeasured</td></tr>
+    <tr><td><span class="badge badge-secondary">inferred</span></td><td>A language model, with its reasoning published on the record</td><td class="muted">unmeasured</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="alert alert-warn">
+    <p class="alert-title">Why “unmeasured”</p>
+    <p style="margin:0">Scoring a name-based guess needs a column of known-correct answers to
+    grade against, and that column would be the contract address for each DTI. DTIF's free
+    monthly snapshot redacts it, so there is nothing to grade against and any accuracy figure
+    here would be invented. If a wrong link would cost you something, a tax filing or a
+    regulatory report, filter to <code>accepted</code> and treat the rest as a candidate queue.</p>
+  </div>
+
+  <div class="alert" style="margin-top:12px">
+    <p class="alert-title">Expect one error above all others</p>
+    <p style="margin:0">A <i>bridged or pegged deployment</i> attached to the canonical asset it
+    wraps. CoinGecko alone carries dozens of distinct assets whose name is “USD Coin” or close
+    to it, <code>bridged-usdc</code>, <code>celer-bridged-usdc-astar</code> and many more, and
+    only one of them is Circle's. A DTI record named “USD Coin” could be any of them, and the
+    name cannot tell you which.</p>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<section>
+  <h2>Verifying what you fetched</h2>
+  <pre><code>curl -s https://0xcounting.github.io/FAR/cg/tether.json | shasum -a 256
+# compare against the entry for cg/tether.json in /manifest.json</code></pre>
+  <p class="muted" style="max-width:70ch">The manifest also carries a Merkle root over every
+  <code>(path, hash)</code> pair, so a single file can be proven to belong to a published
+  release without downloading the rest. An inclusion proof is about 17 hashes. Builds are
+  deterministic: same inputs, same root.</p>
+
+  <h3>Using it in code</h3>
+  <pre><code>const BASE = 'https://0xcounting.github.io/FAR';
+
+// by name — returns a GROUP, because names are not unique
+const r = await fetch(`${BASE}/name/${slug}.json`);
+if (r.status === 404) return null;            // no asset by that name
+const { assets } = await r.json();
+
+// by CAIP-19 — ":" and "/" become path separators, "%" becomes "~"
+const path = caip19.replace(/:/g, '/').replace(/%/g, '~');
+const one = await fetch(`${BASE}/caip/${path}.json`);</code></pre>
+</section>
+
+<footer>
+  <div class="sep" style="margin:0 0 24px"></div>
+  <p style="margin:0">Code MIT · curated data CC0 · upstream sources keep their own terms.
+  Not affiliated with DTIF, CoinGecko or CASA.</p>
+  <p style="margin:6px 0 0">
+    <a href="https://github.com/0xcounting/FAR">Source and contributing</a> ·
+    <a href="https://github.com/0xcounting/FAR/blob/main/GOVERNANCE.md">Governance</a> ·
+    <a href="_namespace-gaps.json">Namespace gaps</a></p>
+</footer>
+
+</div>
+
+<script>
+const BASE = location.pathname.replace(/\/[^/]*$/, '');
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '');
+// Same rules the build uses to name files, so a link here is the real file.
+const slug = s => String(s).normalize('NFKD').replace(/\p{Diacritic}/gu, '')
+  .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || '_';
+// ":" and "/" become path separators; a "%" in a reference becomes "~" because a
+// literal % is decoded by the server before the file is looked up.
+const caipPath = c19 => c19.replace(/:/g, '/').replace(/%/g, '~');
+
+let INDEX = null, SEL = null, EXPL = null;
+const NAMES = new Set(), SYMS = new Set();
+
+fetch(`${BASE}/index.json`).then(r => r.json()).then(d => {
+  const c = d.counts, n = x => (x ?? 0).toLocaleString('en-US');
+  $('#stats').innerHTML = [
+    [n(c.coins),'assets'],[n(c.deployments),'CAIP-19 ids'],[n(c.platformsMapped),'chains'],
+    [n(c.dtiTokens),'DTI records'],[n(c.files),'files served'],
+  ].map(([v,l]) => `<div class="stat"><b>${v}</b><span>${l}</span></div>`).join('');
+  $('#built').textContent = `Built ${d.version} · every file hashed in /manifest.json`;
+}).catch(() => {});
+
+// The whole registry is loaded once and searched in the browser. That is why
+// there is no query API to guess at and no route to choose: a reader types
+// anything and gets rows.
+fetch(`${BASE}/_explorers.json`).then(r => r.json()).then(d => { EXPL = d; }).catch(() => {});
+
+fetch(`${BASE}/search-index.json`).then(r => r.json()).then(d => {
+  INDEX = d;
+  // Precompute the match keys once rather than on every keystroke.
+  for (const a of INDEX) {
+    a._i = norm(a.i); a._n = norm(a.n); a._s = norm(a.s);
+    a._a = (a.a || []).map(norm);          // DTI long names, used as aliases
+  }
+  // Which /name/ and /symbol/ files the build actually emitted. A name that
+  // slugs to "_" — emoji-only, or pure punctuation — is deliberately not
+  // published, so offering a link to it would hand the reader a 404.
+  for (const a of INDEX) {
+    const n = slug(a.n), y = slug(a.s);
+    if (n !== '_') NAMES.add(n);
+    if (y !== '_') SYMS.add(y);
+  }
+  $('#status').textContent = `${d.length.toLocaleString()} assets loaded — searching happens in your browser, nothing is sent anywhere.`;
+  run($('#q').value || 'usdc');
+}).catch(e => { $('#status').innerHTML = `<span class="err">Could not load the index: ${esc(e.message)}</span>`; });
+
+// Lexical scoring, not semantic. For short identifiers an exact or prefix match
+// is what a reader means; "usdc" should find "usd-coin", never "dai" on the
+// grounds that both are stablecoins.
+function search(q){
+  const t = norm(q);
+  if (!t) return [];
+  const isDti = /^[0-9a-z]{9}$/i.test(q.trim());
+  const dti = q.trim().toUpperCase();
+  const addr = q.trim().toLowerCase();
+  const out = [];
+  for (const a of INDEX) {
+    let sc = 0;
+    // An exact id or NAME match is the strongest lexical signal. An exact
+    // SYMBOL match is weaker on its own: tickers are squatted, and a memecoin
+    // with one deployment was outranking real USDC deployments purely by
+    // owning the string.
+    if (a._i === t || a._n === t) sc = 100;
+    else if (a._a.includes(t)) sc = 92;     // an alias DTIF records for it
+    else if (a._s === t) sc = 62;
+    else if (a._i.startsWith(t) || a._n.startsWith(t)) sc = 55;
+    else if (a._a.some(x => x.startsWith(t))) sc = 50;
+    else if (a._s.startsWith(t)) sc = 45;
+    else if (a._i.includes(t) || a._n.includes(t) || a._a.some(x => x.includes(t))) sc = 30;
+    // An exact DTI or contract address is a precise answer and outranks a name.
+    if (isDti && ((a.u && a.u.includes(dti)) || (a.d && a.d.some(x => x[1] === dti)))) sc = Math.max(sc, 120);
+    if (addr.length > 8 && a.d && a.d.some(x => x[0].toLowerCase().includes(addr))) sc = Math.max(sc, 120);
+    if (!sc) continue;
+    // The head of a naming family first, then more deployments, then shorter id.
+    // Evidence of being a real, widely-deployed asset breaks ties: deployment
+    // count, whether any deployment carries a DTI, and family head-ness.
+    const deps = (a.d || []).length;
+    const hasDti = (a.d || []).some(x => x[1]) || (a.u || []).length > 0;
+    out.push([sc
+      + (a.f === 'c' ? 10 : a.f === 'd' ? -2 : 0)
+      + Math.min(14, deps * 1.4)
+      + (hasDti ? 6 : 0), a]);
+  }
+  return out.sort((x, y) => y[0] - x[0] || x[1].i.length - y[1].i.length).slice(0, 60).map(x => x[1]);
+}
+
+const FAM = { c: 'canonical', d: 'derivative', s: 'standalone' };
+
+// Where to see the thing itself. A CAIP-19 carries the chain and the reference,
+// which is everything an explorer URL needs — so the identifier this project
+// publishes is also the link.
+function explorerFor(c19){
+  if (!EXPL) return null;
+  const slash = c19.indexOf('/');
+  const caip2 = c19.slice(0, slash);
+  const asset = c19.slice(slash + 1);
+  const ref = decodeURIComponent(asset.slice(asset.indexOf(':') + 1).replace(/~/g, '%'));
+  const ns = asset.slice(0, asset.indexOf(':'));
+  if (ns === 'slip44') return null;                    // a native unit has no contract page
+  const m = /^eip155:(\d+)$/.exec(caip2);
+  if (m) {
+    const base = EXPL.eip155[m[1]];
+    if (!base) return null;
+    return `${base}/${ns === 'erc20' || ns === 'erc721' ? 'token' : 'address'}/${ref}`;
+  }
+  const other = EXPL.other[caip2];
+  return other ? other + ref : null;
+}
+
+function answer(a){
+  const deps = a.d || [], un = a.u || [];
+  const rows = deps.length
+    ? `<div class="scroll"><table class="ids">
+        <thead><tr><th>CoinGecko id</th><th>CAIP-19</th><th>DTI</th><th>chain</th></tr></thead><tbody>
+        ${deps.map(([c19, dti, chain]) => `<tr>
+          <td class="mono"><a href="${esc(BASE)}/cg/${esc(a.i)}.json">${esc(a.i)}</a></td>
+          <td class="mono"><a href="${esc(BASE)}/caip/${esc(caipPath(c19))}.json">${esc(c19)}</a>${
+            explorerFor(c19) ? ` <a class="ext" href="${esc(explorerFor(c19))}" target="_blank" rel="noopener" title="view on the chain explorer">↗</a>` : ''}</td>
+          <td class="mono">${dti ? `<a href="${esc(BASE)}/dti/${esc(dti)}.json">${esc(dti)}</a>` : '<span class="none">not registered</span>'}</td>
+          <td class="chain">${esc(chain || c19.split('/')[0])}</td></tr>`).join('')}
+      </tbody></table></div>`
+    : `<p class="empty" style="padding:12px 13px;margin:0">No CAIP-19 — usually a native coin on a chain with no CAIP-2 yet. CoinGecko id <code>${esc(a.i)}</code>.</p>`;
+  const famNote = deps.length > 1
+    ? `<div class="fam">This is a family: <b>${esc(a.i)}</b> names the same economic asset on
+       <b>${deps.length}</b> chains, and each row above is a distinct identifier.</div>` : '';
+  const unNote = un.length
+    ? `<div class="fam"><b>${un.length}</b> further DTI record${un.length===1?'':'s'} link to this asset but
+       could not be placed on a chain — they were matched by name, and only an address says which
+       deployment: ${un.slice(0,8).map(d=>`<code>${esc(d)}</code>`).join(' ')}${un.length>8?` +${un.length-8}`:''}</div>` : '';
+  const eq = (a.e || []).length
+    ? `<div class="eq"><b>Declared equivalent</b> by DTIF — the ISO 24165 registry places
+       these in the same functionally-fungible group, meaning they are the same economic
+       asset even though CoinGecko lists them separately:
+       ${a.e.map(id => `<button data-go="${esc(id)}">${esc(id)}</button>`).join(' · ')}</div>` : '';
+  // Every route that serves THIS asset, with its own ids substituted — so the
+  // jump from browsing to calling needs no guesswork about slug rules.
+  const ep = [[`/cg/${a.i}.json`, 'this asset, by CoinGecko id']];
+  if (NAMES.has(slug(a.n))) ep.push([`/name/${slug(a.n)}.json`, `every asset named "${a.n}"`]);
+  if (SYMS.has(slug(a.s))) ep.push([`/symbol/${slug(a.s)}.json`, `every asset with ticker ${a.s}`]);
+  if (deps.length) ep.push([`/caip/${caipPath(deps[0][0])}.json`, 'one deployment, by CAIP-19']);
+  const firstDti = (deps.find(d => d[1]) || [])[1] || (un[0] || null);
+  if (firstDti) ep.push([`/dti/${firstDti}.json`, 'the DTI record']);
+  const up = [[`https://www.coingecko.com/en/coins/${encodeURIComponent(a.i)}`, 'CoinGecko', 'the asset page this id belongs to']];
+  if (firstDti) up.push(['https://registry.dtif.org/', 'DTIF registry', `search for ${firstDti} — the registry is a client-routed app, so it cannot be deep-linked`]);
+  const upBlock = `<div class="ep"><h5>upstream</h5><ul>`
+    + up.map(([href, label, what]) => `<li><span class="verb">WWW</span>`
+      + `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(label)}</a>`
+      + `<span class="what">${esc(what)}</span></li>`).join('')
+    + `</ul></div>`;
+  const epBlock = `<div class="ep"><h5>endpoints serving this asset</h5><ul>`
+    + ep.map(([path, what]) => `<li><span class="verb">GET</span>`
+      + `<a href="${esc(BASE + path)}">${esc(path)}</a>`
+      + `<span class="what">${esc(what)}</span></li>`).join('')
+    + `</ul></div>`;
+  return `<div class="ans"><header><span class="id">${esc(a.i)}</span>
+      <span class="nm">${esc(a.n)} · ${esc(a.s)}</span>
+      <span class="pill p-${FAM[a.f]}">${FAM[a.f]}</span></header>
+      <div class="tablerow">${rows}</div>${famNote}${unNote}${eq}${epBlock}${upBlock}</div>`;
+}
+
+function run(q){
+  if (!INDEX) return;
+  const hits = search(q);
+  const out = $('#out'), matches = $('#matches');
+  if (!hits.length) {
+    matches.innerHTML = '';
+    out.innerHTML = `<p class="empty">Nothing matches <code>${esc(q)}</code>.</p>`;
+    return;
+  }
+  const sel = hits.find(h => h.i === SEL) || hits[0];
+  // Only offer a picker when the query genuinely names more than one asset.
+  const list = hits.length > 1
+    ? `<p class="hint"><b>${hits.length}</b> assets match — these are different things, not one asset on many chains.</p>`
+      + `<div class="hits">${hits.slice(0, 40).map(h => `<button class="hit${h.i === sel.i ? ' sel' : ''}" data-id="${esc(h.i)}">
+          <span class="id">${esc(h.i)}</span><span class="nm">${esc(h.n)} · ${esc(h.s)}</span>
+          <span class="ct">${(h.d || []).length} chain${(h.d || []).length === 1 ? '' : 's'}</span></button>`).join('')}</div>`
+    : '';
+  // The picker is a property of the QUERY, the answer is a property of the
+  // selection. Keeping them in separate containers lets the answer share the
+  // row with the JSON viewer while the picker keeps the full width it needs.
+  matches.innerHTML = list;
+  out.innerHTML = answer(sel);
+  if (window.__farViewer) window.__farViewer.reseat();
+  matches.querySelectorAll('[data-id]').forEach(b => b.onclick = () => { SEL = b.dataset.id; run(q); });
+  out.querySelectorAll('[data-go]').forEach(b => b.onclick = () => {
+    $('#q').value = b.dataset.go; SEL = b.dataset.go; run(b.dataset.go);
+  });
+}
+
+let timer;
+$('#q').addEventListener('input', () => { SEL = null; clearTimeout(timer); timer = setTimeout(() => run($('#q').value), 90); });
+document.querySelectorAll('[data-q]').forEach(b => b.onclick = () => { $('#q').value = b.dataset.q; SEL = null; run(b.dataset.q); });
+</script>
+<script>
+(() => {
+  const r = document.documentElement, KEY = "far-theme";
+  try { const t = localStorage.getItem(KEY); if (t) r.dataset.theme = t; } catch {}
+  const btn = document.getElementById("theme");
+  if (btn) btn.onclick = () => {
+    const dark = r.dataset.theme
+      ? r.dataset.theme === "dark"
+      : matchMedia("(prefers-color-scheme: dark)").matches;
+    r.dataset.theme = dark ? "light" : "dark";
+    try { localStorage.setItem(KEY, r.dataset.theme); } catch {}
+  };
+})();
+</script>
+<script>
+/* ---------------------------------------------------------------------------
+   Split-pane viewer. Any link to a .json file under this registry opens in a
+   pane beside the results instead of navigating away, so browsing and reading
+   the actual response are the same motion. The link still works normally in a
+   new tab, and the pane header carries the full URL.
+--------------------------------------------------------------------------- */
+(() => {
+  const hold = document.getElementById('vhold');
+  const box = document.getElementById('viewer');
+  const urlEl = document.getElementById('vurl');
+  const metaEl = document.getElementById('vmeta');
+  const bodyEl = document.getElementById('vbody');
+  if (!hold || !box) return;
+  let openHref = null;
+
+  const escHtml = s => String(s).replace(/[&<>"]/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  // Tokenise against the RAW text and escape each piece as it is emitted, so a
+  // value containing "<" or "&" cannot inject markup and cannot break the match.
+  function highlight(txt) {
+    const re = /"(?:\\.|[^"\\])*"(\s*:)?|\b(?:true|false|null)\b|-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/g;
+    let out = '', last = 0, m;
+    while ((m = re.exec(txt))) {
+      out += escHtml(txt.slice(last, m.index));
+      const t = m[0];
+      let c = 'j-n';
+      if (t[0] === '"') c = m[1] !== undefined ? 'j-k' : 'j-s';
+      else if (t === 'true' || t === 'false') c = 'j-b';
+      else if (t === 'null') c = 'j-u';
+      out += '<span class="' + c + '">' + escHtml(t) + '</span>';
+      last = re.lastIndex;
+    }
+    return out + escHtml(txt.slice(last));
+  }
+
+  const fmtBytes = n => n < 1024 ? n + ' B'
+    : n < 1048576 ? (n / 1024).toFixed(1) + ' KB'
+    : (n / 1048576).toFixed(2) + ' MB';
+
+  // The answer card is rebuilt by innerHTML on every keystroke, which would
+  // destroy the viewer if it lived inside it. So it lives in a detached holder
+  // and is MOVED into the current table row each time, preserving its state.
+  function reseat() {
+    if (!openHref) return;
+    const row = document.querySelector('#out .tablerow');
+    if (!row) return close();
+    if (box.parentNode !== row) row.appendChild(box);
+    row.classList.add('split');
+    box.hidden = false;
+  }
+
+  function close() {
+    openHref = null;
+    box.hidden = true;
+    document.querySelectorAll('.tablerow.split').forEach(r => r.classList.remove('split'));
+    hold.appendChild(box);
+  }
+
+  window.__farViewer = { reseat };
+
+  // Pretty-printing a very large response is the one thing here that can stall
+  // a tab, so it is capped and the raw link is offered instead.
+  const CAP = 2 * 1024 * 1024;
+
+  async function open(href) {
+    openHref = href;
+    reseat();
+    urlEl.textContent = href;
+    urlEl.href = href;
+    metaEl.textContent = 'loading…';
+    bodyEl.textContent = '';
+    try {
+      const r = await fetch(href);
+      if (!r.ok) {
+        metaEl.textContent = r.status + ' ' + r.statusText;
+        bodyEl.innerHTML = '<span class="j-u">No file at this path.</span>';
+        return;
+      }
+      const raw = await r.text();
+      metaEl.textContent = fmtBytes(raw.length);
+      if (raw.length > CAP) {
+        bodyEl.innerHTML = '<span class="j-u">' + fmtBytes(raw.length)
+          + ' is too large to pretty-print here. Open the raw file from the link above.</span>';
+        return;
+      }
+      let pretty;
+      try { pretty = JSON.stringify(JSON.parse(raw), null, 2); }
+      catch { pretty = raw; }                      // not JSON: show it as sent
+      bodyEl.innerHTML = highlight(pretty);
+      box.querySelector('pre').scrollTop = 0;
+    } catch (e) {
+      metaEl.textContent = 'failed';
+      bodyEl.innerHTML = '<span class="j-u">' + escHtml(String(e && e.message || e)) + '</span>';
+    }
+  }
+
+  // Delegated, so it covers links the results renderer creates after load.
+  document.addEventListener('click', ev => {
+    const a = ev.target.closest && ev.target.closest('a[href]');
+    if (!a) return;
+    if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.button !== 0) return;  // let the browser do its thing
+    if (a.target === '_blank' && a.id !== 'vurl') return;
+    if (a.id === 'vurl') return;
+    const href = a.getAttribute('href');
+    if (!href || !/\.json$/.test(href)) return;
+    // The viewer seats itself beside a result table. With no result on screen
+    // there is nowhere to put it, so the link keeps its ordinary behaviour
+    // rather than being swallowed.
+    if (!document.querySelector('#out .tablerow')) return;
+    ev.preventDefault();
+    open(new URL(href, location.href).href);
+  });
+
+  document.getElementById('vclose').onclick = close;
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !box.hidden) close(); });
+})();
+</script>
