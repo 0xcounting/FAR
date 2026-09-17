@@ -1,0 +1,14 @@
+name = "far"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+
+# The bucket the deploy workflow syncs dist/ into. R2 has no object-count limit,
+# which is why the ~79k-file dump lives here rather than in Workers Static
+# Assets (capped at 20,000 files free / 100,000 paid).
+[[r2_buckets]]
+binding = "FAR_BUCKET"
+bucket_name = "far"
+
+# Start on the free workers.dev subdomain; add a custom domain later without
+# changing anything else.
+workers_dev = true

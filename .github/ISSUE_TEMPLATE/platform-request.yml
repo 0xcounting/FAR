@@ -1,0 +1,37 @@
+name: Map an unmapped platform
+description: Give a CoinGecko platform its CAIP-2 chain ID and asset namespace.
+labels: [platform]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        106 platforms are unmapped, covering 902 assets. They are listed in
+        `/_platforms.json` under `unmapped`, largest first.
+
+        If no CASA namespace exists for the ecosystem, say so — a provisional
+        namespace marked `low` with an honest `note` is welcome; an unmarked
+        guess is not.
+  - type: input
+    id: platform
+    attributes: { label: CoinGecko platform slug, placeholder: the-open-network }
+    validations: { required: true }
+  - type: input
+    id: caip2
+    attributes: { label: Proposed CAIP-2, placeholder: 'ton:-239' }
+    validations: { required: true }
+  - type: input
+    id: namespace
+    attributes: { label: Proposed asset namespace, placeholder: jetton }
+    validations: { required: true }
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: A CASA namespace spec, an ethereum-lists entry, the chain's own documentation. Name-similarity is not evidence — it has already been wrong here (`core` matched MemeCore instead of CoreDAO).
+    validations: { required: true }
+  - type: input
+    id: shape
+    attributes:
+      label: Address shape
+      description: A real example, so `normalizeAddress` can be written to reject anything that does not match it.
+      placeholder: EQC7rnHHtMVBKyhiGnAbtYIlzGxS0dfi3ZbHExFX0LYi9cAH
