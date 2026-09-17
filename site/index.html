@@ -1,0 +1,502 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FAR — Free Asset Resolver</title>
+<meta name="description" content="An open cross-reference between CAIP-19, CoinGecko IDs and ISO 24165 DTIs. Static files, no key, no rate limit.">
+<style>
+:root{
+  --bg:#fbfaf8; --panel:#fff; --ink:#1a1916; --muted:#6b6862; --line:#e5e1d9;
+  --accent:#8a5a2b; --accent-soft:#f3ebe1;
+  --exact:#2f6f4e; --proposed:#8a6d1f; --inferred:#8a4b2b; --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --bg:#14130f; --panel:#1c1a16; --ink:#eae6dd; --muted:#9a948a; --line:#2e2a24;
+  --accent:#d9a066; --accent-soft:#2a221a;
+  --exact:#7dc39a; --proposed:#d9c06a; --inferred:#e0a07a;
+}}
+:root[data-theme=dark]{
+  --bg:#14130f; --panel:#1c1a16; --ink:#eae6dd; --muted:#9a948a; --line:#2e2a24;
+  --accent:#d9a066; --accent-soft:#2a221a;
+  --exact:#7dc39a; --proposed:#d9c06a; --inferred:#e0a07a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line);padding:44px 0 32px;margin-bottom:36px}
+h1{margin:0 0 6px;font-size:30px;letter-spacing:-.02em;font-weight:620}
+h1 span{color:var(--accent)}
+.tag{color:var(--muted);font-size:16px;margin:0 0 22px;max-width:60ch}
+h2{font-size:20px;letter-spacing:-.01em;margin:44px 0 12px;font-weight:600}
+h3{font-size:15px;margin:26px 0 8px;font-weight:600}
+p{margin:0 0 14px;max-width:68ch}
+a{color:var(--accent)}
+code,kbd{font-family:var(--mono);font-size:.88em}
+code{background:var(--accent-soft);padding:.12em .38em;border-radius:4px}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+  padding:13px 15px;overflow-x:auto;margin:0 0 14px}
+pre code{background:none;padding:0;font-size:12.5px;line-height:1.55}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:9px;overflow:hidden;margin:0 0 8px}
+.stat{background:var(--panel);padding:13px 14px}
+.stat b{display:block;font-size:21px;font-weight:620;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat span{display:block;color:var(--muted);font-size:11.5px;margin-top:3px;letter-spacing:.02em}
+.explorer{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;margin:0 0 10px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+input[type=text]{flex:1 1 300px;min-width:0;font-family:var(--mono);font-size:13.5px;
+  padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink)}
+input[type=text]:focus{outline:2px solid var(--accent);outline-offset:-1px}
+button{font:inherit;font-size:13.5px;padding:10px 16px;border:1px solid var(--accent);
+  border-radius:7px;background:var(--accent);color:var(--bg);cursor:pointer;font-weight:530}
+button:hover{opacity:.88}
+button.ghost{background:none;color:var(--accent);border-color:var(--line);font-weight:450;padding:6px 11px;font-size:12.5px}
+button.ghost b{font-variant-numeric:tabular-nums;font-weight:650}
+button.ghost.on{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:11px 0 0}
+.hint{color:var(--muted);font-size:12.5px;margin:10px 0 0}
+.out{margin:14px 0 0;display:none}
+.out.on{display:block}
+
+/* Matching assets: one compact row each, click to resolve. */
+.hits{border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:0 0 14px;
+  max-height:300px;overflow-y:auto}
+.hit{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:0;
+  border-bottom:1px solid var(--line);background:var(--panel);padding:9px 12px;
+  font:inherit;font-size:13px;color:var(--ink);cursor:pointer;border-radius:0}
+.hit:last-child{border-bottom:0}
+.hit:hover{background:var(--accent-soft)}
+.hit.sel{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
+.hit .id{font-family:var(--mono);font-weight:600}
+.hit .nm{color:var(--muted);font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hit .ct{margin-left:auto;color:var(--muted);font-size:12px;white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* The answer: one row per resolvable thing, all three identifiers on it. */
+.ans{border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:0 0 12px}
+.ans>header{padding:11px 13px;border-bottom:1px solid var(--line);background:var(--panel);
+  display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.ans>header .id{font-family:var(--mono);font-weight:620;font-size:14px}
+.ans>header .nm{color:var(--muted);font-size:13px}
+.scroll{max-height:400px;overflow:auto}
+table.ids{width:100%;border-collapse:collapse;font-size:12px}
+table.ids th{position:sticky;top:0;background:var(--panel);z-index:1;
+  font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);
+  text-align:left;padding:7px 11px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.ids td{padding:7px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+table.ids tr:last-child td{border-bottom:0}
+table.ids td.mono{font-family:var(--mono);font-size:11.5px;word-break:break-all}
+table.ids td.chain{white-space:nowrap;color:var(--muted)}
+table.ids .none{color:var(--muted)}
+.empty{color:var(--muted);font-size:12.5px;margin:0 0 12px}
+.fam{padding:10px 13px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.fam b{color:var(--ink)}
+.eq{padding:10px 13px;border-top:1px solid var(--line);font-size:12.5px;
+  background:var(--accent-soft)}
+.eq b{color:var(--ink)}
+.eq button{background:none;border:0;padding:0;font:inherit;font-family:var(--mono);
+  color:var(--accent);cursor:pointer;text-decoration:underline}
+
+/* The endpoints that serve exactly this asset, with the ids filled in. */
+.ep{border-top:1px solid var(--line);padding:11px 13px}
+.ep h5{margin:0 0 7px;font-size:11px;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--muted);font-weight:600}
+.ep ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px}
+.ep li{display:flex;gap:9px;align-items:baseline;font-size:12px}
+.ep .verb{font-family:var(--mono);color:var(--muted);font-size:11px;min-width:26px}
+.ep a{font-family:var(--mono);font-size:11.5px;word-break:break-all}
+.ep .what{color:var(--muted);font-size:11px;white-space:nowrap}
+table.ids a{font-family:var(--mono);color:var(--accent);text-decoration:none;border-bottom:1px dotted currentColor}
+table.ids a:hover{border-bottom-style:solid}
+table.ids a.ext{border:0;font-size:11px;opacity:.65;text-decoration:none}
+table.ids a.ext:hover{opacity:1}
+
+/* The resolution table: one row is one fully-identified thing. */
+.res{width:100%;border-collapse:collapse;font-size:12px;margin:0 0 4px;display:block;
+  max-height:340px;overflow:auto}
+.res th{position:sticky;top:0;background:var(--panel);z-index:1}
+.res td,.res th{padding:6px 9px;border-bottom:1px solid var(--line);
+  text-align:left;vertical-align:top;white-space:nowrap}
+.res td.c19{font-family:var(--mono);font-size:11px;white-space:normal;word-break:break-all}
+.res td.dti{font-family:var(--mono);font-size:11.5px}
+.res tr:last-child td{border-bottom:0}
+.res .none{color:var(--muted)}
+.lead{font-size:13px;margin:0 0 10px}
+.lead b{font-family:var(--mono)}
+.route{font-family:var(--mono);font-size:12px;color:var(--muted);margin:0 0 7px;word-break:break-all}
+.route b{color:var(--ink);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin:0 0 14px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:11.5px;letter-spacing:.03em;text-transform:uppercase}
+td code{font-size:12px}
+.pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 7px;border-radius:20px;
+  font-family:var(--mono);letter-spacing:.02em}
+.p-exact{background:color-mix(in srgb,var(--exact) 16%,transparent);color:var(--exact)}
+.p-accepted{background:color-mix(in srgb,var(--exact) 16%,transparent);color:var(--exact)}
+.p-proposed{background:color-mix(in srgb,var(--proposed) 18%,transparent);color:var(--proposed)}
+.p-inferred{background:color-mix(in srgb,var(--inferred) 18%,transparent);color:var(--inferred)}
+.p-canonical{background:color-mix(in srgb,var(--exact) 16%,transparent);color:var(--exact)}
+.p-derivative{background:color-mix(in srgb,var(--proposed) 16%,transparent);color:var(--proposed)}
+.p-standalone{background:var(--accent-soft);color:var(--muted)}
+.note{border-left:3px solid var(--accent);background:var(--accent-soft);
+  padding:12px 15px;border-radius:0 7px 7px 0;margin:0 0 16px}
+.note p:last-child{margin:0}
+footer{border-top:1px solid var(--line);margin:56px 0 0;padding:24px 0 48px;color:var(--muted);font-size:13px}
+.err{color:var(--inferred)}
+@media(max-width:560px){h1{font-size:25px}.stat b{font-size:18px}}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>FAR <span>— Free Asset Resolver</span></h1>
+  <p class="tag">An open cross-reference between <b>CAIP-19</b>, <b>CoinGecko IDs</b> and
+  <b>ISO&nbsp;24165 DTIs</b>. Every lookup is a static file: no key, no rate limit, no server
+  that can be down differently from any other file.</p>
+  <div class="stats" id="stats"><div class="stat"><b>…</b><span>loading</span></div></div>
+  <p class="hint" id="built"></p>
+</header>
+
+<h2>Look up an asset</h2>
+<p>Type a name, ticker, CoinGecko id, DTI or contract address. You get back the
+identifiers that name the same thing: <b>CoinGecko id</b>, <b>CAIP-19</b> and <b>DTI</b>.</p>
+
+<div class="explorer">
+  <div class="row">
+    <input type="text" id="q" placeholder="usdc" spellcheck="false" autocomplete="off" autofocus>
+  </div>
+  <div class="chips">
+    <button class="ghost" data-q="usdc">usdc</button>
+    <button class="ghost" data-q="tether">tether</button>
+    <button class="ghost" data-q="wrapped ether">wrapped ether</button>
+    <button class="ghost" data-q="noble usdc">noble usdc</button>
+    <button class="ghost" data-q="0xdac17f958d2ee523a2206206994597c13d831ec7">a contract address</button>
+    <button class="ghost" data-q="CK9PW1MFH">a DTI</button>
+  </div>
+  <p class="hint" id="status">loading the registry…</p>
+  <div id="out"></div>
+</div>
+
+<h2>Routes, if you are calling it from code</h2>
+<p>The lookup above needs none of these — it loads the whole registry once and searches
+locally. These are for a program that wants one file.</p>
+<table>
+<tr><th>Route</th><th>Key</th><th>Returns</th></tr>
+<tr><td><code>/name/{slug}.json</code></td><td>lowercased, punctuation→<code>-</code></td><td>every asset with that name — a <i>group</i>, because names are not unique</td></tr>
+<tr><td><code>/symbol/{slug}.json</code></td><td>same slug rule</td><td>every asset with that ticker. <code>usdc</code> returns 60+</td></tr>
+<tr><td><code>/cg/{id}.json</code></td><td>CoinGecko ID</td><td>one asset with all its chain deployments</td></tr>
+<tr><td><code>/caip/{ns}/{ref}/{ans}/{aref}.json</code></td><td>CAIP-19 as a path</td><td>the asset at that exact identifier</td></tr>
+<tr><td><code>/dti/{DTI}.json</code></td><td>9-char ISO 24165 id</td><td>the DTI record and any linked asset</td></tr>
+<tr><td><code>/ledger/{DLI}.json</code></td><td>DTI ledger id</td><td>a chain, with its CAIP-2</td></tr>
+</table>
+
+<h3>Bulk and metadata</h3>
+<table>
+<tr><td><code>/far.json.gz</code></td><td colspan="2">the entire registry, ~1.8&nbsp;MB — often simpler than making requests</td></tr>
+<tr><td><code>/index.json</code></td><td colspan="2">counts, source hashes, route list</td></tr>
+<tr><td><code>/manifest.json</code></td><td colspan="2">sha256 of every file plus a Merkle root</td></tr>
+<tr><td><code>/_namespace-gaps.json</code></td><td colspan="2">identifiers we had to invent because no CASA spec defines one</td></tr>
+<tr><td><code>/_unlinked.json</code></td><td colspan="2">DTI records with no CoinGecko link — the contributor queue</td></tr>
+</table>
+
+<div class="note">
+<p><b>Lookups are case-insensitive — except one.</b> Names, symbols, CoinGecko ids and
+DTI codes are all normalised, so <code>USDC</code>, <code>usdc</code> and
+<code>UsDc</code> are the same query. <b>A CAIP-19 is not case-folded</b>, and must not
+be: Move type tags (<code>0x2::sui::SUI</code>), Antelope symbol codes and base58
+references are case-sensitive by their own specifications, so lowercasing one would name
+a different asset or nothing at all.</p>
+<p>Note also that a <i>ticker</i> is not a <i>CoinGecko id</i>. <code>usdc</code> is a
+ticker; the id is <code>usd-coin</code>. That is why <code>/cg/usdc.json</code> returns
+404 while <code>/symbol/usdc.json</code> returns 62 assets.</p>
+</div>
+
+<div class="note">
+<p><b>A CAIP-19 becomes a path.</b> <code>:</code> and <code>/</code> become directory
+separators, so <code>eip155:1/erc20:0xdac1…</code> is
+<code>/caip/eip155/1/erc20/0xdac1….json</code>. A <code>%</code> in a reference
+becomes <code>~</code>, because a literal <code>%</code> is decoded by the server before
+the file is ever looked up.</p>
+</div>
+
+<h2>Read this before you trust a link</h2>
+<p>Every DTI↔CoinGecko link carries a <code>status</code>. They are not equally reliable
+and the difference is measured, not asserted:</p>
+<table>
+<tr><th>Status</th><th>Who decided</th><th>Measured accuracy</th></tr>
+<tr><td><span class="pill p-accepted">accepted</span></td><td>A human, in a reviewed pull request, citing public evidence</td><td>the only tier to rely on</td></tr>
+<tr><td><span class="pill p-proposed">proposed</span></td><td>A deterministic rule: exact name, optionally corroborated by ticker</td><td>unmeasured</td></tr>
+<tr><td><span class="pill p-inferred">inferred</span></td><td>A language model, with its reasoning published on the record</td><td>unmeasured</td></tr>
+</table>
+<p><b>Why "unmeasured".</b> Scoring a name-based guess needs a column of known-correct
+answers to grade it against, and that column would be the contract address for each DTI.
+DTIF's free monthly snapshot redacts it, so there is nothing to grade against and any
+accuracy figure here would be invented. If a wrong link would cost you something — a tax
+filing, a regulatory report — filter to <code>accepted</code> and treat the rest as a
+candidate queue.</p>
+<div class="note">
+<p><b>Expect one error above all others:</b> a <i>bridged or pegged deployment</i>
+attached to the canonical asset it wraps. CoinGecko alone carries dozens of distinct
+assets whose name is “USD Coin” or close to it — <code>bridged-usdc</code>,
+<code>celer-bridged-usdc-astar</code> and many more — and only one of them is Circle’s.
+A DTI record named “USD Coin” could be any of them, and the name cannot tell you which.</p>
+</div>
+
+<h3>A worked example: two assets called “Wrapped Ether”</h3>
+<p>Try <code>wrapped-ether</code> in the resolver. It returns an asset on
+<b>Ethereum Classic</b>, which looks like a bug. It is not, and the reason is worth
+understanding before you rely on any name.</p>
+<p>The contract at <code>0x1953cab0…</code> on Ethereum Classic reports:</p>
+<pre><code>name()   = "Wrapped Ether"
+symbol() = "WETC"</code></pre>
+<p>It is WETH9 copy-deployed to another chain. The WETH9 source hardcodes
+<code>name = "Wrapped Ether"</code>, and whoever deployed it changed only the symbol —
+so a contract that wraps <b>ETC</b> truthfully calls itself “Wrapped Ether”. DTIF records
+the <code>name()</code>. CoinGecko displays “Wrapped ETC” from the symbol but derives its
+<i>id</i> from the name, giving the thoroughly misleading
+<code>wrapped-ether</code>. Every one of them is reporting the contract accurately.</p>
+<p><b>The registry holds more than one record named “Wrapped Ether”.</b> One of them
+is this ETC contract; another is <code>weth</code> on Ethereum. The only thing that
+separates them is the contract address, which is the field the free snapshot redacts.
+That single gap is why every link on this site is a proposal rather than a fact.</p>
+
+<h2>Which of these 60 is the real one?</h2>
+<p>Ask for <code>/symbol/usdc.json</code> and you get 60 assets. Every asset carries a
+<code>family</code> saying whether it is the thing others are named after, a wrapper of
+something else, or neither — and groups are ordered so the head comes first.</p>
+<table>
+<tr><th>Family</th><th>Means</th><th>Test</th></tr>
+<tr><td><span class="pill p-canonical">canonical</span></td><td>Other assets are named after this one</td><td>a non-derivative id that at least one other id embeds, or a second-registry attestation</td></tr>
+<tr><td><span class="pill p-derivative">derivative</span></td><td>Its own name says it wraps something</td><td><code>bridged</code>, <code>wrapped</code>, <code>peg</code>, <code>wormhole</code>, <code>portal</code>, <code>staked</code>… at a token boundary</td></tr>
+<tr><td><span class="pill p-standalone">standalone</span></td><td>Neither — not part of a wrapper family</td><td>everything else</td></tr>
+</table>
+<div class="note">
+<p><b>This is not a quality score, and it is built so it cannot become one.</b>
+<code>standalone</code> is the normal state of most legitimate assets, including every
+new one — it does not mean “suspicious”. The buckets describe <i>naming structure</i>,
+which is observable. They say nothing about whether an asset is good, safe or real,
+and <a href="https://github.com/0xcounting/FAR/blob/main/GOVERNANCE.md">this project
+does not rate assets</a>.</p>
+</div>
+<p><b>You can check it yourself.</b> Every input is a field already in
+<code>/far.json.gz</code> — no curated list, no market data, no external feed. Recompute
+it from the published file and compare; the rule is about ten lines, in
+<a href="https://github.com/0xcounting/FAR/blob/main/src/lib/family.js"><code>src/lib/family.js</code></a>.
+Because it adds no new input, it also cannot weaken the Merkle root.</p>
+<p><b>What it will not do:</b> 86% of assets have neither citations nor a second-registry
+attestation, so for most of the registry this says <code>standalone</code> and nothing
+more. It finds the head of a family. It does not rank the long tail, and nothing in this
+data could.</p>
+
+<h2>Verifying what you fetched</h2>
+<pre><code>curl -s https://0xcounting.github.io/FAR/cg/tether.json | shasum -a 256
+# compare against the entry for cg/tether.json in /manifest.json</code></pre>
+<p>The manifest also carries a Merkle root over every <code>(path, hash)</code> pair, so a
+single file can be proven to belong to a published release without downloading the rest —
+an inclusion proof is about 17 hashes. Builds are deterministic: same inputs, same root.</p>
+
+<h2>Using it in code</h2>
+<pre><code>const BASE = 'https://0xcounting.github.io/FAR';
+
+// by name — returns a GROUP, because names are not unique
+const r = await fetch(`${BASE}/name/${slug}.json`);
+if (r.status === 404) return null;            // no asset by that name
+const { assets } = await r.json();
+
+// by CAIP-19 — ":" and "/" become path separators, "%" becomes "~"
+const path = caip19.replace(/:/g, '/').replace(/%/g, '~');
+const one = await fetch(`${BASE}/caip/${path}.json`);</code></pre>
+
+<footer>
+  <p>Code MIT · curated data CC0 · upstream sources keep their own terms.
+  Not affiliated with DTIF, CoinGecko or CASA.<br>
+  <a href="https://github.com/0xcounting/FAR">Source and contributing</a> ·
+  <a href="https://github.com/0xcounting/FAR/blob/main/GOVERNANCE.md">Governance</a> ·
+  <a href="_namespace-gaps.json">Namespace gaps</a></p>
+</footer>
+</div>
+
+<script>
+const BASE = location.pathname.replace(/\/[^/]*$/, '');
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '');
+// Same rules the build uses to name files, so a link here is the real file.
+const slug = s => String(s).normalize('NFKD').replace(/\p{Diacritic}/gu, '')
+  .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || '_';
+// ":" and "/" become path separators; a "%" in a reference becomes "~" because a
+// literal % is decoded by the server before the file is looked up.
+const caipPath = c19 => c19.replace(/:/g, '/').replace(/%/g, '~');
+
+let INDEX = null, SEL = null, EXPL = null;
+const NAMES = new Set(), SYMS = new Set();
+
+fetch(`${BASE}/index.json`).then(r => r.json()).then(d => {
+  const c = d.counts, n = x => (x ?? 0).toLocaleString('en-US');
+  $('#stats').innerHTML = [
+    [n(c.coins),'assets'],[n(c.deployments),'CAIP-19 ids'],[n(c.platformsMapped),'chains'],
+    [n(c.dtiLinked),'DTI matches proposed'],[n(c.dtiAccepted),'DTI matches verified'],[n(c.files),'files served'],
+  ].map(([v,l]) => `<div class="stat"><b>${v}</b><span>${l}</span></div>`).join('');
+  $('#built').textContent = `Built ${d.version} · every file hashed in /manifest.json`;
+}).catch(() => {});
+
+// The whole registry is loaded once and searched in the browser. That is why
+// there is no query API to guess at and no route to choose: a reader types
+// anything and gets rows.
+fetch(`${BASE}/_explorers.json`).then(r => r.json()).then(d => { EXPL = d; }).catch(() => {});
+
+fetch(`${BASE}/search-index.json`).then(r => r.json()).then(d => {
+  INDEX = d;
+  // Precompute the match keys once rather than on every keystroke.
+  for (const a of INDEX) {
+    a._i = norm(a.i); a._n = norm(a.n); a._s = norm(a.s);
+    a._a = (a.a || []).map(norm);          // DTI long names, used as aliases
+  }
+  // Which /name/ and /symbol/ files the build actually emitted. A name that
+  // slugs to "_" — emoji-only, or pure punctuation — is deliberately not
+  // published, so offering a link to it would hand the reader a 404.
+  for (const a of INDEX) {
+    const n = slug(a.n), y = slug(a.s);
+    if (n !== '_') NAMES.add(n);
+    if (y !== '_') SYMS.add(y);
+  }
+  $('#status').textContent = `${d.length.toLocaleString()} assets loaded — searching happens in your browser, nothing is sent anywhere.`;
+  run($('#q').value || 'usdc');
+}).catch(e => { $('#status').innerHTML = `<span class="err">Could not load the index: ${esc(e.message)}</span>`; });
+
+// Lexical scoring, not semantic. For short identifiers an exact or prefix match
+// is what a reader means; "usdc" should find "usd-coin", never "dai" on the
+// grounds that both are stablecoins.
+function search(q){
+  const t = norm(q);
+  if (!t) return [];
+  const isDti = /^[0-9a-z]{9}$/i.test(q.trim());
+  const dti = q.trim().toUpperCase();
+  const addr = q.trim().toLowerCase();
+  const out = [];
+  for (const a of INDEX) {
+    let sc = 0;
+    // An exact id or NAME match is the strongest lexical signal. An exact
+    // SYMBOL match is weaker on its own: tickers are squatted, and a memecoin
+    // with one deployment was outranking real USDC deployments purely by
+    // owning the string.
+    if (a._i === t || a._n === t) sc = 100;
+    else if (a._a.includes(t)) sc = 92;     // an alias DTIF records for it
+    else if (a._s === t) sc = 62;
+    else if (a._i.startsWith(t) || a._n.startsWith(t)) sc = 55;
+    else if (a._a.some(x => x.startsWith(t))) sc = 50;
+    else if (a._s.startsWith(t)) sc = 45;
+    else if (a._i.includes(t) || a._n.includes(t) || a._a.some(x => x.includes(t))) sc = 30;
+    // An exact DTI or contract address is a precise answer and outranks a name.
+    if (isDti && ((a.u && a.u.includes(dti)) || (a.d && a.d.some(x => x[1] === dti)))) sc = Math.max(sc, 120);
+    if (addr.length > 8 && a.d && a.d.some(x => x[0].toLowerCase().includes(addr))) sc = Math.max(sc, 120);
+    if (!sc) continue;
+    // The head of a naming family first, then more deployments, then shorter id.
+    // Evidence of being a real, widely-deployed asset breaks ties: deployment
+    // count, whether any deployment carries a DTI, and family head-ness.
+    const deps = (a.d || []).length;
+    const hasDti = (a.d || []).some(x => x[1]) || (a.u || []).length > 0;
+    out.push([sc
+      + (a.f === 'c' ? 10 : a.f === 'd' ? -2 : 0)
+      + Math.min(14, deps * 1.4)
+      + (hasDti ? 6 : 0), a]);
+  }
+  return out.sort((x, y) => y[0] - x[0] || x[1].i.length - y[1].i.length).slice(0, 60).map(x => x[1]);
+}
+
+const FAM = { c: 'canonical', d: 'derivative', s: 'standalone' };
+
+// Where to see the thing itself. A CAIP-19 carries the chain and the reference,
+// which is everything an explorer URL needs — so the identifier this project
+// publishes is also the link.
+function explorerFor(c19){
+  if (!EXPL) return null;
+  const slash = c19.indexOf('/');
+  const caip2 = c19.slice(0, slash);
+  const asset = c19.slice(slash + 1);
+  const ref = decodeURIComponent(asset.slice(asset.indexOf(':') + 1).replace(/~/g, '%'));
+  const ns = asset.slice(0, asset.indexOf(':'));
+  if (ns === 'slip44') return null;                    // a native unit has no contract page
+  const m = /^eip155:(\d+)$/.exec(caip2);
+  if (m) {
+    const base = EXPL.eip155[m[1]];
+    if (!base) return null;
+    return `${base}/${ns === 'erc20' || ns === 'erc721' ? 'token' : 'address'}/${ref}`;
+  }
+  const other = EXPL.other[caip2];
+  return other ? other + ref : null;
+}
+
+function answer(a){
+  const deps = a.d || [], un = a.u || [];
+  const rows = deps.length
+    ? `<div class="scroll"><table class="ids">
+        <thead><tr><th>CoinGecko id</th><th>CAIP-19</th><th>DTI</th><th>chain</th></tr></thead><tbody>
+        ${deps.map(([c19, dti, chain]) => `<tr>
+          <td class="mono"><a href="${esc(BASE)}/cg/${esc(a.i)}.json">${esc(a.i)}</a></td>
+          <td class="mono"><a href="${esc(BASE)}/caip/${esc(caipPath(c19))}.json">${esc(c19)}</a>${
+            explorerFor(c19) ? ` <a class="ext" href="${esc(explorerFor(c19))}" target="_blank" rel="noopener" title="view on the chain explorer">↗</a>` : ''}</td>
+          <td class="mono">${dti ? `<a href="${esc(BASE)}/dti/${esc(dti)}.json">${esc(dti)}</a>` : '<span class="none">not registered</span>'}</td>
+          <td class="chain">${esc(chain || c19.split('/')[0])}</td></tr>`).join('')}
+      </tbody></table></div>`
+    : `<p class="empty" style="padding:12px 13px;margin:0">No CAIP-19 — usually a native coin on a chain with no CAIP-2 yet. CoinGecko id <code>${esc(a.i)}</code>.</p>`;
+  const famNote = deps.length > 1
+    ? `<div class="fam">This is a family: <b>${esc(a.i)}</b> names the same economic asset on
+       <b>${deps.length}</b> chains, and each row above is a distinct identifier.</div>` : '';
+  const unNote = un.length
+    ? `<div class="fam"><b>${un.length}</b> further DTI record${un.length===1?'':'s'} link to this asset but
+       could not be placed on a chain — they were matched by name, and only an address says which
+       deployment: ${un.slice(0,8).map(d=>`<code>${esc(d)}</code>`).join(' ')}${un.length>8?` +${un.length-8}`:''}</div>` : '';
+  const eq = (a.e || []).length
+    ? `<div class="eq"><b>Declared equivalent</b> by DTIF — the ISO 24165 registry places
+       these in the same functionally-fungible group, meaning they are the same economic
+       asset even though CoinGecko lists them separately:
+       ${a.e.map(id => `<button data-go="${esc(id)}">${esc(id)}</button>`).join(' · ')}</div>` : '';
+  // Every route that serves THIS asset, with its own ids substituted — so the
+  // jump from browsing to calling needs no guesswork about slug rules.
+  const ep = [[`/cg/${a.i}.json`, 'this asset, by CoinGecko id']];
+  if (NAMES.has(slug(a.n))) ep.push([`/name/${slug(a.n)}.json`, `every asset named "${a.n}"`]);
+  if (SYMS.has(slug(a.s))) ep.push([`/symbol/${slug(a.s)}.json`, `every asset with ticker ${a.s}`]);
+  if (deps.length) ep.push([`/caip/${caipPath(deps[0][0])}.json`, 'one deployment, by CAIP-19']);
+  const firstDti = (deps.find(d => d[1]) || [])[1] || (un[0] || null);
+  if (firstDti) ep.push([`/dti/${firstDti}.json`, 'the DTI record']);
+  const up = [[`https://www.coingecko.com/en/coins/${encodeURIComponent(a.i)}`, 'CoinGecko', 'the asset page this id belongs to']];
+  if (firstDti) up.push(['https://registry.dtif.org/', 'DTIF registry', `search for ${firstDti} — the registry is a client-routed app, so it cannot be deep-linked`]);
+  const upBlock = `<div class="ep"><h5>upstream</h5><ul>`
+    + up.map(([href, label, what]) => `<li><span class="verb">WWW</span>`
+      + `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(label)}</a>`
+      + `<span class="what">${esc(what)}</span></li>`).join('')
+    + `</ul></div>`;
+  const epBlock = `<div class="ep"><h5>endpoints serving this asset</h5><ul>`
+    + ep.map(([path, what]) => `<li><span class="verb">GET</span>`
+      + `<a href="${esc(BASE + path)}">${esc(path)}</a>`
+      + `<span class="what">${esc(what)}</span></li>`).join('')
+    + `</ul></div>`;
+  return `<div class="ans"><header><span class="id">${esc(a.i)}</span>
+      <span class="nm">${esc(a.n)} · ${esc(a.s)}</span>
+      <span class="pill p-${FAM[a.f]}">${FAM[a.f]}</span></header>
+      ${rows}${famNote}${unNote}${eq}${epBlock}${upBlock}</div>`;
+}
+
+function run(q){
+  if (!INDEX) return;
+  const hits = search(q);
+  const out = $('#out');
+  if (!hits.length) { out.innerHTML = `<p class="empty">Nothing matches <code>${esc(q)}</code>.</p>`; return; }
+  const sel = hits.find(h => h.i === SEL) || hits[0];
+  // Only offer a picker when the query genuinely names more than one asset.
+  const list = hits.length > 1
+    ? `<p class="hint"><b>${hits.length}</b> assets match — these are different things, not one asset on many chains.</p>`
+      + `<div class="hits">${hits.slice(0, 40).map(h => `<button class="hit${h.i === sel.i ? ' sel' : ''}" data-id="${esc(h.i)}">
+          <span class="id">${esc(h.i)}</span><span class="nm">${esc(h.n)} · ${esc(h.s)}</span>
+          <span class="ct">${(h.d || []).length} chain${(h.d || []).length === 1 ? '' : 's'}</span></button>`).join('')}</div>`
+    : '';
+  out.innerHTML = list + answer(sel);
+  out.querySelectorAll('[data-id]').forEach(b => b.onclick = () => { SEL = b.dataset.id; run(q); });
+  out.querySelectorAll('[data-go]').forEach(b => b.onclick = () => {
+    $('#q').value = b.dataset.go; SEL = b.dataset.go; run(b.dataset.go);
+  });
+}
+
+let timer;
+$('#q').addEventListener('input', () => { SEL = null; clearTimeout(timer); timer = setTimeout(() => run($('#q').value), 90); });
+document.querySelectorAll('[data-q]').forEach(b => b.onclick = () => { $('#q').value = b.dataset.q; SEL = null; run(b.dataset.q); });
+</script>
