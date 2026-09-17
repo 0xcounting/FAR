@@ -1,0 +1,4130 @@
+{
+  "$schema": "./../schema/ledgers.schema.json",
+  "_readme": "DTI ledger records (DLIs) from DTIF's free monthly snapshot, mapped to CAIP-2 where public evidence supports it. The snapshot redacts AnchorBlockHash, so every CAIP-2 here rests on independently checkable sources (ethereum-lists, chain documentation, public genesis data) cited in `evidence`. Entries with caip2 null are either permissioned ledgers with no public chain identifier, or chains we have not yet matched to a public source.",
+  "ledgers": {
+    "1BNDQSZTT": {
+      "caip2": "eip155:47805",
+      "longName": "REI Network",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/rei-network"
+    },
+    "1K284RGV7": {
+      "caip2": "eip155:80094",
+      "longName": "Berachain",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/berachain"
+    },
+    "1L6XTZJ4H": {
+      "caip2": "eip155:10000",
+      "longName": "smartBCH",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/smartbch"
+    },
+    "1LS7KRH4X": {
+      "caip2": "eip155:196",
+      "longName": "X Layer",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/okx/xlayer-docs"
+    },
+    "1QZG7BPV7": {
+      "caip2": "eip155:250",
+      "longName": "Fantom",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/Fantom-Foundation"
+    },
+    "1SB2F3GHF": {
+      "caip2": "eip155:7700",
+      "longName": "Canto",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/Canto-Network"
+    },
+    "20TR139KD": {
+      "caip2": null,
+      "longName": "Ontology",
+      "kind": "public",
+      "confidence": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": null,
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/ontio",
+      "assertedBy": null
+    },
+    "22T6VP7R9": {
+      "caip2": "eip155:7332",
+      "longName": "Horizen EON",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/HorizenOfficial/eon"
+    },
+    "25WVN1S6G": {
+      "caip2": "eip155:82",
+      "longName": "Meter",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/meterio"
+    },
+    "39270TV7Z": {
+      "caip2": "eip155:994873017",
+      "longName": "LUMIA",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/orionprotocol"
+    },
+    "3J8XCSJ2D": {
+      "caip2": "eip155:248",
+      "longName": "Oasys",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/oasysgames"
+    },
+    "3Q57NZGGJ": {
+      "caip2": "eip155:1116",
+      "longName": "Core",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/coredao-org"
+    },
+    "42Z61BXXM": {
+      "caip2": "eip155:1101",
+      "longName": "Polygon zkEVM",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/0xPolygon"
+    },
+    "47QWL2ZJG": {
+      "caip2": "eip155:146",
+      "longName": "SONIC",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/Fantom-foundation/Sonic"
+    },
+    "47S0SPR33": {
+      "caip2": "eip155:88888",
+      "longName": "Chiliz Chain",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://docs.chiliz.com/"
+    },
+    "4952HBN72": {
+      "caip2": "stellar:pubnet",
+      "longName": "Stellar",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/stellar"
+    },
+    "66JFNTDZ6": {
+      "caip2": "eip155:420420418",
+      "longName": "Kusama",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/kusamanetwork"
+    },
+    "67WLMCJT2": {
+      "caip2": "eip155:59144",
+      "longName": "Linea",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/LineaLabs"
+    },
+    "6BRP8BQX3": {
+      "caip2": "eip155:420420419",
+      "longName": "Polkadot",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/paritytech/polkadot"
+    },
+    "6LN8542G5": {
+      "caip2": null,
+      "longName": "Elastos",
+      "kind": "public",
+      "confidence": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": null,
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/elastos",
+      "assertedBy": null
+    },
+    "725LW538D": {
+      "caip2": "eip155:204",
+      "longName": "opBNB",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/bnb-chain/opbnb"
+    },
+    "792RBDZM7": {
+      "caip2": "eip155:2818",
+      "longName": "Morph",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/morph-l2"
+    },
+    "7BN3LB2K5": {
+      "caip2": "cip34:1-764824073",
+      "longName": "Cardano",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://cardanoupdates.com/"
+    },
+    "7TKRL6FDK": {
+      "caip2": "eip155:888",
+      "longName": "Wanchain",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/wanchain"
+    },
+    "820FK65PC": {
+      "caip2": "eip155:1100",
+      "longName": "Dymension",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/dymensionxyz/"
+    },
+    "5G6RW2XD8": {
+      "caip2": "eip155:2039",
+      "longName": "Aleph Zero",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/aleph-zero-foundation"
+    },
+    "5MMZZ3RND": {
+      "caip2": "eip155:167000",
+      "longName": "Taiko",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/taikoxyz"
+    },
+    "5TGVSG33H": {
+      "caip2": "cosmos:osmosis-1",
+      "longName": "Osmosis",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/osmosis-labs/osmosis"
+    },
+    "TPCKP2J2Q": {
+      "caip2": null,
+      "longName": "Syscoin",
+      "kind": "public",
+      "confidence": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": null,
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/syscoin",
+      "assertedBy": null
+    },
+    "V1TJ45FKR": {
+      "caip2": "eip155:2345",
+      "longName": "Goat Network",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": null
+    },
+    "V301JGGTB": {
+      "caip2": "cosmos:noble-1",
+      "longName": "Noble",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/noble-assets/noble"
+    },
+    "V80VG6CVG": {
+      "caip2": "eip155:40",
+      "longName": "Telos",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/telosnetwork"
+    },
+    "VBGXG60ZV": {
+      "caip2": "eip155:42",
+      "longName": "Lukso",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/lukso-network"
+    },
+    "VCNVSCHJT": {
+      "caip2": "eip155:388",
+      "longName": "Cronos zkEVM",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/cronos-labs/"
+    },
+    "VMPCNBRQ9": {
+      "caip2": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+      "longName": "Solana",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/solana-labs"
+    },
+    "VX4D9LH92": {
+      "caip2": null,
+      "longName": "Horizen",
+      "kind": "public",
+      "confidence": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": null,
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/HorizenOfficial",
+      "assertedBy": null
+    },
+    "VZJH857VT": {
+      "caip2": "eip155:1285",
+      "longName": "Moonriver",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/PureStake/moonbeam"
+    },
+    "W7MFGXDZ7": {
+      "caip2": "eip155:32520",
+      "longName": "Bitgert",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/Bitgert/brise-chain"
+    },
+    "WC67SJ1B1": {
+      "caip2": "sui:mainnet",
+      "longName": "SUI",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/MystenLabs"
+    },
+    "WH6F6GZTN": {
+      "caip2": "eip155:71402",
+      "longName": "Godwoken",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/godwokenrises"
+    },
+    "8DCS1Z55L": {
+      "caip2": "eip155:42170",
+      "longName": "Arbitrum Nova",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/OffchainLabs/"
+    },
+    "8J2865NRL": {
+      "caip2": "eip155:52014",
+      "longName": "Electroneum",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/electroneum"
+    },
+    "8N02DM27V": {
+      "caip2": "eip155:4689",
+      "longName": "IoTeX",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/iotexproject/iotex-core"
+    },
+    "9121G8B2P": {
+      "caip2": "eip155:14",
+      "longName": "Flare",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/flare-foundation/"
+    },
+    "930BQWX83": {
+      "caip2": "eip155:321",
+      "longName": "KCC",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/kcc-community"
+    },
+    "9963VXVPV": {
+      "caip2": "eip155:11811",
+      "longName": "Ark",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/ArkEcosystem"
+    },
+    "9DDKPFN21": {
+      "caip2": "eip155:1",
+      "longName": "Ethereum",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/ethereum"
+    },
+    "9G300054N": {
+      "caip2": "stacks:1",
+      "longName": "Stacks",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/stacks-network"
+    },
+    "9K8P0DKGV": {
+      "caip2": "eip155:9001",
+      "longName": "EVMOS",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/evmos"
+    },
+    "WNX8PZNFM": {
+      "caip2": "eip155:34443",
+      "longName": "Mode",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": null
+    },
+    "X8T8GRCQV": {
+      "caip2": "eip155:41923",
+      "longName": "EDU Chain",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/opencampus-xyz"
+    },
+    "XF2XWBGJ0": {
+      "caip2": "eip155:43419",
+      "longName": "GUNZ",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://gunbygunz.com/documentation/"
+    },
+    "XFG5G4CF9": {
+      "caip2": "hedera:mainnet",
+      "longName": "Hedera Hashgraph",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/hashgraph"
+    },
+    "XQ63J81CX": {
+      "caip2": "eip155:2000",
+      "longName": "Dogechain",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/dogechain-lab"
+    },
+    "XT49Q6KPP": {
+      "caip2": "eip155:48900",
+      "longName": "Zircuit",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/zircuit-labs/"
+    },
+    "XVJXRJ48S": {
+      "caip2": "eip155:1135",
+      "longName": "Lisk",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/LiskHQ/lisk-sdk"
+    },
+    "B4KB7CF8J": {
+      "caip2": "eip155:8453",
+      "longName": "Base",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/base-org"
+    },
+    "B882GKZNS": {
+      "caip2": "tezos:mainnet",
+      "longName": "Tezos",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://gitlab.com/tezos/tezos"
+    },
+    "BHZKM2SSP": {
+      "caip2": "eip155:1480",
+      "longName": "Vana",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/vana-com/vana"
+    },
+    "C6SZ551JS": {
+      "caip2": "eip155:2020",
+      "longName": "Ronin",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://docs.skymavis.com/docs/getting-started"
+    },
+    "C7KB42HPP": {
+      "caip2": "eip155:61",
+      "longName": "Ethereum Classic",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/ethereumclassic"
+    },
+    "CC10CNSFT": {
+      "caip2": "eip155:169",
+      "longName": "Manta Pacific ",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/Manta-Network"
+    },
+    "CGDCM7X7J": {
+      "caip2": "eip155:1030",
+      "longName": "Conflux",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/Conflux-Chain"
+    },
+    "D71872QTB": {
+      "caip2": "eip155:592",
+      "longName": "Astar",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/AstarNetwork/Astar"
+    },
+    "D7NRJMHGC": {
+      "caip2": "eip155:2002",
+      "longName": "Milkomeda A1",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/dcSpark"
+    },
+    "DCCCSJRNT": {
+      "caip2": "cosmos:archway-1",
+      "longName": "Archway",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/archway-network/"
+    },
+    "DK25XR3HN": {
+      "caip2": "eip155:81457",
+      "longName": "Blast",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/blast-io/blast"
+    },
+    "DSHQ63FST": {
+      "caip2": "eip155:698",
+      "longName": "Matchain",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/Matchain"
+    },
+    "F28RLV033": {
+      "caip2": "eip155:4200",
+      "longName": "Merlin",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/MerlinLayer2"
+    },
+    "F2HHTLB43": {
+      "caip2": "eip155:1776",
+      "longName": "Injective",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/InjectiveLabs"
+    },
+    "F6S3N5VH8": {
+      "caip2": "cosmos:neutron-1",
+      "longName": "Neutron",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/neutron-org"
+    },
+    "G869VV5MN": {
+      "caip2": "eip155:42220",
+      "longName": "Celo",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/celo-org/celo-monorepo/"
+    },
+    "GC0BT8S97": {
+      "caip2": "eip155:8217",
+      "longName": "Kaia",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/klaytn/klaytn"
+    },
+    "GFD1MFPXB": {
+      "caip2": "cosmos:juno-1",
+      "longName": "JUNO",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/CosmosContracts"
+    },
+    "GNH964HFD": {
+      "caip2": null,
+      "longName": "TRON",
+      "kind": "public",
+      "confidence": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": null,
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/tronprotocol",
+      "assertedBy": null
+    },
+    "GP88H50SL": {
+      "caip2": "eip155:1284",
+      "longName": "Moonbeam",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/PureStake/moonbeam"
+    },
+    "GXBV516BQ": {
+      "caip2": "eip155:369",
+      "longName": "Pulsechain",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://gitlab.com/pulsechaincom"
+    },
+    "H576WT090": {
+      "caip2": "eip155:223",
+      "longName": "BSquared Network",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": null
+    },
+    "H79WTHZFK": {
+      "caip2": "eip155:137",
+      "longName": "Polygon",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/maticnetwork/bor"
+    },
+    "HBFJLCTVK": {
+      "caip2": "eip155:130",
+      "longName": "Unichain",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/Uniswap/unichain-node"
+    },
+    "HLL1TRWMH": {
+      "caip2": "cosmos:columbus-5",
+      "longName": "Terra",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/terra-money/core"
+    },
+    "HTVGTX9RT": {
+      "caip2": "eip155:6969",
+      "longName": "TOMB Chain",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/tombfinance"
+    },
+    "JJKFC4F4N": {
+      "caip2": "eip155:397",
+      "longName": "NEAR Protocol",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/near/nearcore"
+    },
+    "JN7S25D0Z": {
+      "caip2": "aptos:1",
+      "longName": "Aptos",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/aptos-labs"
+    },
+    "JND9DFQBR": {
+      "caip2": "eip155:143",
+      "longName": "Monad",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/category-labs/monad"
+    },
+    "K4VRV7PVD": {
+      "caip2": "cosmos:cosmoshub-4",
+      "longName": "Cosmos",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/cosmos"
+    },
+    "K8H7HGGJT": {
+      "caip2": "eip155:182",
+      "longName": "IOST",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/iost-official"
+    },
+    "KH32VBM6W": {
+      "caip2": "eip155:1313161554",
+      "longName": "Aurora ",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/aurora-is-near/aurora-engine"
+    },
+    "KTZPWW297": {
+      "caip2": "starknet:SN_MAIN",
+      "longName": "Starknet",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/starknet-io"
+    },
+    "L19Q36HHS": {
+      "caip2": "eip155:288",
+      "longName": "Boba Network",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/bobanetwork"
+    },
+    "L6VJ6JKX1": {
+      "caip2": "eip155:314",
+      "longName": "Filecoin",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/filecoin-project"
+    },
+    "L7447F43T": {
+      "caip2": "eip155:88",
+      "longName": "Viction",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/buildonviction"
+    },
+    "L75ZSZ3BF": {
+      "caip2": "eip155:1088",
+      "longName": "Metis Andromeda",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/MetisProtocol"
+    },
+    "LLXTFF1LX": {
+      "caip2": "eip155:108",
+      "longName": "Thunder Core",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/thundercore"
+    },
+    "LZ2T7GQ89": {
+      "caip2": "eip155:24",
+      "longName": "Kardia Chain ",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/kardiachain"
+    },
+    "M4PTDM9ML": {
+      "caip2": "eip155:106",
+      "longName": "Velas",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/velas/velas-chain"
+    },
+    "MP7N8B7BV": {
+      "caip2": "eip155:9322252",
+      "longName": "XCAP",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://xcap-mainnet.explorer.xcap.network/api-docs"
+    },
+    "MTG7N7ZMK": {
+      "caip2": "eip155:416",
+      "longName": "SX Network",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/sx-network"
+    },
+    "NBT9JJZN8": {
+      "caip2": "eip155:1513",
+      "longName": "Story",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/piplabs/story-geth"
+    },
+    "NDMZL115L": {
+      "caip2": "eip155:108160679",
+      "longName": "Oraichain",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/oraichain"
+    },
+    "NQZQQPFF1": {
+      "caip2": "eip155:32659",
+      "longName": "Fusion",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/FUSIONFoundation"
+    },
+    "NSR560Q3P": {
+      "caip2": "eip155:5000",
+      "longName": "Mantle",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/mantlenetworkio"
+    },
+    "NZ9KV2RSS": {
+      "caip2": "eip155:245022934",
+      "longName": "NEON EVM",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/neonlabsorg/neon-evm"
+    },
+    "P0T79M291": {
+      "caip2": "eip155:43114",
+      "longName": "Avalanche C Chain",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/ava-labs"
+    },
+    "P2SFF0SK8": {
+      "caip2": "eip155:56",
+      "longName": "Binance Smart Chain",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "matches a platform already in data/platforms.json"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/bnb-chain"
+    },
+    "P451BMSPF": {
+      "caip2": "eip155:534352",
+      "longName": "Scroll",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/scroll-tech"
+    },
+    "QQ8198H05": {
+      "caip2": "eip155:100009",
+      "longName": "VeChain",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/vechain"
+    },
+    "QTN726BN5": {
+      "caip2": "eip155:2222",
+      "longName": "KAVA",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/kava-labs"
+    },
+    "R097W4973": {
+      "caip2": "eip155:2001",
+      "longName": "Milkomeda C1",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/dcSpark"
+    },
+    "R9FN3G8H0": {
+      "caip2": "eip155:128",
+      "longName": "Huobi ECO Chain",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/stars-labs/"
+    },
+    "RGH78SSQP": {
+      "caip2": "eip155:293",
+      "longName": "DaVinci",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": false,
+      "url": null
+    },
+    "RZ4RHFXT3": {
+      "caip2": "eip155:122",
+      "longName": "Fuse",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/fuseio"
+    },
+    "S1SK3FPPW": {
+      "caip2": "eip155:3338",
+      "longName": "PEAQ",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/peaqnetwork"
+    },
+    "SJCJ9LD3C": {
+      "caip2": "eip155:4160",
+      "longName": "Algorand",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/algorand"
+    },
+    "SZ5GGWDHM": {
+      "caip2": "eip155:81224",
+      "longName": "Codex",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://www.codex.xyz/"
+    },
+    "T73D7L1RM": {
+      "caip2": "eip155:480",
+      "longName": "WorldChain",
+      "kind": "public",
+      "confidence": "low",
+      "evidence": [
+        "unique ethereum-lists name match"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/worldcoin"
+    },
+    "10WM7622S": {
+      "caip2": "eip155:53935",
+      "longName": "DFK Subnet JEWEL",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains), fetched 2026-09-14: \"DFK Chain\", chainId 53935, nativeCurrency JEWEL"
+      ],
+      "note": "DFK Chain is the DeFi Kingdoms Avalanche subnet whose gas token is JEWEL; DTIF's 'DFK Subnet JEWEL' names that subnet. Not to be confused with DFK Chain Test (chainId 335).",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/KingdomStudiosIO"
+    },
+    "14SKRQQKR": {
+      "caip2": null,
+      "longName": "Bitcoin Diamond",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "Bitcoin Diamond forked Bitcoin at height 495866 and therefore shares Bitcoin's genesis block. A bip122 genesis-hash reference would be bip122:000000000019d6689c085ae165831e93, which is Bitcoin itself - not usable.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/eveybcd/BitcoinDiamond"
+    },
+    "16DW3C2HM": {
+      "caip2": null,
+      "longName": "Project Pai",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "Project PAI (PAI Coin) is a Bitcoin Core code fork with its OWN genesis block (mainnet launched 2018-02-23), so unlike BTG/BCD its bip122 reference is unambiguous.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/projectpai/"
+    },
+    "17D5BX8QQ": {
+      "caip2": "polkadot:48239ef607d7928874027a43a6768920",
+      "longName": "Kusama Asset Hub",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://github.com/polkadot-js/common/blob/master/packages/networks/src/defaults/genesis.ts (knownGenesis): statemine = 0x48239ef607d7928874027a43a67689209727dfb3d3dc5e5b03a39bdc2eda771a",
+        "https://namespaces.chainagnostic.org/polkadot/caip2 (reference = first 32 hex chars of the genesis hash)"
+      ],
+      "note": "Kusama Asset Hub is the parachain formerly called Statemine; the genesis hash (and therefore the CAIP-2 id) did not change with the rename. The Kusama relay chain itself is polkadot:b0a8d493285c2df73290dfb7e61f870f.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/paritytech/cumulus"
+    },
+    "1B0QVXFLB": {
+      "caip2": "ccd:9dd9ca4d19e9393877d2c44b70f89acb",
+      "longName": "Concordium",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://namespaces.chainagnostic.org/ccd/caip2 test vector: 'Concordium mainnet  ccd:9dd9ca4d19e9393877d2c44b70f89acb'"
+      ],
+      "note": "Concordium is a public permissionless chain with protocol-level ID layer; the ID layer does not make it a permissioned ledger.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/Concordium"
+    },
+    "1B88JVF06": {
+      "caip2": null,
+      "longName": "Luniverse",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://github.com/Lambda256/luniverse-poa (Luniverse-PoA protocol, a go-ethereum derivative using Proof of Authority)",
+        "https://www.prnewswire.com/news-releases/upbitdunamus-blockchain-affiliate-lambda256-launches-a-blockchain-consortium-mainnet-301568380.html (consortium mainnet)",
+        "https://chainid.network/chains.json (ethereum-lists/chains), fetched 2026-09-14: no Luniverse entry"
+      ],
+      "note": "Luniverse (Lambda256, a Dunamu/Upbit affiliate) is a PoA consortium chain and BaaS platform. It is EVM-derived, so it has an internal chainId, but it is not a permissionless public network and is not registered in ethereum-lists/chains.",
+      "uncertainty": "Permissioned/enterprise ledger with no public genesis block or public chain identifier; CAIP-2 does not apply. If the operator later publishes a network identifier, a namespace would have to be registered for it.",
+      "publicLedger": true,
+      "url": "https://github.com/Lambda256/luniverse-poa"
+    },
+    "22LM3N56F": {
+      "caip2": "monero:418015bb9ae982a1975da7d79277c270",
+      "longName": "Monero",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://namespaces.chainagnostic.org/monero/caip2 test vector: 'Monero mainnet  monero:418015bb9ae982a1975da7d79277c270'"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/monero-project/monero"
+    },
+    "2CTVD0610": {
+      "caip2": null,
+      "longName": "Bitcoin Gold",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "Bitcoin Gold forked Bitcoin at height 491407 and shares Bitcoin's genesis block, so a bip122 genesis reference collides with Bitcoin.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/BTCGPU/BTCGPU"
+    },
+    "39RCMPT89": {
+      "caip2": null,
+      "longName": "Natrix BlockStock",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://natrix.io/ ('Natrix hybrid blockchain', enterprise financial-sector solutions addressing compliance, banking secrecy and GDPR)",
+        "https://support.blockben.com/ (BlockStock/eBSO is the token of BlockBen's Natrix platform)"
+      ],
+      "note": "Natrix is BlockBen's hybrid/permissioned enterprise chain; BlockStock (BSO) is its network token. DTIF dltType 0 here is consistent with a non-standard/permissioned ledger design.",
+      "uncertainty": "Permissioned/enterprise ledger with no public genesis block or public chain identifier; CAIP-2 does not apply. If the operator later publishes a network identifier, a namespace would have to be registered for it.",
+      "publicLedger": false,
+      "url": "https://github.com/blockben-official/ebso"
+    },
+    "3JD77C790": {
+      "caip2": null,
+      "longName": "eCash",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "eCash (XEC) is the rebranded Bitcoin ABC chain, which split from Bitcoin Cash at height 661648 (Nov 2020). It shares Bitcoin's genesis block, and it also inherits BCH's registered fork-block hash, so neither reference distinguishes it.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/bitcoin-abc"
+    },
+    "3NV843V6W": {
+      "caip2": null,
+      "longName": "HSBC Orion Luxembourg",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "HSBC Orion is HSBC's private, permissioned tokenised-bond platform; the Luxembourg deployment is the EU-domiciled instance used for Luxembourg-law digital bonds."
+      ],
+      "note": "Bank-operated permissioned DLT for digital bond issuance. No public network, no genesis hash.",
+      "uncertainty": "Permissioned/enterprise ledger with no public genesis block or public chain identifier; CAIP-2 does not apply. If the operator later publishes a network identifier, a namespace would have to be registered for it.",
+      "publicLedger": false,
+      "url": null
+    },
+    "3P611SG4W": {
+      "caip2": null,
+      "longName": "Komodo",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "Komodo (KMD) mainnet, a Zcash-derived chain with its own genesis (full 027e3758c3a65b12aa1046462b486d0a63bfa1beae327897f56c5cfb7daaae71). Komodo Smart Chains / assetchains are separate ledgers.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/KomodoPlatform"
+    },
+    "3QQWWQB6V": {
+      "caip2": null,
+      "longName": "Clearstream/Deutsche Boerse D7",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Clearstream/Deutsche Boerse D7 is Deutsche Boerse Group's post-trade digital securities platform, operated as a permissioned CSD-grade ledger."
+      ],
+      "note": "The longName in the DTIF extract is mojibake for 'Clearstream/Deutsche Boerse's D7'. D7 is a permissioned CSD platform, not a public chain.",
+      "uncertainty": "Permissioned/enterprise ledger with no public genesis block or public chain identifier; CAIP-2 does not apply. If the operator later publishes a network identifier, a namespace would have to be registered for it.",
+      "publicLedger": false,
+      "url": null
+    },
+    "3RMGDHTQV": {
+      "caip2": "antelope:1064487b3cd1a897ce03ae5b6a865651",
+      "longName": "WAX",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Live https://wax.greymass.com/v1/chain/get_info -> chain_id 1064487b3cd1a897ce03ae5b6a865651747e2e152090f99c1d19d44e01aea5a4, queried 2026-09-14",
+        "https://namespaces.chainagnostic.org/antelope/caip2"
+      ],
+      "note": "WAX (WAXP) mainnet, an Antelope/EOSIO chain.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/worldwide-asset-exchange/"
+    },
+    "3W9WBP5P0": {
+      "caip2": "kadena:mainnet01",
+      "longName": "Kadena",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://github.com/kadena-io/KIPs/blob/master/kip-0017.md defines the CAIP-2 ids kadena:mainnet01, kadena:testnet04, kadena:development",
+        "https://github.com/WalletConnect/walletconnect-monorepo/issues/1905 (Kadena chain registration request)"
+      ],
+      "note": "Kadena's Chainweb is a braided multi-chain network (chains 0-19) under one network id; KIP-0017 uses the network id 'mainnet01' as the CAIP-2 reference and addresses individual Chainweb chains at a lower level.",
+      "uncertainty": "The 'kadena' namespace is defined by KIP-0017 and used by WalletConnect, but it is NOT in the ChainAgnostic/namespaces registry. If the registry only admits ratified namespaces, this entry should be null.",
+      "publicLedger": true,
+      "url": "https://github.com/kadena-io/chainweb-node"
+    },
+    "40BS814X7": {
+      "caip2": null,
+      "longName": "NKN",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "No 'nkn' directory in ChainAgnostic/namespaces.",
+        "The SHA-256 anchor 5589c4c22fcef3139b4bdc14cfb1e6ca56565bf4685d0ea3678daf578992411d has no ratified consumer.",
+        "NKN's native chain uses MOCA consensus, not the EVM; no entry in chainid.network/chains.json."
+      ],
+      "note": "An ERC-20 NKN also exists on Ethereum, but that is a different ledger from the native chain this DLI names.",
+      "uncertainty": "None on the null - no candidate namespace exists.",
+      "publicLedger": true,
+      "url": "https://github.com/nknorg/nkn"
+    },
+    "44L6SHGN0": {
+      "caip2": "eip155:42262",
+      "longName": "Emerald Oasis Network",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains), fetched 2026-09-14: \"Oasis Emerald\", chainId 42262, nativeCurrency ROSE"
+      ],
+      "note": "Emerald is the EVM-compatible ParaTime of the Oasis Network. The Oasis consensus layer itself (non-EVM) is a different ledger and has no eip155 id.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/oasisprotocol/oasis-core"
+    },
+    "4B122L27X": {
+      "caip2": null,
+      "longName": "Waykichain",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "WaykiChain (WICC) mainnet, a DPoS L1 with its own protocol.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/WaykiChain/WaykiChain"
+    },
+    "4DR1WNK88": {
+      "caip2": null,
+      "longName": "Nuls",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "No 'nuls' directory in ChainAgnostic/namespaces.",
+        "The anchor 8221e980cc9707b4fcf05ac79e70b8ac75f00550bb7da9292e6d6432a716ea88 has no ratified consumer (DTIF labels it 'SHA-256 (Base58)' but records it in hex).",
+        "NULS mainnet is not EVM; the only 'NULS' entries in chainid.network/chains.json are ENULS Mainnet (eip155:119) and ENULS Testnet (eip155:120), which are the separate EVM sidechain, not the NULS L1."
+      ],
+      "note": "Do not substitute eip155:119 - ENULS is a distinct ledger from the NULS main chain named here.",
+      "uncertainty": "None on the null - no candidate namespace exists for the NULS L1.",
+      "publicLedger": true,
+      "url": "https://github.com/nuls-io/nuls-v2"
+    },
+    "4G0VMLSH4": {
+      "caip2": null,
+      "longName": "Steem",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "The anchor 0000000109833ce528d5bbfb3f6225b39ee10086 is a Graphene block id, whose first 4 bytes encode the block height big-endian: 00000001 = block #1, not a genesis hash.",
+        "ChainAgnostic/namespaces hive/caip2.md covers ONLY Hive: reference = 'the first 32 lowercase hexadecimal characters of Hive's chain_id', with test cases hive:beeab0de000000000000000000000000 (mainnet) and hive:42000000000000000000000000000000 (mirrornet). The spec states it makes no claim over Steem or other Graphene chains.",
+        "No 'steem' or 'graphene' directory in ChainAgnostic/namespaces."
+      ],
+      "note": "Hive hard-forked away from Steem in 2020; reusing the hive namespace for Steem would conflate two distinct ledgers.",
+      "uncertainty": "Steem does have its own Graphene chain_id, so a hive-style reference could be constructed - but nothing ratified authorises putting Steem inside the hive namespace.",
+      "publicLedger": true,
+      "url": "https://github.com/steemit/steem"
+    },
+    "4HRQWD2LJ": {
+      "caip2": "eip155:21",
+      "longName": "Cortex",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Live RPC https://security.cortexlabs.ai:30088 eth_chainId -> 0x15 (=21), queried 2026-09-14",
+        "https://www.cortexlabs.ai/wallet (Cortex network config: Chain ID 21)"
+      ],
+      "note": "Cortex (CTXC) mainnet, an EVM-derived chain (Cortex Virtual Machine).",
+      "uncertainty": "chainId 21 collides in ethereum-lists/chains, where 21 is registered to 'Elastos Smart Chain Testnet'. Cortex is not in that registry; the eip155 reference is taken from the chain's own live RPC. Consumers must disambiguate 'eip155:21'.",
+      "publicLedger": true,
+      "url": "https://github.com/CortexFoundation"
+    },
+    "4HWKRRFTQ": {
+      "caip2": null,
+      "longName": "Dash",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "Dash mainnet (full genesis 00000ffd590b1485b3caadc19b22e6379c733355108f107a430458cdf3407ab6).",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/dashpay/dash"
+    },
+    "4S0ZDZN9M": {
+      "caip2": "polkadot:d8761d3c88f26dc12875c00d3165f7d6",
+      "longName": "Enjin",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://github.com/polkadot-js/common/blob/master/packages/networks/src/defaults/genesis.ts (knownGenesis): enjin = 0xd8761d3c88f26dc12875c00d3165f7d67243d56fc85b4cf19937601a7916e5a9",
+        "https://namespaces.chainagnostic.org/polkadot/caip2"
+      ],
+      "note": "Enjin Blockchain, launched 2023, is a Substrate relay chain (ENJ) plus the Enjin Matrixchain parachain (polkadot:3af4ff48ec76d2efc8476730f423ac07). This maps 'Enjin' to the relay chain, where native ENJ lives. Before 2023 ENJ was an ERC-20 on Ethereum, a different ledger.",
+      "uncertainty": "DTIF's bare 'Enjin' does not distinguish relay chain from Matrixchain. If the DTI record is about NFTs/tokens rather than native ENJ, Matrixchain may be the intended ledger.",
+      "publicLedger": true,
+      "url": "https://github.com/enjin"
+    },
+    "52387R92R": {
+      "caip2": null,
+      "longName": "Aeternity",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "The anchor kh_pbtwgLrNu23k9PA6XCZnUbtsvEFeQGgavY4FS2do3QP8kcp2z uses aeternity's 'kh_' key-block-hash API encoding, so the chain is correctly identified.",
+        "No 'aeternity' / 'ae' directory in ChainAgnostic/namespaces.",
+        "Not EVM (aeternity runs FATE, not the EVM, since Lima); no entry in chainid.network/chains.json."
+      ],
+      "note": "Chain identification is solid; only the namespace is missing.",
+      "uncertainty": "None on the null - no candidate namespace exists.",
+      "publicLedger": true,
+      "url": "https://github.com/aeternity"
+    },
+    "54BTHT3DJ": {
+      "caip2": null,
+      "longName": "BitShares",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "The anchor 00000001b656820f72f6b28cda811778632d4998 is a 20-byte Graphene block id whose first 4 bytes are the big-endian height: 00000001 = block #1, not a genesis hash.",
+        "ChainAgnostic/namespaces contains hive but no 'bitshares' or 'graphene' namespace, and hive/caip2.md is scoped to Hive's own chain_id only.",
+        "Not EVM; no entry in chainid.network/chains.json."
+      ],
+      "note": "BitShares, Steem and Hive are all Graphene chains in this batch and all fail for the same reason - only Hive got a ratified namespace.",
+      "uncertainty": "None on the null - no candidate namespace exists.",
+      "publicLedger": true,
+      "url": "https://github.com/bitshares"
+    },
+    "62F6WW4RC": {
+      "caip2": "eip155:25",
+      "longName": "Cronos Blockchain",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains), fetched 2026-09-14: \"Cronos Mainnet\", chainId 25, nativeCurrency CRO"
+      ],
+      "note": "Cronos EVM mainnet (Crypto.org's EVM chain). Distinct from Cronos zkEVM (chainId 388) and from the Crypto.org Chain / Cronos POS Cosmos chain.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/crypto-org-chain/cronos"
+    },
+    "6FKSLBBJ9": {
+      "caip2": null,
+      "longName": "Paycoin",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://coinmarketcap.com/cmc-ai/payprotocol/what-is/ (Paycoin/PayProtocol PCI runs on a private Hyperledger Fabric-based mainnet)",
+        "https://etherscan.io/token/0x3c2a309d9005433c1bc2c92ef1be06489e5bf258 (Wrapped PCI, an ERC-20 bridge asset - a different ledger)"
+      ],
+      "note": "Paycoin (PCI, PayProtocol / Danal, Korea) settles on a permissioned Hyperledger Fabric network. Hyperledger Fabric has no public genesis hash and no CAIP-2 namespace. NOTE: an older, unrelated 'Paycoin' (XPY, 2014, GAW Miners) also exists; if the DTI record refers to XPY this mapping is wrong.",
+      "uncertainty": "Permissioned/enterprise ledger with no public genesis block or public chain identifier; CAIP-2 does not apply. If the operator later publishes a network identifier, a namespace would have to be registered for it.",
+      "publicLedger": true,
+      "url": "https://github.com/payprotocol"
+    },
+    "6LBCFCB1D": {
+      "caip2": "cosmos:mantra-1",
+      "longName": "MANTRA",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://github.com/cosmos/chain-registry/blob/master/mantrachain/chain.json : chain_id \"mantra-1\", status live",
+        "https://chainid.network/chains.json (ethereum-lists/chains), fetched 2026-09-14: \"MANTRA Chain\", chainId 5888 (the EVM view of the same chain)"
+      ],
+      "note": "MANTRA Chain is a Cosmos SDK L1; mantra-1 is its consensus chain-id. It also exposes an EVM whose eip155 id is 5888, so eip155:5888 names the same ledger from the EVM side.",
+      "uncertainty": "Dual-identity chain; picked the Cosmos SDK chain-id as the primary ledger identifier.",
+      "publicLedger": true,
+      "url": "https://github.com/mantradao"
+    },
+    "6W1L6JQR8": {
+      "caip2": "eip155:1666600000",
+      "longName": "Harmony",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains), fetched 2026-09-14: \"Harmony Mainnet Shard 0\", chainId 1666600000, nativeCurrency ONE"
+      ],
+      "note": "Harmony is sharded: shard 0 (1666600000) is the canonical/beacon shard carrying EVM state and is what 'Harmony' normally denotes. Shards 1-3 are eip155:1666600001/2/3.",
+      "uncertainty": "DTIF's longName does not say which shard. Mapped to shard 0 by convention; if the DTI record is meant to cover the whole Harmony network there is no single CAIP-2 for it.",
+      "publicLedger": true,
+      "url": "https://github.com/harmony-one"
+    },
+    "73V2SZHM4": {
+      "caip2": null,
+      "longName": "SWIAT Network",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "SWIAT is the DekaBank-founded permissioned DLT network for regulated digital securities, operated by a consortium of banks."
+      ],
+      "note": "Consortium-permissioned network for regulated securities. No public chain id.",
+      "uncertainty": "Permissioned/enterprise ledger with no public genesis block or public chain identifier; CAIP-2 does not apply. If the operator later publishes a network identifier, a namespace would have to be registered for it.",
+      "publicLedger": false,
+      "url": null
+    },
+    "7FRM60Q50": {
+      "caip2": "eip155:1818",
+      "longName": "Cube Network ",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains), fetched 2026-09-14: \"Cube Chain Mainnet\", chainId 1818, nativeCurrency CUBE"
+      ],
+      "note": "Cube Network / Cube Chain mainnet.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/cube-network"
+    },
+    "7H3Z8NZTR": {
+      "caip2": null,
+      "longName": "Bitcoin SV",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "The bsv namespace was registered precisely because BSV shares Bitcoin's genesis block with BTC and BCH, making a bip122 genesis-hash reference ambiguous. The bsv caip2 doc states clients MUST NOT treat a shared-genesis bip122 id as BSV.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/bitcoin-sv/bitcoin-sv"
+    },
+    "7LZ1KTDTP": {
+      "caip2": "eip155:18686",
+      "longName": "Moonchain",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains), fetched 2026-09-14: \"MXC zkEVM Moonchain\", chainId 18686, nativeCurrency MXC"
+      ],
+      "note": "Moonchain is the rebrand of MXC zkEVM; the ethereum-lists entry still carries the combined name. Moonchain Geneva Testnet is chainId 5167004.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/MXCzkEVM"
+    },
+    "7M722PG54": {
+      "caip2": null,
+      "longName": "EOS",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "The EOS native (Antelope) chain. Its EVM layer is eip155:17777, a different DTI record in this same batch.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/EOSIO"
+    },
+    "7TNB28TQ7": {
+      "caip2": null,
+      "longName": "Aion",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "The anchor 0x30793b4ea012c6d3a58c85c5b049962669369807a98e36807c1b02116417f823 is confirmed genuine: GitHub code search finds it in aionnetwork/aion modAionImpl/src/org/aion/zero/impl/blockchain/AionBlockchainImpl.java and in the aionnetwork/aionr README as the mainnet genesis.",
+        "No 'aion' directory in ChainAgnostic/namespaces.",
+        "Aion mainnet runs the AVM with BLAKE2b-256 block hashing and Aion-specific addresses; it is not an eip155 chain and has no entry in chainid.network/chains.json."
+      ],
+      "note": "Chain and anchor are both verified; only the namespace is missing.",
+      "uncertainty": "Aion's tooling historically used a network id of 256, but that is not an EIP-155 registration and using eip155:256 would collide with other claimants.",
+      "publicLedger": true,
+      "url": "https://github.com/aionnetwork"
+    },
+    "7V3G3QSN2": {
+      "caip2": null,
+      "longName": "Verge",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "Verge (XVG) mainnet (full genesis 00000fc63692467faeb20cdb3b53200dc601d75bdfa1001463304cc790d77278).",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/vergecurrency"
+    },
+    "59WNVSMRQ": {
+      "caip2": "chia:ccd5bb71183532bff220ba46c268991a",
+      "longName": "Chia",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://namespaces.chainagnostic.org/chia/caip2 test vector: 'Chia Mainnet  chia:ccd5bb71183532bff220ba46c268991a'"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/Chia-Network/chia-blockchain"
+    },
+    "5D6VM7JLW": {
+      "caip2": null,
+      "longName": "GS DAP",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "GS DAP (Goldman Sachs Digital Asset Platform) is Goldman Sachs' permissioned tokenisation platform, built on Digital Asset's Daml/Canton stack and since spun out to a separate entity."
+      ],
+      "note": "DTIF records dltType 1 for this entry, but GS DAP is a permissioned institutional platform, not a public blockchain; there is no public genesis block to reference.",
+      "uncertainty": "Permissioned/enterprise ledger with no public genesis block or public chain identifier; CAIP-2 does not apply. If the operator later publishes a network identifier, a namespace would have to be registered for it.",
+      "publicLedger": false,
+      "url": null
+    },
+    "5N1H1CCWQ": {
+      "caip2": "bip122:298e5cc3d985bfe7f81dc135f360abe0",
+      "longName": "Decred",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Live https://dcrdata.decred.org/api/block/0 -> hash 298e5cc3d985bfe7f81dc135f360abe089edd4396b86d2de66b0cef42b21d980, queried 2026-09-14",
+        "https://namespaces.chainagnostic.org/bip122/caip2"
+      ],
+      "note": "Decred mainnet genesis.",
+      "uncertainty": "Decred is dcrd/btcd-lineage rather than Bitcoin Core, and has a modified block header. It answers getblockhash so bip122's resolution method works, but Decred is not a registered bip122 chain and has no CASA test vector; a 'dcr' namespace could reasonably be proposed instead.",
+      "publicLedger": true,
+      "url": "https://github.com/decred"
+    },
+    "5R8BRXCDM": {
+      "caip2": "eip155:10001",
+      "longName": "EthereumPoW",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Live RPC https://mainnet.ethereumpow.org eth_chainId -> 0x2711 (=10001), queried 2026-09-14",
+        "https://cryptoslate.com/ethereumpow-confirm-it-will-use-chainid-10001-to-avoid-replay-attacks-on-mainnet/"
+      ],
+      "note": "EthereumPoW (ETHW) is the proof-of-work fork of Ethereum that continued after the Sept-2022 Merge. Pre-Merge history is shared with eip155:1.",
+      "uncertainty": "chainId 10001 is NOT in ethereum-lists/chains for ETHW: that registry assigns 10001 to 'Smart Bitcoin Cash Testnet'. Verified here against ETHW's own live RPC instead. 'eip155:10001' is therefore ambiguous in some tooling.",
+      "publicLedger": true,
+      "url": "https://github.com/ethereumpow"
+    },
+    "5SWD7TWN2": {
+      "caip2": null,
+      "longName": "TRINCI",
+      "kind": "unknown",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "The DTIF 'hash' 122032ab8f4558a3679bf715315b7b4002fb6a1299876febbfaed3b5138673f39313 is a multihash, not a bare block hash: leading 0x12 = SHA2-256, 0x20 = 32-byte length, followed by the 32-byte digest 32ab8f45...f39313. Affidaty's TRINCI wiki (affidaty-blockchain/wiki, Core/Account-Identifier.md) documents exactly this 0x12/0x20 multihash prefixing.",
+        "TRINCI network identity is the base58 of the bootstrap.bin hash (book.trinci.io); each bootstrap.bin yields a different network. This is a TRINCI-internal network id with no CAIP-2 mapping.",
+        "No 'trinci' directory exists in ChainAgnostic/namespaces (48 ratified namespaces enumerated via the GitHub contents API)."
+      ],
+      "note": "Italian enterprise blockchain framework by Affidaty S.p.A.",
+      "uncertainty": "Whether the DTIF record names a public TRINCI mainnet or a consortium instance; TRINCI is a framework that can be deployed either way.",
+      "publicLedger": true,
+      "url": "https://github.com/affidaty-blockchain/trinci-node"
+    },
+    "5VH1NRJ12": {
+      "caip2": "eip155:17777",
+      "longName": "EOS EVM",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains), fetched 2026-09-14: \"EOS EVM Network\", chainId 17777, nativeCurrency EOS"
+      ],
+      "note": "EOS EVM is the EVM runtime on top of the EOS (Antelope) chain. 'EOS EVM Legacy' is chainId 59; the current network is 17777.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/eosnetworkfoundation"
+    },
+    "5VV51K5CR": {
+      "caip2": null,
+      "longName": "VITE",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "DTIF records a BLAKE2b-256 anchor aab4613d8e4c87fc184885f4ca1840eed78ebe12321606461697f5ec78c8a76f, consistent with Vite's DAG snapshot-chain hashing, but no ratified namespace consumes it.",
+        "No 'vite' directory in ChainAgnostic/namespaces.",
+        "Vite is not an EVM chain (no entry in chainid.network/chains.json for 'vite'), so eip155 does not apply."
+      ],
+      "note": "Vite uses a block-lattice/DAG with a snapshot chain; there is no CAIP-2 shape defined for it.",
+      "uncertainty": "None on the null - no candidate namespace exists.",
+      "publicLedger": true,
+      "url": "https://github.com/vitelabs"
+    },
+    "5XNJVJSKQ": {
+      "caip2": "polkadot:fe1b4c55fd4d668101126434206571a7",
+      "longName": "Vara Network",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://github.com/polkadot-js/common/blob/master/packages/networks/src/defaults/genesis.ts (knownGenesis): vara = 0xfe1b4c55fd4d668101126434206571a7838a8b6b93a6d1b95d607e78e6c53763",
+        "https://namespaces.chainagnostic.org/polkadot/caip2"
+      ],
+      "note": "Vara Network is a standalone Substrate/Gear chain (not a parachain); the polkadot namespace covers standalone Substrate chains too (cf. the Crust solo-chain test vector).",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/Vara-Lab"
+    },
+    "T919R4K61": {
+      "caip2": null,
+      "longName": "v.systems",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "The recorded value 3yYNd7quEWaWytrAug4yGwQvpL3PVJegf9d9NTv9PVE3ouBYJs5PTQqxCjd294uK1zPLj6G5Tk447LqFMWdSFvaQ is 88 base58 characters, decoding to ~64 bytes - that is an Ed25519 signature, not a 32-byte block hash, so nothing hash-shaped can be extracted.",
+        "No 'vsys' / 'vsystems' directory in ChainAgnostic/namespaces.",
+        "Not EVM; no entry in chainid.network/chains.json."
+      ],
+      "note": "v.systems is a Scorex/Waves-lineage SPoS chain; the ratified 'waves' namespace covers Waves itself, not this derivative.",
+      "uncertainty": "None on the null - no candidate namespace exists, and the anchor field is not a block hash.",
+      "publicLedger": true,
+      "url": "https://github.com/virtualeconomy"
+    },
+    "TJM2BCPB2": {
+      "caip2": "polkadot:2f0555cc76fc2840a25a6ea3b9637146",
+      "longName": "Bittensor",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://github.com/polkadot-js/common/blob/master/packages/networks/src/defaults/genesis.ts (knownGenesis): bittensor = 0x2f0555cc76fc2840a25a6ea3b9637146806f1f44b090c175ffde2a7e5ab36c03",
+        "https://chainid.network/chains.json (ethereum-lists/chains), fetched 2026-09-14: \"Subtensor EVM\", chainId 964 (the EVM view of the same chain)"
+      ],
+      "note": "Bittensor's Subtensor is a standalone Substrate chain. Its EVM layer is eip155:964, which names the same ledger from the EVM side.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/opentensor/"
+    },
+    "TM4ST0G85": {
+      "caip2": "cosmos:bitsong-2b",
+      "longName": "BitSong",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://github.com/cosmos/chain-registry/blob/master/bitsong/chain.json : chain_id \"bitsong-2b\", status live"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/bitsongofficial/go-bitsong"
+    },
+    "V8VNK6ZZQ": {
+      "caip2": "cosmos:dimension_37-1",
+      "longName": "Xpla",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://github.com/cosmos/chain-registry/blob/master/xpla/chain.json : chain_id \"dimension_37-1\", status live"
+      ],
+      "note": "XPLA is a Cosmos SDK chain (Terra-derived) whose consensus chain-id is dimension_37-1. Its EVM module uses eip155 id 37. The ethereum-lists entries 'Xpla Testnet' (3701), 'XPLA Verse' (7300) and 'zkXPLA' (375) are different networks.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/xpladev"
+    },
+    "V9516W559": {
+      "caip2": "eip155:7000",
+      "longName": "Zeta",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains), fetched 2026-09-14: \"ZetaChain Mainnet\", chainId 7000, nativeCurrency ZETA"
+      ],
+      "note": "ZetaChain is a Cosmos SDK chain with an EVM (ethermint) layer; its Cosmos chain-id is 'zetachain_7000-1', so cosmos:zetachain_7000-1 identifies the same ledger from the Cosmos side. eip155:7000 is the identifier in general use.",
+      "uncertainty": "Dual-identity chain: eip155:7000 and cosmos:zetachain_7000-1 both name this ledger. Picked the EVM form as the commonly used one.",
+      "publicLedger": true,
+      "url": "https://github.com/zeta-chain"
+    },
+    "VCW0C7W66": {
+      "caip2": "eip155:10",
+      "longName": "Optimism",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains), fetched 2026-09-14: \"OP Mainnet\", chainId 10, shortName oeth"
+      ],
+      "note": "The chain was renamed from 'Optimism' to 'OP Mainnet' in 2023; chainId 10 is unchanged. This DLI predates the rename.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/ethereum-optimism/"
+    },
+    "VF3N3QQ4X": {
+      "caip2": null,
+      "longName": "Constellation",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "No anchor block hash or algorithm recorded by DTIF for this ledger.",
+        "No 'constellation' / 'dag' / 'hypergraph' directory in ChainAgnostic/namespaces.",
+        "Constellation's Hypergraph is a DAG with metagraph state channels, not EVM; no entry in chainid.network/chains.json."
+      ],
+      "note": "Even with a namespace, Constellation's metagraph architecture would need a sub-chain convention that no CAIP defines.",
+      "uncertainty": "No anchor data at all, so there is nothing to verify against even if a namespace appeared.",
+      "publicLedger": true,
+      "url": "https://github.com/Constellation-Labs"
+    },
+    "VJQF0WJS9": {
+      "caip2": null,
+      "longName": "PIVX",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "PIVX mainnet (full genesis 0000041e482b9b9691d98eefb48473405c0b8ec31b76df3797c74a78680ef818).",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/PIVX-Project/PIVX/"
+    },
+    "VV1032DF7": {
+      "caip2": null,
+      "longName": "BNP Neobonds",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "BNP Paribas Neobonds is BNP Paribas' private tokenised-bond platform, built on Digital Asset's Daml/Canton stack."
+      ],
+      "note": "Bank-operated permissioned platform for bond issuance.",
+      "uncertainty": "Permissioned/enterprise ledger with no public genesis block or public chain identifier; CAIP-2 does not apply. If the operator later publishes a network identifier, a namespace would have to be registered for it.",
+      "publicLedger": false,
+      "url": null
+    },
+    "W0HBX7RC4": {
+      "caip2": "cosmos:columbus-5",
+      "longName": "Terra Classic",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://github.com/cosmos/chain-registry/blob/master/terra/chain.json : chain_name terra, pretty_name \"Terra Classic\", chain_id \"columbus-5\", status live"
+      ],
+      "note": "Terra Classic (LUNC) is the original Terra chain, columbus-5. The post-collapse relaunch 'Terra' (LUNA, chain-id phoenix-1) is a different ledger - cosmos:phoenix-1.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/terra-money/core"
+    },
+    "W4XMM3X8M": {
+      "caip2": null,
+      "longName": "Bitcoin Cash",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "Note this reference is the BCH FORK block (height 478558, Aug 2017), not the genesis block - BCH shares Bitcoin's genesis. The namespace's own test vector fixes this value, so it is normative rather than derived.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/Bitcoin-ABC/bitcoin-abc"
+    },
+    "W5VLM3Z7N": {
+      "caip2": "tvm:-239",
+      "longName": "The Open Network",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://namespaces.chainagnostic.org/tvm/caip2 test vector: 'TON mainnet (global id = -239)  tvm:-239'"
+      ],
+      "note": "TON is covered by the 'tvm' (TON Virtual Machine / Everscale family) namespace, not a 'ton' namespace - there is no 'ton' namespace in the CASA registry. The reference is the network global_id, not a workchain id.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/ton-blockchain"
+    },
+    "W8P9V68XL": {
+      "caip2": null,
+      "longName": "Euroclear D-FMI",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Euroclear D-FMI (Digital Financial Market Infrastructure) is Euroclear's permissioned DLT platform for digitally native notes."
+      ],
+      "note": "CSD-operated permissioned platform. No public chain id.",
+      "uncertainty": "Permissioned/enterprise ledger with no public genesis block or public chain identifier; CAIP-2 does not apply. If the operator later publishes a network identifier, a namespace would have to be registered for it.",
+      "publicLedger": false,
+      "url": null
+    },
+    "87C5QFHB0": {
+      "caip2": null,
+      "longName": "DigiByte",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "DigiByte mainnet (full genesis 7497ea1b465eb39f1c8f507bc877078fe016d6fcb6dfad3a64c98dcc6e1e8496).",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/DigiByte-Core"
+    },
+    "880STJFC6": {
+      "caip2": "polkadot:7e4e32d0feafd4f9c9414b0be86373f9",
+      "longName": "Sora",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://github.com/polkadot-js/common/blob/master/packages/networks/src/defaults/genesis.ts (knownGenesis): sora = 0x7e4e32d0feafd4f9c9414b0be86373f9a1efa904809b683453a9af6856d38ad5",
+        "https://namespaces.chainagnostic.org/polkadot/caip2"
+      ],
+      "note": "SORA network mainnet (XOR), a standalone Substrate chain. Distinct from the unrelated 'SoraAI Testnet' (eip155:145) and from Sora-branded ERC-20 wrappers.",
+      "uncertainty": "Assumes DTIF's 'Sora' is the SORA/XOR Substrate network rather than any similarly named project.",
+      "publicLedger": true,
+      "url": "https://github.com/sora-xor"
+    },
+    "8F752HZCV": {
+      "caip2": null,
+      "longName": "Chiliz Legacy",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "DTIF anchor 0xb6f5fe385ba8c8a184ab523c83022f7c3f072f628486baa16bd398912a7de055 is NOT the genesis of the successor chain: live query of https://rpc.chiliz.com returns eth_chainId 0x15b38 (88888) and block 0 hash 0xd79fa059ef8cdfcf72676df19e209ee014183a5fa1cf132b2ff9288dbbcf5042. The anchor therefore confirms Chiliz Legacy is a distinct ledger from Chiliz Chain.",
+        "ethereum-lists/chains _data/chains/eip155-88888.json carries \"redFlags\": [\"reusedChainId\"]; git history shows 88888 was IVAR Chain Mainnet until the 2024-05-16 commit 'Chiliz Chain Update (#5013)' reassigned it. No entry for the Legacy Chain exists in the registry at any revision.",
+        "docs.chiliz.com / Chiliz white paper: the Legacy Chain (formerly Chiliz Chain 1.0, launched Nov 2019) was a Proof-of-Authority network run for Socios.com; it was decommissioned in Q1 2024 after fan tokens migrated to Chiliz Chain."
+      ],
+      "note": "eip155:88888 is the SUCCESSOR (Chiliz Chain / CC2.0) and must not be used here. The legacy explorer at explorer.chiliz.com is still up (43.7M blocks) but exposes no chain-id endpoint (blockscout eth-rpc returns 403).",
+      "uncertainty": "Could not establish the Legacy Chain's own EVM chain ID from any live RPC, archived doc, registry entry, or source repo. Without it no eip155 reference can be formed.",
+      "publicLedger": true,
+      "url": "https://docs.chiliz.com/"
+    },
+    "8RBQ1QLGX": {
+      "caip2": "eip155:513100",
+      "longName": "DisChain",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains), fetched 2026-09-14: \"EthereumFair\", chainId 513100, shortName ethf, nativeCurrency ETHF",
+        "https://www.bitget.com/support/articles/12560603806205 (ETHF -> DisChain (DIS) token swap and rebranding)"
+      ],
+      "note": "DisChain is the rebrand of EthereumFair (ETHF), itself the ETHW-adjacent PoW fork of Ethereum. The name has flipped both ways in exchange notices (DIS->ETHF and ETHF->DIS); chainId 513100 is stable across them.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/orgs/ethereumfair/repositories"
+    },
+    "8TNNSX0RM": {
+      "caip2": "flow:mainnet",
+      "longName": "Flow",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://namespaces.chainagnostic.org/flow/caip2 test vector: 'Flow Mainnet: flow:mainnet'"
+      ],
+      "note": "Flow's own Cadence-level ledger. Flow's EVM layer is separately registered as eip155:747 ('Flow EVM Mainnet') and is a different view of the same chain.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/onflow"
+    },
+    "8VFVBMLV9": {
+      "caip2": "waves:087",
+      "longName": "Waves",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://namespaces.chainagnostic.org/waves/caip2 test vector: 'Waves Mainnet  waves:087'"
+      ],
+      "note": "The reference is the decimal byte value of the Waves chain-id character 'W' (87), zero-padded to three digits per the namespace spec.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/wavesplatform/"
+    },
+    "90NCM3MK8": {
+      "caip2": "polkadot:68d56f15f85d3136970ec16946040bc1",
+      "longName": "Polkadot Asset Hub",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://github.com/polkadot-js/common/blob/master/packages/networks/src/defaults/genesis.ts (knownGenesis): statemint = 0x68d56f15f85d3136970ec16946040bc1752654e906147f7e43e9d539d7c3de2f",
+        "https://namespaces.chainagnostic.org/polkadot/caip2"
+      ],
+      "note": "Polkadot Asset Hub is the parachain formerly called Statemint; the rename did not change the genesis hash. The Polkadot relay chain is polkadot:91b171bb158e2d3848fa23a9f1c25182.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/paritytech/cumulus"
+    },
+    "93V1MF266": {
+      "caip2": "cosmos:milkyway",
+      "longName": "Milkyway Milk",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://github.com/cosmos/chain-registry/blob/master/milkyway/chain.json : chain_id \"milkyway\", bech32_prefix milk, fee denom umilk, status \"killed\""
+      ],
+      "note": "The MilkyWay (MILK) Cosmos SDK L1. Its chain-id is literally 'milkyway' (no -1 suffix). The registry marks it 'killed': the team shut the L1 down and returned assets to their native chains, so this ledger is historical.",
+      "uncertainty": "Assumes DTIF's 'Milkyway Milk' means the MilkyWay L1 rather than the earlier MilkyWay liquid-staking deployment on Osmosis (whose tokens live on cosmos:osmosis-1). Moderate confidence.",
+      "publicLedger": true,
+      "url": "https://github.com/milkyway-labs/milkyway"
+    },
+    "9BQXLVJ3G": {
+      "caip2": null,
+      "longName": "Siacoin",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "No 'sia' / 'siacoin' directory in ChainAgnostic/namespaces.",
+        "The BLAKE2b-256 anchor 25f6e3b9295a61f69fcb956aca9f0076234ecf2e02d399db5448b6e22f26e81c is consistent with a Sia genesis block ID but has no ratified consumer.",
+        "Not EVM; no entry in chainid.network/chains.json."
+      ],
+      "note": "Sia is a UTXO-like chain but uses BLAKE2b, not double-SHA-256, so bip122 (which is defined over Bitcoin-family genesis hashes) is not a defensible fit.",
+      "uncertainty": "None on the null - no candidate namespace exists.",
+      "publicLedger": true,
+      "url": "https://github.com/SiaFoundation"
+    },
+    "9D9CWH8R7": {
+      "caip2": null,
+      "longName": "Kaspa",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "No anchor block hash or algorithm recorded by DTIF for this ledger.",
+        "No 'kaspa' directory in ChainAgnostic/namespaces.",
+        "Kaspa is a GHOSTDAG blockDAG - it has no linear chain and no single genesis-hash convention that bip122 or any ratified namespace expresses. Not EVM; the only Kaspa-named entry in chainid.network/chains.json is 'KaspaClassic Mainnet' (eip155:104566), an unrelated project."
+      ],
+      "note": "Do not substitute eip155:104566 - KaspaClassic is a different chain from Kaspa.",
+      "uncertainty": "With no anchor and no namespace there is nothing to resolve against.",
+      "publicLedger": true,
+      "url": "https://github.com/kaspanet/kaspad"
+    },
+    "9X92LF1JV": {
+      "caip2": null,
+      "longName": "Nimiq",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "The anchor 0x264aaf8a4f9828a76c550635da078eb466306a189fcc03710bee9f649c869d12 is confirmed genuine: GitHub code search finds it in nimiq/core-rs-albatross genesis/src/genesis/main-albatross.toml.",
+        "No 'nimiq' directory in ChainAgnostic/namespaces.",
+        "Not EVM; no entry in chainid.network/chains.json."
+      ],
+      "note": "Chain and anchor verified; only the namespace is missing.",
+      "uncertainty": "None on identification.",
+      "publicLedger": true,
+      "url": "https://github.com/nimiq"
+    },
+    "WN11STPV5": {
+      "caip2": "cosmos:interwoven-1",
+      "longName": "initia",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://github.com/cosmos/chain-registry/blob/master/initia/chain.json : chain_id \"interwoven-1\", status live"
+      ],
+      "note": "Initia L1 mainnet. Initia rollups ('Interwoven Rollups') are separate ledgers with their own chain-ids.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/initia-labs/initia"
+    },
+    "XGH8VWSBJ": {
+      "caip2": "eip155:246",
+      "longName": "Energy Web",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains), fetched 2026-09-14: \"Energy Web Chain\", chainId 246, nativeCurrency EWT"
+      ],
+      "note": "Energy Web Chain mainnet. Volta testnet is chainId 73799.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/energywebfoundation/ewc-system-contracts"
+    },
+    "XJ6Q7Z4N7": {
+      "caip2": null,
+      "longName": "Raiinmaker Network",
+      "kind": "unknown",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "THE ANCHOR IS NOT AN EVM BLOCK HASH: the recorded value is 130 hex characters (65 bytes). A Keccak-256 EVM block hash is 32 bytes / 64 hex characters, so this cannot be an eip155 chain's block hash regardless of what chain ID one might look up.",
+        "doc.eal.coiin.ai / docs.coiin.ai describe a bespoke three-layer architecture (User Action Layer, Enterprise Application Layer, Network Validation Layer) that finalises by hashing proofs into Bitcoin and SEI - i.e. an application ledger anchored to public chains, not an independent EVM L1.",
+        "No 'Raiinmaker' or 'Coiin' entry anywhere in chainid.network/chains.json; no candidate RPC host (rpc.raiinmaker.com, mainnet-rpc.raiinmaker.com, rpc.coiin.ai) resolves or answers eth_chainId.",
+        "The COIIN token itself is reported as launching on Base (eip155:8453), which is a different ledger from the one this DLI names."
+      ],
+      "note": "Do not assign eip155:8453 - that would relocate the asset onto Base and erase the Raiinmaker Network ledger DTIF registered.",
+      "uncertainty": "Could not determine whether the Raiinmaker Network is a permissionless chain or an operator-run ledger, nor decode the 65-byte anchor. Kind left unknown.",
+      "publicLedger": false,
+      "url": "https://github.com/Coiin-Blockchain/coiin-smart-contracts/blob/43d44be19eb7079adcf5408e32dfca764f8151f5/contracts/Coiin.sol"
+    },
+    "XLL52B4HR": {
+      "caip2": null,
+      "longName": "Testnet 3 Bitcoin",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "'Testnet 3 Bitcoin' is Bitcoin's testnet3. Testnet4 (activated in Bitcoin Core 28, 2024) is a different chain with a different genesis and would need its own identifier.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/bitcoin/bitcoin/"
+    },
+    "XNK0VSQNJ": {
+      "caip2": null,
+      "longName": "Litecoin",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": null,
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/litecoin-project/litecoin"
+    },
+    "XNQDZGW71": {
+      "caip2": "xrpl:0",
+      "longName": "XRPL",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://namespaces.chainagnostic.org/xrpl/caip2 test vector: 'Livenet  xrpl:0'"
+      ],
+      "note": "XRP Ledger mainnet (network_id 0). Testnet is xrpl:1, Devnet xrpl:2.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/ripple"
+    },
+    "XP933HV9S": {
+      "caip2": "eip155:50",
+      "longName": "XDC Network",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains), fetched 2026-09-14: \"XDC Network\", chainId 50, shortName xdc, infoURL xinfin.org"
+      ],
+      "note": "XinFin Network rebranded to XDC Network; chainId 50 is unchanged. Apothem testnet is chainId 51.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/XinFinOrg/XDPoSChain"
+    },
+    "XVPK9F569": {
+      "caip2": null,
+      "longName": "Bytom",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "Bytom (BTM) mainnet, its own BUTXO L1. Bytom later launched MOV/Bystack sidechains, which are separate ledgers.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/Bytom/bytom"
+    },
+    "Z49T2MRTR": {
+      "caip2": null,
+      "longName": "Atto",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "No 'atto' directory in ChainAgnostic/namespaces.",
+        "The BLAKE2b-256 anchor D1C37D6BBB8F9984029EA21712BB1AA6D2B3D0CD9A484C8CC3B967B7A0501C08 has no ratified consumer.",
+        "Atto is a Nano-style block-lattice chain, not EVM; no entry in chainid.network/chains.json."
+      ],
+      "note": "Same structural problem as Nano in this batch: block-lattice ledgers have no CAIP-2 shape defined.",
+      "uncertainty": "None on the null - no candidate namespace exists.",
+      "publicLedger": true,
+      "url": "https://github.com/attocash/node"
+    },
+    "Z6GF6PXQK": {
+      "caip2": "bip122:b868e0d95a3c3c0e0dadc67ee587aaf9",
+      "longName": "ReddCoin",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://github.com/reddcoin-project/reddcoin/blob/master/src/chainparams.cpp : consensus.hashGenesisBlock == 0xb868e0d95a3c3c0e0dadc67ee587aaf9...",
+        "https://namespaces.chainagnostic.org/bip122/caip2 (reference = first 32 hex chars of the genesis block hash)"
+      ],
+      "note": "ReddCoin mainnet (full genesis b868e0d95a3c3c0e0dadc67ee587aaf9dc8acbf99e3b4b3110fad4eb74c1decc).",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/reddcoin-project/reddcoin"
+    },
+    "ZC36F4S9J": {
+      "caip2": null,
+      "longName": "Ardor",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "No 'ardor' or 'nxt' directory in ChainAgnostic/namespaces.",
+        "Ardor is an NXT-derived parent/child-chain platform, not EVM - no entry in chainid.network/chains.json.",
+        "The anchor 53da814b5873e31a1f82bb099afadf092db2b62c1732b8ed90242cb13c9192cb has no ratified consumer."
+      ],
+      "note": "Ardor's parent chain plus child chains (Ignis etc.) would additionally need a sub-chain convention that no CAIP defines.",
+      "uncertainty": "None on the null - no candidate namespace exists.",
+      "publicLedger": true,
+      "url": "https://bitbucket.org/Jelurida/ardor/src/master/"
+    },
+    "ZHSD2CV03": {
+      "caip2": "cosmos:xion-mainnet-1",
+      "longName": "Verona",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://github.com/cosmos/chain-registry/blob/master/xion/chain.json : chain_id \"xion-mainnet-1\", pretty_name Verona, status live"
+      ],
+      "note": "XION mainnet (codenamed Verona).",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/burnt-labs/xion"
+    },
+    "ZPP6364TV": {
+      "caip2": "monero:4b49042122496cc7e94d392b29bd12eb",
+      "longName": "Haven Protocol",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "DERIVED FROM THE DTIF ANCHOR: ChainAgnostic/namespaces monero/caip2.md defines the reference as 'a hash of its genesis block, truncated to the first 32 characters', resolved via get_block_header_by_height at height 0. First 32 chars of DTIF's 4b49042122496cc7e94d392b29bd12ebbc92bcec98990470a30c1eb323b41ebb = 4b49042122496cc7e94d392b29bd12eb.",
+        "The anchor is confirmed to be Haven's (XHV) genesis: mukatee/monero-scraper src/python/moneroscraper/jsonapi.py defines xhv_genesis_hash = '4b49042122496cc7e94d392b29bd12ebbc92bcec98990470a30c1eb323b41ebb' directly beside xmr_genesis_hash = '418015bb9ae982a1975da7d79277c2705727a56894ba0fb246adaabb1f4632e3', and uses get_block_hash(height=0) to tell the two apart. The XMR constant's first 32 chars are exactly the spec's own test vector monero:418015bb9ae982a1975da7d79277c270, which validates the truncation rule against this very source.",
+        "The monero namespace explicitly admits Monero-family forks, not just Monero: monero:a3fd635dd5cb55700317783469ba749b (Wownero mainnet) is a listed test case. Haven Protocol is a Monero (CryptoNote) fork.",
+        "DTIF's algo 'Keccak-256' is correct for this family - Monero/CryptoNote block hashing is Keccak-based - which is further corroboration that the record is a CryptoNote chain."
+      ],
+      "note": "The trailing space in DTIF's hash field ('...41ebb ') is incidental and was stripped.",
+      "uncertainty": "Could not query a live Haven daemon to re-derive block 0 - Haven mainnet is effectively defunct following the protocol's 2023-2024 collapse, so the genesis rests on the source constant above plus the DTIF anchor agreeing exactly. A reviewer may also object that placing a fork inside the monero namespace is a judgement call, though the Wownero test case is direct precedent.",
+      "publicLedger": true,
+      "url": "https://github.com/haven-protocol-org"
+    },
+    "B8VNZ881B": {
+      "caip2": null,
+      "longName": "Ravencoin",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "Ravencoin is a Bitcoin (UTXO) fork with its own genesis block, so bip122 applies directly.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/RavenProject/Ravencoin"
+    },
+    "B9Q6N732F": {
+      "caip2": "eip155:19",
+      "longName": "Songbird",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains): chainId 19 = 'Songbird Canary-Network', shortName sgb, native currency SGB"
+      ],
+      "note": "Songbird is Flare Network's canary network, a separate live chain from Flare mainnet (eip155:14). Testnet Coston is eip155:16.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://gitlab.com/flarenetwork/flare"
+    },
+    "BC50P2CG9": {
+      "caip2": "cosmos:fetchhub-4",
+      "longName": "Fetch.ai",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Cosmos Chain Registry: https://raw.githubusercontent.com/cosmos/chain-registry/master/fetchhub/chain.json -> chain_id 'fetchhub-4'",
+        "Fetch.ai/ASI active networks docs: https://network.fetch.ai/docs/guides/ledger/references/active-networks",
+        "Live RPC /status node_info.network returned 'fetchhub-4'"
+      ],
+      "note": "Chain-id history: fetchhub-1 -> fetchhub-2 (Stargate) -> fetchhub-3 (Capricorn) -> fetchhub-4 (Dorado, which absorbed the CUDOS merge). The 2024 Artificial Superintelligence (ASI) Alliance rebrand renamed the project/token, not the ledger; the chain-id is unchanged.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/fetchai/"
+    },
+    "BFCL4RG9M": {
+      "caip2": "casper:casper",
+      "longName": "Casper",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "CASA casper namespace, test cases list 'casper:casper' (mainnet) and 'casper:casper-test' (testnet): https://github.com/ChainAgnostic/namespaces/blob/main/casper/caip2.md"
+      ],
+      "note": "Reference is the chainspec name returned by the node's info_get_status RPC.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/casper-network/"
+    },
+    "BNZPC6W95": {
+      "caip2": "eip155:100",
+      "longName": "Gnosis Chain",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains): chainId 100 = 'Gnosis', shortName gno"
+      ],
+      "note": "Gnosis Chain was formerly the xDai Chain; the chainId 100 is unchanged across that rename. Not to be confused with the (shut down) Gnosis Beacon Chain / GBC.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/gnosischain"
+    },
+    "BX3FFJNC1": {
+      "caip2": "polkadot:fc41b9bd8ef8fe53d58c7ea67c794c7e",
+      "longName": "Acala",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Live JSON-RPC chain_getBlockHash[0] on https://acala-rpc-0.aca-api.network -> 0xfc41b9bd8ef8fe53d58c7ea67c794c7ec9a73daf05e6d54b14ff6342c99ba64c",
+        "Corroborated by Nova Wallet chains.json and SubWallet ChainInfo.json",
+        "polkadot reference = first 32 hex of genesis hash, no 0x: https://github.com/ChainAgnostic/namespaces/blob/main/polkadot/caip2.md"
+      ],
+      "note": "Acala is a Polkadot parachain (para id 2000). Its Acala EVM+ execution layer is separately addressable as eip155:787 - a different CAIP-2 identifier for the same ledger, not a substitute.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/AcalaNetwork/"
+    },
+    "C0BB09XQS": {
+      "caip2": "polkadot:f1cf9022c7ebb34b162d5b5e34e705a5",
+      "longName": "Shiden Network",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Live JSON-RPC chain_getBlockHash[0] on https://rpc.shiden.astar.network -> 0xf1cf9022c7ebb34b162d5b5e34e705a5a740b2d0ecc1009fb89023e62a488108",
+        "Corroborated by Nova Wallet chains.json and SubWallet ChainInfo.json",
+        "https://github.com/ChainAgnostic/namespaces/blob/main/polkadot/caip2.md"
+      ],
+      "note": "Shiden is Astar's Kusama parachain (para id 2007). Its EVM layer is eip155:336 - an alternative identifier for the same ledger.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/AstarNetwork/Astar"
+    },
+    "C55ZXK0NB": {
+      "caip2": null,
+      "longName": "SWIAT Network",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "SWIAT is a permissioned DLT platform operated by SWIAT GmbH (DekaBank, Standard Chartered, LBBW and others) for issuing and settling digital securities; participation is restricted to onboarded regulated institutions: https://www.swiat.com/",
+        "DTIF dltType=0/permissioned institutional platform; no public genesis block or public chain identifier exists"
+      ],
+      "note": "Built on a permissioned Ethereum-family stack, but as a closed consortium network it has no public genesis block, no registered eip155 chain id and no resolvable CAIP-2 identifier.",
+      "uncertainty": null,
+      "publicLedger": false,
+      "url": null
+    },
+    "CK99LLB54": {
+      "caip2": null,
+      "longName": "so|bond",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "so|bond is a permissioned, Ethereum-based digital bond issuance and settlement platform built by Credit Agricole CIB and SEB; access is restricted to invited banks and issuers: https://www.ca-cib.com/",
+        "DTIF dltType=0/permissioned institutional platform; no public genesis block or public chain identifier exists"
+      ],
+      "note": "A closed consortium chain (Proof of Climate awaReness consensus). No public genesis block or registered chain id, so no CAIP-2 identifier exists.",
+      "uncertainty": null,
+      "publicLedger": false,
+      "url": null
+    },
+    "DHT1FVZLV": {
+      "caip2": "arweave:7wIU",
+      "longName": "Arweave",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "CASA arweave namespace test case: 'arweave:7wIU' (Arweave Mainnet): https://github.com/ChainAgnostic/namespaces/blob/main/arweave/caip2.md"
+      ],
+      "note": "Reference is the Arweave genesis block hash truncated to 4 characters. Arweave is a permissionless storage chain, not an account/EVM chain.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/ArweaveTeam/arweave"
+    },
+    "DN1Q64LLN": {
+      "caip2": "cosmos:kyve-1",
+      "longName": "KYVE NETWORK",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Cosmos Chain Registry: https://raw.githubusercontent.com/cosmos/chain-registry/master/kyve/chain.json -> chain_id 'kyve-1'",
+        "https://docs.kyve.network/run-a-node/chain-nodes/become-validator",
+        "Live RPC /status node_info.network returned 'kyve-1'"
+      ],
+      "note": "KYVE mainnet launched 2023-03-14; no chain-id revision found.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/kyvenetwork"
+    },
+    "F2MLRZ49S": {
+      "caip2": null,
+      "longName": "Bitcoin Zero",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "ANCHOR DOES NOT MATCH THE CHAIN OF THAT NAME: bitcoinzero/bitcoinzero src/chainparams.cpp sets the mainnet genesis to consensus.hashGenesisBlock.SetHex(\"32d3e76ed79d617db25ff529e44370d4787b3de3499536fac9c05a1215a1c7a7\") (testnet 59058d88..., regtest fcde2cc4...). DTIF's 00000665329ad61fc8642cbcb86d21fccbbd91074a80a732c907293f0bd6791e is none of these.",
+        "GitHub code search for the full DTIF hash returns zero results across all public repositories - it matches no published chainparams anywhere.",
+        "Its shape (0000066... with the classic nBits 0x1e0ffff0 leading zeros) is that of a generic Bitcoin-clone genesis - note how closely it resembles the original Stratis genesis 0000066e91e46e5a264d42c89e1204963b2ee6be230b443e9159020539d972af - so the prefix alone cannot identify which fork it belongs to."
+      ],
+      "note": "bip122 would be the right namespace IF the hash could be tied to a specific Bitcoin-family genesis, which it cannot. Publishing bip122:00000665329ad61fc8642cbcb86d21fc would assert a chain identity no source corroborates.",
+      "uncertainty": "Several projects have used the name 'Bitcoin Zero'; the DTIF record may name a different one from the zcashd-derived BZX repo I checked, and I could not find a live node or explorer for any of them.",
+      "publicLedger": true,
+      "url": "https://github.com/SpecialCoins/BitcoinZero/"
+    },
+    "F3WNZSW31": {
+      "caip2": null,
+      "longName": "DCJPY",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "DCJPY is DeCurret DCP's tokenised-deposit network; the DCJPY Network's Financial Zone runs on a permissioned blockchain operated by licensed Japanese banks only: https://www.decurret-dcp.com/",
+        "DTIF dltType=0/permissioned institutional platform; no public genesis block or public chain identifier exists"
+      ],
+      "note": "Note this input record has no dltType field at all, unlike every other record in the batch. DCJPY is a bank-operated tokenised deposit platform (Internet Initiative Japan group), not a public chain.",
+      "uncertainty": null,
+      "publicLedger": false,
+      "url": null
+    },
+    "FDFNQGJ4X": {
+      "caip2": "eip155:1111",
+      "longName": "WEMIX",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains): chainId 1111 = 'WEMIX3.0 Mainnet', shortName wemix"
+      ],
+      "note": "WEMIX3.0 is WEMIX's own L1 mainnet (launched 2022), distinct from the earlier WEMIX ERC-20/KLAY-era token. Testnet is eip155:1112.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/wemixarchive"
+    },
+    "FDTRGVM23": {
+      "caip2": null,
+      "longName": "Nebulas",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "No 'nebulas' directory in ChainAgnostic/namespaces.",
+        "The SHA3-256 anchor 06662b890841bec3493c9cf13a983c0c60533949a62485e59f47cd164fd60b7f has no ratified consumer.",
+        "Nebulas runs its own NVM, not the EVM; no entry in chainid.network/chains.json."
+      ],
+      "note": "The only 'Nebulas' match in the EVM registry is 'Unicorn Ultra Nebulas Testnet' (eip155:2484), an unrelated project.",
+      "uncertainty": "None on the null - no candidate namespace exists.",
+      "publicLedger": true,
+      "url": "https://github.com/nebulasio"
+    },
+    "FFW5GMMZZ": {
+      "caip2": "eip155:1234",
+      "longName": "Step App",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains): chainId 1234 = 'Step Network', shortName step, currency FITFI",
+        "Step App help centre 'Step Mainnet parameters' gives chain ID 1234, RPC https://rpc.step.network: https://help.step.app/en/article/step-mainnet-parameters-1ghurp3/"
+      ],
+      "note": "'Step App' is the product; the ledger is Step Network, an EVM chain built as an Avalanche subnet. FITFI is the gas token, migrated off the Avalanche C-Chain in Oct 2022.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://www.stepchain.net/"
+    },
+    "FLR22QK70": {
+      "caip2": null,
+      "longName": "MonaCoin",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "MonaCoin is a Litecoin-derived UTXO chain with its own genesis block.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/monacoinproject/monacoin"
+    },
+    "G7H9H7W1C": {
+      "caip2": "cosmos:pacific-1",
+      "longName": "SEI",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Cosmos Chain Registry: https://raw.githubusercontent.com/cosmos/chain-registry/master/sei/chain.json -> chain_id 'pacific-1'",
+        "Live RPC /status node_info.network returned 'pacific-1'",
+        "https://chainid.network/chains.json (ethereum-lists/chains): chainId 1329 = 'Sei Network' (the EVM view of the same ledger)"
+      ],
+      "note": "Sei is a Cosmos SDK chain; pacific-1 survived the Sei v2 EVM upgrade. The same ledger is also addressable as eip155:1329 through its EVM RPC. A complete registry should carry both rows pointing at this DLI.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/sei-protocol"
+    },
+    "GBBDNXK5L": {
+      "caip2": "eip155:7225878",
+      "longName": "Saakuru Protocol",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains): chainId 7225878 = 'Saakuru Mainnet', shortName saakuru"
+      ],
+      "note": "Saakuru Protocol is a gasless L2 by Oasys/AOFA. Testnet is eip155:247253.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/Saakuru-Open-Source/skr-token"
+    },
+    "GMXBG0KFV": {
+      "caip2": null,
+      "longName": "Qtum",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "Qtum is a UTXO chain (Bitcoin Core derived) with an EVM bolted on via an account-abstraction layer, so the bip122 genesis-hash form is the sound identifier. DTIF carries two DLIs for this ledger, GMXBG0KFV ('Qtum') and HFC8GTBX6 ('QTUM'), which appear to be duplicates.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/qtumproject/qtum"
+    },
+    "GPVDD1HX5": {
+      "caip2": "cosmos:axelar-dojo-1",
+      "longName": "Axelar",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Cosmos Chain Registry: https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/chain.json -> chain_id 'axelar-dojo-1'",
+        "https://docs.axelar.dev/validator/setup/manual",
+        "Live RPC /status node_info.network returned 'axelar-dojo-1'"
+      ],
+      "note": "Axelar mainnet launched Feb 2022; no chain-id revision found.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/axelarnetwork/"
+    },
+    "GTHJSXB86": {
+      "caip2": "eip155:10507",
+      "longName": "Numbers Protocol",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains): chainId 10507 = 'Numbers Mainnet', shortName Jade, currency NUM"
+      ],
+      "note": "Numbers Protocol's mainnet is codenamed 'Jade'; testnet 'Snow' is eip155:10508.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/numbersprotocol"
+    },
+    "GTZSRS17T": {
+      "caip2": null,
+      "longName": "Bitcoin Liquid",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "'Bitcoin Liquid' is Blockstream's Liquid Network (liquidv1), an Elements-based federated Bitcoin sidechain with its own genesis block, so a bip122-form reference is well defined.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/ElementsProject/elements"
+    },
+    "H2PNW11XR": {
+      "caip2": "eip155:324",
+      "longName": "zkSync Era",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains): chainId 324 = 'zkSync Mainnet' (zkSync Era), shortName zksync"
+      ],
+      "note": "zkSync Era is Matter Labs' ZK rollup on Ethereum. Sepolia testnet is eip155:300; the deprecated Goerli testnet was eip155:280.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/matter-labs/zksync-web-era-docs"
+    },
+    "H4GLK4SQJ": {
+      "caip2": null,
+      "longName": "Testnet 4 Bitcoin",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "This is Bitcoin testnet4 (BIP-94, shipped in Bitcoin Core 28), NOT testnet3. Testnet3's genesis is 000000000933ea01ad0ee984209779ba..., which is the 'Bitcoin testnet' entry in the CASA bip122 test cases. It is a test network, so it carries no economic value.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/bitcoin/bips/blob/master/bip-0094.mediawiki"
+    },
+    "HFC8GTBX6": {
+      "caip2": "bip122:000075aef83cf2853580f8ae8ce6f8c3",
+      "longName": "QTUM",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "qtumproject/qtum src/kernel/chainparams.cpp ChainType::MAIN genesis = 000075aef83cf2853580f8ae8ce6f8c3096cfa21d98334d6e3f95e5582ed986c: https://github.com/qtumproject/qtum/blob/master/src/kernel/chainparams.cpp",
+        "Live: https://qtum.info/api/block/0"
+      ],
+      "note": "Same ledger as DLI GMXBG0KFV ('Qtum'). DTIF appears to carry two DLIs for Qtum mainnet differing only in capitalisation of the long name.",
+      "uncertainty": "If DTIF intends one of these two records to denote something else (e.g. a Qtum sidechain or the EVM execution layer), this mapping would be wrong for that record. I could not determine any distinction from the supplied fields.",
+      "publicLedger": true,
+      "url": "https://github.com/qtumproject"
+    },
+    "HP31XFX2M": {
+      "caip2": null,
+      "longName": "Canton Network",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Canton Network is a network of interoperable, privacy-enabled Daml/Canton ledgers coordinated by a Global Synchronizer; participants see only their own sub-transactions and each application runs its own permissioned domain: https://www.canton.network/",
+        "DTIF dltType=0/permissioned institutional platform; no public genesis block or public chain identifier exists"
+      ],
+      "note": "Even the Global Synchronizer and Canton Coin operate under a permissioned validator/super-validator set, and per-participant ledgers are private by construction. There is no single public genesis block to derive a CAIP-2 reference from, and no CASA namespace for Canton/Daml.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/hyperledger-labs/splice"
+    },
+    "HSRT4H4CV": {
+      "caip2": null,
+      "longName": "JP Morgan Kinexys",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Kinexys (formerly Onyx by J.P. Morgan) is J.P. Morgan's private, permissioned blockchain platform for institutional clients (Kinexys Digital Payments / Digital Assets, JPM Coin): https://www.jpmorgan.com/kinexys",
+        "DTIF dltType=0/permissioned institutional platform; no public genesis block or public chain identifier exists"
+      ],
+      "note": "Rebranded from 'Onyx by J.P. Morgan' to Kinexys in November 2024; this DLI uses the newer name. Bank-operated permissioned ledger with no public genesis block.",
+      "uncertainty": null,
+      "publicLedger": false,
+      "url": null
+    },
+    "J07HFS9TX": {
+      "caip2": null,
+      "longName": "Nervos Network",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "The anchor 0x92b197aa1fba0f63633922c61c92375c9c074a93e85963554f5499fe1450d0e5 is genuinely the CKB mainnet (Lina) genesis - GitHub code search finds it in nervosnetwork/neuron packages/neuron-wallet/src/models/network.ts and in janx/ckbadger crates/common/src/network.rs as the mainnet genesis constant.",
+        "No 'ckb' / 'nervos' directory in ChainAgnostic/namespaces.",
+        "Nervos CKB is not EVM (Godwoken is a separate L2); no eip155 reference applies to the L1 record DTIF registered."
+      ],
+      "note": "The chain is correctly identified and the anchor verified; only the namespace is missing.",
+      "uncertainty": "None on identification. A future 'ckb' namespace would presumably take the first 32 hex of this genesis (92b197aa1fba0f63633922c61c92375c), but inventing it now would be non-standard.",
+      "publicLedger": true,
+      "url": "https://github.com/nervosnetwork"
+    },
+    "J60T318M6": {
+      "caip2": "eip155:1875",
+      "longName": "WhiteBIT",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains): chainId 1875 = 'Whitechain', shortName wbt",
+        "Whitechain docs (network reference): https://docs.whitechain.io/learn/network/reference"
+      ],
+      "note": "'WhiteBIT' is the exchange; the ledger it operates is Whitechain (WBT gas token), a Clique-PoA go-ethereum fork. Testnet is eip155:2625.",
+      "uncertainty": "The DTIF long name is the exchange name, not the chain name, so this rests on the inference that the registered ledger is Whitechain. WhiteBIT has also announced an OP-Stack L2 whose chain id is not yet published; if the DLI refers to that, this is wrong.",
+      "publicLedger": true,
+      "url": "https://github.com/whitebit-exchange/wbt"
+    },
+    "J846D7FQ3": {
+      "caip2": "cosmos:thorchain-1",
+      "longName": "THORChain",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Cosmos Chain Registry: https://raw.githubusercontent.com/cosmos/chain-registry/master/thorchain/chain.json -> chain_id 'thorchain-1'",
+        "https://docs.thorchain.org/thornodes/overview/thornode-stack",
+        "Live RPC /status node_info.network returned 'thorchain-1'"
+      ],
+      "note": "Chain-id history with exact block ranges: 'thorchain' (blocks 0-4,786,559) -> 'thorchain-mainnet-v1' (4,786,560-17,562,000) -> 'thorchain-1' (17,562,001-present). Historical transaction indexing needs a separate archive node per range; this DLI maps to the current epoch.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://gitlab.com/thorchain/"
+    },
+    "JLRHM6TM1": {
+      "caip2": "eip155:1135",
+      "longName": "LISKEVM",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains): chainId 1135 = 'Lisk', shortName lisk, native currency ETH"
+      ],
+      "note": "'LISKEVM' is the Lisk L2 on the OP Stack (settling to Ethereum), launched 2024. It is a different ledger from the original Lisk L1 (LSK, Lisk SDK), which was sunset during the migration; that older chain has no CAIP-2 identifier.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/liskhq"
+    },
+    "JNXP7GLQF": {
+      "caip2": null,
+      "longName": "NEO",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "The neo profile is explicitly Neo N3 only; it defines no identifier for Neo Legacy (Neo 2.x), which ran until the 2021 N3 migration. Reference is the uint32 Network Magic in decimal.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/neo-project"
+    },
+    "KCWG688K9": {
+      "caip2": "polkadot:6fbd74e5e1d0a61d52ccfe9d4adaed16",
+      "longName": "Polymesh",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Live JSON-RPC chain_getBlockHash[0] on https://mainnet-rpc.polymesh.network -> 0x6fbd74e5e1d0a61d52ccfe9d4adaed16dd3a7caa37c6bc4d0c2fa12e8b2f4063",
+        "Corroborated by Nova Wallet chains.json and SubWallet ChainInfo.json",
+        "https://github.com/ChainAgnostic/namespaces/blob/main/polkadot/caip2.md"
+      ],
+      "note": "Polymesh is a standalone Substrate chain (not a parachain) purpose-built for regulated securities, so the polkadot namespace applies to it as a Substrate chain rather than via Polkadot relay-chain membership.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/polymathnetwork"
+    },
+    "KLN08SFHQ": {
+      "caip2": null,
+      "longName": "ibet for Fin",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "'ibet for Fin' is a Japanese permissioned consortium network for security tokens, operated by the ibet for Fin consortium (BOOSTRY, Nomura and member financial institutions) on a private Quorum/Besu-family chain: https://www.ibet-for-fin.com/",
+        "DTIF dltType=0/permissioned institutional platform; no public genesis block or public chain identifier exists"
+      ],
+      "note": "Access requires membership in the consortium; the chain is EVM-family but private, so it has no registered eip155 chain id and no public genesis block.",
+      "uncertainty": null,
+      "publicLedger": false,
+      "url": null
+    },
+    "KM5VRR9P8": {
+      "caip2": null,
+      "longName": "SDX R3 Corda Ledger",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "SIX Digital Exchange (SDX) operates its CSD and trading venue on a permissioned R3 Corda network restricted to admitted SIX members: https://www.sdx.com/",
+        "DTIF dltType=0/permissioned institutional platform; no public genesis block or public chain identifier exists"
+      ],
+      "note": "Corda is not a blockchain with a global genesis block at all - it is a UTXO-style notarised ledger where each participant sees only the states it is party to - so no genesis-hash CAIP-2 reference can exist even in principle. There is no CASA namespace for Corda.",
+      "uncertainty": null,
+      "publicLedger": false,
+      "url": null
+    },
+    "KQSXHRDSR": {
+      "caip2": null,
+      "longName": "Bytecoin",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "Monero itself was forked from Bytecoin in 2014, so the lineage runs the other way; the 'monero' namespace form would structurally fit, but it is not defined to cover CryptoNote chains generally.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": null
+    },
+    "KX0N8VN53": {
+      "caip2": "cosmos:crypto-org-chain-mainnet-1",
+      "longName": "Cronos POS Chain",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Cosmos Chain Registry: https://raw.githubusercontent.com/cosmos/chain-registry/master/cryptoorgchain/chain.json -> chain_id 'crypto-org-chain-mainnet-1'",
+        "https://docs.cronos-pos.org/for-node-hosts/getting-started/mainnet_validator",
+        "Live RPC /status node_info.network returned 'crypto-org-chain-mainnet-1'"
+      ],
+      "note": "Renamed from 'Crypto.org Chain' to 'Cronos POS Chain' on 2023-10-16 with NO chain-id change. Distinct from Cronos EVM (cronosmainnet_25-1 / eip155:25), which is a different ledger.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/crypto-org-chain/chain-main"
+    },
+    "L3M1BVBPF": {
+      "caip2": null,
+      "longName": "Aelf",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "aelf is not EVM-compatible at the base layer, so no eip155 form applies either. A future 'aelf' namespace would most likely use the native chain-id string.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/aelfProject"
+    },
+    "LGF2S77LT": {
+      "caip2": null,
+      "longName": "NEM",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "No 'nem' / 'nis1' directory in ChainAgnostic/namespaces.",
+        "The anchor 438cf6375dab5a0d32f9b7bf151d4539e00a590f7c022d5572c7d41815a24be4 (Keccak-256) is consistent with a NIS1 nemesis-block hash but has no ratified consumer.",
+        "NEM NIS1 is not EVM; no entry in chainid.network/chains.json."
+      ],
+      "note": "Distinct ledger from Symbol (also in this batch), which likewise has no namespace.",
+      "uncertainty": "None on the null - no candidate namespace exists.",
+      "publicLedger": true,
+      "url": "https://github.com/nemtech"
+    },
+    "LQ48HR1SK": {
+      "caip2": "cosmos:celestia",
+      "longName": "Celestia",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Cosmos Chain Registry: https://raw.githubusercontent.com/cosmos/chain-registry/master/celestia/chain.json -> chain_id 'celestia'",
+        "https://docs.celestia.org/how-to-guides/mainnet",
+        "Live RPC /status node_info.network returned 'celestia'"
+      ],
+      "note": "Mainnet Beta launched 2023-10-31; the chain-id is the bare string 'celestia' with no revision suffix.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/celestiaorg/"
+    },
+    "LXXR90PGL": {
+      "caip2": "eip155:105105",
+      "longName": "StratisEVM",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains): chainId 105105 = 'Xertra Mainnet', shortName xertra",
+        "Stratis announcement of StratisEVM: Network Name 'Stratis Mainnet', Chain ID 105105, symbol STRAX, https://www.xertra.com/post/stratisevm-is-live"
+      ],
+      "note": "StratisEVM launched Dec 2024 as an EVM PoS chain; Stratis rebranded to Xertra in Oct 2025 with the same chain id 105105, same STRAX ticker and same network. The ethereum-lists entry now reads 'Xertra Mainnet'. This DLI predates the rename. Distinct from the older Stratis UTXO chain (DLI Q005CK5KV).",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/stratisproject"
+    },
+    "M68RW8NNS": {
+      "caip2": null,
+      "longName": "Helium",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Decoded the anchor: base64url 'La6PuV80Ps9qTP0339Pwm64q3_deMTkv6JOo1251EJI' is exactly 32 bytes = hex 2dae8fb95f343ecf6a4cfd37dfd3f09bae2adff75e31392fe893a8d76e751092, i.e. a Helium L1 (blockchain-core) block hash.",
+        "EXPLICITLY CHECKED AND RULED OUT: re-encoding those 32 bytes as base58 gives 45KjJisj7PwqwXXpDNqL8vKH5NmLh4Qt1CbabNjfPL81, which is NOT Solana's mainnet-beta genesis (5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp4n4TwWixhMo). So this record does not secretly denote Solana.",
+        "No 'helium' directory in ChainAgnostic/namespaces; the Helium L1 was not EVM and has no entry in chainid.network/chains.json."
+      ],
+      "note": "HNT migrated to Solana in April 2023 and the Helium L1 was sunset, so the token may now live at solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp - but that is a different ledger from the Helium L1 record DTIF anchored here, and substituting it would relocate the asset.",
+      "uncertainty": "Whether DTIF still intends this DLI to represent post-migration HNT (Solana) or only the retired L1. The anchor unambiguously describes the L1.",
+      "publicLedger": true,
+      "url": "https://github.com/helium/"
+    },
+    "M8RW9P0W7": {
+      "caip2": "eip155:39797",
+      "longName": "Energi NRG",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains): chainId 39797 = 'Energi Mainnet', shortName nrg, currency NRG"
+      ],
+      "note": "Energi migrated from its own Bitcoin-derived chain to this EVM chain (Energi Gen3) in 2021. Testnet is eip155:49797.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/energicryptocurrency"
+    },
+    "MDMXVQ432": {
+      "caip2": null,
+      "longName": "Nano",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "No anchor block hash or algorithm recorded by DTIF for this ledger.",
+        "No 'nano' directory in ChainAgnostic/namespaces.",
+        "Nano is a block-lattice ledger (one account-chain per account) with ORV consensus; it has no global block sequence and no genesis-hash convention that any ratified namespace expresses. Not EVM; no entry in chainid.network/chains.json."
+      ],
+      "note": "Nano does have a well-known genesis open block hash, so a future 'nano' namespace could use it - but nothing ratified consumes it today.",
+      "uncertainty": "None on the null - no candidate namespace exists.",
+      "publicLedger": true,
+      "url": "https://github.com/nanocurrency"
+    },
+    "MHG1P99M3": {
+      "caip2": "icon:1",
+      "longName": "ICON",
+      "kind": "public",
+      "confidence": "medium",
+      "assertedBy": null,
+      "evidence": [
+        "ICON identifies networks by a network ID (mainnet nid 0x1) under its own BTP/loopchain architecture: https://docs.icon.community/",
+        "No 'icon' namespace directory, PR or issue exists in https://github.com/ChainAgnostic/namespaces (checked full repo listing and issue/PR history)",
+        "data/platforms.json slug \"icon\" (confidence proposed)"
+      ],
+      "note": "ICON's native nid of 1 must NOT be written as eip155:1 - that is Ethereum mainnet. ICON's own ICON-EVM/Havah-adjacent chains are separate ledgers from ICON mainnet.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/icon-project"
+    },
+    "MN022525F": {
+      "caip2": "eip155:361",
+      "longName": "Theta Network",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains): chainId 361 = 'Theta Mainnet', shortName theta-mainnet"
+      ],
+      "note": "Theta's mainnet exposes an EVM-compatible execution layer at chainId 361. THETA (stake/governance) and TFUEL (gas) both live on this ledger. Testnets: 363/364/365.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/thetatoken"
+    },
+    "MQ5RG84D1": {
+      "caip2": null,
+      "longName": "Internet Computer",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "No anchor block hash or algorithm recorded by DTIF for this ledger.",
+        "No 'icp' / 'internetcomputer' / 'dfinity' directory exists in ChainAgnostic/namespaces (full root listing: acknacki, aleo, alephium, algorand, antelope, aptos, arweave, avalanche, bip122, bsv, casper, ccd, chia, conflux, cosmos, eip155, ergo, fil, flow, haneul, hedera, hive, iota, klv, koinos, mina, monero, mvx, neo, partisia, polkadot, quai, qubic, reef, solana, stacks, starknet, stellar, sui, swift, tenzro, tezos, tron, tvm, vechain, waves, xrpl, xync)."
+      ],
+      "note": "ICP's subnet/canister architecture has no single chain-level identifier that any ratified namespace expresses.",
+      "uncertainty": "None on the null itself - the namespace simply does not exist. If an 'icp' namespace is ratified later this record becomes resolvable.",
+      "publicLedger": true,
+      "url": "https://github.com/dfinity"
+    },
+    "N4MP5VH6L": {
+      "caip2": "mvx:1",
+      "longName": "MultiversX",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "CASA mvx namespace test cases: 'mvx:1' = MultiversX Mainnet, 'mvx:D' devnet, 'mvx:T' testnet: https://github.com/ChainAgnostic/namespaces/blob/main/mvx/caip2.md"
+      ],
+      "note": "MultiversX was renamed from Elrond in 2022; the ledger and its native erd_chain_id of '1' are unchanged.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/multiversx"
+    },
+    "N6196KP02": {
+      "caip2": null,
+      "longName": "Zcash",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "Zcash is a Bitcoin-derived UTXO chain with its own genesis block; the same identifier covers both transparent and shielded (Sprout/Sapling/Orchard) pools, which are pools within one ledger, not separate ledgers.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/zcash/zcash"
+    },
+    "N814NFKNH": {
+      "caip2": null,
+      "longName": "CryptoPerformance",
+      "kind": "unknown",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "The recorded 'hash' 7363704266782020000 is a 19-digit decimal string, not a 256-bit hash, despite the algo field claiming SHA-256. It carries no derivable chain reference.",
+        "No namespace in ChainAgnostic/namespaces corresponds to CryptoPerformance.",
+        "No entry in chainid.network/chains.json."
+      ],
+      "note": "The anchor data in the DTIF record appears malformed; nothing can be derived from it.",
+      "uncertainty": "Whether CryptoPerformance operates a distinct ledger at all, or whether its token is issued on a host chain. Kind left unknown.",
+      "publicLedger": true,
+      "url": "https://github.com/CPC-chain"
+    },
+    "NLJSC982W": {
+      "caip2": "eip155:321",
+      "longName": "KuCoin",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains): chainId 321 = 'KCC Mainnet', shortName kcs, currency KCS"
+      ],
+      "note": "'KuCoin' is the exchange; the ledger it sponsors is KuCoin Community Chain (KCC), a PoSA EVM chain with KCS as gas. Testnet is eip155:322.",
+      "uncertainty": "The DTIF long name is the exchange name rather than the chain name, so this rests on the inference that the registered ledger is KCC. If DTIF instead intended an internal KuCoin ledger, this mapping is wrong.",
+      "publicLedger": true,
+      "url": "https://github.com/Kucoin"
+    },
+    "NLVXQC04T": {
+      "caip2": "polkadot:daab8df776eb52ec604a5df5d388bb62",
+      "longName": "Composable Finance",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "DERIVED FROM THE DTIF ANCHOR: ChainAgnostic/namespaces polkadot/caip2.md - 'a 32 character-long HEX string, without the 0x prefix, representing the first half of the block 0 (genesis) hash'. First 32 hex of DTIF's BLAKE2b-256 anchor 0xdaab8df776eb52ec604a5df5d388bb62a050a0aaec4556a64265b9d42755552d = daab8df776eb52ec604a5df5d388bb62.",
+        "Independent confirmation that this hash is Composable's genesis: novasamatech/nova-utils chains/v21/preConfigured/details/daab8df776eb52ec604a5df5d388bb62a050a0aaec4556a64265b9d42755552d.json - Nova Wallet names Substrate chain files by genesis hash - contains {\"chainId\": \"daab8df7...552d\", \"name\": \"Composable Finance (SHUTTING DOWN)\", asset LAYR, node wss://rpc.composable.finance}.",
+        "polkadot/caip2.md explicitly scopes the namespace to 'all chains that implement the Polkadot Host protocol' including relay chains, solo chains and parachains (Crust solo chain is a listed test case), so a Polkadot parachain is in scope."
+      ],
+      "note": "Nova Wallet's registry labels this chain 'SHUTTING DOWN'; the parachain may no longer be producing blocks.",
+      "uncertainty": "Could not reach wss/https rpc.composable.finance directly to re-derive block 0 live; the genesis hash rests on the Nova Wallet registry file plus the DTIF anchor agreeing exactly.",
+      "publicLedger": true,
+      "url": "https://github.com/ComposableFi"
+    },
+    "NNDDVM68N": {
+      "caip2": null,
+      "longName": "Symbol",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "No 'symbol' / 'nem' directory in ChainAgnostic/namespaces.",
+        "The SHA3-256 anchor BEED005B82B22FC32DA6FDF4DFEB7C11BA6A8C5C504EB7B9CCF91B9B2A09E020 is consistent with a Symbol nemesis-block hash but has no ratified consumer.",
+        "Not EVM; no entry in chainid.network/chains.json."
+      ],
+      "note": "Symbol identifies networks by a 'generation hash seed' that would map cleanly onto a CAIP-2 reference if a namespace were ratified.",
+      "uncertainty": "Could not confirm whether the recorded value is Symbol's nemesis block hash or its network generation hash seed - the two differ, and a future namespace would have to pick one.",
+      "publicLedger": true,
+      "url": "https://github.com/symbol"
+    },
+    "NZ27XDL11": {
+      "caip2": null,
+      "longName": "Lightning Network",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "No anchor block hash or algorithm recorded by DTIF - consistent with Lightning having no blocks of its own.",
+        "Lightning is an off-chain payment-channel overlay whose state lives in bilateral channels settled onto Bitcoin; it has no genesis block and therefore no bip122-derivable reference.",
+        "No 'lightning' / 'ln' directory in ChainAgnostic/namespaces."
+      ],
+      "note": "Returning Bitcoin's own bip122:000000000019d6689c085ae165831e93 would erase the very distinction DTIF made by issuing a separate DLI.",
+      "uncertainty": "None on the null. BOLT does define chain_hash (Bitcoin's genesis) as a Lightning network selector, but that selector identifies the settlement chain, not Lightning as a ledger.",
+      "publicLedger": true,
+      "url": "https://github.com/lightningnetwork/lnd"
+    },
+    "P16TGKN3B": {
+      "caip2": "bip122:000000000019d6689c085ae165831e93",
+      "longName": "Ordinals",
+      "kind": "public",
+      "confidence": "medium",
+      "assertedBy": null,
+      "evidence": [
+        "Ordinals is a metaprotocol: an off-consensus numbering and inscription convention over Bitcoin satoshis, indexed by the `ord` client. It introduces no new consensus rules, blocks or ledger: https://docs.ordinals.com/",
+        "No 'ordinals' namespace directory or PR exists in https://github.com/ChainAgnostic/namespaces",
+        "data/platforms.json slug \"ordinals\" (confidence proposed)"
+      ],
+      "note": "Ordinals inscriptions live entirely on Bitcoin mainnet (bip122:000000000019d6689c085ae165831e93). I deliberately do NOT return Bitcoin's identifier here, because DTIF registers Bitcoin (PJP8FVDQ0), Ordinals and Atomicals (PH47SB44N) as three separate DLIs and collapsing them onto one CAIP-2 value would destroy that distinction. The correct statement is that Ordinals has no CAIP-2 chain of its own.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/ordinals/ord"
+    },
+    "P25PDQDDM": {
+      "caip2": "iota:mainnet",
+      "longName": "IOTA",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "CASA iota namespace: reference is 'mainnet'/'testnet'/'devnet' or the first 4 bytes of the genesis checkpoint digest; test case 'iota:mainnet' resolves to 6364aad5: https://github.com/ChainAgnostic/namespaces/blob/main/iota/caip2.md",
+        "Live JSON-RPC iota_getChainIdentifier on https://api.mainnet.iota.cafe returned 6364aad5"
+      ],
+      "note": "The equivalent hex form is iota:6364aad5. Caveat on era: this identifier describes the post-IOTA-Rebased (Move-based) mainnet. The DLI is older than Rebased and originally denoted the IOTA Tangle/Stardust ledger; IOTA treats this as one continuous mainnet, but a strict reading would say the underlying ledger technology changed.",
+      "uncertainty": "The CASA spec names the resolution method iotax_getChainIdentifier, but live mainnet nodes only answer iota_getChainIdentifier - a documented spec drift worth knowing if this is resolved automatically.",
+      "publicLedger": true,
+      "url": "https://github.com/iotaledger"
+    },
+    "PB3PJV2RC": {
+      "caip2": null,
+      "longName": "Axiology DLT TSS",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Axiology operates an EU DLT Pilot Regime DLT TSS (trading and settlement system) licensed by the Bank of Lithuania, running a PERMISSIONED fork of the XRP Ledger with Proof-of-Authority consensus and validators restricted to licensed financial entities: https://www.axiology.lt/technology",
+        "DTIF dltType=0/permissioned institutional platform; no public genesis block or public chain identifier exists"
+      ],
+      "note": "Although derived from the XRP Ledger, this is a separate private instance, so it is NOT xrpl:0 (XRPL mainnet) and has no public network id. Do not map it onto the public XRPL.",
+      "uncertainty": null,
+      "publicLedger": false,
+      "url": null
+    },
+    "PBDHRBMWP": {
+      "caip2": "cosmos:Binance-Chain-Tigris",
+      "longName": "Binance Beacon Chain",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "BNB Chain node-dump README chain-id table: 'Binance-Chain-Tigris' (mainnet), 'Binance-Chain-Ganges' (testnet): https://github.com/bnb-chain/node-dump/blob/master/Readme.md",
+        "Also referenced in https://github.com/bnb-chain/token-bind-tool/blob/master/README.md",
+        "cosmos namespace allows any Tendermint chain_id matching [-a-zA-Z0-9]{1,32} as a direct reference: https://github.com/ChainAgnostic/namespaces/blob/main/cosmos/caip2.md"
+      ],
+      "note": "HALTED LEDGER. BNB Beacon Chain stopped processing transactions at the Fusion final sunset fork, block 384,544,850, 2024-11-19 06:00 UTC (https://www.bnbchain.org/en/blog/final-sunset-plan-of-bnb-beacon-chain). Not to be confused with BNB Smart Chain (eip155:56). The reference is mixed-case and CAIP-2 references are case-sensitive, so the capitals must be preserved exactly.",
+      "uncertainty": "Judgment call on the namespace: Beacon Chain is Tendermint-based and its chain-id fits the cosmos syntax, but it is not a Cosmos SDK chain and is absent from the Cosmos Chain Registry, so a reviewer could reasonably argue 'cosmos:' is the wrong namespace for it.",
+      "publicLedger": true,
+      "url": "https://github.com/bnb-chain/node"
+    },
+    "PH47SB44N": {
+      "caip2": null,
+      "longName": "Atomicals",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "PROVEN NOT A GENESIS: the anchor 0000000000000000000211eb82135b8f5d8be921debf8eff1d6b38b73bc03834 resolves on the Bitcoin mainnet to block height 808080, timestamp 1694929054 (2023-09-17) - queried at https://blockstream.info/api/block/<hash>. Bitcoin's genesis is 000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f.",
+        "Atomicals is a metaprotocol inscribed on Bitcoin UTXOs, not an independent ledger with its own genesis block.",
+        "Returning bip122:000000000019d6689c085ae165831e93 would make Atomicals indistinguishable from Bitcoin itself, which is exactly the distinction DTIF registered by giving it a separate DLI."
+      ],
+      "note": "808080 is a vanity height, plausibly chosen as a symbolic protocol anchor rather than a protocol-activation block.",
+      "uncertainty": "No CAIP standard exists for addressing Bitcoin metaprotocols (Atomicals, Ordinals, Runes, BRC-20) as distinct chains; if one is ratified this record becomes resolvable.",
+      "publicLedger": true,
+      "url": "https://github.com/atomicals"
+    },
+    "PJP8FVDQ0": {
+      "caip2": null,
+      "longName": "Bitcoin",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "Bitcoin mainnet - the canonical bip122 example. Note that DTIF separately registers Bitcoin metaprotocols (Ordinals P16TGKN3B, Atomicals PH47SB44N) and the Lightning Network (NZ27XDL11); those ride on this same ledger but are not themselves CAIP-2 chains.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/bitcoin/bitcoin"
+    },
+    "PTF2DF6F1": {
+      "caip2": "cosmos:secret-4",
+      "longName": "Secret",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Cosmos Chain Registry: https://raw.githubusercontent.com/cosmos/chain-registry/master/secretnetwork/chain.json -> chain_id 'secret-4'",
+        "Live RPC /status node_info.network returned 'secret-4'"
+      ],
+      "note": "Chain-id history: secret-1 (launch 2020-02-13) -> secret-2 (2020-09-15 hard fork enabling Secret Contracts) -> secret-3 (emergency fork after the Sep 2021 SecretSwap Earn contract exploit) -> secret-4 (current).",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/scrtlabs/SecretNetwork/"
+    },
+    "PXW7VQ0RC": {
+      "caip2": "eip155:42161",
+      "longName": "Arbitrum",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains): chainId 42161 = 'Arbitrum One', shortName arb1"
+      ],
+      "note": "Read as Arbitrum One, Offchain Labs' main rollup. Arbitrum Nova is a separate ledger (eip155:42170), as is Arbitrum Sepolia (421614). The deprecated Arbitrum Nitro devnet/Rinkeby/Goerli chains are 421611/421613.",
+      "uncertainty": "The DTIF long name is the bare word 'Arbitrum', which is the brand rather than a specific chain. Arbitrum One is by far the most likely referent, but if DTIF meant Nova or the Orbit family generically this would be wrong.",
+      "publicLedger": true,
+      "url": "https://developer.arbitrum.io/tx-lifecycle"
+    },
+    "Q005CK5KV": {
+      "caip2": "bip122:ebe158d09325c470276619ebc5f7f87c",
+      "longName": "Stratis Old",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "DERIVED FROM THE DTIF ANCHOR: stratisproject/StratisFullNode src/Stratis.Bitcoin.Networks/StraxMain.cs line 199 asserts `this.Consensus.HashGenesisBlock == uint256.Parse(\"0xebe158d09325c470276619ebc5f7f87c98c0ed4b211c46a17a6457655811d082\")`, and line 155 registers it as the height-0 checkpoint. The same constant appears in block-core/blockcore src/Networks/Blockcore.Networks.Strax/StraxMain.cs. So the DTIF anchor IS a genesis block hash, specifically the STRAX mainnet genesis.",
+        "bip122/caip2.md: reference = 'a 32-character prefix from the hash of the genesis block of a given chain, in lowercase hex'. First 32 hex of ebe158d09325c470276619ebc5f7f87c98c0... = ebe158d09325c470276619ebc5f7f87c.",
+        "For contrast, the ORIGINAL pre-2020 Stratis (STRAT) chain has a different genesis: StratisMain.cs line 224 asserts 0x0000066e91e46e5a264d42c89e1204963b2ee6be230b443e9159020539d972af."
+      ],
+      "note": "TRAP CHECKED, AND THE ANCHOR WINS. The name says 'Old' but the hash provably belongs to STRAX (the 2020 successor chain), not to the original STRAT chain. The most coherent reading is that DTIF's 'Stratis Old' means the legacy non-EVM STRAX main chain as distinct from Stratis's newer EVM chain, and the STRAX token blocked on this DLI does live on the chain identified here.",
+      "uncertainty": "If DTIF instead meant the pre-2020 STRAT chain, the correct answer would be bip122:0000066e91e46e5a264d42c89e120496. The name and the anchor point at different eras and only DTIF can adjudicate which it meant; I followed the anchor because it is the verifiable evidence.",
+      "publicLedger": true,
+      "url": "https://github.com/stratisproject"
+    },
+    "Q0KRRXG4V": {
+      "caip2": null,
+      "longName": "Hyperledger Besu",
+      "kind": "unknown",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Hyperledger Besu is an Apache-2.0 Ethereum CLIENT implementation, not a network: https://github.com/hyperledger/besu . It can run Ethereum mainnet, public testnets, or any number of independent private IBFT/QBFT/Clique networks.",
+        "There is no single ledger, genesis block or chain id associated with 'Hyperledger Besu' as such"
+      ],
+      "note": "This DTIF record names software rather than a ledger, so no CAIP-2 identifier can be correct for it. In DTIF's institutional context it most likely stands in for private Besu-based consortium networks, each of which would have its own private genesis file and unregistered chain id.",
+      "uncertainty": "Classified 'unknown' rather than 'permissioned' precisely because Besu also runs the fully public Ethereum mainnet (eip155:1); the record is a category error and needs a DTIF clarification, not a guess.",
+      "publicLedger": false,
+      "url": null
+    },
+    "Q2QMCF6T4": {
+      "caip2": null,
+      "longName": "Shimmer",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "No anchor block hash or algorithm recorded by DTIF for this ledger.",
+        "ChainAgnostic/namespaces iota/caip2.md defines iota:<network> with regex ^iota:(mainnet|testnet|devnet|[a-f0-9]{8})$, where the hex form is the first 4 bytes of the genesis CHECKPOINT digest resolved via iotax_getChainIdentifier. That is the IOTA Rebased (Move/object) network - Shimmer's Stardust L1 is not among the covered networks and exposes no checkpoint digest.",
+        "ShimmerEVM (eip155:148, per chainid.network/chains.json) is a separate L2 ledger, not the SMR base layer this record names."
+      ],
+      "note": "Do not substitute eip155:148 - that identifies ShimmerEVM, a different ledger from the Shimmer L1 that holds native SMR.",
+      "uncertainty": "Whether DTIF's 'Shimmer' record was intended to cover ShimmerEVM as well; with no anchor hash there is nothing to disambiguate on.",
+      "publicLedger": true,
+      "url": "https://github.com/iotaledger"
+    },
+    "Q4Z61PXHS": {
+      "caip2": "avax:imji8papUf2EhV3le337w1vgFauqkJg-",
+      "longName": "Avalanche X-Chain",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "CASA avalanche namespace, namespace string is 'avax'; test case X-Chain Mainnet (blockchainID 2oYMBNV4eNHyqk2fjjV5nVQLDbtmNJzq5s3qs3Lo6ftnC6FByM) = 'avax:imji8papUf2EhV3le337w1vgFauqkJg-': https://github.com/ChainAgnostic/namespaces/blob/main/avalanche/caip2.md"
+      ],
+      "note": "Reference = first_32_chars(base64url(sha256(blockchainID))). The X-Chain is Avalanche's AVM (UTXO asset chain) and is a genuinely different ledger from the C-Chain (EVM, avax:8aDU0Kqh-5d23op-B-r-4YbQFRbsgF9a / eip155:43114) and the P-Chain (avax:Rr9hnPVPxuUvrdCul-vjEsU1zmqKqRDo).",
+      "uncertainty": "The avax profile is a Draft in the CASA namespaces repo and its base64url references are much less widely implemented than eip155 - tooling that only understands eip155 will not resolve this.",
+      "publicLedger": true,
+      "url": "https://github.com/ava-labs/avalanchego"
+    },
+    "Q85CZRDQX": {
+      "caip2": null,
+      "longName": "Pi Network",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "ChainAgnostic/namespaces stellar/caip2.md states 'the only known chain IDs are testnet and pubnet' - the reference is a network designation, not a hash, and the spec does not extend to Stellar-derived forks.",
+        "Pi Network runs a Stellar Consensus Protocol fork with its own network passphrase, so it is neither stellar:pubnet nor stellar:testnet; using either would relocate PI onto Stellar.",
+        "No 'pi' directory in ChainAgnostic/namespaces."
+      ],
+      "note": "Marked permissioned: Pi's mainnet has operated behind a KYC firewall with a Pi-Core-selected validator set.",
+      "uncertainty": "The DTIF anchor af5e4f8ad2331ddec839022a70278c808f1a1ad2782fdc9dd1542fca165f8947 is consistent with a Stellar-style ledger hash but could not be matched to a public Pi ledger explorer.",
+      "publicLedger": true,
+      "url": "https://github.com/pi-apps/pi-platform-docs"
+    },
+    "QF30CMTN1": {
+      "caip2": null,
+      "longName": "HSBC Orion HK Platform operated by CMU OmniClear",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "HSBC Orion is HSBC's private tokenised-securities platform; the Hong Kong deployment is operated with the HKMA's Central Moneymarkets Unit (CMU) via CMU OmniClear for HKSAR digital green bonds: https://www.gbm.hsbc.com/en-gb/solutions/tokenisation",
+        "DTIF dltType=0/permissioned institutional platform; no public genesis block or public chain identifier exists"
+      ],
+      "note": "A bank/CSD-operated permissioned ledger with a closed participant set. No public genesis block and no CAIP-2 identifier.",
+      "uncertainty": null,
+      "publicLedger": false,
+      "url": null
+    },
+    "R6F3JGFKG": {
+      "caip2": "mina:mainnet",
+      "longName": "Mina",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "CASA mina namespace test cases include 'mina:mainnet'; reference is the human-readable networkID returned by the node's GraphQL networkID query: https://github.com/ChainAgnostic/namespaces/blob/main/mina/caip2.md"
+      ],
+      "note": null,
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/MinaProtocol/mina"
+    },
+    "R7M79T7SJ": {
+      "caip2": null,
+      "longName": "BME Digital Bond",
+      "kind": "permissioned",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "BME (Bolsas y Mercados Espanoles, SIX group) issued its digital bond on a permissioned blockchain operated within BME's regulated market infrastructure under the Spanish regulatory sandbox: https://www.bolsasymercados.es/",
+        "DTIF dltType=0/permissioned institutional platform; no public genesis block or public chain identifier exists"
+      ],
+      "note": "An issuance platform run by the Spanish exchange/CSD for a specific digital bond programme, not an open network. No public genesis block, no CAIP-2 identifier.",
+      "uncertainty": null,
+      "publicLedger": false,
+      "url": null
+    },
+    "RFBQBXZ53": {
+      "caip2": null,
+      "longName": "Dogecoin",
+      "kind": "public",
+      "confidence": null,
+      "assertedBy": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "note": "Dogecoin mainnet, one of the seven chains enumerated in the CASA bip122 profile. Testnet is bip122:bb0a78264637406b6360aad926284d54.",
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data",
+      "publicLedger": true,
+      "url": "https://github.com/dogecoin/dogecoin"
+    },
+    "S3T1QFHZC": {
+      "caip2": "tvm:42",
+      "longName": "Everscale",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "CASA tvm namespace test cases: 'tvm:42' = Everscale mainnet (global id 42), 'tvm:-239' = TON mainnet: https://github.com/ChainAgnostic/namespaces/blob/main/tvm/caip2.md"
+      ],
+      "note": "Everscale (formerly Free TON) is a TVM-family chain; the reference is the global_id field present in every block. The same namespace covers TON.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://docs.everscale.network/"
+    },
+    "SC4Q9C6NS": {
+      "caip2": "eip155:32769",
+      "longName": "Zilliqa",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains): chainId 32769 = 'Zilliqa 2', shortName zil",
+        "Live eth_chainId on https://api.zilliqa.com returned 0x8001 = 32769",
+        "Zilliqa docs: EVM chainId = native chain id | 0x8000, https://dev.zilliqa.com/zilliqa2/api/apis/api/eth/eth_chainId/"
+      ],
+      "note": "Zilliqa's native identifier is a small integer CHAIN_ID (GetNetworkId returns '1' for mainnet); there is no 'zilliqa' CASA namespace. eip155:32769 addresses the same mainnet ledger through its EVM API and is the only standards-conformant identifier available. This is the Zilliqa 2.0 mainnet, a protocol upgrade of the same chain rather than a new ledger.",
+      "uncertainty": "Using eip155 for Zilliqa describes the EVM interface rather than the native (Scilla) ledger identity; a reviewer could argue Zilliqa deserves its own namespace and that this record should be null.",
+      "publicLedger": true,
+      "url": "https://github.com/Zilliqa/Zilliqa"
+    },
+    "SKCH3R4DJ": {
+      "caip2": "eip155:30",
+      "longName": "Rootstock Smart Bitcoin",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains): chainId 30 = 'Rootstock Mainnet', shortName rsk, currency RBTC"
+      ],
+      "note": "Rootstock (formerly RSK) is a merge-mined Bitcoin sidechain with an EVM; RBTC is 1:1 pegged BTC. 'Smart Bitcoin' is the name of its gas asset. Testnet is eip155:31.",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/rsksmart"
+    },
+    "SMC50G33X": {
+      "caip2": "eip155:66",
+      "longName": "OKT Chain",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "https://chainid.network/chains.json (ethereum-lists/chains): chainId 66 = 'OKXChain Mainnet', shortName okt, chain okxchain"
+      ],
+      "note": "Formerly OKExChain; the ethereum-lists entry was renamed to OKXChain without a chain-id change. Testnet is eip155:65. Distinct from OKX's X Layer zkEVM (eip155:196).",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/okex/okexchain"
+    },
+    "SP596C51G": {
+      "caip2": "eip155:1492",
+      "longName": "2Chain B2M",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "Live eth_chainId on https://rpc.2chain.bit2me.com returned 0x5d4 = 1492 (queried 2026-09-14)",
+        "Blockscout explorer for the network: https://explorer.2chain.bit2me.com/stats",
+        "chainId 1492 is unclaimed in https://chainid.network/chains.json (ethereum-lists/chains)"
+      ],
+      "note": "2Chain is an EVM chain operated by the Spanish exchange Bit2Me (B2M is its token). Its explorer and RPC are publicly readable, but the chain id is not registered in ethereum-lists.",
+      "uncertainty": "Publicly readable does not prove permissionless: I could not establish whether validation is open or operator-controlled, so 'public' here means 'publicly accessible EVM chain', and the chainId is unregistered so a future ethereum-lists collision at 1492 is possible.",
+      "publicLedger": true,
+      "url": null
+    },
+    "T760B4T94": {
+      "caip2": "hive:beeab0de000000000000000000000000",
+      "longName": "Hive",
+      "kind": "public",
+      "confidence": "proposed",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "evidence": [
+        "CASA hive namespace test case: 'hive:beeab0de000000000000000000000000'; reference is the first 32 lowercase hex chars of HIVE_CHAIN_ID from database_api.get_config: https://github.com/ChainAgnostic/namespaces/blob/main/hive/caip2.md"
+      ],
+      "note": "Hive forked from Steem in March 2020 and is a distinct ledger from Steem (which has no CAIP-2 profile).",
+      "uncertainty": null,
+      "publicLedger": true,
+      "url": "https://github.com/openhive-network/hive"
+    },
+    "J0JT9FGS0": {
+      "longName": "Allora",
+      "publicLedger": true,
+      "url": "https://github.com/allora-network",
+      "evidence": [
+        "LIVE CONFIRMATION: https://allora-rpc.polkachu.com/status returns node_info.network = 'allora-mainnet-1'.",
+        "cosmos/chain-registry allora/chain.json: chain_id 'allora-mainnet-1', chain_name 'allora', network_type 'mainnet'.",
+        "Per CAIP-2 the cosmos namespace reference is the Tendermint chain-id string itself, so the DTIF anchor (SHA-256 Tendermint block hash 3F3F8473FD7AE262A3D085D7F4D88F9F4295944A1432A9FFF88D9DAFC2E081C3) is corroborating rather than derivational."
+      ],
+      "kind": "public",
+      "confidence": "proposed",
+      "caip2": "cosmos:allora-mainnet-1",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "note": "Allora is a sovereign Cosmos SDK L1; mainnet launched November 2025.",
+      "uncertainty": "The specific anchor block hash was not verified - public nodes are pruned and returned HTTP 500 for /block?height=1."
+    },
+    "F2FWGL09C": {
+      "longName": "zkVerify",
+      "publicLedger": true,
+      "url": "https://github.com/zkVerify/zkVerify",
+      "evidence": [
+        "DERIVED FROM THE DTIF ANCHOR: chain_getHeader(0xfbaf1298376210962571f29bf101782053f01a0a6b4a093624013b9f1d59b23b) on the official https://zkverify-rpc.zkverify.io returns a header with number 0x1 and parentHash 0x060e3dd3fa2904d031206bb913c954687a2bcc350e5a83d33d9e273ad21460f1. DTIF anchored on BLOCK #1, not block 0; its parent is the genesis.",
+        "Cross-checked both ways: chain_getBlockHash(0) = 0x060e3dd3fa2904d031206bb913c954687a2bcc350e5a83d33d9e273ad21460f1 and chain_getBlockHash(1) = 0xfbaf1298...b23b (exactly the DTIF anchor). system_chain = 'zkVerify'.",
+        "polkadot/caip2.md: reference = first 32 hex of the genesis hash, and the namespace 'encompass[es] all chains that implement the Polkadot Host protocol', explicitly including solo chains (Crust Network is a listed test case). First 32 hex of 060e3dd3fa2904d031206bb913c954687a2... = 060e3dd3fa2904d031206bb913c95468."
+      ],
+      "kind": "public",
+      "confidence": "proposed",
+      "caip2": "polkadot:060e3dd3fa2904d031206bb913c95468",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "note": "CORRECTION TO A COMMON ASSUMPTION: zkVerify is NOT an EVM chain. DTIF's algo field 'Keccak-256' is wrong - the hash is a BLAKE2b-256 Substrate block hash, as proven by the fact that the zkVerify Substrate node resolves it. docs.zkverify.io states EVM-only wallets cannot interact with the native chain. There is no zkVerify eip155 chain ID; the EVM-compatible VFlow is a separate chain.",
+      "uncertainty": "None material. The only judgement call is that a standalone (non-parachain) Substrate L1 belongs in the polkadot namespace - which polkadot/caip2.md explicitly permits."
+    },
+    "4LK9BCGBF": {
+      "longName": "Plume",
+      "publicLedger": true,
+      "url": "https://github.com/plumenetwork",
+      "evidence": [
+        "data/platforms.json slug \"plume-network\" (confidence medium)"
+      ],
+      "caip2": "eip155:98866",
+      "kind": "public",
+      "confidence": "medium",
+      "assertedBy": null
+    },
+    "GVZ17GPVW": {
+      "longName": "zenanet",
+      "publicLedger": true,
+      "url": "https://github.com/zenanetwork/zena",
+      "evidence": [
+        "LIVE CONFIRMATION, two independent endpoints: https://rpc.zenanet.io/status (Tendermint) returns node_info.network = 'zena_15150-1'; https://scan.zenanet.io/api/eth-rpc eth_chainId returns 0x3b2e = 15150. The Cosmos chain-id embeds the same EIP-155 id, as Cosmos EVM chains do.",
+        "Project identification: github.com/zenanetwork/zena - 'Zenanet is a high-performance blockchain network built on Cosmos EVM technology', bech32 prefix 'zenanet'; the org also runs zenanetwork/blockscout, which is the explorer at scan.zenanet.io (backend v9.0.2).",
+        "DTIF's Keccak-256 anchor establishes that the registered ledger is the EVM execution layer; per CAIP-2 eip155 the reference is the chain ID, not the hash."
+      ],
+      "kind": "public",
+      "confidence": "proposed",
+      "caip2": "eip155:15150",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "note": "cosmos:zena_15150-1 is the equivalent Cosmos-side identifier for the same network if the consensus layer is what is meant.",
+      "uncertainty": "SIGNIFICANT: the DTIF anchor 0xb05672f1a52bb36faa86722c151930f09aac4c2b852dc340e998787270ce9d43 could NOT be found on the live chain - eth_getBlockByHash returns 'block not found' (the same call succeeds for a known hash, so the method works), and the Blockscout v2 block endpoint returns 'Not found'. The live chain's block 1 is dated 2025-10-31, so the anchor most likely belongs to a pre-relaunch instance of the network. eip155:15150 identifies the network operating today; a reviewer should confirm DTIF is not pointing at a superseded genesis."
+    },
+    "2D6172M61": {
+      "longName": "HashKey Platform",
+      "publicLedger": true,
+      "url": "https://github.com/hashkey-chain/hashkey-chain",
+      "evidence": [
+        "data/platforms.json slug \"hashkey-chain\" (confidence medium)"
+      ],
+      "caip2": "eip155:177",
+      "kind": "public",
+      "confidence": "medium",
+      "assertedBy": null
+    },
+    "TVJ8CVVTX": {
+      "longName": "dYdX Chain",
+      "publicLedger": true,
+      "url": "https://github.com/dydxprotocol",
+      "evidence": [
+        "LIVE CONFIRMATION: https://dydx-rpc.polkachu.com/status returns node_info.network = 'dydx-mainnet-1'.",
+        "cosmos/chain-registry dydx/chain.json records chain_id 'dydx-mainnet-1', bech32_prefix 'dydx', daemon dydxprotocold.",
+        "Per CAIP-2 the cosmos namespace reference is the Tendermint chain-id string; DTIF's SHA-256 (Base32) anchor 216C2F4EEBC12169BD3D1061C1C1D8B180DCA43B3D7E94FE4A9F608FF5EB67D7 is a Tendermint block hash and is corroborating, not derivational."
+      ],
+      "kind": "public",
+      "confidence": "proposed",
+      "caip2": "cosmos:dydx-mainnet-1",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "note": "dYdX v4; the standalone Cosmos L1 whose genesis was produced 2023-10-27. Distinct from the earlier dYdX StarkEx deployment on Ethereum.",
+      "uncertainty": "The specific anchor block hash was not verified - pruned public nodes returned HTTP 500 for /block?height=1."
+    },
+    "CCG01S2TT": {
+      "longName": "Self Chain",
+      "publicLedger": true,
+      "url": "https://github.com/selfchainxyz",
+      "evidence": [
+        "cosmos/chain-registry self/chain.json: chain_id 'self-1', chain_name 'self', pretty_name 'Self Chain', network_type 'mainnet', bech32_prefix 'self'.",
+        "docs.selfchain.xyz wallet setup lists chain ID self-1, address prefix 'self', denom uslf; mainnet launched 2024-06-06.",
+        "Per CAIP-2 the cosmos namespace reference is the chain-id string; DTIF's anchor 25F76926B0DB4B83F9E3C4A8E4D2447C1DF1992DC6AA02DF70467E84B019B085 is a Tendermint-style block hash and is corroborating."
+      ],
+      "kind": "public",
+      "confidence": "proposed",
+      "caip2": "cosmos:self-1",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "note": "DTIF's algo field says SHAKE-256, which is unusual for a Tendermint chain (block hashes are SHA-256); this does not affect the cosmos reference, which is the chain-id string.",
+      "uncertainty": "Could not reach a live Self Chain RPC (rpc.selfchain.io timed out, publicnode returned 404), so 'self-1' rests on the Cosmos chain-registry plus vendor docs rather than a live node query."
+    },
+    "HGKSHLJ9M": {
+      "longName": "Ink",
+      "publicLedger": true,
+      "url": "https://github.com/inklabsfoundation",
+      "evidence": [
+        "data/platforms.json slug \"ink\" (confidence low)"
+      ],
+      "caip2": "eip155:57073",
+      "kind": "public",
+      "confidence": "medium",
+      "assertedBy": null
+    },
+    "QLK5DG37G": {
+      "longName": "Plasma",
+      "publicLedger": true,
+      "url": "https://docs.plasma.to/docs/get-started/introduction/start-here",
+      "evidence": [
+        "data/platforms.json slug \"plasma\" (confidence high)"
+      ],
+      "caip2": "eip155:9745",
+      "kind": "public",
+      "confidence": "medium",
+      "assertedBy": null
+    },
+    "283701TWM": {
+      "longName": "Pocket Network",
+      "publicLedger": true,
+      "url": "https://github.com/pokt-network/pocket-core",
+      "evidence": [
+        "ethereum-lists unique name match for \"Pocket Network\""
+      ],
+      "caip2": "eip155:7258",
+      "kind": "public",
+      "confidence": "medium",
+      "assertedBy": null
+    },
+    "F7FJKHTC1": {
+      "longName": "AB Core",
+      "publicLedger": true,
+      "url": "https://www.ab.org/en/aips/",
+      "evidence": [
+        "ethereum-lists unique name match for \"AB Core\""
+      ],
+      "caip2": "eip155:36888",
+      "kind": "public",
+      "confidence": "medium",
+      "assertedBy": null
+    },
+    "K24JW3PCS": {
+      "longName": "Reactive Network",
+      "publicLedger": true,
+      "url": "https://reactive.network/",
+      "evidence": [
+        "ethereum-lists unique name match for \"Reactive Network\""
+      ],
+      "caip2": "eip155:1597",
+      "kind": "public",
+      "confidence": "medium",
+      "assertedBy": null
+    },
+    "PCKNL6864": {
+      "longName": "Decentralized Social",
+      "publicLedger": true,
+      "url": "https://github.com/deso-protocol",
+      "caip2": null,
+      "kind": "public",
+      "confidence": null,
+      "evidence": [
+        "DTIF free monthly snapshot: DLI and long name only; no public source matched to a CAIP-2 yet"
+      ],
+      "assertedBy": null,
+      "uncertainty": "no independent evidence for a CAIP-2; re-derivable from the chain's public genesis data"
+    },
+    "Q4RS231QL": {
+      "longName": "Movement",
+      "publicLedger": true,
+      "url": "https://github.com/movementlabsxyz/movement-docs",
+      "evidence": [
+        "data/platforms.json slug \"movement\" (confidence proposed)"
+      ],
+      "caip2": "movement:126",
+      "kind": "public",
+      "confidence": "medium",
+      "assertedBy": null
+    },
+    "MZ5M6DZGB": {
+      "longName": "Hyperliquid HyperEVM",
+      "publicLedger": true,
+      "url": "https://github.com/hyperliquid-dex",
+      "evidence": [
+        "Live RPC confirmation: POST eth_chainId to https://rpc.hyperliquid.xyz/evm (the endpoint published in Hyperliquid's own docs, hyperliquid.gitbook.io 'How to use the HyperEVM') returns 0x3e7 = 999.",
+        "chainlist.org/chain/999 lists HyperEVM with native gas token HYPE and RPC https://rpc.hyperliquid.xyz/evm.",
+        "DTIF's Keccak-256 anchor 0xde151843548b88d06f201d86e860e45fbf07d49612f1934fba5746abd942fb01 establishes the ledger is EVM; per CAIP-2 eip155 the reference is the chain ID, not the hash."
+      ],
+      "kind": "public",
+      "confidence": "proposed",
+      "caip2": "eip155:999",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "note": "This is only the EVM layer. Hyperliquid's HyperCore order book is a separate execution environment with no CAIP-2 chain identifier, and assets held there are not addressed by eip155:999.",
+      "uncertainty": "The anchor hash could not be checked against block 0 - the public node rejects height 0 ('invalid block height: 0'). Also note ethereum-lists/chains still carries a stale eip155-999 entry for 'Wanchain Testnet', so 999 is a contested chain ID in that registry even though the live Hyperliquid node claims it."
+    },
+    "N449BXPN1": {
+      "longName": "Aleo",
+      "publicLedger": true,
+      "url": "https://github.com/AleoNet",
+      "evidence": [
+        "DERIVED FROM THE DTIF ANCHOR, EXACT MATCH: https://api.explorer.provable.com/v1/mainnet/block/0 returns block_hash = ab19dklwl9vp63zu3hwg57wyhvmqf92fx5g8x0t6dr72py8r87pxupqfne5t9 at height 0 with header.metadata.network = 0. That is character-for-character the DTIF anchor, proving it is the Aleo MAINNET GENESIS block hash.",
+        "ChainAgnostic/namespaces aleo/caip2.md: reference is 'the chain id', an unsigned 16-bit network identifier, with test cases aleo:0 = Aleo Mainnet and aleo:1 = Aleo Testnet. The network id returned alongside the matching genesis is 0.",
+        "DTIF's algo label 'SHA-256' is loose - the value is Aleo's bech32m 'ab1'-prefixed block hash - but the value itself is exact."
+      ],
+      "kind": "public",
+      "confidence": "proposed",
+      "caip2": "aleo:0",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "note": "Anchor and namespace agree independently: the genesis hash identifies the network, and that network self-reports id 0, which is exactly the aleo namespace's reference.",
+      "uncertainty": "None material."
+    },
+    "GKVMFQHLH": {
+      "longName": "Ap3x Fusion",
+      "publicLedger": true,
+      "url": "https://github.com/Apex-Fusion",
+      "evidence": [
+        "Apex Fusion is not one chain but three: Prime (UTXO L1, Cardano-derived, where AP3X is native and staked), Vector (UTXO L2), and Nexus (EVM L2 = eip155:9069, shortName AP3X, per chainid.network/chains.json).",
+        "DTIF's anchor c437e0df9c36acfb304f97eb57cb720bdc7cf2e5e652ad9a58a168e9f7484314 is recorded as BLAKE2s-256. BLAKE2-family hashing points at the Cardano-derived UTXO layer (Prime/Vector), NOT at Nexus, whose block hashes would be Keccak-256.",
+        "There is no 'cardano' directory in ChainAgnostic/namespaces, so the Cardano-derived layers have no ratified namespace at all."
+      ],
+      "kind": "public",
+      "confidence": "proposed",
+      "caip2": null,
+      "assertedBy": null,
+      "note": "eip155:9069 (Apex Fusion - Nexus Mainnet) would be wrong here: the anchor's hash algorithm rules out the EVM layer, and Nexus is a different ledger from the one the anchor describes.",
+      "uncertainty": "Which of Prime or Vector the DTIF record names cannot be determined from the anchor alone, and neither has a namespace. Could not locate a public Prime genesis hash to match against."
+    },
+    "CX5QR7FRT": {
+      "longName": "AB IoT",
+      "publicLedger": true,
+      "url": "https://www.ab.org/en/aips/",
+      "evidence": [
+        "DERIVED FROM THE DTIF ANCHOR, EXACT MATCH: eth_getBlockByNumber('0x0') on https://global.rpc.mainnet.newtonproject.org returns block 0 hash = 0x76905a2eb73637a713922cc3c12561e1e2711efccbefa7198c7635ba2a7d1ed6, character-for-character the DTIF anchor. The same node returns eth_chainId = 0x3f4 = 1012.",
+        "chainid.network/chains.json entry eip155-1012: name 'Newton', chain 'NEW', shortName 'new', infoURL https://www.newtonproject.org/ - corroborating the chain ID that the live node reports.",
+        "Lineage confirmed: ab.org documentation describes AB as a modular network where 'the AB IoT chain (formerly AB Mainnet) focuses on IoT data on-chain and asset interaction scenarios'; AB is the rebrand of the Newton project, so AB IoT is the Newton NewChain mainnet under its current name."
+      ],
+      "kind": "public",
+      "confidence": "proposed",
+      "caip2": "eip155:1012",
+      "assertedBy": "claude-opus-5 (far agent fleet, 2026-09-14)",
+      "note": "NOT eip155:36888 - that is AB Core Mainnet, a different AB network whose genesis (0xb247d77242ca8e314af087f1b8a3e3b54d45fc76c02458d53fea171059419c0f, queried live) does not match the anchor. The anchor cleanly separates the two AB chains.",
+      "uncertainty": "None material. The only caveat is that chainid.network still lists eip155:1012 under the pre-rebrand name 'Newton'."
+    }
+  }
+}
