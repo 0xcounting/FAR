@@ -1,0 +1,53 @@
+name: Dispute a registry entry
+description: Claim that FAR says something false about an asset, a chain, or a link.
+labels: [dispute]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A maintainer will mark the entry `disputed: true` within 7 days — **before**
+        deciding who is right — so that consumers can see the contest while it is
+        running. See GOVERNANCE.md, "Disputes".
+
+        Note what a dispute **cannot** do: a CAIP-19 is derived from a chain ID and
+        a contract address. It is not ours to withdraw, and a naming disagreement
+        does not change what is deployed on chain.
+  - type: input
+    id: route
+    attributes:
+      label: Which entry?
+      description: The exact published route, or the table and key in data/.
+      placeholder: /caip/eip155/1/erc20/0xdac17f958d2ee523a2206206994597c13d831ec7.json
+    validations: { required: true }
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is wrong?
+      options:
+        - A DTI is linked to the wrong CoinGecko asset
+        - A CoinGecko asset is linked to the wrong DTI
+        - A CAIP-19 is malformed or points at the wrong chain
+        - A platform is mapped to the wrong chain ID
+        - Two distinct assets have been merged
+        - One asset has been split into two entries
+        - Something else
+    validations: { required: true }
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: |
+        What can someone who does not trust either of us check for themselves?
+        A transaction, a deployment, a DTIF record, an official announcement.
+        "This is our token" is not evidence.
+    validations: { required: true }
+  - type: textarea
+    id: correct
+    attributes:
+      label: What should it say instead?
+    validations: { required: true }
+  - type: input
+    id: interest
+    attributes:
+      label: Your interest, if any
+      description: Are you the issuer, a holder, a competitor, a data vendor? Disclosure is not disqualifying; hiding it is.
