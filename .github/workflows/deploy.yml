@@ -1,0 +1,118 @@
+name: deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Pages needs id-token; the release step needs contents:write.
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: far-deploy
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      root: ${{ steps.build.outputs.root }}
+      version: ${{ steps.build.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - run: node src/validate.js
+      - id: build
+        run: |
+          node src/build.js
+          echo "root=$(node -e "console.log(require('./dist/manifest.json').merkleRoot)")" >> $GITHUB_OUTPUT
+          echo "version=$(node -e "console.log(require('./dist/manifest.json').version)")" >> $GITHUB_OUTPUT
+
+      # GitHub Pages applies no file-count limit, which is why it is the
+      # canonical origin: the dump is ~79k files and Cloudflare Workers Static
+      # Assets caps at 20,000 on the free plan and 100,000 on paid.
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: dist }
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: far-dist
+          path: dist
+          retention-days: 7
+
+  pages:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+  # Optional fast mirror. Skipped entirely unless the R2 secrets are set, so the
+  # repo works for anyone who forks it without configuring Cloudflare.
+  r2:
+    needs: build
+    runs-on: ubuntu-latest
+    if: vars.R2_BUCKET != ''
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { name: far-dist, path: dist }
+      - name: sync to R2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          ENDPOINT: https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+        run: |
+          # --size-only would miss same-size content changes; R2 charges nothing
+          # for egress and Class A ops are cheap, so compare properly.
+          aws s3 sync dist "s3://${{ vars.R2_BUCKET }}" \
+            --endpoint-url "$ENDPOINT" \
+            --delete \
+            --no-progress \
+            --content-type 'application/json; charset=utf-8' \
+            --exclude '*.gz'
+          aws s3 cp dist/far.json.gz "s3://${{ vars.R2_BUCKET }}/far.json.gz" \
+            --endpoint-url "$ENDPOINT" \
+            --content-type application/json --content-encoding gzip
+
+  # The release is the durable, verifiable artefact: the whole registry as one
+  # file plus the manifest, pinned to a tag, independent of any host staying up.
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { name: far-dist, path: dist }
+      - name: publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ROOT: ${{ needs.build.outputs.root }}
+          VERSION: ${{ needs.build.outputs.version }}
+        run: |
+          TAG="v${VERSION}-${GITHUB_SHA::7}"
+          cat > /tmp/notes.md <<EOF
+          Built from \`${GITHUB_SHA}\`.
+
+          **Merkle root:** \`${ROOT}\`
+
+          Verify a file you fetched from any mirror:
+
+          \`\`\`bash
+          curl -sO https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG}/manifest.json
+          node scripts/verify.js manifest.json <local file> <published path> --proof
+          \`\`\`
+
+          If the root above does not match the one in \`manifest.json\`, the manifest
+          is not the one this build produced.
+          EOF
+          gh release create "$TAG" \
+            dist/far.json.gz dist/manifest.json dist/manifest.sha256 dist/index.json \
+            --title "$TAG" --notes-file /tmp/notes.md
