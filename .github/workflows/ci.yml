@@ -1,0 +1,92 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+
+      # The gate. Every rule in GOVERNANCE.md that can be checked mechanically
+      # is checked here, so review can be about evidence rather than about form.
+      - name: validate curated tables
+        run: node src/validate.js
+
+      - name: build
+        run: node src/build.js | tee build.log
+
+      # Determinism is what makes the published Merkle root mean anything. If a
+      # second build of the same tree produces a different root, something in the
+      # build depends on time, filesystem order, or object iteration order.
+      - name: build is deterministic
+        run: |
+          ROOT1=$(node -e "console.log(require('./dist/manifest.json').merkleRoot)")
+          rm -rf dist
+          node src/build.js > /dev/null
+          ROOT2=$(node -e "console.log(require('./dist/manifest.json').merkleRoot)")
+          if [ "$ROOT1" != "$ROOT2" ]; then
+            echo "::error::build is not deterministic: $ROOT1 != $ROOT2"; exit 1
+          fi
+          echo "deterministic: $ROOT1"
+
+      # The README headline numbers are generated from the build. If they drift,
+      # the first thing anyone reads about this registry is wrong.
+      - name: README stats are current
+        run: |
+          node scripts/update-readme-stats.js
+          git diff --exit-code README.md || {
+            echo "::error::README stats are stale — run 'node src/build.js && node scripts/update-readme-stats.js'"; exit 1; }
+
+      - name: self-verify a sample of published files
+        run: |
+          set -e
+          for f in cg/tether.json name/tether.json index.json _platforms.json; do
+            node scripts/verify.js dist/manifest.json "dist/$f" "$f" --proof
+          done
+
+      # A PR that changes a curated table should say what it changed in the
+      # OUTPUT, not just in the diff. Reviewing "+3 lines in platforms.json" is
+      # not the same as reviewing "+412 assets became resolvable".
+      - name: compare against main
+        if: github.event_name == 'pull_request'
+        run: |
+          cp dist/index.json /tmp/pr-index.json
+          git fetch origin ${{ github.base_ref }} --depth=1
+          git checkout -q FETCH_HEAD -- data src scripts 2>/dev/null || true
+          rm -rf dist && node src/build.js > /dev/null 2>&1 || echo '{}' > /tmp/base-index.json
+          [ -f dist/index.json ] && cp dist/index.json /tmp/base-index.json || true
+          node -e "
+            const fs = require('fs');
+            const read = (p) => { try { return JSON.parse(fs.readFileSync(p)).counts ?? {}; } catch { return {}; } };
+            const base = read('/tmp/base-index.json'), pr = read('/tmp/pr-index.json');
+            const keys = [...new Set([...Object.keys(base), ...Object.keys(pr)])];
+            const rows = keys.map((k) => [k, base[k] ?? 0, pr[k] ?? 0, (pr[k] ?? 0) - (base[k] ?? 0)]).filter((r) => r[3] !== 0);
+            if (!rows.length) { fs.writeFileSync('/tmp/diff.md', 'No change to published counts.'); process.exit(0); }
+            const body = ['| metric | main | this PR | change |', '|---|---:|---:|---:|',
+              ...rows.map(([k, b, p, d]) => \`| \${k} | \${b} | \${p} | \${d > 0 ? '+' : ''}\${d} |\`)].join('\n');
+            fs.writeFileSync('/tmp/diff.md', '### Effect on the published registry\n\n' + body);
+          "
+          cat /tmp/diff.md >> $GITHUB_STEP_SUMMARY
+
+      - uses: actions/github-script@v7
+        if: github.event_name == 'pull_request'
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('/tmp/diff.md', 'utf8');
+            const marker = '<!-- far-diff -->';
+            const { data: comments } = await github.rest.issues.listComments({
+              ...context.repo, issue_number: context.issue.number });
+            const existing = comments.find((c) => c.body.includes(marker));
+            const payload = { ...context.repo, body: `${marker}\n${body}` };
+            if (existing) await github.rest.issues.updateComment({ ...payload, comment_id: existing.id });
+            else await github.rest.issues.createComment({ ...payload, issue_number: context.issue.number });
