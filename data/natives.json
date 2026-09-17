@@ -1,0 +1,470 @@
+{
+  "$schema": "./../schema/natives.schema.json",
+  "_readme": "CAIP-19 identities for chains' own units of account, which never appear in CoinGecko's platform list. A coin listed here on several chains (ETH on every L2, USDC-style natives) is the SAME asset with several chain-scoped identities — that is what CAIP-19 is for. Adding a missing native is the easiest first contribution to this repo; see CONTRIBUTING.md.",
+  "natives": {
+    "ethereum": [
+      {
+        "caip2": "eip155:1",
+        "caip19": "eip155:1/slip44:60",
+        "chainName": "Ethereum Mainnet",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 ETH = coin type 60",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      },
+      {
+        "caip2": "eip155:10",
+        "caip19": "eip155:10/slip44:60",
+        "chainName": "OP Mainnet",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 ETH = coin type 60",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      },
+      {
+        "caip2": "eip155:130",
+        "caip19": "eip155:130/slip44:60",
+        "chainName": "Unichain",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 ETH = coin type 60",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      },
+      {
+        "caip2": "eip155:2741",
+        "caip19": "eip155:2741/slip44:60",
+        "chainName": "Abstract",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 ETH = coin type 60",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      },
+      {
+        "caip2": "eip155:324",
+        "caip19": "eip155:324/slip44:60",
+        "chainName": "zkSync Mainnet",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 ETH = coin type 60",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      },
+      {
+        "caip2": "eip155:34443",
+        "caip19": "eip155:34443/slip44:60",
+        "chainName": "Mode",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 ETH = coin type 60",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      },
+      {
+        "caip2": "eip155:42161",
+        "caip19": "eip155:42161/slip44:60",
+        "chainName": "Arbitrum One",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 ETH = coin type 60",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      },
+      {
+        "caip2": "eip155:480",
+        "caip19": "eip155:480/slip44:60",
+        "chainName": "World Chain",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 ETH = coin type 60",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      },
+      {
+        "caip2": "eip155:534352",
+        "caip19": "eip155:534352/slip44:60",
+        "chainName": "Scroll",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 ETH = coin type 60",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      },
+      {
+        "caip2": "eip155:59144",
+        "caip19": "eip155:59144/slip44:60",
+        "chainName": "Linea",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 ETH = coin type 60",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      },
+      {
+        "caip2": "eip155:747474",
+        "caip19": "eip155:747474/slip44:60",
+        "chainName": "katana",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 ETH = coin type 60",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      },
+      {
+        "caip2": "eip155:7777777",
+        "caip19": "eip155:7777777/slip44:60",
+        "chainName": "Zora",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 ETH = coin type 60",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      },
+      {
+        "caip2": "eip155:81457",
+        "caip19": "eip155:81457/slip44:60",
+        "chainName": "Blast",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 ETH = coin type 60",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      },
+      {
+        "caip2": "eip155:8453",
+        "caip19": "eip155:8453/slip44:60",
+        "chainName": "Base",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 ETH = coin type 60",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "crypto-com-chain": [
+      {
+        "caip2": "eip155:25",
+        "caip19": "eip155:25/slip44:394",
+        "chainName": "Cronos Mainnet",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 CRO = coin type 394",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "binancecoin": [
+      {
+        "caip2": "eip155:204",
+        "caip19": "eip155:204/slip44:714",
+        "chainName": "opBNB Mainnet",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 BNB = coin type 714",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      },
+      {
+        "caip2": "eip155:56",
+        "caip19": "eip155:56/slip44:714",
+        "chainName": "BNB Smart Chain Mainnet",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 BNB = coin type 714",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "xdai": [
+      {
+        "caip2": "eip155:100",
+        "caip19": "eip155:100/slip44:700",
+        "chainName": "Gnosis",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 XDAI = coin type 700",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "monad": [
+      {
+        "caip2": "eip155:143",
+        "caip19": "eip155:143/slip44:268435779",
+        "chainName": "Monad",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 MON = coin type 268435779",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "sonic-3": [
+      {
+        "caip2": "eip155:146",
+        "caip19": "eip155:146/slip44:10007",
+        "chainName": "Sonic Mainnet",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 S = coin type 10007",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "bittorrent": [
+      {
+        "caip2": "eip155:199",
+        "caip19": "eip155:199/slip44:34952",
+        "chainName": "BitTorrent Chain Mainnet",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 BTT = coin type 34952",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "fantom": [
+      {
+        "caip2": "eip155:250",
+        "caip19": "eip155:250/slip44:1007",
+        "chainName": "Fantom Opera",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 FTM = coin type 1007",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "hyperliquid": [
+      {
+        "caip2": "eip155:999",
+        "caip19": "eip155:999/slip44:2457",
+        "chainName": "Wanchain Testnet",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 HYPE = coin type 2457",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "moonbeam": [
+      {
+        "caip2": "eip155:1284",
+        "caip19": "eip155:1284/slip44:1284",
+        "chainName": "Moonbeam",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 GLMR = coin type 1284",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "moonriver": [
+      {
+        "caip2": "eip155:1285",
+        "caip19": "eip155:1285/slip44:1285",
+        "chainName": "Moonriver",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 MOVR = coin type 1285",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "sei-network": [
+      {
+        "caip2": "eip155:1329",
+        "caip19": "eip155:1329/slip44:19000118",
+        "chainName": "Sei Network",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 SEI = coin type 19000118",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "celo": [
+      {
+        "caip2": "eip155:42220",
+        "caip19": "eip155:42220/slip44:52752",
+        "chainName": "Celo Mainnet",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 CELO = coin type 52752",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "avalanche-2": [
+      {
+        "caip2": "eip155:43114",
+        "caip19": "eip155:43114/slip44:9000",
+        "chainName": "Avalanche C-Chain",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 AVAX = coin type 9000",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "berachain-bera": [
+      {
+        "caip2": "eip155:80094",
+        "caip19": "eip155:80094/slip44:8008",
+        "chainName": "Berachain",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 BERA = coin type 8008",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "solana": [
+      {
+        "caip2": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "caip19": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp/slip44:501",
+        "chainName": "Solana",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 SOL = coin type 501",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "sui": [
+      {
+        "caip2": "sui:mainnet",
+        "caip19": "sui:mainnet/slip44:784",
+        "chainName": "Sui",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 SUI = coin type 784",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "blockstack": [
+      {
+        "caip2": "stacks:1",
+        "caip19": "stacks:1/slip44:5757",
+        "chainName": "Stacks",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 STX = coin type 5757",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "near": [
+      {
+        "caip2": "near:mainnet",
+        "caip19": "near:mainnet/slip44:397",
+        "chainName": "NEAR Protocol",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 NEAR = coin type 397",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "cosmos": [
+      {
+        "caip2": "cosmos:cosmoshub-4",
+        "caip19": "cosmos:cosmoshub-4/slip44:118",
+        "chainName": "Cosmos Hub",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 ATOM = coin type 118",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "osmosis": [
+      {
+        "caip2": "cosmos:osmosis-1",
+        "caip19": "cosmos:osmosis-1/slip44:10000118",
+        "chainName": "Osmosis",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 OSMO = coin type 10000118",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "terra-luna-2": [
+      {
+        "caip2": "cosmos:phoenix-1",
+        "caip19": "cosmos:phoenix-1/slip44:330",
+        "chainName": "Terra 2.0",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 LUNA = coin type 330",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "saga-2": [
+      {
+        "caip2": "cosmos:ssc-1",
+        "caip19": "cosmos:ssc-1/slip44:843",
+        "chainName": "Saga",
+        "confidence": "medium",
+        "evidence": [
+          "SLIP-0044 SAGA = coin type 843",
+          "0xcounting.com production ingest (chain table)"
+        ]
+      }
+    ],
+    "bitcoin": [
+      {
+        "caip2": "bip122:000000000019d6689c085ae165831e93",
+        "caip19": "bip122:000000000019d6689c085ae165831e93/slip44:0",
+        "chainName": null,
+        "confidence": "high",
+        "evidence": [
+          "ChainAgnostic/namespaces bip122/caip2.md example",
+          "SLIP-0044 coin type 0"
+        ]
+      }
+    ],
+    "bitcoin-cash": [
+      {
+        "caip2": "bip122:000000000000000000651ef99cb9fcbe",
+        "caip19": "bip122:000000000000000000651ef99cb9fcbe/slip44:145",
+        "chainName": null,
+        "confidence": "high",
+        "evidence": [
+          "ChainAgnostic/namespaces bip122/caip2.md example",
+          "SLIP-0044 coin type 145"
+        ]
+      }
+    ],
+    "litecoin": [
+      {
+        "caip2": "bip122:12a765e31ffd4059bada1e25190f6e98",
+        "caip19": "bip122:12a765e31ffd4059bada1e25190f6e98/slip44:2",
+        "chainName": null,
+        "confidence": "high",
+        "evidence": [
+          "ChainAgnostic/namespaces bip122/caip2.md example",
+          "SLIP-0044 coin type 2"
+        ]
+      }
+    ],
+    "dogecoin": [
+      {
+        "caip2": "bip122:1a91e3dace36e2be3bf030a65679fe82",
+        "caip19": "bip122:1a91e3dace36e2be3bf030a65679fe82/slip44:3",
+        "chainName": null,
+        "confidence": "high",
+        "evidence": [
+          "ChainAgnostic/namespaces bip122/caip2.md example",
+          "SLIP-0044 coin type 3"
+        ]
+      }
+    ]
+  }
+}
