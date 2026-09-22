@@ -1,5 +1,0 @@
-{
-  "$schema": "../schema/dti-identities.schema.json",
-  "_readme": "Which chain and contract each DTI names, read from a source that publishes those fields. DTIF's free monthly snapshot redacts AuxiliaryDistributedLedger, AuxiliaryTechnicalReference and AuxiliaryMechanism, so this table is empty. Rows are added the day a sanctioned source provides them; the build already knows how to consume them (see the exactLinks path in src/build.js) and will place each DTI on its CAIP-19 with no further code. The identifier, type and names of every DTI are NOT duplicated here: the build reads them straight from the vendored snapshot.",
-  "identities": []
-}

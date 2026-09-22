@@ -5,4 +5,4 @@ contact_links:
     about: Roles, review thresholds, the dispute process, and what this project will not do.
   - name: What the data actually claims
     url: https://github.com/0xcounting/FAR/blob/main/README.md#read-this-before-you-trust-a-link
-    about: Why DTI links are proposals rather than facts, and what the confidence levels mean.
+    about: What the confidence levels mean and how identifiers are chosen.

@@ -24,7 +24,7 @@
 //
 // ── What it cannot do ─────────────────────────────────────────────────────────
 // It finds the HEAD of a naming family. Most assets have neither citations nor
-// a second-registry attestation, so for most of the registry this says
+// a native-unit attestation, so for most of the registry this says
 // `standalone` and nothing more.
 
 // A name that declares itself a wrapper of something else. Matched at token
@@ -83,11 +83,9 @@ export function classify(asset, citations) {
   const id = asset.coingeckoId;
   const { citedBy, corroborated } = citations.get(id) ?? { citedBy: 0, corroborated: 0 };
   const derivative = isDerivative(id, asset.name);
-  // A second registry independently registering the asset is corroboration
-  // that does not depend on naming at all, so it can establish a head even
-  // where nothing happens to cite it.
-  const attested = asset.dti.some((d) => d.status === 'exact' || d.status === 'accepted')
-    || asset.deployments.some((d) => d.assetNamespace === 'slip44');
+  // A native unit of account (SLIP-0044 registered) is a head regardless of
+  // naming: corroboration that does not depend on what anything is called.
+  const attested = asset.deployments.some((d) => d.assetNamespace === 'slip44');
 
   let family;
   if (derivative) family = 'derivative';

@@ -4,7 +4,6 @@
 
 # The curated tables are the registry. Every change to them is reviewed.
 /data/platforms.json @okwme
-/data/links.json     @okwme
 /data/natives.json   @okwme
 
 # Changing these changes every published URL or the meaning of every claim.

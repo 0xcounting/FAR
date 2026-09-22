@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>FAR — Free Asset Resolver</title>
-<meta name="description" content="An open cross-reference between CAIP-19, CoinGecko IDs and ISO 24165 DTIs.">
+<meta name="description" content="An open resolver between CoinGecko IDs and CAIP-19 chain-agnostic identifiers.">
 <link rel="alternate" type="text/markdown" href="llms.txt" title="LLM-readable summary">
 <link rel="alternate" type="text/markdown" href="README.md" title="Documentation (Markdown)">
 <link rel="service-desc" type="application/json" href="openapi.json" title="OpenAPI 3.1">
@@ -12,13 +12,13 @@
   "@context": "https://schema.org",
   "@type": "Dataset",
   "name": "FAR — Free Asset Resolver",
-  "description": "An open cross-reference between CAIP-19 chain-agnostic identifiers, CoinGecko ids and ISO 24165 DTIs, published as static JSON files with a Merkle-rooted manifest.",
+  "description": "An open resolver between CoinGecko ids and CAIP-19 chain-agnostic identifiers, published as static JSON files with a Merkle-rooted manifest.",
   "url": "https://0xcounting.github.io/FAR/",
   "sameAs": "https://github.com/0xcounting/FAR",
   "isAccessibleForFree": true,
   "license": "https://github.com/0xcounting/FAR/blob/main/LICENSE-DATA",
   "creator": { "@type": "Organization", "name": "0xCounting", "url": "https://0xcounting.com" },
-  "keywords": ["CAIP-19", "CAIP-2", "CoinGecko", "DTI", "ISO 24165", "crypto asset identifiers"],
+  "keywords": ["CAIP-19", "CAIP-2", "CoinGecko", "crypto asset identifiers"],
   "distribution": [
     { "@type": "DataDownload", "encodingFormat": "application/gzip", "contentUrl": "https://0xcounting.github.io/FAR/far.json.gz", "name": "Entire registry, gzipped JSON" },
     { "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://0xcounting.github.io/FAR/openapi.json", "name": "OpenAPI 3.1 description of the per-key routes" }
@@ -244,10 +244,9 @@ pre code{background:none;padding:0;font-size:.8125rem;line-height:1.7}
    unlike break-all, which breaks eagerly mid-identifier. Below the min-width
    the wrapper scrolls horizontally rather than crushing every column. */
 table.ids{table-layout:fixed;min-width:620px}
-table.ids th:nth-child(1){width:21%}
-table.ids th:nth-child(2){width:45%}
-table.ids th:nth-child(3){width:16%}
-table.ids th:nth-child(4){width:18%}
+table.ids th:nth-child(1){width:24%}
+table.ids th:nth-child(2){width:56%}
+table.ids th:nth-child(3){width:20%}
 table.ids td.mono{overflow-wrap:anywhere;word-break:normal;line-height:1.45}
 table.ids td.chain{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ans .fam,.ans .eq{padding:12px 16px;border-top:1px solid var(--border);font-size:.8125rem;
@@ -285,10 +284,9 @@ table.ids td.chain{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
    Stacked, the table has its full width and should keep its normal geometry. */
 @media(min-width:901px){
   .tablerow.split table.ids{min-width:0}
-  .tablerow.split table.ids th:nth-child(1){width:24%}
-  .tablerow.split table.ids th:nth-child(2){width:40%}
-  .tablerow.split table.ids th:nth-child(3){width:18%}
-  .tablerow.split table.ids th:nth-child(4){width:18%}
+  .tablerow.split table.ids th:nth-child(1){width:28%}
+  .tablerow.split table.ids th:nth-child(2){width:50%}
+  .tablerow.split table.ids th:nth-child(3){width:22%}
 }
 /* Flush against the table it sits beside, and exactly as tall, so the two
    panes read as one row rather than as a card floating next to a card. */
@@ -334,8 +332,8 @@ header.hero{padding:24px 0 8px}
 
 <header class="hero">
   <h1>Free Asset Resolver</h1>
-  <p class="lead" style="margin-top:14px">An open cross-reference between <b>CAIP-19</b>,
-  <b>CoinGecko IDs</b> and <b>ISO&nbsp;24165 DTIs</b>. Every lookup is a static file:
+  <p class="lead" style="margin-top:14px">An open resolver between <b>CoinGecko IDs</b> and
+  <b>CAIP-19</b> chain-agnostic identifiers. Every lookup is a static file:
   no key, no rate limit, no server that can be down differently from any other file.</p>
   <div class="stats" id="stats"><div class="stat"><b>…</b><span>loading</span></div></div>
   <p class="hint" id="built"></p>
@@ -345,12 +343,12 @@ header.hero{padding:24px 0 8px}
 
 <section>
   <h2>Look up an asset</h2>
-  <p class="muted" style="max-width:70ch">Type a name, ticker, CoinGecko id, DTI or contract
-  address. You get back the identifiers that name the same thing.</p>
+  <p class="muted" style="max-width:70ch">Type a name, ticker, CoinGecko id or contract
+  address. You get back every chain the asset is deployed on, as CAIP-19.</p>
 
   <div class="card" style="margin-top:16px">
     <div class="card-content">
-      <label for="q" class="sr-only">Search by name, ticker, CoinGecko id, DTI or contract address</label>
+      <label for="q" class="sr-only">Search by name, ticker, CoinGecko id or contract address</label>
       <input type="text" class="input" id="q" placeholder="usdc" spellcheck="false"
              autocomplete="off" autofocus aria-describedby="status">
       <div class="chips">
@@ -359,7 +357,7 @@ header.hero{padding:24px 0 8px}
         <button class="ghost" data-q="wrapped ether">wrapped ether</button>
         <button class="ghost" data-q="noble usdc">noble usdc</button>
         <button class="ghost" data-q="0xdac17f958d2ee523a2206206994597c13d831ec7">a contract address</button>
-        <button class="ghost" data-q="CK9PW1MFH">a DTI</button>
+        <button class="ghost" data-q="bitcoin">bitcoin</button>
       </div>
       <p class="hint" id="status">loading the registry…</p>
       <div id="matches"></div>
@@ -394,8 +392,6 @@ header.hero{padding:24px 0 8px}
     <tr><td><code>/symbol/{slug}.json</code></td><td class="muted">same slug rule</td><td>every asset with that ticker. <code>usdc</code> returns 60+</td></tr>
     <tr><td><code>/cg/{id}.json</code></td><td class="muted">CoinGecko ID</td><td>one asset with all its chain deployments</td></tr>
     <tr><td><code>/caip/{ns}/{ref}/{ans}/{aref}.json</code></td><td class="muted">CAIP-19 as a path</td><td>the asset at that exact identifier</td></tr>
-    <tr><td><code>/dti/{DTI}.json</code></td><td class="muted">9-char ISO 24165 id</td><td>the DTI record and any linked asset</td></tr>
-    <tr><td><code>/ledger/{DLI}.json</code></td><td class="muted">DTI ledger id</td><td>a chain, with its CAIP-2</td></tr>
     </tbody>
   </table>
   </div>
@@ -407,47 +403,11 @@ header.hero{padding:24px 0 8px}
     <tr><td><code>/index.json</code></td><td>counts, source hashes, route list</td></tr>
     <tr><td><code>/manifest.json</code></td><td>sha256 of every file plus a Merkle root</td></tr>
     <tr><td><code>/_namespace-gaps.json</code></td><td>identifiers we had to invent because no CASA spec defines one</td></tr>
-    <tr><td><code>/_unlinked.json</code></td><td>DTI records with no CoinGecko link, the contributor queue</td></tr>
   </tbody></table>
   </div>
 </section>
 
 <div class="sep"></div>
-
-<section>
-  <h2>Read this before you trust a link</h2>
-  <p class="muted" style="max-width:70ch">Every DTI to CoinGecko link carries a
-  <code>status</code>. They are not equally reliable.</p>
-
-  <div class="scroll docs-table" style="margin:16px 0">
-  <table>
-    <thead><tr><th>Status</th><th>Who decided</th><th>Measured accuracy</th></tr></thead>
-    <tbody>
-    <tr><td><span class="badge badge-outline">accepted</span></td><td>A human, in a reviewed pull request, citing public evidence</td><td>the only tier to rely on</td></tr>
-    <tr><td><span class="badge badge-secondary">proposed</span></td><td>A deterministic rule: exact name, optionally corroborated by ticker</td><td class="muted">unmeasured</td></tr>
-    <tr><td><span class="badge badge-secondary">inferred</span></td><td>A language model, with its reasoning published on the record</td><td class="muted">unmeasured</td></tr>
-    </tbody>
-  </table>
-  </div>
-
-  <div class="alert alert-warn">
-    <p class="alert-title">Why “unmeasured”</p>
-    <p style="margin:0">Scoring a name-based guess needs a column of known-correct answers to
-    grade against, and that column would be the contract address for each DTI. DTIF's free
-    monthly snapshot redacts it, so there is nothing to grade against and any accuracy figure
-    here would be invented. If a wrong link would cost you something, a tax filing or a
-    regulatory report, filter to <code>accepted</code> and treat the rest as a candidate queue.</p>
-  </div>
-
-  <div class="alert" style="margin-top:12px">
-    <p class="alert-title">Expect one error above all others</p>
-    <p style="margin:0">A <i>bridged or pegged deployment</i> attached to the canonical asset it
-    wraps. CoinGecko alone carries dozens of distinct assets whose name is “USD Coin” or close
-    to it, <code>bridged-usdc</code>, <code>celer-bridged-usdc-astar</code> and many more, and
-    only one of them is Circle's. A DTI record named “USD Coin” could be any of them, and the
-    name cannot tell you which.</p>
-  </div>
-</section>
 
 <div class="sep"></div>
 
@@ -476,7 +436,7 @@ const one = await fetch(`${BASE}/caip/${path}.json`);</code></pre>
 <footer>
   <div class="sep" style="margin:0 0 24px"></div>
   <p style="margin:0">Code MIT · curated data CC0 · upstream sources keep their own terms.
-  Not affiliated with DTIF, CoinGecko or CASA.</p>
+  Not affiliated with CoinGecko or CASA.</p>
   <p style="margin:6px 0 0">
     <a href="https://github.com/0xcounting/FAR">Source and contributing</a> ·
     <a href="https://github.com/0xcounting/FAR/blob/main/GOVERNANCE.md">Governance</a> ·
@@ -506,7 +466,7 @@ fetch(`${BASE}/index.json`).then(r => r.json()).then(d => {
   const c = d.counts, n = x => (x ?? 0).toLocaleString('en-US');
   $('#stats').innerHTML = [
     [n(c.coins),'assets'],[n(c.deployments),'CAIP-19 ids'],[n(c.platformsMapped),'chains'],
-    [n(c.dtiTokens),'DTI records'],[n(c.files),'files served'],
+    [n(c.files),'files served'],
   ].map(([v,l]) => `<div class="stat"><b>${v}</b><span>${l}</span></div>`).join('');
   $('#built').textContent = `Built ${d.version} · every file hashed in /manifest.json`;
 }).catch(() => {});
@@ -521,7 +481,6 @@ fetch(`${BASE}/search-index.json`).then(r => r.json()).then(d => {
   // Precompute the match keys once rather than on every keystroke.
   for (const a of INDEX) {
     a._i = norm(a.i); a._n = norm(a.n); a._s = norm(a.s);
-    a._a = (a.a || []).map(norm);          // DTI long names, used as aliases
   }
   // Which /name/ and /symbol/ files the build actually emitted. A name that
   // slugs to "_" — emoji-only, or pure punctuation — is deliberately not
@@ -541,8 +500,6 @@ fetch(`${BASE}/search-index.json`).then(r => r.json()).then(d => {
 function search(q){
   const t = norm(q);
   if (!t) return [];
-  const isDti = /^[0-9a-z]{9}$/i.test(q.trim());
-  const dti = q.trim().toUpperCase();
   const addr = q.trim().toLowerCase();
   const out = [];
   for (const a of INDEX) {
@@ -552,25 +509,18 @@ function search(q){
     // with one deployment was outranking real USDC deployments purely by
     // owning the string.
     if (a._i === t || a._n === t) sc = 100;
-    else if (a._a.includes(t)) sc = 92;     // an alias DTIF records for it
     else if (a._s === t) sc = 62;
     else if (a._i.startsWith(t) || a._n.startsWith(t)) sc = 55;
-    else if (a._a.some(x => x.startsWith(t))) sc = 50;
     else if (a._s.startsWith(t)) sc = 45;
-    else if (a._i.includes(t) || a._n.includes(t) || a._a.some(x => x.includes(t))) sc = 30;
-    // An exact DTI or contract address is a precise answer and outranks a name.
-    if (isDti && ((a.u && a.u.includes(dti)) || (a.d && a.d.some(x => x[1] === dti)))) sc = Math.max(sc, 120);
+    else if (a._i.includes(t) || a._n.includes(t)) sc = 30;
+    // An exact contract address is a precise answer and outranks a name.
     if (addr.length > 8 && a.d && a.d.some(x => x[0].toLowerCase().includes(addr))) sc = Math.max(sc, 120);
     if (!sc) continue;
     // The head of a naming family first, then more deployments, then shorter id.
-    // Evidence of being a real, widely-deployed asset breaks ties: deployment
-    // count, whether any deployment carries a DTI, and family head-ness.
     const deps = (a.d || []).length;
-    const hasDti = (a.d || []).some(x => x[1]) || (a.u || []).length > 0;
     out.push([sc
       + (a.f === 'c' ? 10 : a.f === 'd' ? -2 : 0)
-      + Math.min(14, deps * 1.4)
-      + (hasDti ? 6 : 0), a]);
+      + Math.min(14, deps * 1.4), a]);
   }
   return out.sort((x, y) => y[0] - x[0] || x[1].i.length - y[1].i.length).slice(0, 60).map(x => x[1]);
 }
@@ -599,40 +549,27 @@ function explorerFor(c19){
 }
 
 function answer(a){
-  const deps = a.d || [], un = a.u || [];
+  const deps = a.d || [];
   const rows = deps.length
     ? `<div class="scroll"><table class="ids">
-        <thead><tr><th>CoinGecko id</th><th>CAIP-19</th><th>DTI</th><th>chain</th></tr></thead><tbody>
-        ${deps.map(([c19, dti, chain]) => `<tr>
+        <thead><tr><th>CoinGecko id</th><th>CAIP-19</th><th>chain</th></tr></thead><tbody>
+        ${deps.map(([c19, chain]) => `<tr>
           <td class="mono"><a href="${esc(BASE)}/cg/${esc(a.i)}.json">${esc(a.i)}</a></td>
           <td class="mono"><a href="${esc(BASE)}/caip/${esc(caipPath(c19))}.json">${esc(c19)}</a>${
             explorerFor(c19) ? ` <a class="ext" href="${esc(explorerFor(c19))}" target="_blank" rel="noopener" title="view on the chain explorer">↗</a>` : ''}</td>
-          <td class="mono">${dti ? `<a href="${esc(BASE)}/dti/${esc(dti)}.json">${esc(dti)}</a>` : '<span class="none">not registered</span>'}</td>
           <td class="chain">${esc(chain || c19.split('/')[0])}</td></tr>`).join('')}
       </tbody></table></div>`
     : `<p class="empty" style="padding:12px 13px;margin:0">No CAIP-19 — usually a native coin on a chain with no CAIP-2 yet. CoinGecko id <code>${esc(a.i)}</code>.</p>`;
   const famNote = deps.length > 1
     ? `<div class="fam">This is a family: <b>${esc(a.i)}</b> names the same economic asset on
        <b>${deps.length}</b> chains, and each row above is a distinct identifier.</div>` : '';
-  const unNote = un.length
-    ? `<div class="fam"><b>${un.length}</b> further DTI record${un.length===1?'':'s'} link to this asset but
-       could not be placed on a chain — they were matched by name, and only an address says which
-       deployment: ${un.slice(0,8).map(d=>`<code>${esc(d)}</code>`).join(' ')}${un.length>8?` +${un.length-8}`:''}</div>` : '';
-  const eq = (a.e || []).length
-    ? `<div class="eq"><b>Declared equivalent</b> by DTIF — the ISO 24165 registry places
-       these in the same functionally-fungible group, meaning they are the same economic
-       asset even though CoinGecko lists them separately:
-       ${a.e.map(id => `<button data-go="${esc(id)}">${esc(id)}</button>`).join(' · ')}</div>` : '';
   // Every route that serves THIS asset, with its own ids substituted — so the
   // jump from browsing to calling needs no guesswork about slug rules.
   const ep = [[`/cg/${a.i}.json`, 'this asset, by CoinGecko id']];
   if (NAMES.has(slug(a.n))) ep.push([`/name/${slug(a.n)}.json`, `every asset named "${a.n}"`]);
   if (SYMS.has(slug(a.s))) ep.push([`/symbol/${slug(a.s)}.json`, `every asset with ticker ${a.s}`]);
   if (deps.length) ep.push([`/caip/${caipPath(deps[0][0])}.json`, 'one deployment, by CAIP-19']);
-  const firstDti = (deps.find(d => d[1]) || [])[1] || (un[0] || null);
-  if (firstDti) ep.push([`/dti/${firstDti}.json`, 'the DTI record']);
   const up = [[`https://www.coingecko.com/en/coins/${encodeURIComponent(a.i)}`, 'CoinGecko', 'the asset page this id belongs to']];
-  if (firstDti) up.push(['https://registry.dtif.org/', 'DTIF registry', `search for ${firstDti} — the registry is a client-routed app, so it cannot be deep-linked`]);
   const upBlock = `<div class="ep"><h5>upstream</h5><ul>`
     + up.map(([href, label, what]) => `<li><span class="verb">WWW</span>`
       + `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(label)}</a>`
@@ -646,7 +583,7 @@ function answer(a){
   return `<div class="ans"><header><span class="id">${esc(a.i)}</span>
       <span class="nm">${esc(a.n)} · ${esc(a.s)}</span>
       <span class="pill p-${FAM[a.f]}">${FAM[a.f]}</span></header>
-      <div class="tablerow">${rows}</div>${famNote}${unNote}${eq}${epBlock}${upBlock}</div>`;
+      <div class="tablerow">${rows}</div>${famNote}${epBlock}${upBlock}</div>`;
 }
 
 function run(q){

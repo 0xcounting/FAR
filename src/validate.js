@@ -15,7 +15,6 @@ const readOptional = (p, fallback) => { try { return JSON.parse(readFileSync(p, 
 
 const platformTable = JSON.parse(readFileSync('data/platforms.json', 'utf8'));
 const natives = JSON.parse(readFileSync('data/natives.json', 'utf8')).natives;
-const links = JSON.parse(readFileSync('data/links.json', 'utf8'));
 const coins = JSON.parse(gunzipSync(readFileSync('data/sources/coingecko-coins.json.gz')));
 const coinIds = new Set(coins.map((c) => c.id));
 
@@ -134,68 +133,6 @@ for (const [coingeckoId, entries] of Object.entries(natives)) {
   }
 }
 
-// --- curated links ---------------------------------------------------------
-const DTI_RE = /^[0-9A-Z]{9}$/;
-const seenLink = new Set();
-for (const kind of ['accepted', 'rejected']) {
-  for (const l of links[kind] ?? []) {
-    if (!DTI_RE.test(l.dti ?? '')) fail(`link.${kind}.dti-malformed`, JSON.stringify(l));
-    if (!coinIds.has(l.coingeckoId)) fail(`link.${kind}.unknown-coingecko-id`, JSON.stringify(l));
-    // Every curated decision must say who decided and why. An accepted link
-    // with no rationale cannot be re-reviewed when the evidence changes.
-    if (!l.rationale) fail(`link.${kind}.no-rationale`, `${l.dti} -> ${l.coingeckoId}`);
-    if (!l.decidedIn) fail(`link.${kind}.no-decision-reference`, `${l.dti} -> ${l.coingeckoId}`);
-    const key = `${kind}|${l.dti}|${l.coingeckoId}`;
-    if (seenLink.has(key)) fail(`link.${kind}.duplicate`, key);
-    seenLink.add(key);
-  }
-}
-// The same pair cannot be both accepted and rejected.
-for (const a of links.accepted ?? []) {
-  if ((links.rejected ?? []).some((r) => r.dti === a.dti && r.coingeckoId === a.coingeckoId)) {
-    fail('link.accepted-and-rejected', `${a.dti} -> ${a.coingeckoId}`);
-  }
-}
-
-// --- model-inferred links --------------------------------------------------
-// The weakest tier still has to carry its own accountability: who asserted it
-// and why. A model link with no reasoning cannot be disputed, and an
-// undisputable claim is the thing this registry exists not to publish.
-const inferred = readOptional('data/links-inferred.json', { links: [] });
-const acceptedPairs = new Set((links.accepted ?? []).map((l) => `${l.dti}|${l.coingeckoId}`));
-const rejectedPairs = new Set((links.rejected ?? []).map((l) => `${l.dti}|${l.coingeckoId}`));
-for (const l of inferred.links ?? []) {
-  if (!DTI_RE.test(l.dti ?? '')) fail('inferred.dti-malformed', JSON.stringify(l));
-  if (!coinIds.has(l.coingeckoId)) fail('inferred.unknown-coingecko-id', `${l.dti} -> ${l.coingeckoId}`);
-  if (!l.reasoning) fail('inferred.no-reasoning', `${l.dti} -> ${l.coingeckoId}`);
-  if (!l.assertedBy) fail('inferred.no-assertedBy', `${l.dti} -> ${l.coingeckoId}`);
-  // A human rejection is final. A model must never quietly reinstate a pair a
-  // reviewer has already thrown out.
-  if (rejectedPairs.has(`${l.dti}|${l.coingeckoId}`)) {
-    fail('inferred.contradicts-human-rejection', `${l.dti} -> ${l.coingeckoId}`);
-  }
-}
-
-// --- ledger table ----------------------------------------------------------
-const ledgers = readOptional('data/ledgers.json', { ledgers: {} }).ledgers;
-for (const [dli, l] of Object.entries(ledgers)) {
-  if (!DTI_RE.test(dli)) fail('ledger.dli-malformed', dli);
-  if (l.caip2 != null && !isValidCaip2(l.caip2)) fail('ledger.caip2-invalid', `${dli}: ${l.caip2}`);
-  if (!['public', 'permissioned', 'unknown'].includes(l.kind)) fail('ledger.kind-invalid', `${dli}: ${l.kind}`);
-  if (!Array.isArray(l.evidence) || l.evidence.length === 0) fail('ledger.no-evidence', dli);
-  // A permissioned ledger USUALLY has no CAIP-2, because nobody has published a
-  // namespace or a canonical reference for it. That is not the same as saying it
-  // CANNOT have one: nothing in CAIP-2 requires a chain to be public, and CASA
-  // has already ratified namespaces of exactly this shape (swift, tenzro,
-  // haneul, partisia, xync). Rejecting a CAIP-2 on a permissioned ledger
-  // outright would block a correct contribution the day SDX or SWIAT registers
-  // one, so this rule only asks that the claim be sourced, like every other
-  // claim here.
-  if (l.kind === 'permissioned' && l.caip2 && !(l.evidence ?? []).some((e) => /namespace|registered|spec|caip/i.test(e))) {
-    fail('ledger.permissioned-caip2-needs-namespace-evidence', `${dli}: a CAIP-2 on a permissioned ledger needs evidence that a namespace and reference are actually published`);
-  }
-}
-
 // --- routing invariants ----------------------------------------------------
 // Slugging must round-trip for CAIP IDs, or a published URL cannot be turned
 // back into the identifier it names.
@@ -214,10 +151,6 @@ if (problems.length === 0) {
     platforms: Object.keys(platformTable.platforms).length,
     unmapped: Object.keys(platformTable.unmapped).length,
     natives: Object.keys(natives).length,
-    acceptedLinks: (links.accepted ?? []).length,
-    rejectedLinks: (links.rejected ?? []).length,
-    inferredLinks: (inferred.links ?? []).length,
-    ledgers: Object.keys(ledgers).length,
     chains: Object.keys(chainTable).length,
   };
   console.log('validate: OK', JSON.stringify(counts));

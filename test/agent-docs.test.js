@@ -59,11 +59,7 @@ test('published responses conform to their OpenAPI schemas', () => {
     ['/caip/{namespace}/{reference}/{assetNamespace}/{assetReference}.json', 'dist/caip/eip155/1/erc20/0xdac17f958d2ee523a2206206994597c13d831ec7.json'],
     ['/name/{slug}.json', 'dist/name/tether.json'],
     ['/symbol/{slug}.json', 'dist/symbol/usdc.json'],
-    ['/dti/{dti}.json', 'dist/dti/2RJ2NRNJ5.json'],
-    ['/dti/{dti}.json', 'dist/dti/2ZTG3NNVB.json'],
-    ['/ledger/{dli}.json', 'dist/ledger/PJP8FVDQ0.json'],
     ['/proof/{path}.json', 'dist/proof/cg/tether.json'],
-    ['/_acceptance-queue.json', 'dist/_acceptance-queue.json'],
     ['/manifest.json', 'dist/manifest.json'],
     ['/index.json', 'dist/index.json'],
   ];
@@ -84,7 +80,7 @@ test('llms.txt follows the llmstxt.org shape', () => {
   assert.match(t, /\n> \S/, 'has a blockquote summary');
   assert.match(t, /\n## Optional\n/, 'has the Optional section');
   for (const m of t.matchAll(/\]\((https?:[^)]+)\)/g)) assert.doesNotMatch(m[1], /\s/, `link has whitespace: ${m[1]}`);
-  assert.ok((t.match(/^- \[/gm) ?? []).length >= 15, 'lists the routes');
+  assert.ok((t.match(/^- \[/gm) ?? []).length >= 10, 'lists the routes');
 });
 
 test('api-catalog is an RFC 9727 linkset pointing at the OpenAPI description', () => {
@@ -94,11 +90,4 @@ test('api-catalog is an RFC 9727 linkset pointing at the OpenAPI description', (
   assert.equal(e.anchor, `${BASE}/`);
   assert.ok(e['service-desc'].some((l) => l.href.endsWith('/openapi.json')));
   assert.ok(e['service-doc'].length >= 1 && e['service-meta'].length >= 1);
-});
-
-test('DTIF group membership is read from the snapshot and expressed as asset equivalence', () => {
-  const counts = read('dist/index.json').counts;
-  assert.ok(counts.assetsWithDtifEquivalence >= 10, `expected some equivalences, got ${counts.assetsWithDtifEquivalence}`);
-  const q = read('dist/_acceptance-queue.json');
-  assert.ok(q.queue.every((e) => e.dtiType !== 3), 'group records must not be in the acceptance queue');
 });
