@@ -47,6 +47,9 @@ test('every published deployment is valid CAIP-19 and its route round-trips', ()
   for (const c of coins) for (const d of c.deployments ?? []) {
     assert.ok(isValidCaip19(d.caip19), `${c.coingeckoId}: ${d.caip19}`);
     assert.equal(unCaipPath(caipPath(d.caip19)), d.caip19, `route not reversible: ${d.caip19}`);
+    // The record's own fields must agree with the identifier they describe.
+    assert.equal(d.assetNamespace, d.caip19.split('/')[1].split(':')[0], `${c.coingeckoId}: assetNamespace disagrees with caip19`);
+    assert.ok(d.caip19.startsWith(`${d.caip2}/`), `${c.coingeckoId}: caip2 disagrees with caip19`);
     n++;
   }
   assert.ok(n > 20000, `expected the whole registry, saw ${n} deployments`);

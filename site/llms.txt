@@ -1,0 +1,46 @@
+# FAR — Free Asset Resolver
+
+> A free, static, key-less cross-reference between three ways of naming a crypto asset: CoinGecko ids, CAIP-19 chain-agnostic identifiers, and ISO 24165 DTIs. Every lookup is a plain JSON file at a predictable URL under https://0xcounting.github.io/FAR. There is no server, no authentication, no rate limit, and every file is sha256-hashed into a Merkle-rooted manifest with a per-file inclusion proof.
+
+What it is good for: turning a CoinGecko id into every chain the asset is deployed on as a standards-compliant CAIP-19 (and back), resolving a name or ticker to the set of distinct assets that share it, and reading the DTI registry. What it is not yet: a verified DTI-to-chain resolver. DTI links are name-based proposals, published as such, because DTIF's free snapshot redacts the fields that would make the join exact. Read the "Trust" section before relying on any `dti` field.
+
+To use it: fetch `index.json` for live counts and the route list, then fetch the route you need. Prefer one file per query over the bulk dump unless you need the whole registry. Identifiers are case-sensitive as published; names and tickers are looked up by slug (lowercased, punctuation to `-`).
+
+## Start here
+
+- [index.json](https://0xcounting.github.io/FAR/index.json): counts, source snapshot hashes, and the full route list. Fetch this first.
+- [openapi.json](https://0xcounting.github.io/FAR/openapi.json): OpenAPI 3.1 description of every route and response shape.
+- [README](https://0xcounting.github.io/FAR/README.md): the human documentation, in Markdown.
+- [llms-full.txt](https://0xcounting.github.io/FAR/llms-full.txt): this file plus the README and contributor guide inlined, for a single-fetch context.
+
+## Routes
+
+- [/cg/{coingeckoId}.json](https://0xcounting.github.io/FAR/cg/tether.json): one asset by CoinGecko id, with every chain deployment as a CAIP-19, any DTI proposals, its naming family, and related assets.
+- [/caip/{ns}/{ref}/{assetNs}/{assetRef}.json](https://0xcounting.github.io/FAR/caip/eip155/1/erc20/0xdac17f958d2ee523a2206206994597c13d831ec7.json): the asset at an exact CAIP-19. The identifier is written as a path: `:` and `/` become `/`, and `%` becomes `~`.
+- [/name/{slug}.json](https://0xcounting.github.io/FAR/name/tether.json): every asset with that name. Always a group, never one asset, because names are not unique.
+- [/symbol/{slug}.json](https://0xcounting.github.io/FAR/symbol/usdc.json): every asset with that ticker. `usdc` returns 60+; use `family` to tell the canonical one from wrappers.
+- [/dti/{DTI}.json](https://0xcounting.github.io/FAR/dti/2RJ2NRNJ5.json): an ISO 24165 record as published in DTIF's free snapshot, plus any proposed CoinGecko match. Fields under `dti` are DTIF's; everything else is this project's annotation.
+- [/ledger/{DLI}.json](https://0xcounting.github.io/FAR/ledger/PJP8FVDQ0.json): a DTI ledger record with its CAIP-2 where public evidence supports one.
+- [/far.json.gz](https://0xcounting.github.io/FAR/far.json.gz): the entire registry as one gzipped JSON, about 1.8 MB.
+- [/search-index.json](https://0xcounting.github.io/FAR/search-index.json): compact array the site searches client-side; useful for fuzzy lookup in your own process.
+
+## Trust
+
+- [Where the DTI half stands](https://github.com/0xcounting/FAR#where-the-dti-half-stands): zero DTIs currently resolve to a chain; every DTI link carries `status` (`accepted` is the only tier to rely on; `proposed` and `inferred` are candidates). Filter on it.
+- [/_acceptance-queue.json](https://0xcounting.github.io/FAR/_acceptance-queue.json): the proposals a reviewer could accept from public evidence, sorted uncontested first.
+- [/_namespace-gaps.json](https://0xcounting.github.io/FAR/_namespace-gaps.json): CAIP-2 and CAIP-19 namespaces this registry had to choose because no CASA specification defines them. A CAIP-19 on Cosmos, Tron, Sui, Aptos or TON is this project's proposal, not a ratified standard.
+- [/_platforms.json](https://0xcounting.github.io/FAR/_platforms.json): every chain mapping with its `confidence` and `evidence`.
+
+## Verification
+
+- [/manifest.json](https://0xcounting.github.io/FAR/manifest.json): sha256 of every file and the Merkle root of the release (11 MB).
+- [/manifest.sha256](https://0xcounting.github.io/FAR/manifest.sha256): the root on one line, for pinning.
+- [/proof/{path without .json}.json](https://0xcounting.github.io/FAR/proof/cg/tether.json): a file's inclusion proof (about 17 hashes) so one response can be checked against the root without the manifest.
+
+## Optional
+
+- [Contributing](https://github.com/0xcounting/FAR/blob/main/CONTRIBUTING.md): how to accept or dispute a link, map a chain, or add a native asset. Every change is a reviewed pull request with cited evidence.
+- [Governance](https://github.com/0xcounting/FAR/blob/main/GOVERNANCE.md): who decides, how disputes are resolved, what the project will not do.
+- [Sources and licences](https://github.com/0xcounting/FAR/blob/main/SOURCES.md): per-source terms and a compliance review. Code is MIT; curated tables are CC0; DTIF registry content stays under DTIF's terms.
+- [/.well-known/api-catalog](https://0xcounting.github.io/FAR/.well-known/api-catalog): RFC 9727 API catalog pointing at the OpenAPI description.
+- [Source repository](https://github.com/0xcounting/FAR)

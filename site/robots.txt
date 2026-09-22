@@ -1,0 +1,12 @@
+# FAR is open data. Everything here may be fetched by anyone, including agents
+# and AI crawlers. Data licences differ by source; see /README.md and
+# https://github.com/0xcounting/FAR/blob/main/LICENSE-DATA before redistributing.
+#
+# Machine-readable entry points:
+#   /llms.txt                  what this is and how to use it (Markdown)
+#   /openapi.json              every route and response shape (OpenAPI 3.1)
+#   /.well-known/api-catalog   RFC 9727 API catalog
+#   /index.json                live counts and route list
+
+User-agent: *
+Allow: /

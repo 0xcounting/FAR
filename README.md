@@ -39,6 +39,12 @@ Every route is a static file. There is no server, no API key, no rate limit, and
 no request that can fail differently from any other. The whole registry is also
 one file (`/far.json.gz`) if you would rather hold it locally.
 
+**If you are an agent or a tool**, start at [`/llms.txt`](https://0xcounting.github.io/FAR/llms.txt)
+(what this is and how to use it), then [`/openapi.json`](https://0xcounting.github.io/FAR/openapi.json)
+(every route and response shape). There is also an RFC 9727 catalog at
+`/.well-known/api-catalog`, this README at `/README.md`, and
+[`/llms-full.txt`](https://0xcounting.github.io/FAR/llms-full.txt) with the docs inlined.
+
 ## What is actually in it
 
 <!-- BUILD-STATS:START -->
@@ -52,11 +58,11 @@ one file (`/far.json.gz`) if you would rather hold it locally.
 | — with a proposed CoinGecko match | 3,688 (63.9%) |
 |   rule-proposed / model-inferred / human-accepted | 1,929 / 1,759 / 0 |
 | — chain inferred from the proposed match | 1,104 (19.1%) |
-| — acceptable from public evidence (single-deployment assets) | 1,091 |
+| — acceptable from public evidence (single-deployment assets) | 596 |
 | DTI ledger records | 275, 209 with a CAIP-2 |
 | CoinGecko platforms mapped to CAIP-2 | 290 |
 | — still unmapped | 10 |
-| Published files | 80,400 |
+| Published files | 80,406 |
 <!-- BUILD-STATS:END -->
 
 ## Where the DTI half stands
@@ -83,7 +89,9 @@ a reviewer can accept it from public evidence: the contract's own `name()` and
 `/_acceptance-queue.json`. Proposals on multi-chain assets are **not** in the
 queue: which deployment such a DTI names is the redacted field, and no public
 source answers it, so no amount of reviewer effort can move them to `accepted`.
-The queue is the ceiling of what this registry can verify on its own.
+Group records (DTIType 3) are not in it either, since they name a set of tokens
+rather than one contract. The queue is the ceiling of what this registry can
+verify on its own; its size is in the table above.
 
 Every link carries a `status` and a `basis`:
 
@@ -166,15 +174,13 @@ chain it exists on) and `related`:
 
 - `related.sameName` / `related.sameSymbol` — the other coins in the collision.
 - `related.dtiEquivalent` — coins the DTI registry declares functionally fungible
-  with this one. **This is almost always empty, and the reason is structural.**
-  DTIF does maintain functionally-fungible groups, which is exactly what you would
-  want in order to enumerate "every chain USDT is on". The free snapshot publishes
-  each token record's pointer to its group (`EquivalentDigitalTokenGroupDTI`) but
-  not the group's own membership list. Inverting the pointers recovers 2,297
-  distinct groups of which only 34 have more than one visible member, and none has
-  more than two. So the relation is published from one side only, and the useful
-  direction is the side that is missing. The field is kept because the grouping is
-  real; it would populate immediately if membership became readable.
+  with this one. DTIF publishes its functionally-fungible groups as DTIType-3
+  records whose `EquivalentDigitalTokenGroupDTI` lists the members: 2,297 groups
+  in the current snapshot, 378 of them with two or more members, the largest with
+  31. That is the structure you want in order to say "these are the same asset on
+  different chains". It populates here only where members are linked to CoinGecko
+  ids, which today means through name-based proposals, so it inherits their
+  uncertainty.
 
 ## What this registry needs from the standards it uses
 

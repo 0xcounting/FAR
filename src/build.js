@@ -13,6 +13,7 @@ import { proposeLinks } from './lib/link.js';
 import { inferChainAndAddress } from './lib/dtiChain.js';
 import { citationIndex, classify, FAMILY_ORDER } from './lib/family.js';
 import { sha256, merkleRoot, merkleProofs } from './lib/manifest.js';
+import { openapiDoc, apiCatalog, llmsFull } from './lib/agentDocs.js';
 
 const OUT = process.env.FAR_OUT ?? 'dist';
 const t0 = Date.now();
@@ -78,7 +79,10 @@ for (const row of src.coingeckoPlatforms) {
     caip2: p.caip2,
     chainName: chainNames.get(p.caip2) ?? null,
     coingeckoPlatform: row.platform,
-    assetNamespace: p.assetNamespace,
+    // From the identifier actually built, not the platform entry: chains that
+    // dispatch the namespace per identity (Cosmos bank/cw20/ics20/factory,
+    // Bitcoin ord/rune, Aptos coin/aip21) carry null on the platform row.
+    assetNamespace: built.assetNamespace,
     address: built.address,
     confidence: p.confidence,
   });
@@ -132,6 +136,26 @@ for (const coin of coinsById.values()) {
 // --------------------------------------------------------------------- DTI --
 const { tokens: dtiTokens, ledgers: dtiLedgers } = normalizeDtiRecords(src.dtiRegistry);
 const dtiById = new Map(dtiTokens.map((t) => [t.dti, t]));
+
+// DTIF publishes functionally-fungible groups as DTIType-3 records whose
+// EquivalentDigitalTokenGroupDTI is the group's MEMBER LIST: a string when the
+// group has one member, an array when it has several (up to 31 in the current
+// snapshot). Every record carrying the field is type 3; no token record does.
+// Read it in both directions once, here, so nothing downstream keys a Map on
+// an array by identity and silently loses the relation.
+const membersOf = new Map();   // group DTI -> [member DTI]
+const groupsOf = new Map();    // member DTI -> [group DTI]
+for (const t of dtiTokens) {
+  const v = t.equivalentGroup;
+  const members = Array.isArray(v) ? v : typeof v === 'string' ? [v] : [];
+  if (!members.length) continue;
+  membersOf.set(t.dti, [...new Set(members)].sort());
+  for (const m of members) {
+    if (!groupsOf.has(m)) groupsOf.set(m, []);
+    groupsOf.get(m).push(t.dti);
+  }
+}
+const isGroupRecord = (rec) => membersOf.has(rec.dti);
 const { links, unlinked } = proposeLinks(dtiTokens, src.coingeckoCoins, curatedLinks);
 
 // Address-derived links are applied FIRST, so everything downstream sees those
@@ -241,13 +265,19 @@ for (const coin of coinsById.values()) {
 // free monthly snapshot, so membership is recoverable by inverting it: every
 // token record naming the same group is in that group. We do not need the type-2
 // group record's own member list, which the free snapshot does not give us.
+// A group's coins are every coin linked to the group record itself or to any
+// of its members. Where that is more than one CoinGecko id, DTIF is asserting
+// an equivalence CoinGecko does not express.
+const coinsByDti = new Map();
+for (const coin of coinsById.values()) for (const d of coin.dti) {
+  if (!coinsByDti.has(d.dti)) coinsByDti.set(d.dti, new Set());
+  coinsByDti.get(d.dti).add(coin.coingeckoId);
+}
 const byGroupDti = new Map();    // groupDti -> Set(coingeckoId)
-for (const coin of coinsById.values()) {
-  for (const d of coin.dti) {
-    if (!d.equivalentGroup) continue;
-    if (!byGroupDti.has(d.equivalentGroup)) byGroupDti.set(d.equivalentGroup, new Set());
-    byGroupDti.get(d.equivalentGroup).add(coin.coingeckoId);
-  }
+for (const [groupDti, members] of membersOf) {
+  const coins = new Set();
+  for (const dti of [groupDti, ...members]) for (const c of coinsByDti.get(dti) ?? []) coins.add(c);
+  if (coins.size) byGroupDti.set(groupDti, coins);
 }
 const equivalence = new Map();   // coingeckoId -> Map(coingeckoId -> groupDti)
 for (const [groupDti, members] of byGroupDti) {
@@ -282,20 +312,10 @@ for (const coin of coinsById.values()) {
 // "Relational assets": the other entries a caller almost always wants next.
 const byName = groupBy(coinsById.values(), (c) => slug(c.name));
 const bySymbol = groupBy(coinsById.values(), (c) => slug(c.symbol));
-const byDtiGroup = new Map();
-for (const coin of coinsById.values()) {
-  for (const d of coin.dti) {
-    if (!d.equivalentGroup) continue;
-    if (!byDtiGroup.has(d.equivalentGroup)) byDtiGroup.set(d.equivalentGroup, new Set());
-    byDtiGroup.get(d.equivalentGroup).add(coin.coingeckoId);
-  }
-}
 for (const coin of coinsById.values()) {
   const nameKey = slug(coin.name);
   const symKey = slug(coin.symbol);
-  const group = new Set();
-  for (const d of coin.dti) for (const id of byDtiGroup.get(d.equivalentGroup) ?? []) group.add(id);
-  group.delete(coin.coingeckoId);
+  const group = new Set((equivalence.get(coin.coingeckoId) ?? new Map()).keys());
   coin.related = {
     sameName: others(byName, nameKey, coin.coingeckoId),
     sameSymbol: others(bySymbol, symKey, coin.coingeckoId),
@@ -309,13 +329,13 @@ for (const coin of coinsById.values()) {
 // -------------------------------------------------------------------- emit --
 rmSync(OUT, { recursive: true, force: true });
 const files = [];
-const emit = (path, value) => {
-  const body = Buffer.from(JSON.stringify(value));
+const emitRaw = (path, body) => {
   const full = join(OUT, path);
   mkdirSync(join(full, '..'), { recursive: true });
   writeFileSync(full, body);
   files.push({ path, sha256: sha256(body), bytes: body.length });
 };
+const emit = (path, value) => emitRaw(path, Buffer.from(JSON.stringify(value)));
 
 const meta = () => ({ registry: 'far', version: REGISTRY_VERSION, docs: 'https://github.com/0xcounting/FAR' });
 const compact = (c) => ({
@@ -348,12 +368,7 @@ for (const l of links) {
 // A "functionally fungible group" DTI is the registry's own statement that
 // several tokens are the same economic asset across ledgers. Indexing the group
 // in both directions makes that relation followable from either end.
-const groupMembers = new Map();
-for (const t of dtiTokens) {
-  if (!t.equivalentGroup) continue;
-  if (!groupMembers.has(t.equivalentGroup)) groupMembers.set(t.equivalentGroup, []);
-  groupMembers.get(t.equivalentGroup).push(t.dti);
-}
+
 const chainBasisCounts = {};
 for (const rec of dtiTokens) {
   const linked = (linksByDti.get(rec.dti) ?? []).map((l) => coinsById.get(l.coingeckoId)).filter(Boolean);
@@ -370,7 +385,10 @@ for (const rec of dtiTokens) {
       typeLabel: typeLabel ?? null,
       typeLabelNote: 'Inferred by this project from the record distribution and the ISO 24165 structure. NOT quoted from the standard.',
     },
-    groupMembers: (groupMembers.get(rec.dti) ?? []).filter((d) => d !== rec.dti).sort(),
+    // If this record IS a group, its members; if it is a token, the groups
+    // that list it. Both read straight from the snapshot.
+    groupMembers: membersOf.get(rec.dti) ?? [],
+    memberOf: (groupsOf.get(rec.dti) ?? []).slice().sort(),
     // Best-effort recovery of the two fields the free snapshot redacts. Never
     // a read — always an inference, and `basis` says which one.
     inferredChain: (() => {
@@ -483,6 +501,12 @@ for (const coin of coinsById.values()) {
   for (const d of coin.dti) {
     if (d.status === 'accepted') continue;
     const rec = dtiById.get(d.dti);
+    // A group record names a SET of tokens, not a deployment. There is nothing
+    // on-chain to check it against, so it cannot be accepted as a link to one
+    // contract. Every record carrying a member list is DTIType 3; the type-3
+    // records without one are groups whose membership is not published, so
+    // the label is checked too.
+    if (isGroupRecord(rec) || rec.type === 3) continue;
     acceptanceQueue.push({
       dti: d.dti, dtiLongName: rec.longName, dtiShortName: rec.shortNames[0] ?? null,
       coingeckoId: coin.coingeckoId, name: coin.name, symbol: coin.symbol,
@@ -508,7 +532,7 @@ acceptanceQueue.sort((a, b) => a.competingRecords - b.competingRecords
   || (a.dti < b.dti ? -1 : 1));
 emit('_acceptance-queue.json', {
   ...meta(),
-  _readme: 'Proposed DTI links on single-deployment assets, the only ones public evidence can support. `competingRecords` is how many DTI records propose the same coin (at most one can be right); `dtiNameCollisions` is how many DTI records share this long name (1 = unique). Sorted uncontested and unique first. To accept one: read the contract (scripts/gather-onchain-evidence.js prints a rationale), then add it to data/links.json in a pull request. See CONTRIBUTING.md.',
+  _readme: 'Proposed DTI links on single-deployment assets, the only ones public evidence can support. Group records (DTIType 3, which name a set of tokens rather than a deployment) are excluded. `competingRecords` is how many DTI records propose the same coin (at most one can be right); `dtiNameCollisions` is how many DTI records share this long name (1 = unique). Sorted uncontested and unique first. To accept one: read the contract (scripts/gather-onchain-evidence.js prints a rationale), then add it to data/links.json in a pull request. See CONTRIBUTING.md.',
   count: acceptanceQueue.length,
   queue: acceptanceQueue,
 });
@@ -552,6 +576,7 @@ const indexDoc = {
     bulk: '/far.json.gz', manifest: '/manifest.json', platforms: '/_platforms.json',
     unlinked: '/_unlinked.json',
     acceptanceQueue: '/_acceptance-queue.json',
+    llms: '/llms.txt', llmsFull: '/llms-full.txt', readme: '/README.md', openapi: '/openapi.json', apiCatalog: '/.well-known/api-catalog', robots: '/robots.txt',
     proof: '/proof/{path without .json}.json  (e.g. /proof/cg/tether.json proves cg/tether.json; /proof/index.html.json proves index.html)',
     searchIndex: '/search-index.json',
     ledger: '/ledger/{DLI}.json',
@@ -565,17 +590,29 @@ const indexDoc = {
 // the two do not collide. Hashed into the manifest like every other file, so a
 // consumer can verify the page they are reading is the published one.
 if (existsSync('site/index.html')) {
-  const html = readFileSync('site/index.html');
-  writeFileSync(join(OUT, 'index.html'), html);
-  files.push({ path: 'index.html', sha256: sha256(html), bytes: html.length });
+  emitRaw('index.html', readFileSync('site/index.html'));
   // /v2.html was the preview URL while this design was being compared against
   // the old one. Kept as a redirect so any link shared in that window still lands.
-  const redirect = Buffer.from('<!doctype html><meta charset="utf-8">'
+  emitRaw('v2.html', Buffer.from('<!doctype html><meta charset="utf-8">'
     + '<meta http-equiv="refresh" content="0;url=./"><link rel="canonical" href="./">'
-    + '<title>FAR</title><p><a href="./">FAR moved to the site root</a></p>\n');
-  writeFileSync(join(OUT, 'v2.html'), redirect);
-  files.push({ path: 'v2.html', sha256: sha256(redirect), bytes: redirect.length });
+    + '<title>FAR</title><p><a href="./">FAR moved to the site root</a></p>\n'));
 }
+
+// ------------------------------------------------------- for agents and tools --
+// llms.txt (llmstxt.org), an RFC 9727 API catalog, an OpenAPI description of
+// every route, and the Markdown docs as served files. All hashed into the
+// manifest like everything else. BASE is the public origin; override it to
+// serve the same build from elsewhere.
+const BASE = process.env.FAR_BASE ?? 'https://0xcounting.github.io/FAR';
+const llms = readFileSync('site/llms.txt', 'utf8');
+const readme = readFileSync('README.md', 'utf8');
+const contributing = readFileSync('CONTRIBUTING.md', 'utf8');
+emitRaw('llms.txt', Buffer.from(llms));
+emitRaw('llms-full.txt', Buffer.from(llmsFull(llms, readme, contributing)));
+emitRaw('README.md', Buffer.from(readme));
+emitRaw('robots.txt', readFileSync('site/robots.txt'));
+emit('openapi.json', openapiDoc(BASE, { ...counts, version: REGISTRY_VERSION }));
+emit('.well-known/api-catalog', apiCatalog(BASE));
 
 // index.json is the last file in. Its own entry is the +1, so the count it
 // publishes equals the manifest's.
