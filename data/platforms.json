@@ -3561,7 +3561,7 @@
       "uncertainty": "Whether the registry wants native coins expressed as slip44:60 (chain-scoped, the CAIP-19 convention for EVM chains) or as a dedicated sentinel is a policy call I cannot make. MAP Protocol also runs a Bitcoin-light-client relay layer; only the EVM layer 22776 is addressed here."
     },
     "aura-network": {
-      "caip2": "cosmos:aura_6322-2",
+      "caip2": "cosmos:hashed-f9718959c90254d1",
       "assetNamespace": null,
       "nativeAsset": null,
       "addressFormat": "cosmos-denom",
@@ -3572,10 +3572,10 @@
       "evidence": [
         "Verified live 2026-09-14: GET https://lcd.aura.network/cosmos/base/tendermint/v1beta1/node_info returns default_node_info.network = `aura_6322-2`",
         "cosmos/chain-registry master aura/chain.json: chain_id `aura_6322-2`, status live, network_type mainnet, bech32_prefix `aura`, slip44 118",
-        "ChainAgnostic/namespaces cosmos/caip2.md - reference charset is [-_a-zA-Z0-9]{1,32}, so the underscore in `aura_6322-2` is legal (11 chars)",
-        "CoinGecko coins/list: the sole token on platform `aura-network` is monsterra (MSTR) at aura10jpl6rz59h6chrpx3edahntqthdmaemrc8eewvxge7e2hhxtltjqc2ucrm"
+        "CoinGecko coins/list: the sole token on platform `aura-network` is monsterra (MSTR) at aura10jpl6rz59h6chrpx3edahntqthdmaemrc8eewvxge7e2hhxtltjqc2ucrm",
+        "ChainAgnostic/namespaces cosmos/caip2.md: the cosmos DIRECT-reference grammar is [-a-zA-Z0-9]{1,32} (no underscore; generic CAIP-2 admits `_`, the cosmos profile does not), so `aura_6322-2` must be published as hashed- + first 16 hex of sha256 = hashed-f9718959c90254d1. The raw spelling cosmos:aura_6322-2 is an alias in data/chains.json and keeps resolving."
       ],
-      "note": "L1-vs-EVM (rule 5): Aura's chain_id `aura_6322-2` is Evmos-style, meaning the chain ALSO exposes an EVM layer at eip155:6322. The sample identity is a bech32 `aura1...` 32-byte CosmWasm contract address, so it lives in the Cosmos address space -> cosmos:aura_6322-2, NOT eip155:6322. Also note Aura's older chain_id was `xstaxy-1`; that is stale, the live node reports aura_6322-2. INVENTED: `cw20` as the asset namespace and `cosmwasm-bech32` as the addressFormat are my own proposals - cosmos/ has no caip19.md. Shape of cosmwasm-bech32: bech32 string, HRP = the chain's bech32_prefix (`aura`), 32-byte payload, total 63 chars for this chain, lowercase, with a valid bech32 checksum.",
+      "note": "L1-vs-EVM (rule 5): Aura's chain_id `aura_6322-2` is Evmos-style, meaning the chain ALSO exposes an EVM layer at eip155:6322. The sample identity is a bech32 `aura1...` 32-byte CosmWasm contract address, so it lives in the Cosmos address space -> cosmos:aura_6322-2, NOT eip155:6322. Also note Aura's older chain_id was `xstaxy-1`; that is stale, the live node reports aura_6322-2. INVENTED: `cw20` as the asset namespace and `cosmwasm-bech32` as the addressFormat are my own proposals - cosmos/ has no caip19.md. Shape of cosmwasm-bech32: bech32 string, HRP = the chain's bech32_prefix (`aura`), 32-byte payload, total 63 chars for this chain, lowercase, with a valid bech32 checksum. CANONICAL KEY CHANGED 2026-09-22 from cosmos:aura_6322-2 (the raw chain-id, which the cosmos profile says must be hashed) to cosmos:hashed-f9718959c90254d1; the raw spelling is an alias and every path served under it keeps resolving, pointing at the canonical record.",
       "uncertainty": "I did not verify that the sample address is specifically a CW20 (rather than a CW721/other) contract. SLIP-44 has an entry `312 ARA Aura` but that is a DIFFERENT project (ARA), not Aura Network, so I left nativeAsset null rather than claim it."
     },
     "orenium": {

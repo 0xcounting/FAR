@@ -180,12 +180,31 @@ they are overwritten. Two things are worth a PR:
   not join (no native coin id on either side), add the platform entry by hand
   with the chain-registry line as evidence.
 
-The CAIP-2 reference follows the **cosmos profile**, not the generic CAIP-2
-grammar: a chain_id containing `_` or `.` (`kava_2222-10`, `shentu-2.2`) is
-`hashed-` + the first 16 hex of its sha256, per `cosmos/caip2.md`. The unhashed
-form circulates in wallets; it is not conformant, and a consumer following the
-spec will not find it. `cosmosCaip2()` in `src/lib/caip.js` is the one place
-this is implemented; CI checks every key in `chains.json` against it.
+**Which spelling is canonical, and why both are published.** The CAIP-2
+reference follows the **cosmos profile**, not the generic CAIP-2 grammar: the
+direct-reference charset is `[-a-zA-Z0-9]{1,32}`, so a chain_id containing `_`
+or `.` (`kava_2222-10`, `shentu-2.2`, 47 chains today) is canonically
+`cosmos:hashed-` + the first 16 hex of its sha256, per `cosmos/caip2.md`.
+Nobody writes that form by hand: wallets, explorers and humans write the raw
+chain-id. Publishing only the hashed form would make FAR speak a dialect nobody
+else speaks; publishing only the raw form would mean a consumer implementing the
+spec never finds the row. Both are the same failure — someone asks in a
+reasonable dialect and gets nothing — so the registry publishes **both**:
+
+- the **hashed form is the canonical key** — every record (`caip2`, `caip19`)
+  carries it, and it is what `chains.json` is keyed by;
+- the **raw spelling is an `aliases` entry** on that row, and every route
+  answers under it too: `/caip/cosmos/kava_2222-10/...` returns the same record as
+  `/caip/cosmos/hashed-6d4e837e169119f0/...`, plus an `alias` object saying what
+  was asked for and what it resolved to. `/_chains.json` carries the full
+  `aliases` map.
+
+An alias can never collide with a real conformant reference: it only exists
+because the raw id contains a character the direct grammar forbids, and CI
+refuses an alias that looks like a hashed key, equals another chain's key, or is
+duplicated. Write platform entries with the canonical key (CI rejects the alias
+dialect there and names the key to use). `cosmosCaip2()` in `src/lib/caip.js` is
+the one place the rule is implemented.
 
 ### 7. A voucher mapping you can check yourself
 

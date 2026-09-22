@@ -65,7 +65,7 @@ one file (`/far.json.gz`) if you would rather hold it locally.
 | Chains named by CAIP-2 independent of a CoinGecko platform | 223 |
 | ICS-20 vouchers verified by recomputing their hash | 7,938 |
 | — placed on a CoinGecko coin / already listed / origin asset has no CoinGecko id | 4,584 / 128 / 3,226 |
-| Published files | 84,992 |
+| Published files | 85,123 |
 <!-- BUILD-STATS:END -->
 
 ## Where the DTI half stands
@@ -128,7 +128,9 @@ chain-registry by CAIP-2 — 223 chains, whether or not CoinGecko files tokens u
 them — so an IBC voucher's origin chain can always be named, and a platform under
 which CoinGecko lists no tokens (Celestia, Stride, Axelar, Sei, ...) still resolves.
 The CAIP-2 reference follows the cosmos profile's `hashed-` rule for chain ids that
-fail its direct grammar (`kava_2222-10`, `shentu-2.2`); see CONTRIBUTING §6.
+fail its direct grammar (`kava_2222-10`, `shentu-2.2`) — and because nobody writes
+that form by hand, the raw spelling is published as an alias that resolves on every
+route to the same record. Ask in either dialect; see CONTRIBUTING §6.
 
 One asset class is **verified rather than reviewed**: IBC vouchers. ICS-20 defines
 the voucher denom as `ibc/` + `sha256(path + "/" + base_denom)`, so a claimed mapping

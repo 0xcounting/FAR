@@ -81,6 +81,23 @@ for (const [name, p] of Object.entries(platformTable.platforms)) {
 // tables cannot disagree about which chain a platform is.
 const chainTable = readOptional('data/chains.json', { chains: {} }).chains;
 const seenRegistryName = new Map();
+// Aliases: the raw `cosmos:<chain_id>` spelling of a hashed key. Both spellings
+// resolve; the hashed one is canonical. An alias that could be mistaken for a
+// conformant reference is a WRONG ASSET, not a missed lookup, so the rules are
+// strict: exactly `cosmos:<this row's chainId>`, only on a hashed key, never
+// itself hashed-shaped, and unique across every key and every alias.
+const aliasOwner = new Map();
+for (const [caip2, c] of Object.entries(chainTable)) {
+  for (const alias of c.aliases ?? []) {
+    if (!caip2.startsWith('cosmos:hashed-')) fail('chain.alias-on-direct-reference', `${caip2}: a direct reference needs no alias (${alias})`);
+    if (alias !== `cosmos:${c.chainId}`) fail('chain.alias-not-raw-chain-id', `${caip2}: alias ${alias} is not cosmos:${c.chainId}`);
+    if (alias.startsWith('cosmos:hashed-')) fail('chain.alias-looks-hashed', `${caip2}: alias ${alias} could be mistaken for a hashed reference`);
+    if (chainTable[alias]) fail('chain.alias-collides-with-key', `${caip2}: alias ${alias} is another chain's canonical key`);
+    if (aliasOwner.has(alias)) fail('chain.alias-duplicate', `${alias}: ${aliasOwner.get(alias)} and ${caip2}`);
+    aliasOwner.set(alias, caip2);
+  }
+  if (caip2.startsWith('cosmos:hashed-') && !(c.aliases ?? []).length) fail('chain.hashed-without-alias', `${caip2}: a hashed key must publish its raw spelling cosmos:${c.chainId} as an alias`);
+}
 for (const [caip2, c] of Object.entries(chainTable)) {
   if (!isValidCaip2(caip2)) fail('chain.caip2-invalid', caip2);
   if (c.namespace === 'cosmos' && cosmosCaip2(c.chainId) !== caip2) fail('chain.caip2-not-derived-from-chain-id', `${caip2}: chainId "${c.chainId}" derives to ${cosmosCaip2(c.chainId)}`);
@@ -91,20 +108,18 @@ for (const [caip2, c] of Object.entries(chainTable)) {
     if (seenRegistryName.has(c.registryName)) fail('chain.duplicate-registry-name', `${c.registryName}: ${seenRegistryName.get(c.registryName)} and ${caip2}`);
     seenRegistryName.set(c.registryName, caip2);
   }
-  // A platform may still carry the pre-hashed-rule spelling `cosmos:<chain_id>`
-  // (aura-network: `cosmos:aura_6322-2`). Renaming a served CAIP-2 is a
-  // judgement change, so the legacy spelling is accepted as naming this chain;
-  // it is listed in the build log and README as an open follow-up.
   const platformCaip2 = platformTable.platforms[c.coingeckoPlatform]?.caip2;
-  if (c.coingeckoPlatform && platformCaip2 !== caip2 && platformCaip2 !== `cosmos:${c.chainId}`) {
+  if (c.coingeckoPlatform && platformCaip2 !== caip2) {
     fail('chain.platform-disagrees', `${caip2}: coingeckoPlatform ${c.coingeckoPlatform} maps to ${platformCaip2}`);
   }
 }
-const chainByRawId = new Map(Object.values(chainTable).map((c) => [`cosmos:${c.chainId}`, c]));
 for (const [name, p] of Object.entries(platformTable.platforms)) {
-  if (p.caip2.startsWith('cosmos:') && !chainTable[p.caip2] && !chainByRawId.has(p.caip2)) {
-    fail('platform.cosmos-chain-unknown', `${name}: ${p.caip2} has no entry in data/chains.json`);
-  }
+  if (!p.caip2.startsWith('cosmos:')) continue;
+  if (chainTable[p.caip2]) continue;
+  // Records carry the canonical key; the alias resolves on read. A platform
+  // written in the alias dialect is a mistake the author can fix mechanically.
+  if (aliasOwner.has(p.caip2)) fail('platform.cosmos-caip2-is-alias', `${name}: ${p.caip2} is an alias; use the canonical key ${aliasOwner.get(p.caip2)}`);
+  else fail('platform.cosmos-chain-unknown', `${name}: ${p.caip2} has no entry in data/chains.json`);
 }
 
 // --- ICS-20 traces -----------------------------------------------------------
