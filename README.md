@@ -44,14 +44,25 @@ one file (`/far.json.gz`) if you would rather hold it locally.
 |---|---|
 | CoinGecko coins | 18,090 |
 | — resolvable to at least one CAIP-19 | 17,212 (95.1%) |
-| CAIP-19 identities | 25,293 across 290 chains |
+| CAIP-19 identities | 25,293 across 306 chains |
 | Native units of account | 41 chain identities |
-| CoinGecko platforms mapped to CAIP-2 | 290 |
+| CoinGecko platforms mapped to CAIP-2 | 306 |
 | — still unmapped | 10 |
-| Published files | 74,335 |
+| Chains named by CAIP-2 independent of a CoinGecko platform | 223 |
+| Published files | 74,337 |
 <!-- BUILD-STATS:END -->
 
 ## Read this before you trust a chain
+
+A chain is also an identity in its own right, not only a CoinGecko platform:
+`data/chains.json` (served as `/_chains.json`) names every mainnet in the Cosmos
+chain-registry by CAIP-2 — 223 chains, whether or not CoinGecko files tokens under
+them — so an IBC voucher's origin chain can always be named, and a platform under
+which CoinGecko lists no tokens (Celestia, Stride, Axelar, Sei, ...) still resolves.
+The CAIP-2 reference follows the cosmos profile's `hashed-` rule for chain ids that
+fail its direct grammar (`kava_2222-10`, `shentu-2.2`) — and because nobody writes
+that form by hand, the raw spelling is published as an alias that resolves on every
+route to the same record. Ask in either dialect; see CONTRIBUTING §4.
 
 Every entry in `data/platforms.json` carries
 a `confidence`:

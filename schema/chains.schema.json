@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/0xcounting/FAR/schema/chains.schema.json",
+  "title": "FAR chain table",
+  "description": "CAIP-2 -> chain identity, independent of CoinGecko's platform list. Today Cosmos SDK chains only (EVM chains are named by their eip155 id and need no table).",
+  "type": "object",
+  "required": ["chains"],
+  "properties": {
+    "chains": {
+      "type": "object",
+      "propertyNames": { "pattern": "^[-a-z0-9]{3,8}:[-_a-zA-Z0-9]{1,32}$" },
+      "additionalProperties": { "$ref": "#/$defs/chain" }
+    }
+  },
+  "$defs": {
+    "chain": {
+      "type": "object",
+      "required": ["namespace", "chainId", "name", "confidence", "evidence"],
+      "properties": {
+        "namespace": { "enum": ["cosmos"] },
+        "chainId": { "type": "string", "description": "The chain's own identifier (the Tendermint chain_id for cosmos). The CAIP-2 reference is derived from it, not always equal to it." },
+        "aliases": { "type": "array", "items": { "type": "string", "pattern": "^cosmos:[^/\\s]{1,64}$" }, "description": "Other spellings that resolve to this row. For a hashed key, the raw `cosmos:<chain_id>` that wallets and explorers write. Never a conformant direct reference of another chain; CI enforces uniqueness across keys and aliases." },
+        "name": { "type": "string" },
+        "registryName": { "type": ["string", "null"], "description": "cosmos/chain-registry directory name. Stable across regenesis, unlike chainId." },
+        "bech32Prefix": { "type": ["string", "null"] },
+        "slip44": { "type": ["integer", "null"], "description": "HD derivation coin type the chain's wallets use (chain-registry slip44). NOT necessarily the SLIP-0044 registration of the native asset." },
+        "nativeDenom": { "type": ["string", "null"] },
+        "nativeSymbol": { "type": ["string", "null"] },
+        "nativeDecimals": { "type": ["integer", "null"] },
+        "coingeckoNativeCoinId": { "type": ["string", "null"] },
+        "coingeckoPlatform": { "type": ["string", "null"], "description": "platforms.json slug whose caip2 is this chain, if CoinGecko has a platform for it." },
+        "confidence": { "enum": ["high", "medium", "low", "proposed"] },
+        "evidence": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "note": { "type": ["string", "null"] },
+        "curated": { "type": "boolean", "description": "Hand-written entry; preserved by scripts/gen-chains.js." },
+        "assertedBy": { "type": ["string", "null"] },
+        "uncertainty": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

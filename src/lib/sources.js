@@ -6,6 +6,8 @@ const SOURCES = {
   coingeckoCoins: 'data/sources/coingecko-coins.json.gz',
   coingeckoPlatforms: 'data/sources/coingecko-platforms.json.gz',
   evmChains: 'data/sources/evm-chains.json.gz',
+  // Cosmos chain-registry snapshot (chain_id, bech32 prefix, native denom, CoinGecko id per chain) -- see SOURCES.md.
+  cosmosChainRegistry: 'data/sources/cosmos-chain-registry.json.gz',
 };
 
 // Every build records the sha256 of the exact bytes it read. That hash travels

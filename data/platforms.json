@@ -3561,7 +3561,7 @@
       "uncertainty": "Whether the registry wants native coins expressed as slip44:60 (chain-scoped, the CAIP-19 convention for EVM chains) or as a dedicated sentinel is a policy call I cannot make. MAP Protocol also runs a Bitcoin-light-client relay layer; only the EVM layer 22776 is addressed here."
     },
     "aura-network": {
-      "caip2": "cosmos:aura_6322-2",
+      "caip2": "cosmos:hashed-f9718959c90254d1",
       "assetNamespace": null,
       "nativeAsset": null,
       "addressFormat": "cosmos-denom",
@@ -3572,10 +3572,10 @@
       "evidence": [
         "Verified live 2026-09-14: GET https://lcd.aura.network/cosmos/base/tendermint/v1beta1/node_info returns default_node_info.network = `aura_6322-2`",
         "cosmos/chain-registry master aura/chain.json: chain_id `aura_6322-2`, status live, network_type mainnet, bech32_prefix `aura`, slip44 118",
-        "ChainAgnostic/namespaces cosmos/caip2.md - reference charset is [-_a-zA-Z0-9]{1,32}, so the underscore in `aura_6322-2` is legal (11 chars)",
-        "CoinGecko coins/list: the sole token on platform `aura-network` is monsterra (MSTR) at aura10jpl6rz59h6chrpx3edahntqthdmaemrc8eewvxge7e2hhxtltjqc2ucrm"
+        "CoinGecko coins/list: the sole token on platform `aura-network` is monsterra (MSTR) at aura10jpl6rz59h6chrpx3edahntqthdmaemrc8eewvxge7e2hhxtltjqc2ucrm",
+        "ChainAgnostic/namespaces cosmos/caip2.md: the cosmos DIRECT-reference grammar is [-a-zA-Z0-9]{1,32} (no underscore; generic CAIP-2 admits `_`, the cosmos profile does not), so `aura_6322-2` must be published as hashed- + first 16 hex of sha256 = hashed-f9718959c90254d1. The raw spelling cosmos:aura_6322-2 is an alias in data/chains.json and keeps resolving."
       ],
-      "note": "L1-vs-EVM (rule 5): Aura's chain_id `aura_6322-2` is Evmos-style, meaning the chain ALSO exposes an EVM layer at eip155:6322. The sample identity is a bech32 `aura1...` 32-byte CosmWasm contract address, so it lives in the Cosmos address space -> cosmos:aura_6322-2, NOT eip155:6322. Also note Aura's older chain_id was `xstaxy-1`; that is stale, the live node reports aura_6322-2. INVENTED: `cw20` as the asset namespace and `cosmwasm-bech32` as the addressFormat are my own proposals - cosmos/ has no caip19.md. Shape of cosmwasm-bech32: bech32 string, HRP = the chain's bech32_prefix (`aura`), 32-byte payload, total 63 chars for this chain, lowercase, with a valid bech32 checksum.",
+      "note": "L1-vs-EVM (rule 5): Aura's chain_id `aura_6322-2` is Evmos-style, meaning the chain ALSO exposes an EVM layer at eip155:6322. The sample identity is a bech32 `aura1...` 32-byte CosmWasm contract address, so it lives in the Cosmos address space -> cosmos:aura_6322-2, NOT eip155:6322. Also note Aura's older chain_id was `xstaxy-1`; that is stale, the live node reports aura_6322-2. INVENTED: `cw20` as the asset namespace and `cosmwasm-bech32` as the addressFormat are my own proposals - cosmos/ has no caip19.md. Shape of cosmwasm-bech32: bech32 string, HRP = the chain's bech32_prefix (`aura`), 32-byte payload, total 63 chars for this chain, lowercase, with a valid bech32 checksum. CANONICAL KEY CHANGED 2026-09-22 from cosmos:aura_6322-2 (the raw chain-id, which the cosmos profile says must be hashed) to cosmos:hashed-f9718959c90254d1; the raw spelling is an alias and every path served under it keeps resolving, pointing at the canonical record.",
       "uncertainty": "I did not verify that the sample address is specifically a CW20 (rather than a CW721/other) contract. SLIP-44 has an entry `312 ARA Aura` but that is a DIFFERENT project (ARA), not Aura Network, so I left nativeAsset null rather than claim it."
     },
     "orenium": {
@@ -3714,6 +3714,223 @@
         "tvm/README.md scopes the namespace to Everscale, TON, Venom and Gosh explicitly"
       ],
       "note": "CASA tvm/caip2.md uses tvm:42 as its primary worked example. NOTE: CoinGecko files this platform’s only identity as an ETHEREUM mainnet ERC-20 (verified by reading symbol()/name() on eip155:1), so that row is mis-filed upstream and is rejected here rather than published as a TVM asset."
+    },
+    "axelar": {
+      "caip2": "cosmos:axelar-dojo-1",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "CoinGecko asset_platforms: id=axelar, chain_identifier=null, native_coin_id=axelar",
+        "cosmos/chain-registry axelar/chain.json: chain_id=axelar-dojo-1, coingecko_id=axelar (the join key: unique on both sides)",
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, factory for factory/ denoms, bank otherwise. All four are provisional. Added because CoinGecko files no token deployments under this platform, so the coin->platform map never surfaced it; the chain and its native coin are nonetheless CoinGecko assets."
+    },
+    "axiome-chain": {
+      "caip2": "cosmos:axiome-1",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "CoinGecko asset_platforms: id=axiome-chain, chain_identifier=null, native_coin_id=axiome",
+        "cosmos/chain-registry axiome/chain.json: chain_id=axiome-1, coingecko_id=axiome (the join key: unique on both sides)",
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, factory for factory/ denoms, bank otherwise. All four are provisional. Added because CoinGecko files no token deployments under this platform, so the coin->platform map never surfaced it; the chain and its native coin are nonetheless CoinGecko assets."
+    },
+    "celestia": {
+      "caip2": "cosmos:celestia",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "CoinGecko asset_platforms: id=celestia, chain_identifier=null, native_coin_id=celestia",
+        "cosmos/chain-registry celestia/chain.json: chain_id=celestia, coingecko_id=celestia (the join key: unique on both sides)",
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, factory for factory/ denoms, bank otherwise. All four are provisional. Added because CoinGecko files no token deployments under this platform, so the coin->platform map never surfaced it; the chain and its native coin are nonetheless CoinGecko assets."
+    },
+    "chihuahua": {
+      "caip2": "cosmos:chihuahua-1",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "CoinGecko asset_platforms: id=chihuahua, chain_identifier=null, native_coin_id=chihuahua-token",
+        "cosmos/chain-registry chihuahua/chain.json: chain_id=chihuahua-1, coingecko_id=chihuahua-token (the join key: unique on both sides)",
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, factory for factory/ denoms, bank otherwise. All four are provisional. Added because CoinGecko files no token deployments under this platform, so the coin->platform map never surfaced it; the chain and its native coin are nonetheless CoinGecko assets."
+    },
+    "dydx": {
+      "caip2": "cosmos:dydx-mainnet-1",
+      "assetNamespace": null,
+      "nativeAsset": "slip44:22000118",
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "CoinGecko asset_platforms: id=dydx, chain_identifier=null, native_coin_id=dydx-chain",
+        "cosmos/chain-registry dydx/chain.json: chain_id=dydx-mainnet-1, coingecko_id=dydx-chain (the join key: unique on both sides)",
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)",
+        "SLIP-0044: DYDX = coin type 22000118"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, factory for factory/ denoms, bank otherwise. All four are provisional. Added because CoinGecko files no token deployments under this platform, so the coin->platform map never surfaced it; the chain and its native coin are nonetheless CoinGecko assets."
+    },
+    "dymension": {
+      "caip2": "cosmos:hashed-36eafc7f1029ed04",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "CoinGecko asset_platforms: id=dymension, chain_identifier=null, native_coin_id=dymension",
+        "cosmos/chain-registry dymension/chain.json: chain_id=dymension_1100-1, coingecko_id=dymension (the join key: unique on both sides)",
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, factory for factory/ denoms, bank otherwise. All four are provisional. Added because CoinGecko files no token deployments under this platform, so the coin->platform map never surfaced it; the chain and its native coin are nonetheless CoinGecko assets."
+    },
+    "iris": {
+      "caip2": "cosmos:irishub-1",
+      "assetNamespace": null,
+      "nativeAsset": "slip44:566",
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "CoinGecko asset_platforms: id=iris, chain_identifier=null, native_coin_id=iris-network",
+        "cosmos/chain-registry irisnet/chain.json: chain_id=irishub-1, coingecko_id=iris-network (the join key: unique on both sides)",
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)",
+        "SLIP-0044: IRIS = coin type 566"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, factory for factory/ denoms, bank otherwise. All four are provisional. Added because CoinGecko files no token deployments under this platform, so the coin->platform map never surfaced it; the chain and its native coin are nonetheless CoinGecko assets."
+    },
+    "kyve": {
+      "caip2": "cosmos:kyve-1",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "CoinGecko asset_platforms: id=kyve, chain_identifier=null, native_coin_id=kyve-network",
+        "cosmos/chain-registry kyve/chain.json: chain_id=kyve-1, coingecko_id=kyve-network (the join key: unique on both sides)",
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, factory for factory/ denoms, bank otherwise. All four are provisional. Added because CoinGecko files no token deployments under this platform, so the coin->platform map never surfaced it; the chain and its native coin are nonetheless CoinGecko assets."
+    },
+    "lum": {
+      "caip2": "cosmos:lum-network-1",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "CoinGecko asset_platforms: id=lum, chain_identifier=null, native_coin_id=lum-network",
+        "cosmos/chain-registry lumnetwork/chain.json: chain_id=lum-network-1, coingecko_id=lum-network (the join key: unique on both sides)",
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, factory for factory/ denoms, bank otherwise. All four are provisional. Added because CoinGecko files no token deployments under this platform, so the coin->platform map never surfaced it; the chain and its native coin are nonetheless CoinGecko assets."
+    },
+    "mayachain": {
+      "caip2": "cosmos:mayachain-mainnet-v1",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "CoinGecko asset_platforms: id=mayachain, chain_identifier=null, native_coin_id=cacao",
+        "cosmos/chain-registry mayachain/chain.json: chain_id=mayachain-mainnet-v1, coingecko_id=cacao (the join key: unique on both sides)",
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, factory for factory/ denoms, bank otherwise. All four are provisional. Added because CoinGecko files no token deployments under this platform, so the coin->platform map never surfaced it; the chain and its native coin are nonetheless CoinGecko assets."
+    },
+    "regen": {
+      "caip2": "cosmos:regen-1",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "CoinGecko asset_platforms: id=regen, chain_identifier=null, native_coin_id=regen",
+        "cosmos/chain-registry regen/chain.json: chain_id=regen-1, coingecko_id=regen (the join key: unique on both sides)",
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, factory for factory/ denoms, bank otherwise. All four are provisional. Added because CoinGecko files no token deployments under this platform, so the coin->platform map never surfaced it; the chain and its native coin are nonetheless CoinGecko assets."
+    },
+    "sei-network": {
+      "caip2": "cosmos:pacific-1",
+      "assetNamespace": null,
+      "nativeAsset": "slip44:19000118",
+      "addressFormat": "cosmos-denom",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "CoinGecko asset_platforms: id=sei-network, chain_identifier=null, native_coin_id=sei-network",
+        "cosmos/chain-registry sei/chain.json: chain_id=pacific-1, coingecko_id=sei-network (the join key: unique on both sides)",
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)",
+        "SLIP-0044: SEI = coin type 19000118"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, factory for factory/ denoms, bank otherwise. All four are provisional. Added because CoinGecko files no token deployments under this platform, so the coin->platform map never surfaced it; the chain and its native coin are nonetheless CoinGecko assets."
+    },
+    "sommelier": {
+      "caip2": "cosmos:sommelier-3",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "CoinGecko asset_platforms: id=sommelier, chain_identifier=null, native_coin_id=sommelier",
+        "cosmos/chain-registry sommelier/chain.json: chain_id=sommelier-3, coingecko_id=sommelier (the join key: unique on both sides)",
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, factory for factory/ denoms, bank otherwise. All four are provisional. Added because CoinGecko files no token deployments under this platform, so the coin->platform map never surfaced it; the chain and its native coin are nonetheless CoinGecko assets."
+    },
+    "stargaze": {
+      "caip2": "cosmos:stargaze-1",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "CoinGecko asset_platforms: id=stargaze, chain_identifier=null, native_coin_id=stargaze",
+        "cosmos/chain-registry stargaze/chain.json: chain_id=stargaze-1, coingecko_id=stargaze (the join key: unique on both sides)",
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, factory for factory/ denoms, bank otherwise. All four are provisional. Added because CoinGecko files no token deployments under this platform, so the coin->platform map never surfaced it; the chain and its native coin are nonetheless CoinGecko assets."
+    },
+    "stride": {
+      "caip2": "cosmos:stride-1",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "high",
+      "evidence": [
+        "0xcounting.com production ingest (chain table)",
+        "CoinGecko asset_platforms: id=stride, chain_identifier=null, native_coin_id=stride",
+        "cosmos/chain-registry stride/chain.json: chain_id=stride-1, coingecko_id=stride (the join key: unique on both sides)",
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, factory for factory/ denoms, bank otherwise. All four are provisional. Added because CoinGecko files no token deployments under this platform, so the coin->platform map never surfaced it; the chain and its native coin are nonetheless CoinGecko assets."
+    },
+    "xpla": {
+      "caip2": "cosmos:hashed-984f8b8dc1b49e34",
+      "assetNamespace": null,
+      "nativeAsset": null,
+      "addressFormat": "cosmos-denom",
+      "confidence": "medium",
+      "evidence": [
+        "CoinGecko asset_platforms: id=xpla, chain_identifier=null, native_coin_id=xpla",
+        "cosmos/chain-registry xpla/chain.json: chain_id=dimension_37-1, coingecko_id=xpla (the join key: unique on both sides)",
+        "ChainAgnostic/namespaces cosmos/caip2.md (reference = the chain-id)"
+      ],
+      "note": "No ratified CAIP-19 for Cosmos. The asset namespace is chosen per identity — ics20 for ibc/ denoms, cw20 for contract addresses, factory for factory/ denoms, bank otherwise. All four are provisional. Added because CoinGecko files no token deployments under this platform, so the coin->platform map never surfaced it; the chain and its native coin are nonetheless CoinGecko assets."
     }
   },
   "unmapped": {

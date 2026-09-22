@@ -27,7 +27,7 @@ function buildEpochMs() {
   if (process.env.SOURCE_DATE_EPOCH) return Number(process.env.SOURCE_DATE_EPOCH) * 1000;
   const inputs = [
     ...readdirSync('data/sources').map((f) => `data/sources/${f}`),
-    'data/platforms.json', 'data/natives.json',
+    'data/platforms.json', 'data/natives.json', 'data/chains.json',
   ];
   return Math.max(...inputs.map((f) => statSync(f).mtimeMs));
 }
@@ -38,8 +38,21 @@ const REGISTRY_VERSION = GENERATED.slice(0, 10);
 const src = loadSources();
 const platformTable = JSON.parse(readFileSync('data/platforms.json', 'utf8'));
 const nativeTable = JSON.parse(readFileSync('data/natives.json', 'utf8')).natives;
+// The chain table: CAIP-2 -> chain identity, independent of CoinGecko's platform
+// list (data/chains.json, generated from the cosmos chain-registry snapshot).
+const chainTable = JSON.parse(readFileSync('data/chains.json', 'utf8')).chains;
 const readOptional = (p, fallback) => { try { return JSON.parse(readFileSync(p, 'utf8')); } catch { return fallback; } };
 const chainNames = new Map(src.evmChains.map((c) => [`eip155:${c.chainId}`, c.name]));
+// Cosmos deployments used to carry chainName: null because only ethereum-lists
+// named chains. The chain table names the rest.
+for (const [caip2, c] of Object.entries(chainTable)) if (!chainNames.has(caip2)) chainNames.set(caip2, c.name);
+// Alias -> canonical CAIP-2 (data/chains.json `aliases`): the raw chain-id
+// spelling of a hashed reference. Every path served under an alias resolves to
+// the canonical record, so a consumer may ask in either dialect.
+const chainAliases = new Map();
+for (const [caip2, c] of Object.entries(chainTable)) for (const alias of c.aliases ?? []) chainAliases.set(alias, caip2);
+const aliasesOf = new Map();
+for (const [alias, caip2] of chainAliases) { if (!aliasesOf.has(caip2)) aliasesOf.set(caip2, []); aliasesOf.get(caip2).push(alias); }
 
 // ---------------------------------------------------------------- assemble --
 const coinsById = new Map();
@@ -175,6 +188,18 @@ for (const coin of coinsById.values()) {
       ...meta(), query: { by: 'caip19', key: d.caip19 },
       asset: { ...compact(coin), deployment: d },
     });
+    // The same record under every alias spelling of its chain, so
+    // /caip/cosmos/kava_2222-10/... answers exactly as /caip/cosmos/hashed-.../...
+    // does. The body says which spelling was asked for and which is canonical.
+    for (const alias of aliasesOf.get(d.caip2) ?? []) {
+      const aliasCaip19 = `${alias}/${d.caip19.slice(d.caip2.length + 1)}`;
+      emit(`caip/${caipPath(aliasCaip19)}.json`, {
+        ...meta(), query: { by: 'caip19', key: aliasCaip19 },
+        alias: { requested: aliasCaip19, canonical: d.caip19, chainAlias: alias, chainCanonical: d.caip2 },
+        asset: { ...compact(coin), deployment: d },
+      });
+      stats.aliasRoutes = (stats.aliasRoutes ?? 0) + 1;
+    }
   }
 }
 
@@ -231,6 +256,15 @@ emit('_explorers.json', {
 });
 
 emit('_platforms.json', { ...meta(), ...platformTable });
+// Chains as identities in their own right. A Cosmos chain is here whether or not
+// CoinGecko has a platform for it, so an IBC voucher's ORIGIN can always be named.
+emit('_chains.json', {
+  ...meta(),
+  _readme: 'CAIP-2 -> chain identity. Keys are canonical (for cosmos: the chain_id verbatim, or hashed- per cosmos/caip2.md when the id fails the direct grammar). `aliases` maps every other published spelling -- the raw cosmos:<chain_id> of a hashed key -- to its canonical key; both spellings resolve on every route. Chain-registry data CC-BY-4.0 (Cosmos chain-registry contributors, via cosmos.directory).',
+  count: Object.keys(chainTable).length,
+  aliases: Object.fromEntries([...chainAliases].sort()),
+  chains: chainTable,
+});
 // Identifiers this registry had to invent because no CASA spec defines one.
 // Publishing the gap makes it actionable — each entry is a concrete proposal
 // somebody could take upstream — rather than leaving it implied by a
@@ -245,6 +279,9 @@ const counts = {
   family: familyCounts,
   platformsMapped: Object.keys(platformTable.platforms).length,
   platformsUnmapped: Object.keys(platformTable.unmapped).length,
+  chains: Object.keys(chainTable).length,
+  chainAliases: chainAliases.size,
+  aliasRoutes: stats.aliasRoutes ?? 0,
   files: files.length,
 };
 const indexDoc = {
@@ -255,7 +292,7 @@ const indexDoc = {
   routes: {
     name: '/name/{slug}.json', symbol: '/symbol/{slug}.json', coingeckoId: '/cg/{id}.json',
     caip19: '/caip/{namespace}/{reference}/{assetNamespace}/{assetReference}.json  (e.g. /caip/eip155/1/erc20/0xdac17f958d2ee523a2206206994597c13d831ec7.json; a "%" in the reference becomes "~")',
-    bulk: '/far.json.gz', manifest: '/manifest.json', platforms: '/_platforms.json',
+    bulk: '/far.json.gz', manifest: '/manifest.json', platforms: '/_platforms.json', chains: '/_chains.json',
     llms: '/llms.txt', llmsFull: '/llms-full.txt', readme: '/README.md', openapi: '/openapi.json', apiCatalog: '/.well-known/api-catalog', robots: '/robots.txt',
     proof: '/proof/{path without .json}.json  (e.g. /proof/cg/tether.json proves cg/tether.json; /proof/index.html.json proves index.html)',
     searchIndex: '/search-index.json',
