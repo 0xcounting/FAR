@@ -2,7 +2,7 @@
   "name": "far-registry",
   "version": "0.1.0",
   "private": true,
-  "description": "Free Asset Resolver \u2014 an open cross-reference between CAIP-19, CoinGecko IDs and ISO 24165 DTIs",
+  "description": "Free Asset Resolver \u2014 an open cross-reference between CoinGecko IDs and CAIP-19",
   "license": "MIT",
   "type": "module",
   "engines": {

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { citationIndex, classify, isDerivative } from '../src/lib/family.js';
 
 const asset = (coingeckoId, symbol, extra = {}) =>
-  ({ coingeckoId, name: coingeckoId, symbol, dti: [], deployments: [], ...extra });
+  ({ coingeckoId, name: coingeckoId, symbol, deployments: [], ...extra });
 
 test('an id that is an ordinary word is not a family head just because other ids contain it', () => {
   const assets = [

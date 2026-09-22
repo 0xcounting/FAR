@@ -14,16 +14,10 @@ entries that omit them. If a claim cannot be sourced, it does not go in at
 `medium` or above — it goes in at `low` with a note saying why, or it stays in
 the `unmapped` backlog where its absence is visible.
 
-This is why the DTI links ship as `proposed` and `inferred` rather than quietly
-presented as fact. We could publish thousands of name matches and model verdicts
-and look complete. Publishing them as guesses, each carrying the reasoning that
-produced it, is less impressive and more useful.
-
 ### On machine-generated claims
 
 A large part of this registry was proposed by language models: chain identifiers
-for ~65 platforms, CAIP-2 for ~97 DTI ledgers, and several thousand candidate
-links. That is a deliberate choice — the alternative was leaving those blank —
+and asset namespaces for ~65 platforms. That is a deliberate choice — the alternative was leaving those blank —
 and it comes with three hard rules:
 
 1. **Model output never enters above the lowest tier.** Platforms land at
@@ -79,8 +73,7 @@ one, including the issuer of the asset in question.
    entry and published in the next build. Consumers can see the contest while it
    is still running rather than after it resolves.
 3. **Argument happens in the issue, on evidence.** "This is our token" is not
-   evidence. A transaction, a contract deployment, a DTIF record, an official
-   announcement is.
+   evidence. A transaction, a contract deployment, an official announcement is.
 4. **A maintainer decides, in writing, in the issue**, and the decision is linked
    from the entry's `decidedIn`. Changing the decision later requires new
    evidence, not a new opinion.

@@ -1,5 +1,0 @@
-{
-  "_readme": "Curated DTI <-> CoinGecko links. Entries here override every automatic rule in src/lib/link.js and are the ONLY links published with status \"accepted\". Added and removed only by reviewed pull request \u2014 see CONTRIBUTING.md.",
-  "accepted": [],
-  "rejected": []
-}

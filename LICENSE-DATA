@@ -1,45 +1,21 @@
 Data licensing for FAR
 ======================
 
-This project publishes three kinds of data and they are NOT under one licence.
+This project publishes two kinds of data and they are NOT under one licence.
 Read this before redistributing any of it.
 
 1. WHAT THIS PROJECT CREATED  ->  CC0 1.0 Universal (public domain)
    ------------------------------------------------------------------
    The curated mapping tables and everything derived from them:
 
-     data/platforms.json      data/natives.json       data/links.json
+     data/platforms.json      data/natives.json
      data/namespace-gaps.json
      the CAIP-19 identifiers this project constructs
-     the family classification, the link proposals, the prose
+     the family classification, the prose
 
    https://creativecommons.org/publicdomain/zero/1.0/
 
-2. DTIF REGISTRY CONTENT  ->  NOT ours to license, and NOT CC0
-   ------------------------------------------------------------------
-   DTI codes, DLI codes, long names, short names, record types and
-   functionally-fungible group pointers originate in the ISO 24165 registry
-   operated by the Digital Token Identifier Foundation.
-
-   DTIF's terms state: "We and/or our licensors are the owner(s) of all
-   intellectual property rights in our Site and the Materials. Nothing in
-   these Terms operates to transfer ownership of any intellectual property
-   rights."
-
-   This project therefore CANNOT and does not place that content in the
-   public domain. It appears in:
-
-     data/sources/dti-registry.json.gz        data/ledgers.json
-     dist/dti/*.json        dist/ledger/*.json         dist/far.json[.gz]
-     the search index, and any route carrying a DTI or DLI
-
-   DTIF grants redistribution on two conditions, which bind you as they bind
-   us: you must not modify the Registry in any way which could be misleading
-   to any person, and you must not charge any person for any redistribution
-   of the Registry. See SOURCES.md for the full wording and for how this
-   project obtained the data.
-
-3. OTHER UPSTREAM SOURCES  ->  their own terms
+2. OTHER UPSTREAM SOURCES  ->  their own terms
    ------------------------------------------------------------------
    CoinGecko ids and contract mappings, ethereum-lists/chains (MIT),
    SLIP-0044 (MIT). See SOURCES.md.
