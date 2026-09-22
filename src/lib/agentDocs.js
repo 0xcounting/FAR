@@ -67,6 +67,8 @@ const single = (by) => obj({ ...envelope, query: query(by), asset }, ['registry'
 // The CAIP-19 route answers with the whole asset plus the one deployment that
 // matched, so a caller need not search `deployments` for the id they asked for.
 const byCaip = obj({ ...envelope, query: query('caip19'),
+  alias: obj({ requested: S.caip19, canonical: S.caip19, chainAlias: S.caip2, chainCanonical: S.caip2 }, ['requested', 'canonical', 'chainAlias', 'chainCanonical'],
+    'Present when the path was an ALIAS spelling of the chain (the raw cosmos chain-id of a hashed reference, e.g. cosmos:kava_2222-10). The record itself carries the canonical CAIP-19; this says what was asked for and what it resolved to.'),
   asset: obj({ ...asset.properties, deployment: { ...deployment, description: 'The deployment matching the requested CAIP-19.' } }, asset.required) },
   ['registry', 'version', 'query', 'asset']);
 const group = (by) => obj({ ...envelope, query: query(by), count: S.int, assets: arr(asset) }, ['registry', 'version', 'query', 'count', 'assets'],
@@ -144,7 +146,7 @@ export function openapiDoc(base, counts) {
         responses: { 200: jsonResp(single('coingeckoId')), 404: notFound } } },
       '/caip/{namespace}/{reference}/{assetNamespace}/{assetReference}.json': { get: { tags: ['lookup'],
         summary: 'The asset at an exact CAIP-19.',
-        description: 'The CAIP-19 is written as a path: the `:` inside each half and the `/` between them become path separators, and `%` becomes `~`. So `eip155:1/erc20:0xdac17f…` is `/caip/eip155/1/erc20/0xdac17f….json`, and a Sui coin type `…%3A%3Ausdc%3A%3AUSDC` is `…~3A~3Ausdc~3A~3AUSDC`.',
+        description: 'The CAIP-19 is written as a path: the `:` inside each half and the `/` between them become path separators, and `%` becomes `~`. So `eip155:1/erc20:0xdac17f…` is `/caip/eip155/1/erc20/0xdac17f….json`, and a Sui coin type `…%3A%3Ausdc%3A%3AUSDC` is `…~3A~3Ausdc~3A~3AUSDC`. Cosmos chains whose chain_id fails the cosmos profile\'s direct grammar (`kava_2222-10`, `shentu-2.2`) are canonically `cosmos:hashed-<16 hex>` and ALSO answer under the raw spelling (`/caip/cosmos/kava_2222-10/...`); the alias response carries an `alias` object naming the canonical id. See /_chains.json `aliases`.',
         parameters: [
           { name: 'namespace', in: 'path', required: true, schema: S.str, example: 'eip155' },
           { name: 'reference', in: 'path', required: true, schema: S.str, example: '1' },
@@ -173,7 +175,7 @@ export function openapiDoc(base, counts) {
         responses: { 200: jsonResp(obj({ ...envelope, _readme: S.str, count: S.int, queue: arr(queueEntry) }, ['count', 'queue'])) } } },
       '/_unlinked.json': { get: { tags: ['registry'], summary: 'DTI records with no CoinGecko proposal at all.', responses: { 200: jsonResp({ type: 'object' }) } } },
       '/_platforms.json': { get: { tags: ['bulk'], summary: 'Every chain mapping with confidence and evidence.', responses: { 200: jsonResp({ type: 'object' }) } } },
-      '/_chains.json': { get: { tags: ['bulk'], summary: 'CAIP-2 -> chain identity for every chain the registry can name, independent of CoinGecko platforms (Cosmos today).', responses: { 200: jsonResp({ type: 'object' }) } } },
+      '/_chains.json': { get: { tags: ['bulk'], summary: 'CAIP-2 -> chain identity for every chain the registry can name, independent of CoinGecko platforms (Cosmos today), with `aliases` mapping every raw-chain-id spelling to its canonical hashed key.', responses: { 200: jsonResp({ type: 'object' }) } } },
       '/_ledgers.json': { get: { tags: ['bulk'], summary: 'All DTI ledger records.', responses: { 200: jsonResp({ type: 'object' }) } } },
       '/_namespace-gaps.json': { get: { tags: ['bulk'], summary: 'Identifiers this registry chose because no CASA spec defines them.', responses: { 200: jsonResp({ type: 'object' }) } } },
       '/_explorers.json': { get: { tags: ['bulk'], summary: 'Block explorer base URLs by chain.', responses: { 200: jsonResp({ type: 'object' }) } } },

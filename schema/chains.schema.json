@@ -19,6 +19,7 @@
       "properties": {
         "namespace": { "enum": ["cosmos"] },
         "chainId": { "type": "string", "description": "The chain's own identifier (the Tendermint chain_id for cosmos). The CAIP-2 reference is derived from it, not always equal to it." },
+        "aliases": { "type": "array", "items": { "type": "string", "pattern": "^cosmos:[^/\\s]{1,64}$" }, "description": "Other spellings that resolve to this row. For a hashed key, the raw `cosmos:<chain_id>` that wallets and explorers write. Never a conformant direct reference of another chain; CI enforces uniqueness across keys and aliases." },
         "name": { "type": "string" },
         "registryName": { "type": ["string", "null"], "description": "cosmos/chain-registry directory name. Stable across regenesis, unlike chainId." },
         "bech32Prefix": { "type": ["string", "null"] },
