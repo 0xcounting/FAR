@@ -51,19 +51,21 @@ one file (`/far.json.gz`) if you would rather hold it locally.
 | | |
 |---|---|
 | CoinGecko coins | 18,090 |
-| — resolvable to at least one CAIP-19 | 17,212 (95.1%) |
-| CAIP-19 identities | 25,293 across 306 chains |
+| — resolvable to at least one CAIP-19 | 17,224 (95.2%) |
+| CAIP-19 identities | 29,877 across 306 chains |
 | Native units of account | 41 chain identities |
 | DTI token records | 5,775 |
 | — with a proposed CoinGecko match | 3,688 (63.9%) |
 |   rule-proposed / model-inferred / human-accepted | 1,929 / 1,759 / 0 |
-| — chain inferred from the proposed match | 1,104 (19.1%) |
-| — acceptable from public evidence (single-deployment assets) | 596 |
+| — chain inferred from the proposed match | 1,024 (17.7%) |
+| — acceptable from public evidence (single-deployment assets) | 548 |
 | DTI ledger records | 275, 209 with a CAIP-2 |
 | CoinGecko platforms mapped to CAIP-2 | 306 |
 | — still unmapped | 10 |
 | Chains named by CAIP-2 independent of a CoinGecko platform | 223 |
-| Published files | 80,407 |
+| ICS-20 vouchers verified by recomputing their hash | 7,938 |
+| — placed on a CoinGecko coin / already listed / origin asset has no CoinGecko id | 4,584 / 128 / 3,226 |
+| Published files | 84,992 |
 <!-- BUILD-STATS:END -->
 
 ## Where the DTI half stands
@@ -127,6 +129,15 @@ them — so an IBC voucher's origin chain can always be named, and a platform un
 which CoinGecko lists no tokens (Celestia, Stride, Axelar, Sei, ...) still resolves.
 The CAIP-2 reference follows the cosmos profile's `hashed-` rule for chain ids that
 fail its direct grammar (`kava_2222-10`, `shentu-2.2`); see CONTRIBUTING §6.
+
+One asset class is **verified rather than reviewed**: IBC vouchers. ICS-20 defines
+the voucher denom as `ibc/` + `sha256(path + "/" + base_denom)`, so a claimed mapping
+can be recomputed by anyone from its own two strings. 7,938 such traces are vendored,
+CI re-derives every one, and the deployments built from them carry a `verified` object
+stating the rule and its inputs (CONTRIBUTING §7). 4,584 of them place onto a CoinGecko
+coin through identities the registry already held; the 3,226 whose origin asset has no
+CoinGecko id are published at `/_ics20-unplaced.json` with the origin CAIP-19 each is
+equivalent to — two identifiers, one asset, no CoinGecko id needed.
 
 The same honesty applies to chains. Every entry in `data/platforms.json` carries
 a `confidence`:

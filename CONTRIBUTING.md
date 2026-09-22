@@ -187,6 +187,53 @@ form circulates in wallets; it is not conformant, and a consumer following the
 spec will not find it. `cosmosCaip2()` in `src/lib/caip.js` is the one place
 this is implemented; CI checks every key in `chains.json` against it.
 
+### 7. A voucher mapping you can check yourself
+
+IBC vouchers (`ibc/<HASH>` denoms) are the one asset class in this registry whose
+mapping is **verifiable rather than asserted**: the chain that minted the voucher
+defines `HASH = uppercase(hex(sha256(path + "/" + base_denom)))`, so given the
+path and the base denom anyone can recompute the hash and either it matches or
+the claim is false. `data/sources/ibc-denom-traces.json.gz` carries 7,938 such
+rows; CI re-derives every one of them.
+
+Deployments built from it carry a `verified` object:
+
+```json
+"verified": {
+  "method": "ics20-denom-trace",
+  "rule": "uppercase(hex(sha256(path + \"/\" + baseDenom))) reproduces the hash in the denom",
+  "path": "transfer/channel-0",
+  "baseDenom": "uatom",
+  "origin": "cosmos:cosmoshub-4/bank:uatom",
+  "resolvedBy": "derive:denom_traces+bank_metadata:cosmoshub-4",
+  "placedVia": "origin-identity"
+}
+```
+
+Read it as two claims of different strength. `path` + `baseDenom` -> `denom` is
+**proven** (recompute it). `origin` and the CoinGecko id the voucher was placed
+under are **derived**: the origin comes from walking the path through the
+chain-registry's channel tables, and `placedVia` says which already-known
+identity the base denom matched (`origin-identity`: the origin chain's own denom;
+`eth-erc20`: an Ethereum contract the base denom embeds; `ibc-canonical`: a
+CoinGecko-listed voucher for the same origin pair). Dispute the derived half like
+any other mapping; the proven half you can only dispute by producing a different
+`(path, baseDenom)` that hashes to the same denom, which is a SHA-256 collision.
+
+`/_ics20-unplaced.json` lists the verified vouchers whose origin asset has no
+CoinGecko id this registry knows, each with the origin CAIP-19 it is
+`equivalentTo`. Placing one is a contribution: find the CoinGecko coin for the
+origin asset (usually a `bank:` denom on a chain CoinGecko has no platform for),
+and the build will place every voucher rooted there on the next run once the
+identity is known — via a platform entry, a native, or the chain table's
+`coingeckoNativeCoinId`.
+
+**This is stronger than `high`.** The confidence tiers describe how a mapping was
+*reviewed*; `verified` describes a mapping that needs no reviewer. It is kept as a
+separate field rather than a fifth tier because the voucher inherits its chain's
+confidence (the hash proves nothing about which chain `osmosis-1` is), and a
+field can say both things where a single enum cannot.
+
 ## Rules that CI enforces
 
 - Every platform entry has non-empty `evidence`.
@@ -195,6 +242,7 @@ this is implemented; CI checks every key in `chains.json` against it.
 - The same pair is never both accepted and rejected.
 - Every CAIP-2 and CAIP-19 matches the grammar.
 - Every `chains.json` key is exactly what its `chainId` derives to under the cosmos profile, and every Cosmos platform in `platforms.json` points at a chain the table knows.
+- Every vendored ICS-20 trace reproduces its own `ibc/<HASH>` from `sha256(path + "/" + baseDenom)`, is unique per chain, and names a chain the chain table knows.
 - Every native is `<caip2>/slip44:<n>` and its CAIP-2 agrees with its own field.
 - Route slugs round-trip.
 

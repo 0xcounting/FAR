@@ -9,6 +9,8 @@ const SOURCES = {
   evmChains: 'data/sources/evm-chains.json.gz',
   // Cosmos chain-registry snapshot (chain_id, bech32 prefix, native denom, CoinGecko id per chain) -- see SOURCES.md.
   cosmosChainRegistry: 'data/sources/cosmos-chain-registry.json.gz',
+  // Hash-verified ICS-20 voucher traces from the 0xcounting.com IBC sweep -- see SOURCES.md and src/lib/ics20.js.
+  ibcDenomTraces: 'data/sources/ibc-denom-traces.json.gz',
 };
 
 // Every build records the sha256 of the exact bytes it read. That hash travels

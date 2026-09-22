@@ -45,6 +45,15 @@ const deployment = obj({
   address: { ...S.nstr, description: 'Contract address or asset id on that chain. Null for a native unit of account (assetNamespace slip44).' },
   native: { ...S.bool, description: 'Present and true when this is the chain\'s native unit of account.' },
   confidence: S.confidence,
+  verified: obj({
+    method: { type: 'string', enum: ['ics20-denom-trace'] },
+    rule: S.str,
+    path: S.str,
+    baseDenom: S.str,
+    origin: { ...S.nstr, description: 'CAIP-19 of the asset on its origin chain (derived by walking the path; null when the origin could not be reached).' },
+    resolvedBy: S.nstr,
+    placedVia: { type: 'string', enum: ['origin-identity', 'eth-erc20', 'ibc-canonical'], description: 'Which already-known identity placed this voucher on its CoinGecko id. Absent when CoinGecko itself lists the voucher.' },
+  }, ['method', 'rule', 'path', 'baseDenom'], 'Present when the mapping is PROVEN rather than reviewed: for an ICS-20 voucher, sha256(path + "/" + baseDenom) reproduces the hash in the denom, so anyone can recompute it. The origin and placement are derived, the hash is not.'),
   dti: arr(obj({ dti: S.dti, status: S.status, basis: S.str, longName: S.nstr }), 'DTIs placed on this exact deployment. Empty until address-level DTI data exists.'),
 }, ['caip19', 'caip2', 'assetNamespace', 'confidence']);
 
@@ -172,6 +181,7 @@ export function openapiDoc(base, counts) {
       '/_acceptance-queue.json': { get: { tags: ['registry'], summary: 'DTI proposals a reviewer could accept from public evidence.',
         responses: { 200: jsonResp(obj({ ...envelope, _readme: S.str, count: S.int, queue: arr(queueEntry) }, ['count', 'queue'])) } } },
       '/_unlinked.json': { get: { tags: ['registry'], summary: 'DTI records with no CoinGecko proposal at all.', responses: { 200: jsonResp({ type: 'object' }) } } },
+      '/_ics20-unplaced.json': { get: { tags: ['registry'], summary: 'Hash-verified ICS-20 vouchers whose origin asset has no CoinGecko id; each carries the origin CAIP-19 it is equivalent to.', responses: { 200: jsonResp({ type: 'object' }) } } },
       '/_platforms.json': { get: { tags: ['bulk'], summary: 'Every chain mapping with confidence and evidence.', responses: { 200: jsonResp({ type: 'object' }) } } },
       '/_chains.json': { get: { tags: ['bulk'], summary: 'CAIP-2 -> chain identity for every chain the registry can name, independent of CoinGecko platforms (Cosmos today).', responses: { 200: jsonResp({ type: 'object' }) } } },
       '/_ledgers.json': { get: { tags: ['bulk'], summary: 'All DTI ledger records.', responses: { 200: jsonResp({ type: 'object' }) } } },

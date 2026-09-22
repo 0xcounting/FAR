@@ -31,6 +31,7 @@ To use it: fetch `index.json` for live counts and the route list, then fetch the
 - [/_namespace-gaps.json](https://0xcounting.github.io/FAR/_namespace-gaps.json): CAIP-2 and CAIP-19 namespaces this registry had to choose because no CASA specification defines them. A CAIP-19 on Cosmos, Tron, Sui, Aptos or TON is this project's proposal, not a ratified standard.
 - [/_platforms.json](https://0xcounting.github.io/FAR/_platforms.json): every chain mapping with its `confidence` and `evidence`.
 - [/_chains.json](https://0xcounting.github.io/FAR/_chains.json): CAIP-2 -> chain identity for every chain the registry can name, independent of CoinGecko platforms (Cosmos today), so an IBC voucher's origin is always nameable.
+- [/_ics20-unplaced.json](https://0xcounting.github.io/FAR/_ics20-unplaced.json): IBC vouchers whose mapping is verified (the ibc/ hash recomputes from path + base denom) but whose origin asset has no CoinGecko id; each carries the origin CAIP-19 it is equivalent to. Deployments with a `verified` object are this class: proven, not reviewed.
 
 ## Verification
 
