@@ -465,7 +465,7 @@ const NAMES = new Set(), SYMS = new Set();
 fetch(`${BASE}/index.json`).then(r => r.json()).then(d => {
   const c = d.counts, n = x => (x ?? 0).toLocaleString('en-US');
   $('#stats').innerHTML = [
-    [n(c.coins),'assets'],[n(c.deployments),'CAIP-19 ids'],[n(c.platformsMapped),'chains'],
+    [n(c.coins),'assets'],[n(c.deployments),'CAIP-19 ids'],[n(c.chainsWithDeployments),'chains'],
     [n(c.files),'files served'],
   ].map(([v,l]) => `<div class="stat"><b>${v}</b><span>${l}</span></div>`).join('');
   $('#built').textContent = `Built ${d.version} · every file hashed in /manifest.json`;

@@ -88,7 +88,7 @@ export function openapiDoc(base, counts) {
       description: [
         'Every route is a static JSON file. There is no server, no authentication and no rate limit; a missing key is a 404 from the host.',
         '',
-        `Current release: ${counts?.coins ?? '?'} CoinGecko assets, ${counts?.deployments ?? '?'} CAIP-19 deployments across ${counts?.platformsMapped ?? '?'} chains.`,
+        `Current release: ${counts?.coins ?? '?'} CoinGecko assets, ${counts?.deployments ?? '?'} CAIP-19 deployments across ${counts?.chainsWithDeployments ?? '?'} chains.`,
         '',
         'Read /llms.txt first. Names and tickers are not unique: the /name and /symbol routes return groups, and `family` says which member is the canonical asset.',
         '',

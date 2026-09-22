@@ -14,7 +14,7 @@ const pct = (a, b) => `${(Math.floor((10000 * a) / b) / 100).toFixed(1)}%`;
 const rows = [
   ['CoinGecko coins', n(counts.coins)],
   ['— resolvable to at least one CAIP-19', `${n(counts.coinsResolvable)} (${pct(counts.coinsResolvable, counts.coins)})`],
-  ['CAIP-19 identities', `${n(counts.deployments)} across ${n(counts.platformsMapped)} chains`],
+  ['CAIP-19 identities', `${n(counts.deployments)} across ${n(counts.chainsWithDeployments)} chains`],
   ['Native units of account', `${n(counts.nativeIdentities)} chain identities`],
   ['CoinGecko platforms mapped to CAIP-2', n(counts.platformsMapped)],
   ['— still unmapped', n(counts.platformsUnmapped)],

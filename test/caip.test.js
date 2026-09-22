@@ -53,4 +53,9 @@ test('every published deployment is valid CAIP-19 and its route round-trips', ()
     n++;
   }
   assert.ok(n > 20000, `expected the whole registry, saw ${n} deployments`);
+  // The published chain count must be the chains that carry a deployment, not the platform rows.
+  const chains = new Set(coins.flatMap((c) => (c.deployments ?? []).map((d) => d.caip2)));
+  const counts = JSON.parse(readFileSync('dist/index.json', 'utf8')).counts;
+  assert.equal(counts.chainsWithDeployments, chains.size);
+  assert.ok(counts.chainsWithDeployments <= counts.platformsMapped + 50, 'chain count should not exceed what the tables can name');
 });

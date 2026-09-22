@@ -297,6 +297,10 @@ const counts = {
   nativeIdentities: stats.natives ?? 0,
   coinsResolvable: [...coinsById.values()].filter((c) => c.deployments.length).length,
   family: familyCounts,
+  // Chains that actually carry a deployment. `platformsMapped` counts platform
+  // ROWS, including ones under which no asset resolved, so it overstates the
+  // spread of the identities published here.
+  chainsWithDeployments: new Set([...coinsById.values()].flatMap((c) => c.deployments.map((d) => d.caip2))).size,
   platformsMapped: Object.keys(platformTable.platforms).length,
   platformsUnmapped: Object.keys(platformTable.unmapped).length,
   chains: Object.keys(chainTable).length,
