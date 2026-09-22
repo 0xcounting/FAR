@@ -1,8 +1,8 @@
 name: refresh-sources
 on:
   schedule:
-    # DTIF refreshes its free snapshot monthly. Run on the 5th so the new month's
-    # file is definitely up, at a quiet hour.
+    # Upstream lists change continuously; once a month keeps the registry
+    # current without churning the Merkle root for every small edit.
     - cron: '0 4 5 * *'
   workflow_dispatch:
 
@@ -63,17 +63,6 @@ jobs:
             if (rows.length < 1000) { console.error("slip44 parse produced "+rows.length+" rows; refusing"); process.exit(1); }
             fs.writeFileSync("/tmp/fresh/slip44.json", JSON.stringify(rows));'
           gzip -9 -n -c /tmp/fresh/slip44.json > /tmp/fresh/slip44.json.gz && rm /tmp/fresh/slip44.json
-
-          # DTIF publishes behind a redirect; follow it and sanity-check the shape
-          # before letting it replace a known-good snapshot.
-          curl -sSfL --retry 3 'https://dtif.org/download-redirect/' -o /tmp/dti.json || {
-            echo "::warning::DTIF download failed — keeping the existing snapshot"; }
-          if [ -s /tmp/dti.json ] && node -e '
-              const d=JSON.parse(require("fs").readFileSync("/tmp/dti.json","utf8"));
-              if (!Array.isArray(d.records) || d.records.length < 4000) {
-                console.error("DTI snapshot has "+(d.records?.length ?? 0)+" records; refusing"); process.exit(1); }'; then
-            gzip -9 -n -c /tmp/dti.json > /tmp/fresh/dti-registry.json.gz
-          fi
 
       - name: replace snapshots and rebuild
         run: |
