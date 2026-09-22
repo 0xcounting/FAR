@@ -34,6 +34,15 @@ const deployment = obj({
   address: { ...S.nstr, description: 'Contract address or asset id on that chain. Null for a native unit of account (assetNamespace slip44).' },
   native: { ...S.bool, description: 'Present and true when this is the chain\'s native unit of account.' },
   confidence: S.confidence,
+  verified: obj({
+    method: { type: 'string', enum: ['ics20-denom-trace'] },
+    rule: S.str,
+    path: S.str,
+    baseDenom: S.str,
+    origin: { ...S.nstr, description: 'CAIP-19 of the asset on its origin chain (derived by walking the path; null when the origin could not be reached).' },
+    resolvedBy: S.nstr,
+    placedVia: { type: 'string', enum: ['origin-identity', 'eth-erc20', 'ibc-canonical'], description: 'Which already-known identity placed this voucher on its CoinGecko id. Absent when CoinGecko itself lists the voucher.' },
+  }, ['method', 'rule', 'path', 'baseDenom'], 'Present when the mapping is PROVEN rather than reviewed: for an ICS-20 voucher, sha256(path + "/" + baseDenom) reproduces the hash in the denom, so anyone can recompute it. The origin and placement are derived, the hash is not.'),
 }, ['caip19', 'caip2', 'assetNamespace', 'confidence']);
 
 const family = obj({
@@ -123,6 +132,7 @@ export function openapiDoc(base, counts) {
         responses: { 200: { description: 'gzip-compressed JSON', content: { 'application/gzip': { schema: { type: 'string', format: 'binary' } } } } } } },
       '/search-index.json': { get: { tags: ['bulk'], summary: 'Compact array the site searches client-side.',
         responses: { 200: jsonResp({ type: 'array', items: { type: 'object' } }) } } },
+      '/_ics20-unplaced.json': { get: { tags: ['bulk'], summary: 'Hash-verified ICS-20 vouchers whose origin asset has no CoinGecko id; each carries the origin CAIP-19 it is equivalent to.', responses: { 200: jsonResp({ type: 'object' }) } } },
       '/_platforms.json': { get: { tags: ['bulk'], summary: 'Every chain mapping with confidence and evidence.', responses: { 200: jsonResp({ type: 'object' }) } } },
       '/_chains.json': { get: { tags: ['bulk'], summary: 'CAIP-2 -> chain identity for every chain the registry can name, independent of CoinGecko platforms (Cosmos today), with `aliases` mapping every raw-chain-id spelling to its canonical hashed key.', responses: { 200: jsonResp({ type: 'object' }) } } },
       '/_namespace-gaps.json': { get: { tags: ['bulk'], summary: 'Identifiers this registry chose because no CASA spec defines them.', responses: { 200: jsonResp({ type: 'object' }) } } },

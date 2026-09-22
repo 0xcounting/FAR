@@ -43,13 +43,15 @@ one file (`/far.json.gz`) if you would rather hold it locally.
 | | |
 |---|---|
 | CoinGecko coins | 18,090 |
-| — resolvable to at least one CAIP-19 | 17,212 (95.1%) |
-| CAIP-19 identities | 25,293 across 306 chains |
+| — resolvable to at least one CAIP-19 | 17,224 (95.2%) |
+| CAIP-19 identities | 29,877 across 306 chains |
 | Native units of account | 41 chain identities |
 | CoinGecko platforms mapped to CAIP-2 | 306 |
 | — still unmapped | 10 |
 | Chains named by CAIP-2 independent of a CoinGecko platform | 223 |
-| Published files | 74,337 |
+| ICS-20 vouchers verified by recomputing their hash | 7,938 |
+| — placed on a CoinGecko coin / already listed / origin asset has no CoinGecko id | 4,584 / 128 / 3,226 |
+| Published files | 79,052 |
 <!-- BUILD-STATS:END -->
 
 ## Read this before you trust a chain
@@ -63,6 +65,15 @@ The CAIP-2 reference follows the cosmos profile's `hashed-` rule for chain ids t
 fail its direct grammar (`kava_2222-10`, `shentu-2.2`) — and because nobody writes
 that form by hand, the raw spelling is published as an alias that resolves on every
 route to the same record. Ask in either dialect; see CONTRIBUTING §4.
+
+One asset class is **verified rather than reviewed**: IBC vouchers. ICS-20 defines
+the voucher denom as `ibc/` + `sha256(path + "/" + base_denom)`, so a claimed mapping
+can be recomputed by anyone from its own two strings. 7,938 such traces are vendored,
+CI re-derives every one, and the deployments built from them carry a `verified` object
+stating the rule and its inputs (CONTRIBUTING §5). 4,584 of them place onto a CoinGecko
+coin through identities the registry already held; the 3,226 whose origin asset has no
+CoinGecko id are published at `/_ics20-unplaced.json` with the origin CAIP-19 each is
+equivalent to — two identifiers, one asset, no CoinGecko id needed.
 
 Every entry in `data/platforms.json` carries
 a `confidence`:

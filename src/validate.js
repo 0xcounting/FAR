@@ -7,6 +7,7 @@
 import { readFileSync } from 'node:fs';
 import { gunzipSync } from 'node:zlib';
 import { isValidCaip2, isValidCaip19, cosmosCaip2 } from './lib/caip.js';
+import { verifyIcs20Trace } from './lib/ics20.js';
 import { slug, caipPath, unCaipPath } from './lib/slug.js';
 
 const problems = [];
@@ -120,6 +121,25 @@ for (const [name, p] of Object.entries(platformTable.platforms)) {
   else fail('platform.cosmos-chain-unknown', `${name}: ${p.caip2} has no entry in data/chains.json`);
 }
 
+// --- ICS-20 traces -----------------------------------------------------------
+// The one source whose every row is self-checking. A trace that does not
+// reproduce its own hash is a false claim, and the gate refuses to let one be
+// vendored; a chain id the chain table does not know cannot be named.
+{
+  const traces = JSON.parse(gunzipSync(readFileSync('data/sources/ibc-denom-traces.json.gz')));
+  const chainIds = new Set(Object.values(chainTable).map((c) => c.chainId));
+  const seen = new Set();
+  let bad = 0;
+  for (const t of traces) {
+    if (!verifyIcs20Trace(t)) { if (bad++ < 5) fail('ics20.hash-does-not-reproduce', `${t.chainId} ${t.denom} <- ${t.path}/${t.baseDenom}`); continue; }
+    const k = `${t.chainId}|${t.denom}`;
+    if (seen.has(k)) fail('ics20.duplicate', k);
+    seen.add(k);
+    if (!chainIds.has(t.chainId)) fail('ics20.chain-unknown', `${t.chainId}: not in data/chains.json`);
+  }
+  if (bad > 5) fail('ics20.hash-does-not-reproduce', `... and ${bad - 5} more`);
+}
+
 // --- natives ---------------------------------------------------------------
 for (const [coingeckoId, entries] of Object.entries(natives)) {
   if (!coinIds.has(coingeckoId)) fail('native.unknown-coingecko-id', coingeckoId);
@@ -152,6 +172,7 @@ if (problems.length === 0) {
     unmapped: Object.keys(platformTable.unmapped).length,
     natives: Object.keys(natives).length,
     chains: Object.keys(chainTable).length,
+    ics20Traces: JSON.parse(gunzipSync(readFileSync('data/sources/ibc-denom-traces.json.gz'))).length,
   };
   console.log('validate: OK', JSON.stringify(counts));
   process.exit(0);

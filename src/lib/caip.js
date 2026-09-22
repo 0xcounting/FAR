@@ -70,7 +70,7 @@ export function cosmosCaip2(chainId) {
 // Cosmos has no ratified CAIP-19. The identifier shape itself says which kind
 // of asset it is, so the namespace is chosen per-identity rather than per-chain
 // — one Cosmos chain routinely carries all four kinds at once.
-function cosmosNamespace(raw) {
+export function cosmosNamespace(raw) {
   if (raw.startsWith('ibc/')) return { ns: 'ics20', ref: raw.slice(4) };
   // CAIP-19 caps asset_namespace at 8 characters, so this cannot be
   // "tokenfactory" — that silently failed the grammar and dropped every

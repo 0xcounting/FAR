@@ -19,6 +19,8 @@ const rows = [
   ['CoinGecko platforms mapped to CAIP-2', n(counts.platformsMapped)],
   ['— still unmapped', n(counts.platformsUnmapped)],
   ['Chains named by CAIP-2 independent of a CoinGecko platform', n(counts.chains ?? 0)],
+  ['ICS-20 vouchers verified by recomputing their hash', n(counts.ics20Verified ?? 0)],
+  ['— placed on a CoinGecko coin / already listed / origin asset has no CoinGecko id', `${n(counts.ics20Placed ?? 0)} / ${n(counts.ics20AlreadyListed ?? 0)} / ${n(counts.ics20Unplaced ?? 0)}`],
   ['Published files', n(counts.files)],
 ];
 const table = ['| | |', '|---|---|', ...rows.map(([k, v]) => `| ${k} | ${v} |`)].join('\n');

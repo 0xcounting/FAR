@@ -13,6 +13,7 @@ re-downloading anything upstream.
 | `data/sources/coingecko-platforms.json.gz` | 862,570 | `e3e0193d814a98cf13cbd2c474ab135f2b7051e19d948359e5650e085a4d1e31` |
 | `data/sources/evm-chains.json.gz` | 60,608 | `a304489007afcd1e91db81825c327b19b58a7fcc927b6792c2786b20703799e2` |
 | `data/sources/cosmos-chain-registry.json.gz` | 7,098 | `64a1ba4f464cf4c156280ebc5130ea0209581ed8b0b2c5d8e1dd6a142dac847d` |
+| `data/sources/ibc-denom-traces.json.gz` | 468,990 | `ddc883065345312a98b355e7fc4cb968dff8ee4b59e012dc0a6302c616a1d96c` |
 
 ## CoinGecko
 
@@ -80,6 +81,33 @@ re-downloading anything upstream.
   feed and is kept in `chains.json` as a `curated` row instead, because ledgers
   still hold identifiers rooted on it.
 - **Not affiliated with or endorsed by the chain-registry maintainers or ECO Stake.**
+
+## ICS-20 denom traces (0xcounting.com IBC sweep)
+
+- **What:** one row per IBC voucher observed on the Cosmos chains the
+  0xcounting.com pipeline ingests (18 chains, 7,938 rows): the chain's
+  Tendermint `chainId`, the voucher `denom` (`ibc/<HASH>`), the transfer `path`
+  and `baseDenom` the minting chain filed for it (`/ibc/apps/transfer/v1/denom_traces`,
+  or `/denoms` on ibc-go v9+), the `originChainId` reached by walking the path
+  hop by hop through the chain-registry's `_IBC/` channel tables (live
+  `client_state` queries only for uncatalogued channels), and `resolvedBy`, which
+  names the authority that answered for the origin. Vendored as
+  `data/sources/ibc-denom-traces.json.gz`.
+- **Why it is different from every other source here:** the mapping is
+  **checkable**. ICS-20 defines `HASH = uppercase(hex(sha256(path + "/" + base_denom)))`,
+  so any row can be re-derived from its own two strings. `src/validate.js`
+  refuses a snapshot in which any row fails; `src/build.js` drops and counts
+  rather than publishes. A wrong node cannot get a row in. Published deployments
+  built from this source carry a `verified` object stating the rule and its inputs.
+- **What the hash does not prove:** which chain is at the far end of the path
+  (`originChainId` is a walk result and is carried as provenance, not as a
+  verified fact), and the origin asset's symbol or decimals, which the sweep
+  resolves separately and which are deliberately **not** vendored here.
+- **Licence:** the sweep's output is this project's own derived data — **CC0-1.0**
+  like every other curated table. Inputs are on-chain state (no licence) and the
+  cosmos/chain-registry `_IBC/` tables (CC-BY-4.0, attributed above).
+- **Refresh:** replaced wholesale by the upstream sweep; a row that stops
+  verifying cannot be re-vendored, so the file is monotone in correctness.
 
 ## 0xcounting.com production ingest
 

@@ -8,6 +8,7 @@ import { join } from 'node:path';
 import { loadSources } from './lib/sources.js';
 import { slug, caipPath, isDegenerateSlug } from './lib/slug.js';
 import { buildCaip19 } from './lib/caip.js';
+import { placeIcs20Vouchers } from './lib/ics20.js';
 import { citationIndex, classify, FAMILY_ORDER } from './lib/family.js';
 import { sha256, merkleRoot, merkleProofs } from './lib/manifest.js';
 import { openapiDoc, apiCatalog, llmsFull } from './lib/agentDocs.js';
@@ -109,6 +110,16 @@ for (const [coingeckoId, entries] of Object.entries(nativeTable)) {
   }
 }
 stats.natives = nativeCount;
+// ICS-20 vouchers, the checkable asset class: every row of the vendored trace
+// table must reproduce its own ibc/<HASH> from sha256(path + "/" + baseDenom) or
+// it is dropped here. Verified vouchers are placed onto coins through identities
+// the registry already holds (the origin chain's denom, an Ethereum ERC-20 root,
+// or a CoinGecko-listed sibling voucher); the rest are published as a work list
+// with their origin CAIP-19, because "this voucher IS that origin asset" is a
+// fact even when no CoinGecko id is known for either.
+const ics20 = placeIcs20Vouchers(src.ibcDenomTraces, { coinsById, chainTable, platformTable });
+stats.ics20 = ics20.stats;
+stats.deployments += ics20.stats.placed;
 // Order deployments by how much of the registry lives on each chain, biggest
 // first, then alphabetically.
 //
@@ -270,6 +281,15 @@ emit('_chains.json', {
 // somebody could take upstream — rather than leaving it implied by a
 // confidence label nobody reads.
 emit('_namespace-gaps.json', { ...meta(), ...readOptional('data/namespace-gaps.json', {}) });
+// Verified vouchers with no CoinGecko id on either end: each row still pins one
+// identifier to another (`equivalentTo` is the origin asset's CAIP-19).
+emit('_ics20-unplaced.json', {
+  ...meta(),
+  _readme: 'ICS-20 vouchers whose (path, baseDenom) reproduce their ibc/<HASH> -- so the mapping is verified -- but whose origin asset has no CoinGecko id this registry knows. equivalentTo is the origin CAIP-19; null when the path could not be walked to an origin chain.',
+  count: ics20.unplaced.length,
+  vouchers: ics20.unplaced,
+});
+
 // ---------------------------------------------------------------- manifest --
 const counts = {
   coins: coinsById.size,
@@ -282,6 +302,11 @@ const counts = {
   chains: Object.keys(chainTable).length,
   chainAliases: chainAliases.size,
   aliasRoutes: stats.aliasRoutes ?? 0,
+  ics20Verified: stats.ics20.verified,
+  ics20Rejected: stats.ics20.rejected,
+  ics20Placed: stats.ics20.placed,
+  ics20AlreadyListed: stats.ics20.alreadyListed,
+  ics20Unplaced: stats.ics20.unplaced,
   files: files.length,
 };
 const indexDoc = {
@@ -293,6 +318,7 @@ const indexDoc = {
     name: '/name/{slug}.json', symbol: '/symbol/{slug}.json', coingeckoId: '/cg/{id}.json',
     caip19: '/caip/{namespace}/{reference}/{assetNamespace}/{assetReference}.json  (e.g. /caip/eip155/1/erc20/0xdac17f958d2ee523a2206206994597c13d831ec7.json; a "%" in the reference becomes "~")',
     bulk: '/far.json.gz', manifest: '/manifest.json', platforms: '/_platforms.json', chains: '/_chains.json',
+    ics20Unplaced: '/_ics20-unplaced.json',
     llms: '/llms.txt', llmsFull: '/llms-full.txt', readme: '/README.md', openapi: '/openapi.json', apiCatalog: '/.well-known/api-catalog', robots: '/robots.txt',
     proof: '/proof/{path without .json}.json  (e.g. /proof/cg/tether.json proves cg/tether.json; /proof/index.html.json proves index.html)',
     searchIndex: '/search-index.json',
@@ -363,6 +389,7 @@ for (const [k, v] of Object.entries(counts)) {
 }
 console.log(`  ${'totalBytes'.padEnd(20)} ${(totalBytes / 1e6).toFixed(1)} MB`);
 console.log(`  ${'merkleRoot'.padEnd(20)} ${root}`);
+console.log('  ics20 placement:     ', JSON.stringify(stats.ics20.placedVia));
 if (stats.platformMissing.size) {
   const top = [...stats.platformMissing].sort((a, b) => b[1] - a[1]).slice(0, 5);
   console.log(`  unmapped platform rows: ${sum(stats.platformMissing)} (top: ${top.map(([k, v]) => `${k}=${v}`).join(', ')})`);
