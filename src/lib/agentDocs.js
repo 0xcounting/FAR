@@ -173,6 +173,7 @@ export function openapiDoc(base, counts) {
         responses: { 200: jsonResp(obj({ ...envelope, _readme: S.str, count: S.int, queue: arr(queueEntry) }, ['count', 'queue'])) } } },
       '/_unlinked.json': { get: { tags: ['registry'], summary: 'DTI records with no CoinGecko proposal at all.', responses: { 200: jsonResp({ type: 'object' }) } } },
       '/_platforms.json': { get: { tags: ['bulk'], summary: 'Every chain mapping with confidence and evidence.', responses: { 200: jsonResp({ type: 'object' }) } } },
+      '/_chains.json': { get: { tags: ['bulk'], summary: 'CAIP-2 -> chain identity for every chain the registry can name, independent of CoinGecko platforms (Cosmos today).', responses: { 200: jsonResp({ type: 'object' }) } } },
       '/_ledgers.json': { get: { tags: ['bulk'], summary: 'All DTI ledger records.', responses: { 200: jsonResp({ type: 'object' }) } } },
       '/_namespace-gaps.json': { get: { tags: ['bulk'], summary: 'Identifiers this registry chose because no CASA spec defines them.', responses: { 200: jsonResp({ type: 'object' }) } } },
       '/_explorers.json': { get: { tags: ['bulk'], summary: 'Block explorer base URLs by chain.', responses: { 200: jsonResp({ type: 'object' }) } } },

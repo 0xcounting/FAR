@@ -13,6 +13,7 @@ re-downloading anything upstream.
 | `data/sources/coingecko-platforms.json.gz` | 862,570 | `e3e0193d814a98cf13cbd2c474ab135f2b7051e19d948359e5650e085a4d1e31` |
 | `data/sources/dti-registry.json.gz` | 184,290 | `f9760db90daa0878bf86a26a13b2a593b1a699376e03062b8f70a1588b1bb864` |
 | `data/sources/evm-chains.json.gz` | 60,608 | `a304489007afcd1e91db81825c327b19b58a7fcc927b6792c2786b20703799e2` |
+| `data/sources/cosmos-chain-registry.json.gz` | 7,098 | `64a1ba4f464cf4c156280ebc5130ea0209581ed8b0b2c5d8e1dd6a142dac847d` |
 
 ## Digital Token Identifier Foundation (DTIF)
 
@@ -100,6 +101,30 @@ repository, and the maintainers will act on it.**
   `{coinType, symbol, name}`.
 - **Licence:** MIT.
 - **Used for:** the `slip44:` reference in every native asset's CAIP-19.
+
+## cosmos/chain-registry (via chains.cosmos.directory)
+
+- **What:** one row per MAINNET Cosmos SDK chain — `chain_name` (the registry
+  directory, stable across regenesis), `chain_id` (the Tendermint chain id the
+  CAIP-2 reference derives from), bech32 prefix, `slip44`, the fee/staking denom
+  with symbol and decimals, and the CoinGecko id of the native coin where the
+  registry records one. Read from the aggregated feed at
+  <https://chains.cosmos.directory> (ECO Stake's index of
+  <https://github.com/cosmos/chain-registry>), slimmed, and vendored as
+  `data/sources/cosmos-chain-registry.json.gz`. 221 chains in the current snapshot.
+- **Licence:** the chain-registry is **CC-BY-4.0**. Attribution: *Cosmos
+  chain-registry contributors*, aggregated by cosmos.directory (ECO Stake).
+  Given here and in `_chains.json`'s `_readme`.
+- **Used for:** `data/chains.json` (via `scripts/gen-chains.js`) — the CAIP-2
+  identity of every Cosmos chain, whether or not CoinGecko has a platform for it;
+  the `chainName` on Cosmos deployments; the join key
+  (`native_coin_id == coingecko_id`) that lets `scripts/add-cosmos-platforms.js`
+  map CoinGecko asset-platforms under which no token is filed.
+- **What it does NOT establish:** that a chain is live. A registry row is the
+  chain's own published metadata; a killed chain (Stargaze) drops out of the live
+  feed and is kept in `chains.json` as a `curated` row instead, because ledgers
+  still hold identifiers rooted on it.
+- **Not affiliated with or endorsed by the chain-registry maintainers or ECO Stake.**
 
 ## 0xcounting.com production ingest
 

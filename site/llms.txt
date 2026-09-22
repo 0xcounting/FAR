@@ -29,7 +29,8 @@ To use it: fetch `index.json` for live counts and the route list, then fetch the
 - [Where the DTI half stands](https://github.com/0xcounting/FAR#where-the-dti-half-stands): zero DTIs currently resolve to a chain; every DTI link carries `status` (`accepted` is the only tier to rely on; `proposed` and `inferred` are candidates). Filter on it.
 - [/_acceptance-queue.json](https://0xcounting.github.io/FAR/_acceptance-queue.json): the proposals a reviewer could accept from public evidence, sorted uncontested first.
 - [/_namespace-gaps.json](https://0xcounting.github.io/FAR/_namespace-gaps.json): CAIP-2 and CAIP-19 namespaces this registry had to choose because no CASA specification defines them. A CAIP-19 on Cosmos, Tron, Sui, Aptos or TON is this project's proposal, not a ratified standard.
-- [/_platforms.json](https://0xcounting.github.io/FAR/_platforms.json): every chain mapping with its `confidence` and `evidence`.
+- [/_platforms.json](https://0xcounting.github.io/FAR/_platforms.json
+- [Chains](https://0xcounting.github.io/FAR/_chains.json): CAIP-2 -> chain identity for every chain the registry can name, independent of CoinGecko platforms (Cosmos today; the origin of an IBC voucher is always nameable).): every chain mapping with its `confidence` and `evidence`.
 
 ## Verification
 

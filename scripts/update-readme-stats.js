@@ -24,6 +24,7 @@ const rows = [
   ['DTI ledger records', `${n(counts.dtiLedgers)}, ${n(counts.dtiLedgersWithCaip2)} with a CAIP-2`],
   ['CoinGecko platforms mapped to CAIP-2', n(counts.platformsMapped)],
   ['— still unmapped', n(counts.platformsUnmapped)],
+  ['Chains named by CAIP-2 independent of a CoinGecko platform', n(counts.chains ?? 0)],
   ['Published files', n(counts.files)],
 ];
 const table = ['| | |', '|---|---|', ...rows.map(([k, v]) => `| ${k} | ${v} |`)].join('\n');

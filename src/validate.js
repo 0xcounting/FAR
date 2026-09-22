@@ -6,7 +6,7 @@
 // than by a reviewer remembering them.
 import { readFileSync } from 'node:fs';
 import { gunzipSync } from 'node:zlib';
-import { isValidCaip2, isValidCaip19 } from './lib/caip.js';
+import { isValidCaip2, isValidCaip19, cosmosCaip2 } from './lib/caip.js';
 import { slug, caipPath, unCaipPath } from './lib/slug.js';
 
 const problems = [];
@@ -68,6 +68,42 @@ for (const [name, p] of Object.entries(platformTable.platforms)) {
     fail('platform.conflicting-namespace-for-chain', `${p.caip2}: ${seen.name}=${seen.assetNamespace} vs ${name}=${p.assetNamespace} (same addressFormat ${p.addressFormat})`);
   }
   if (!seen) byCaip2.set(p.caip2, { name, assetNamespace: p.assetNamespace, addressFormat: p.addressFormat });
+}
+
+// --- chain table -----------------------------------------------------------
+// A chain is an identity in its own right (data/chains.json), independent of
+// whether CoinGecko files tokens under it. The rules: the key is a valid CAIP-2
+// and is exactly what the chain's own id derives to under the cosmos profile
+// (so a consumer hashing "shentu-2.2" lands on our row); one registry name maps
+// to one chain; evidence is mandatory like everywhere else; and every Cosmos
+// platform in platforms.json points at a chain this table knows, so the two
+// tables cannot disagree about which chain a platform is.
+const chainTable = readOptional('data/chains.json', { chains: {} }).chains;
+const seenRegistryName = new Map();
+for (const [caip2, c] of Object.entries(chainTable)) {
+  if (!isValidCaip2(caip2)) fail('chain.caip2-invalid', caip2);
+  if (c.namespace === 'cosmos' && cosmosCaip2(c.chainId) !== caip2) fail('chain.caip2-not-derived-from-chain-id', `${caip2}: chainId "${c.chainId}" derives to ${cosmosCaip2(c.chainId)}`);
+  if (!VALID_CONFIDENCE.has(c.confidence)) fail('chain.confidence-invalid', `${caip2}: ${c.confidence}`);
+  if (!Array.isArray(c.evidence) || c.evidence.length === 0) fail('chain.no-evidence', caip2);
+  if (c.confidence === 'proposed' && c.assertedBy == null) fail('chain.proposed-needs-assertedBy', caip2);
+  if (c.registryName) {
+    if (seenRegistryName.has(c.registryName)) fail('chain.duplicate-registry-name', `${c.registryName}: ${seenRegistryName.get(c.registryName)} and ${caip2}`);
+    seenRegistryName.set(c.registryName, caip2);
+  }
+  // A platform may still carry the pre-hashed-rule spelling `cosmos:<chain_id>`
+  // (aura-network: `cosmos:aura_6322-2`). Renaming a served CAIP-2 is a
+  // judgement change, so the legacy spelling is accepted as naming this chain;
+  // it is listed in the build log and README as an open follow-up.
+  const platformCaip2 = platformTable.platforms[c.coingeckoPlatform]?.caip2;
+  if (c.coingeckoPlatform && platformCaip2 !== caip2 && platformCaip2 !== `cosmos:${c.chainId}`) {
+    fail('chain.platform-disagrees', `${caip2}: coingeckoPlatform ${c.coingeckoPlatform} maps to ${platformCaip2}`);
+  }
+}
+const chainByRawId = new Map(Object.values(chainTable).map((c) => [`cosmos:${c.chainId}`, c]));
+for (const [name, p] of Object.entries(platformTable.platforms)) {
+  if (p.caip2.startsWith('cosmos:') && !chainTable[p.caip2] && !chainByRawId.has(p.caip2)) {
+    fail('platform.cosmos-chain-unknown', `${name}: ${p.caip2} has no entry in data/chains.json`);
+  }
 }
 
 // --- natives ---------------------------------------------------------------
@@ -167,6 +203,7 @@ if (problems.length === 0) {
     rejectedLinks: (links.rejected ?? []).length,
     inferredLinks: (inferred.links ?? []).length,
     ledgers: Object.keys(ledgers).length,
+    chains: Object.keys(chainTable).length,
   };
   console.log('validate: OK', JSON.stringify(counts));
   process.exit(0);

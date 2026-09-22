@@ -30,7 +30,7 @@ function buildEpochMs() {
   if (process.env.SOURCE_DATE_EPOCH) return Number(process.env.SOURCE_DATE_EPOCH) * 1000;
   const inputs = [
     ...readdirSync('data/sources').map((f) => `data/sources/${f}`),
-    'data/platforms.json', 'data/natives.json', 'data/links.json',
+    'data/platforms.json', 'data/natives.json', 'data/links.json', 'data/chains.json',
   ];
   return Math.max(...inputs.map((f) => statSync(f).mtimeMs));
 }
@@ -42,6 +42,9 @@ const src = loadSources();
 const platformTable = JSON.parse(readFileSync('data/platforms.json', 'utf8'));
 const curatedLinks = JSON.parse(readFileSync('data/links.json', 'utf8'));
 const nativeTable = JSON.parse(readFileSync('data/natives.json', 'utf8')).natives;
+// The chain table: CAIP-2 -> chain identity, independent of CoinGecko's platform
+// list (data/chains.json, generated from the cosmos chain-registry snapshot).
+const chainTable = JSON.parse(readFileSync('data/chains.json', 'utf8')).chains;
 const readOptional = (p, fallback) => { try { return JSON.parse(readFileSync(p, 'utf8')); } catch { return fallback; } };
 // Model-asserted links and the DTI ledger vocabulary. Both are optional so a
 // clone without an agent run still builds.
@@ -53,6 +56,9 @@ const inferredLinks = readOptional('data/links-inferred.json', { links: [] }).li
 const exactLinks = readOptional('data/links-exact.json', { links: [] }).links;
 const ledgerTable = readOptional('data/ledgers.json', { ledgers: {} }).ledgers;
 const chainNames = new Map(src.evmChains.map((c) => [`eip155:${c.chainId}`, c.name]));
+// Cosmos deployments used to carry chainName: null because only ethereum-lists
+// named chains. The chain table names the rest.
+for (const [caip2, c] of Object.entries(chainTable)) if (!chainNames.has(caip2)) chainNames.set(caip2, c.name);
 
 // ---------------------------------------------------------------- assemble --
 const coinsById = new Map();
@@ -473,6 +479,9 @@ emit('_explorers.json', {
 });
 
 emit('_platforms.json', { ...meta(), ...platformTable });
+// Chains as identities in their own right. A Cosmos chain is here whether or not
+// CoinGecko has a platform for it, so an IBC voucher's ORIGIN can always be named.
+emit('_chains.json', { ...meta(), count: Object.keys(chainTable).length, chains: chainTable });
 emit('_ledgers.json', { ...meta(), count: Object.keys(ledgerTable).length, ledgers: ledgerTable });
 // Identifiers this registry had to invent because no CASA spec defines one.
 // Publishing the gap makes it actionable — each entry is a concrete proposal
@@ -563,6 +572,7 @@ const counts = {
   dtiNotPlacedOnAChain: unplacedDti,
   platformsMapped: Object.keys(platformTable.platforms).length,
   platformsUnmapped: Object.keys(platformTable.unmapped).length,
+  chains: Object.keys(chainTable).length,
   files: files.length,
 };
 const indexDoc = {
@@ -573,7 +583,7 @@ const indexDoc = {
   routes: {
     name: '/name/{slug}.json', symbol: '/symbol/{slug}.json', coingeckoId: '/cg/{id}.json',
     caip19: '/caip/{namespace}/{reference}/{assetNamespace}/{assetReference}.json  (e.g. /caip/eip155/1/erc20/0xdac17f958d2ee523a2206206994597c13d831ec7.json; a "%" in the reference becomes "~")', dti: '/dti/{DTI}.json',
-    bulk: '/far.json.gz', manifest: '/manifest.json', platforms: '/_platforms.json',
+    bulk: '/far.json.gz', manifest: '/manifest.json', platforms: '/_platforms.json', chains: '/_chains.json',
     unlinked: '/_unlinked.json',
     acceptanceQueue: '/_acceptance-queue.json',
     llms: '/llms.txt', llmsFull: '/llms-full.txt', readme: '/README.md', openapi: '/openapi.json', apiCatalog: '/.well-known/api-catalog', robots: '/robots.txt',

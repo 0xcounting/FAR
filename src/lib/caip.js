@@ -1,3 +1,5 @@
+import { createHash } from 'node:crypto';
+
 // CAIP-19 construction. Everything here is driven by data/platforms.json — this
 // module never guesses a chain ID, and a platform that is not in that file
 // produces no CAIP-19 at all rather than a plausible-looking wrong one.
@@ -46,6 +48,24 @@ export function percentEncodeRef(s) {
 }
 
 export const percentDecodeRef = (s) => decodeURIComponent(s);
+
+// CAIP-2 for a Cosmos chain, per ChainAgnostic/namespaces cosmos/caip2.md: the
+// Tendermint chain_id is the reference verbatim when it matches
+// [-a-zA-Z0-9]{1,32} and does not start with "hashed-"; otherwise the reference
+// is "hashed-" + first_16_chars(hex(sha256(utf8(chain_id)))). Real cases exist:
+// "shentu-2.2" carries a dot, which the direct grammar forbids.
+//
+// NOTE the Cosmos grammar is STRICTER than CAIP-2's generic reference grammar
+// (which also admits "_"): "kava_2222-10" is a legal CAIP-2 reference in general
+// but per the cosmos profile must be hashed. This function follows the cosmos
+// profile, because that is the spec a Cosmos consumer will implement.
+const COSMOS_DIRECT_REF = /^[-a-zA-Z0-9]{1,32}$/;
+export function cosmosCaip2(chainId) {
+  const id = chainId == null ? '' : String(chainId); // verbatim: the spec hashes " " too
+  if (!id) return null;
+  if (COSMOS_DIRECT_REF.test(id) && !id.startsWith('hashed-')) return `cosmos:${id}`;
+  return `cosmos:hashed-${createHash('sha256').update(id, 'utf8').digest('hex').slice(0, 16)}`;
+}
 
 // Cosmos has no ratified CAIP-19. The identifier shape itself says which kind
 // of asset it is, so the namespace is chosen per-identity rather than per-chain
