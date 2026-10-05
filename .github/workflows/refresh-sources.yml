@@ -69,6 +69,9 @@ jobs:
           for f in /tmp/fresh/*.gz; do cp "$f" "data/sources/$(basename "$f")"; done
           node src/validate.js
           node src/build.js | tee /tmp/build.log
+          # ci.yml fails any commit whose README stats lag dist/index.json,
+          # so the refresh must carry the regenerated table itself.
+          node scripts/update-readme-stats.js
 
       - name: open a pull request
         uses: peter-evans/create-pull-request@v6
