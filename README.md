@@ -3,7 +3,7 @@
 **A CoinGecko ID ↔ CAIP-19 resolver, published as static files.** Give it a
 CoinGecko id and get every chain the asset is deployed on as a standards-compliant
 CAIP-19; give it a CAIP-19 and get the CoinGecko id, so on-chain data can be
-priced. 17,000+ assets, 29,000+ deployments, 290+ chains, 45 address formats
+priced. 20,000+ assets, 41,000+ deployments, 290+ chains, 45 address formats
 normalised, no key, no server.
 
 | Identifier | Who issues it | How you get one | How many exist |
