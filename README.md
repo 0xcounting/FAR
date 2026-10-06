@@ -42,16 +42,16 @@ one file (`/far.json.gz`) if you would rather hold it locally.
 <!-- BUILD-STATS:START -->
 | | |
 |---|---|
-| CoinGecko coins | 18,090 |
-| — resolvable to at least one CAIP-19 | 17,224 (95.2%) |
-| CAIP-19 identities | 29,877 across 293 chains |
+| CoinGecko coins | 21,894 |
+| — resolvable to at least one CAIP-19 | 20,945 (95.7%) |
+| CAIP-19 identities | 41,839 across 294 chains |
 | Native units of account | 41 chain identities |
 | CoinGecko platforms mapped to CAIP-2 | 306 |
 | — still unmapped | 10 |
 | Chains named by CAIP-2 independent of a CoinGecko platform | 223 |
 | ICS-20 vouchers verified by recomputing their hash | 7,938 |
-| — placed on a CoinGecko coin / already listed / origin asset has no CoinGecko id | 4,584 / 128 / 3,226 |
-| Published files | 79,052 |
+| — placed on a CoinGecko coin / already listed / origin asset has no CoinGecko id | 4,580 / 127 / 3,231 |
+| Published files | 101,458 |
 <!-- BUILD-STATS:END -->
 
 ## Read this before you trust a chain
