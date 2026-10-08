@@ -74,7 +74,12 @@ jobs:
           [ -f dist/index.json ] && cp dist/index.json /tmp/base-index.json || true
           node -e "
             const fs = require('fs');
-            const read = (p) => { try { return JSON.parse(fs.readFileSync(p)).counts ?? {}; } catch { return {}; } };
+            // Nested counts (family: {standalone, derivative, canonical}) are
+            // flattened to dotted keys so each leaf diffs as a number instead of
+            // printing [object Object] and NaN.
+            const flat = (o, pre = '') => Object.entries(o).flatMap(([k, v]) =>
+              typeof v === 'number' ? [[pre + k, v]] : v && typeof v === 'object' ? flat(v, pre + k + '.') : []);
+            const read = (p) => { try { return Object.fromEntries(flat(JSON.parse(fs.readFileSync(p)).counts ?? {})); } catch { return {}; } };
             const base = read('/tmp/base-index.json'), pr = read('/tmp/pr-index.json');
             const keys = [...new Set([...Object.keys(base), ...Object.keys(pr)])];
             const rows = keys.map((k) => [k, base[k] ?? 0, pr[k] ?? 0, (pr[k] ?? 0) - (base[k] ?? 0)]).filter((r) => r[3] !== 0);
